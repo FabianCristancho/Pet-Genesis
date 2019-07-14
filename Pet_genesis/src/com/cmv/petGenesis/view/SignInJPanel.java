@@ -1,10 +1,10 @@
 package com.cmv.petGenesis.view;
 
 import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.text.DateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -54,13 +55,13 @@ public class SignInJPanel extends JPanel {
 		this.lblUserName = new CustomLabel(ConstantView.LABEL_USER_NAME_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblPsw = new CustomLabel(ConstantView.LABEL_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblPswAgain = new CustomLabel(ConstantView.LABEL_CONFIRM_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
-		this.jtfId = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfLastName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfPhone = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfAdress = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfEmail = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
-		this.jtfUserName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfId = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfLastName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfPhone = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfAdress = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfEmail = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfUserName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jpfPassword = new JPasswordField(17);
 		this.jpfPasswordAgain = new JPasswordField(17);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
@@ -96,6 +97,7 @@ public class SignInJPanel extends JPanel {
 	private void initPanelPersonalData() {
 		this.panelPersonalData = new JPanel(new GridBagLayout());
 		this.panelPersonalData.setBorder(BorderFactory.createTitledBorder(ConstantView.P_DATA_SIGNIN));
+		this.panelPersonalData.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.gridx = 0;
@@ -165,6 +167,7 @@ public class SignInJPanel extends JPanel {
 	private void initSigInData() {
 		this.panelUserData = new JPanel(new GridBagLayout());
 		this.panelUserData.setBorder(BorderFactory.createTitledBorder(ConstantView.U_DATA_SIGNIN));
+		this.panelUserData.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.gridx = 0;
@@ -231,6 +234,7 @@ public class SignInJPanel extends JPanel {
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
 		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
+		this.panelButtons.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.gridx = 0;
@@ -258,13 +262,14 @@ public class SignInJPanel extends JPanel {
 		return null;
 	}
 
-
 	public void clearFields() {
-//		this.nicknameField.setText("");
-//		this.firstNameField.setText("");
-//		this.lastNameField.setText("");
-//		this.emailField.setText("");
-//		this.passwordField.setText("");
-//		this.bithdayDateChooser.setDate(new Date());
+		this.jtfAdress.setText("");
+		this.jtfEmail.setText("");
+		this.jtfId.setText("");
+		this.jtfLastName.setText("");
+		this.jtfName.setText("");
+		this.jtfPhone.setText("");
+		this.jtfUserName.setText("");
+		this.birthdayDateChooser.setDate(new Date());
 	}
 }

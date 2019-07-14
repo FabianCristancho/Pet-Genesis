@@ -14,13 +14,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.ConstantView;
+import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 
 public class LoginJPanel extends JPanel {
-	private JLabel title, lblUser, lblPassword, lblWithoutAccount, imgUser, imgCMV;
-	private JTextField fldUser;
-	private JButton btnReturn, btnSignin;
+	private JLabel title, lblUser, lblPassword, imgUser, imgCMV, imgLogoHealth;
+	private CustomTxtField fldUser;
+	private JButton btnReturn, btnLogin;
 	private JPasswordField passwordField;
 
 	/**
@@ -31,12 +32,12 @@ public class LoginJPanel extends JPanel {
 		this.title = new JLabel(ConstantView.TITLE_LOGIN);
 		this.imgUser = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_USER_LOGIN, new Dimension(130,  130)));
 		this.imgCMV = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_CMV_LOGIN, new Dimension(60,  60)));
+		this.imgLogoHealth = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_HEALTH_LOGIN, new Dimension(70,  70)));
 		this.lblUser = new JLabel(ConstantView.LABEL_USER_LOGIN);
 		this.lblPassword = new JLabel(ConstantView.LABEL_PSW_LOGIN);
-		this.lblWithoutAccount = new JLabel(ConstantView.LABEL_SIGIN_LOGIN);
-		this.fldUser = new JTextField(15);
+		this.fldUser = new CustomTxtField(15, ConstantView.FONT_FIELD_FORM, JTextField.LEFT);
 		this.btnReturn = new JButton(ConstantView.BUTTON_RETURN_LOGIN);
-		this.btnSignin = new JButton(ConstantView.BUTTON_SIGNIN_LOGIN);
+		this.btnLogin = new JButton(ConstantView.BUTTON_SIGNIN_LOGIN);
 		this.passwordField = new JPasswordField(15);
 		this.init();
 	}
@@ -45,7 +46,7 @@ public class LoginJPanel extends JPanel {
 	 * Crea los componentes del panel y los agrega
 	 */
 	private void init() {
-		this.setOpaque(true);
+		this.setOpaque(false);
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 1;
@@ -57,10 +58,14 @@ public class LoginJPanel extends JPanel {
 		title.setFont(ConstantView.FONT_TITLE_LOGIN);
 		this.add(title, gbc);
 		
-		gbc.gridx = 0;
+		gbc.gridx = 2;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
 		this.add(imgCMV, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(imgLogoHealth, gbc);
 		
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -89,18 +94,13 @@ public class LoginJPanel extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 7;
 		passwordField.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		passwordField.setFont(ConstantView.FONT_FIELD_FORM);
 		this.add(passwordField, gbc);
-		
-		gbc.gridx = 1;
-		gbc.gridy = 8;
-		lblWithoutAccount.setFont(ConstantView.FONT_LABELS_LOGIN);
-		lblWithoutAccount.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0));
-		this.add(lblWithoutAccount, gbc);
-		
+				
 		gbc.gridx = 1;
 		gbc.gridy = 9;
 		gbc.weighty = 0.7;
-		this.add(btnSignin, gbc);
+		this.add(btnLogin, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 9;

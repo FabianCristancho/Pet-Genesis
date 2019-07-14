@@ -12,10 +12,10 @@ public class ConstantView {
 	public final static String LABEL_USER_LOGIN = "Usuario";
 	public final static String LABEL_PSW_LOGIN = "Contraseña";
 	public final static String BUTTON_RETURN_LOGIN = "REGRESAR";
-	public final static String LABEL_SIGIN_LOGIN = "¿Aún no tiene cuenta?";
-	public final static String BUTTON_SIGNIN_LOGIN = "REGISTRAR";
+	public final static String BUTTON_SIGNIN_LOGIN = "INICIAR SESIÓN";
 	public final static String PATH_CMV_LOGIN = "./res/images/cmv.jpg";
 	public final static String PATH_USER_LOGIN = "./res/images/user.png";
+	public final static String PATH_HEALTH_LOGIN = "./res/images/logoMedicinaVeterinaria.png";
 	public final static String PATH_HELP_LOGIN = "./res/images/iconHelp.png";
 	public final static String PATH_ABOUT_LOGIN = "./res/images/iconAbout.png";
 	public final static Font FONT_TITLE_LOGIN = new Font("Elephant", Font.BOLD, 30);

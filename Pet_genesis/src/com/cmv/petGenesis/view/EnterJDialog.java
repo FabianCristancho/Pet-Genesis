@@ -14,17 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 
-//import com.jfyf.pokemongo.controller.EnterCommands;
-//import com.jfyf.pokemongo.controller.EnterListener;
-//import com.jfyf.pokemongo.utilities.ConstantPoke;
-
-/**
- * Clase EnterJDialog
- * 
- * @author Yohan Caro
- * @version 1.1 15/03/2019
- *
- */
 public class EnterJDialog extends JDialog {
 	private static EnterJDialog enterJDialog;
 	private CardLayout cardLayout;
@@ -52,12 +41,11 @@ public class EnterJDialog extends JDialog {
 	 */
 	private void init() {
 		this.setIconImage(new ImageIcon("./res/icons/icon.png").getImage());
-		JLabel backgroundImage = new JLabel(new ImageIcon("./res/images/loginFont.jpg"));
+		JLabel backgroundImage = new JLabel(new ImageIcon("./res/images/loginBack.jpg"));
 		backgroundImage.setLayout(new BorderLayout());
 		JPanel upJPanel = new JPanel(new FlowLayout());
 		upJPanel.setOpaque(false);
 		this.switchButton.setFont(ConstantsLogin.FONT_LOG);
-		this.switchButton.setForeground(Color.WHITE);
 		this.switchButton.setBackground(Color.WHITE);
 		this.switchButton.setOpaque(false);
 		switchButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -72,7 +60,7 @@ public class EnterJDialog extends JDialog {
 		this.switchButton.setBorder(null);
 
 		upJPanel.add(switchButton);
-		backgroundImage.add(upJPanel, BorderLayout.NORTH);
+		backgroundImage.add(upJPanel, BorderLayout.SOUTH);
 
 		downJPanel.add(loginJPanel, ConstantsLogin.LOGIN);
 		downJPanel.add(signInJPanel, ConstantsLogin.SIGN_IN);
@@ -100,13 +88,17 @@ public class EnterJDialog extends JDialog {
 	 */
 	public void changeState() {
 		if (this.switchButton.isSelected()) {
+			this.setSize(950, 550);
 			this.switchButton.setText(ConstantsLogin.LOGIN_TEXT);
 			this.show(ConstantsLogin.SIGN_IN);
 			this.loginJPanel.clearFields();
+			this.setLocationRelativeTo(null);
 		} else {
+			this.setSize(600, 550);
 			this.switchButton.setText(ConstantsLogin.SINGIN_TEXT);
 			this.show(ConstantsLogin.LOGIN);
 			this.signInJPanel.clearFields();
+			this.setLocationRelativeTo(null);
 		}
 	}
 

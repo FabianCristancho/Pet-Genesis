@@ -9,22 +9,22 @@ import javax.swing.JTextField;
 public class CustomTxtField extends JTextField{
 	
 	
-	public CustomTxtField(int columns) {
+	public CustomTxtField(int columns, int aligment) {
 		super(columns);
-		this.setHorizontalAlignment(RIGHT);
+		this.setHorizontalAlignment(aligment);
 	}
 	
-	public CustomTxtField(int columns, Font font) {
+	public CustomTxtField(int columns, Font font, int aligment) {
 		super(columns);
 		this.setFont(font);
-		this.setHorizontalAlignment(RIGHT);
+		this.setHorizontalAlignment(aligment);
 		this.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 	}
 	
-	public CustomTxtField(int columns, Font font, Color color) {
+	public CustomTxtField(int columns, Font font, Color color, int aligment) {
 		super(columns);
 		this.setFont(font);
 		this.setForeground(color);
-		this.setHorizontalAlignment(RIGHT);
+		this.setHorizontalAlignment(aligment);
 	}
 }
