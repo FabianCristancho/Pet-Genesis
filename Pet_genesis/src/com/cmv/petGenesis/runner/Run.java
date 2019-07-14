@@ -8,5 +8,4 @@ public class Run {
 		System.out.println("HELLO FRIENDS");
 		new MainWindow();
 	}
-
 }

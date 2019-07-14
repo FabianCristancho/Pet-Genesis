@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<pokemons>
+	<pokemon id="1" location="./res/images/bulbasaur.png"
+		name="Bulbasaur" skill="Espesura" type="Planta" />
+	<pokemon id="2" location="./res/images/ivysaur.png"
+		name="Ivysaur" skill="Espesura" type="Planta" />
+	<pokemon id="3" location="./res/images/venusaur.png"
+		name="Venusaur" skill="Espesura" type="Planta" />
+	<pokemon id="4" location="./res/images/charmander.png"
+		name="Charmander" skill="Mar llamas" type="Fuego" />
+	<pokemon id="5" location="./res/images/charmeleon.png"
+		name="Charmeleon" skill="Mar llamas" type="Fuego" />
+	<pokemon id="6" location="./res/images/charizard.png"
+		name="Charizard" skill="Volador" type="Fuego" />
+	<pokemon id="7" location="./res/images/squirtle.png"
+		name="Squirtle" skill="Torrente" type="Agua" />
+	<pokemon id="8" location="./res/images/wartortle.png"
+		name="Wartortle" skill="Torrente" type="Agua" />
+	<pokemon id="9" location="./res/images/blastoise.png"
+		name="Blastoise" skill="Torrente" type="Agua" />
+	<pokemon id="10" location="./res/images/caterpie.png"
+		name="Caterpie" skill="Polvo Escudo" type="Bicho" />
+	<pokemon id="11" location="./res/images/metapod.png"
+		name="Metapod" skill="Mudar" type="Bicho" />
+	<pokemon id="12" location="./res/images/butterfree.png"
+		name="Butterfree" skill="Ojo Compuesto" type="Volador" />
+	<pokemon id="13" location="./res/images/weedle.png"
+		name="Weedle" skill="Polvo escudo" type="Bicho" />
+	<pokemon id="14" location="./res/images/kakuna.png"
+		name="Kakuna" skill="Mudar" type="Bicho" />
+	<pokemon id="15" location="./res/images/beedrill.png"
+		name="Beedrill" skill="Enjambre" type="Bicho" />
+	<pokemon id="16" location="./res/images/pidgey.png"
+		name="Pidgey" skill="Vista lince" type="Volador" />
+	<pokemon id="17" location="./res/images/pidgeotto.png"
+		name="Pidgeotto" skill="Vista lince" type="Volador" />
+	<pokemon id="18" location="./res/images/pidgeot.png"
+		name="Pidgeot" skill="Vista lince" type="Volador" />
+	<pokemon id="19" location="./res/images/rattata.png"
+		name="Rattata" skill="Fuga" type="Normal" />
+	<pokemon id="20" location="./res/images/raticate.png"
+		name="Raticate" skill="Fuga" type="Normal" />
+	<pokemon id="21" location="./res/images/spearow.png"
+		name="Spearow" skill="Vista lince" type="Volador" />
+	<pokemon id="22" location="./res/images/fearow.png"
+		name="Fearow" skill="Vista lince" type="Volador" />
+	<pokemon id="23" location="./res/images/ekans.png" name="Ekans"
+		skill="Intimidacion" type="Veneno" />
+	<pokemon id="24" location="./res/images/arbok.png" name="Arbok"
+		skill="Intimidacion" type="Veneno" />
+	<pokemon id="25" location="./res/images/pikachu.png"
+		name="Pikachu" skill="Electricidad estatica" type="Electrico" />
+	<pokemon id="26" location="./res/images/raichu.png"
+		name="Raichu" skill="Electricidad estatica" type="Electrico" />
+	<pokemon id="27" location="./res/images/sandshrew.png"
+		name="Sandshrew" skill="Velo arena" type="Tierra" />
+	<pokemon id="28" location="./res/images/sandslash.png"
+		name="Sandslash" skill="Velo arena" type="Tierra" />
+	<pokemon id="29" location="./res/images/nidoranh.png"
+		name="Nidoranh" skill="Punto toxico" type="Veneno" />
+	<pokemon id="30" location="./res/images/nidorina.png"
+		name="Nidorina" skill="Punto toxico" type="Veneno" />
+	<pokemon id="31" location="./res/images/nidoqueen.png"
+		name="Nidoqueen" skill="Punto toxico" type="Veneno" />
+	<pokemon id="32" location="./res/images/nidoranm.png"
+		name="Nidoranm" skill="Punto toxico" type="Veneno" />
+	<pokemon id="33" location="./res/images/nidorino.png"
+		name="Nidorino" skill="Punto toxico" type="Veneno" />
+	<pokemon id="34" location="./res/images/nidoking.png"
+		name="Nidoking" skill="Punto toxico" type="Veneno" />
+	<pokemon id="35" location="./res/images/clefairy.png"
+		name="Clefairy" skill="Gran encanto" type="Hada" />
+	<pokemon id="36" location="./res/images/clefable.png"
+		name="Clefable" skill="Gran encanto" type="Hada" />
+	<pokemon id="37" location="./res/images/vulpix.png"
+		name="Vulpix" skill="Absorbe fuego" type="Fuego" />
+	<pokemon id="38" location="./res/images/ninetales.png"
+		name="Ninetales" skill="Absorbe fuego" type="Fuego" />
+	<pokemon id="39" location="./res/images/jigglypuff.png"
+		name="Jigglypuff" skill="Gran encanto" type="Normal" />
+	<pokemon id="40" location="./res/images/wigglytuff.png"
+		name="Wigglytuff" skill="Gran encanto" type="Normal" />
+	<pokemon id="41" location="./res/images/zubat.png" name="Zubat"
+		skill="Foco interno" type="Veneno" />
+	<pokemon id="42" location="./res/images/golbat.png"
+		name="Golbat" skill="Foco interno" type="Veneno" />
+	<pokemon id="43" location="./res/images/oddish.png"
+		name="Oddish" skill="Clorofila" type="Planta" />
+	<pokemon id="44" location="./res/images/gloom.png" name="Gloom"
+		skill="Clorofila" type="Planta" />
+	<pokemon id="45" location="./res/images/vileplume.png"
+		name="Vileplume" skill="Clorofila" type="Planta" />
+	<pokemon id="46" location="./res/images/paras.png" name="Paras"
+		skill="Espora" type="Bicho" />
+	<pokemon id="47" location="./res/images/parasect.png"
+		name="Parasect" skill="Espora" type="Bicho" />
+	<pokemon id="48" location="./res/images/venonat.png"
+		name="Venonat" skill="Hojo Compusesto" type="Bicho" />
+	<pokemon id="49" location="./res/images/venomoth.png"
+		name="Venomoth" skill="Polvo Escudo" type="Bicho" />
+	<pokemon id="50" location="./res/images/diglett.png"
+		name="Diglett" skill="Velo Arena" type="Tierra" />
+	<pokemon id="51" location="./res/images/dugtrio.png"
+		name="Dugtrio" skill="Velo Arena" type="Tierra" />
+	<pokemon id="52" location="./res/images/meowth.png"
+		name="Meowth" skill="Recogida" type="Normal" />
+	<pokemon id="53" location="./res/images/persian.png"
+		name="Persian" skill="Flexibilidad" type="Normal" />
+	<pokemon id="54" location="./res/images/psyduck.png"
+		name="Psyduck" skill="Humedad" type="Agua" />
+	<pokemon id="55" location="./res/images/golduck.png"
+		name="Golduck" skill="Humedad" type="Agua" />
+	<pokemon id="56" location="./res/images/mankey.png"
+		name="Mankey" skill="Espiritu vital" type="Lucha" />
+	<pokemon id="57" location="./res/images/primeape.png"
+		name="Primeape" skill="Espiritu vital" type="Lucha" />
+	<pokemon id="58" location="./res/images/growlithe.png"
+		name="Growlithe" skill="Intimidacion" type="Fuego" />
+	<pokemon id="59" location="./res/images/arcanine.png"
+		name="Arcanine" skill="Intimidacion" type="Fuego" />
+	<pokemon id="60" location="./res/images/poliwag.png"
+		name="Poliwag" skill="Absorbe agua" type="Agua" />
+	<pokemon id="61" location="./res/images/poliwhirl.png"
+		name="Poliwhirl" skill="Absorbe agua" type="Agua" />
+	<pokemon id="62" location="./res/images/poliwrath.png"
+		name="Poliwrath" skill="Absorbe agua" type="Agua" />
+	<pokemon id="63" location="./res/images/abra.png" name="Abra"
+		skill="Sincronia" type="Psiquico" />
+	<pokemon id="64" location="./res/images/kadabra.png"
+		name="Kadabra" skill="Foco interno" type="Psiquico" />
+	<pokemon id="65" location="./res/images/alakazam.png"
+		name="Alakazam" skill="Foco interno" type="Psiquico" />
+	<pokemon id="66" location="./res/images/machop.png"
+		name="Machop" skill="Agallas" type="Lucha" />
+	<pokemon id="67" location="./res/images/machoke.png"
+		name="Machoke" skill="Agallas" type="Lucha" />
+	<pokemon id="68" location="./res/images/machamp.png"
+		name="Machamp" skill="Agallas" type="Lucha" />
+	<pokemon id="69" location="./res/images/bellsprout.png"
+		name="Bellsprout" skill="Clorofila" type="Planta" />
+	<pokemon id="70" location="./res/images/weepinbell.png"
+		name="Weepinbell" skill="Clorofila" type="Planta" />
+	<pokemon id="71" location="./res/images/victreebel.png"
+		name="Victreebel" skill="Clorofila" type="Planta" />
+	<pokemon id="72" location="./res/images/tentacool.png"
+		name="Tentacool" skill="Cuerpo puro" type="Agua" />
+	<pokemon id="73" location="./res/images/tentacruel.png"
+		name="Tentacruel" skill="Cuerpo puro" type="Agua" />
+	<pokemon id="74" location="./res/images/geodude.png"
+		name="Geodude" skill="Cabeza roca" type="Roca" />
+	<pokemon id="75" location="./res/images/graveler.png"
+		name="Graveler" skill="Cabeza roca" type="Roca" />
+	<pokemon id="76" location="./res/images/golem.png" name="Golem"
+		skill="Cabeza roca" type="Roca" />
+	<pokemon id="77" location="./res/images/ponyta.png"
+		name="Ponyta" skill="Fuga" type="Fuego" />
+	<pokemon id="78" location="./res/images/rapidash.png"
+		name="Rapidash" skill="Fuga" type="Fuego" />
+	<pokemon id="79" location="./res/images/slowpoke.png"
+		name="Slowpoke" skill="Despiste" type="Agua" />
+	<pokemon id="80" location="./res/images/slowbro.png"
+		name="Slowbro" skill="Despiste" type="Agua" />
+	<pokemon id="81" location="./res/images/magnemite.png"
+		name="Magnemite" skill="Iman" type="Electrico" />
+	<pokemon id="82" location="./res/images/magneton.png"
+		name="Magneton" skill="Iman" type="Electrico" />
+	<pokemon id="83" location="./res/images/farfetch'd.png"
+		name="Farfetch'd" skill="Vista lince" type="Normal" />
+	<pokemon id="84" location="./res/images/doduo.png" name="Doduo"
+		skill="Fuga" type="Normal" />
+	<pokemon id="85" location="./res/images/dodrio.png"
+		name="Dodrio" skill="Fuga" type="Normal" />
+	<pokemon id="86" location="./res/images/seel.png" name="Seel"
+		skill="Sebo" type="Agua" />
+	<pokemon id="87" location="./res/images/dewgong.png"
+		name="Dewgong" skill="Sebo" type="Agua" />
+	<pokemon id="88" location="./res/images/grimer.png"
+		name="Grimer" skill="Hedor" type="Veneno" />
+	<pokemon id="89" location="./res/images/muk.png" name="Muk"
+		skill="Hedor" type="Veneno" />
+	<pokemon id="90" location="./res/images/shellder.png"
+		name="Shellder" skill="Caparazon" type="Agua" />
+	<pokemon id="91" location="./res/images/cloyster.png"
+		name="Cloyster" skill="Caparazon" type="Agua" />
+	<pokemon id="92" location="./res/images/gastly.png"
+		name="Gastly" skill="Levitacion" type="Fantasma" />
+	<pokemon id="93" location="./res/images/haunter.png"
+		name="Haunter" skill="Levitacion" type="Fantasma" />
+	<pokemon id="94" location="./res/images/gengar.png"
+		name="Gengar" skill="Cuerpo maldito" type="Fantasma" />
+	<pokemon id="95" location="./res/images/onix.png" name="Onix"
+		skill="Cabeza roca" type="Roca" />
+	<pokemon id="96" location="./res/images/drowzee.png"
+		name="Drowzee" skill="Insomnio" type="Psiquico" />
+	<pokemon id="97" location="./res/images/hypno.png" name="Hypno"
+		skill="Insomnio" type="Psiquico" />
+	<pokemon id="98" location="./res/images/krabby.png"
+		name="Krabby" skill="Corte fuerte" type="Agua" />
+	<pokemon id="99" location="./res/images/kingler.png"
+		name="Kingler" skill="Corte fuerte" type="Agua" />
+	<pokemon id="100" location="./res/images/voltorb.png"
+		name="Voltorb" skill="Insonorizar" type="Electrico" />
+	<pokemon id="101" location="./res/images/electrode.png"
+		name="Electrode" skill="Insonorizar" type="Electrico" />
+	<pokemon id="102" location="./res/images/exeggcute.png"
+		name="Exeggcute" skill="Clorofila" type="Planta" />
+	<pokemon id="103" location="./res/images/exeggutor.png"
+		name="Exeggutor" skill="Clorofila" type="Planta" />
+	<pokemon id="104" location="./res/images/cubone.png"
+		name="Cubone" skill="Cabeza roca" type="Tierra" />
+	<pokemon id="105" location="./res/images/marowak.png"
+		name="Marowak" skill="Cabeza roca" type="Tierra" />
+	<pokemon id="106" location="./res/images/hitmonlee.png"
+		name="Hitmonlee" skill="Flexibilidad" type="Lucha" />
+	<pokemon id="107" location="./res/images/hitmonchan.png"
+		name="Hitmonchan" skill="Vista lince" type="Lucha" />
+	<pokemon id="108" location="./res/images/lickitung.png"
+		name="Lickitung" skill="Despiste" type="Normal" />
+	<pokemon id="109" location="./res/images/koffing.png"
+		name="Koffing" skill="Levitacion" type="Veneno" />
+	<pokemon id="110" location="./res/images/weezing.png"
+		name="Weezing" skill="Levitacion" type="Veneno" />
+	<pokemon id="111" location="./res/images/rhyhorn.png"
+		name="Rhyhorn" skill="Pararrayos" type="Tierra" />
+	<pokemon id="112" location="./res/images/rhydon.png"
+		name="Rhydon" skill="Pararrayos" type="Tierra" />
+	<pokemon id="113" location="./res/images/chansey.png"
+		name="Chansey" skill="Cura natural" type="Normal" />
+	<pokemon id="114" location="./res/images/tangela.png"
+		name="Tangela" skill="Clorofila" type="Planta" />
+	<pokemon id="115" location="./res/images/kangaskhan.png"
+		name="Kangaskhan" skill="Madrugar" type="Normal" />
+	<pokemon id="116" location="./res/images/horsea.png"
+		name="Horsea" skill="Nado rapido" type="Agua" />
+	<pokemon id="117" location="./res/images/seadra.png"
+		name="Seadra" skill="Punto toxico" type="Agua" />
+	<pokemon id="118" location="./res/images/goldeen.png"
+		name="Goldeen" skill="Nado rapido" type="Agua" />
+	<pokemon id="119" location="./res/images/seaking.png"
+		name="Seaking" skill="Nado rapido" type="Agua" />
+	<pokemon id="120" location="./res/images/staryu.png"
+		name="Staryu" skill="Cura natural" type="Agua" />
+	<pokemon id="121" location="./res/images/starmie.png"
+		name="Starmie" skill="Cura natural" type="Agua" />
+	<pokemon id="122" location="./res/images/mr_Mime.png"
+		name="Mr. Mime" skill="Insonorizar" type="Psiquico" />
+	<pokemon id="123" location="./res/images/scyther.png"
+		name="Scyther" skill="Enjambre" type="Bicho" />
+	<pokemon id="124" location="./res/images/jynx.png" name="Jynx"
+		skill="Despiste" type="Hielo" />
+	<pokemon id="125" location="./res/images/electabuzz.png"
+		name="Electabuzz" skill="Electricidad estatica" type="Electrico" />
+	<pokemon id="126" location="./res/images/magmar.png"
+		name="Magmar" skill="Cuerpo llama" type="Fuego" />
+	<pokemon id="127" location="./res/images/pinsir.png"
+		name="Pinsir" skill="Corte fuerte" type="Bicho" />
+	<pokemon id="128" location="./res/images/tauros.png"
+		name="Tauros" skill="Intimidacion" type="Normal" />
+	<pokemon id="129" location="./res/images/magikarp.png"
+		name="Magikarp" skill="Nado rapido" type="Agua" />
+	<pokemon id="130" location="./res/images/gyarados.png"
+		name="Gyarados" skill="Intimidacion" type="Agua" />
+	<pokemon id="131" location="./res/images/lapras.png"
+		name="Lapras" skill="Absorbe agua" type="Agua" />
+	<pokemon id="132" location="./res/images/ditto.png" name="Ditto"
+		skill="Flexibilidad" type="Normal" />
+	<pokemon id="133" location="./res/images/eevee.png" name="Eevee"
+		skill="Fuga" type="Normal" />
+	<pokemon id="134" location="./res/images/vaporeon.png"
+		name="Vaporeon" skill="Absorbe agua" type="Agua" />
+	<pokemon id="135" location="./res/images/jolteon.png"
+		name="Jolteon" skill="Absorbe electricidad" type="Electrico" />
+	<pokemon id="136" location="./res/images/flareon.png"
+		name="Flareon" skill="Absorbe fuego" type="Fuego" />
+	<pokemon id="137" location="./res/images/porygon.png"
+		name="Porygon" skill="Rastro" type="Normal" />
+	<pokemon id="138" location="./res/images/omanyte.png"
+		name="Omanyte" skill="Nado rapido" type="Tierra" />
+	<pokemon id="139" location="./res/images/omastar.png"
+		name="Omastar" skill="Nado rapido" type="Tierra" />
+	<pokemon id="140" location="./res/images/kabuto.png"
+		name="Kabuto" skill="Armadura batalla" type="Tierra" />
+	<pokemon id="141" location="./res/images/kabutops.png"
+		name="Kabutops" skill="Armadura batalla" type="Tierra" />
+	<pokemon id="142" location="./res/images/aerodactyl.png"
+		name="Aerodactyl" skill="Cabeza roca" type="Tierra" />
+	<pokemon id="143" location="./res/images/snorlax.png"
+		name="Snorlax" skill="Sebo" type="Normal" />
+	<pokemon id="144" location="./res/images/articuno.png"
+		name="Articuno" skill="Presion" type="Hielo" />
+	<pokemon id="145" location="./res/images/zapdos.png"
+		name="Zapdos" skill="Presion" type="Electrico" />
+	<pokemon id="146" location="./res/images/moltres.png"
+		name="Moltres" skill="Presion" type="Fuego" />
+	<pokemon id="147" location="./res/images/dratini.png"
+		name="Dratini" skill="Mudar" type="Dragon" />
+	<pokemon id="148" location="./res/images/dragonair.png"
+		name="Dragonair" skill="Mudar" type="Dragon" />
+	<pokemon id="149" location="./res/images/dragonite.png"
+		name="Dragonite" skill="Foco interno" type="Dragon" />
+	<pokemon id="150" location="./res/images/mewtwo.png"
+		name="Mewtwo" skill="Presion" type="Psiquico" />
+	<pokemon id="151" location="./res/images/mew.png" name="Mew"
+		skill="Sincronía" type="Psiquico" />
+</pokemons>
