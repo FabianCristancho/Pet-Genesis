@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class MainWindow extends JFrame{
-
-	
 	public MainWindow() {
 		setTitle("Test1");
 		setExtendedState(MAXIMIZED_BOTH);
