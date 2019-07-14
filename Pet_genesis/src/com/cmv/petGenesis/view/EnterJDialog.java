@@ -14,6 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.plaf.metal.MetalToggleButtonUI;
 
+import com.cmv.petGenesis.utilities.ConstantView;
+
 public class EnterJDialog extends JDialog {
 	private static EnterJDialog enterJDialog;
 	private CardLayout cardLayout;
@@ -47,6 +49,8 @@ public class EnterJDialog extends JDialog {
 		upJPanel.setOpaque(false);
 		this.switchButton.setFont(ConstantsLogin.FONT_LOG);
 		this.switchButton.setBackground(Color.WHITE);
+		this.switchButton.setForeground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.switchButton.setFont(ConstantView.FONT_FORM);
 		this.switchButton.setOpaque(false);
 		switchButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.switchButton.setActionCommand(EnterCommands.ENTER_SWITCH.toString());

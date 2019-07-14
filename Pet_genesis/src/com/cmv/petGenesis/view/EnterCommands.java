@@ -7,5 +7,5 @@ package com.cmv.petGenesis.view;
  * @version 1.0 9/03/2019
  */
 public enum EnterCommands {
-	ENTER_SWITCH, OK_LOGIN, OK_SIGN_IN
+	ENTER_SWITCH, OK_LOGIN, OK_SIGN_IN, BTN_HELP
 }

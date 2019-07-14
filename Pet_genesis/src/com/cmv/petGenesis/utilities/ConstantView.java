@@ -1,5 +1,6 @@
 package com.cmv.petGenesis.utilities;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -11,7 +12,7 @@ public class ConstantView {
 	public final static String TITLE_LOGIN = "PET GENESIS";
 	public final static String LABEL_USER_LOGIN = "Usuario";
 	public final static String LABEL_PSW_LOGIN = "Contraseña";
-	public final static String BUTTON_RETURN_LOGIN = "REGRESAR";
+	public final static String BUTTON_EXIT_LOGIN = "SALIR";
 	public final static String BUTTON_SIGNIN_LOGIN = "INICIAR SESIÓN";
 	public final static String PATH_CMV_LOGIN = "./res/images/cmv.jpg";
 	public final static String PATH_USER_LOGIN = "./res/images/user.png";
@@ -20,6 +21,7 @@ public class ConstantView {
 	public final static String PATH_ABOUT_LOGIN = "./res/images/iconAbout.png";
 	public final static Font FONT_TITLE_LOGIN = new Font("Elephant", Font.BOLD, 30);
 	public final static Font FONT_LABELS_LOGIN = new Font("Open Sans", Font.BOLD, 15);
+	public final static Color COLOR_BUTTON_LOGIN = new Color(14, 109, 204);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
 	public final static Font FONT_TITLE_SIGNIN = new Font("Open Sans", Font.BOLD, 35);

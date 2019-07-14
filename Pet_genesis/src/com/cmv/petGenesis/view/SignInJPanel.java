@@ -1,6 +1,8 @@
 package com.cmv.petGenesis.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.text.DateFormat;
@@ -11,6 +13,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -22,11 +25,14 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
+import PruebasLogin.LoginManage;
+import PruebasLogin.PasswordUtil;
+
 public class SignInJPanel extends JPanel {
 
-	private CustomLabel title, lblId, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
+	private CustomLabel title, lblId, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType, lblGenerateUserName,
 			lblUserName, lblPsw, lblPswAgain, lblBirthDate;
-	private CustomTxtField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
+	private CustomTxtField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress;
 	private JPasswordField jpfPassword, jpfPasswordAgain;
 	private JComboBox<String> comboUserType;
 	private JRadioButton activRadioButton, inactivRadioButton;
@@ -52,6 +58,7 @@ public class SignInJPanel extends JPanel {
 		this.lblAddress = new CustomLabel(ConstantView.LABEL_ADDRESS_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblActiv = new CustomLabel(ConstantView.LABEL_ACTIVE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblUserType = new CustomLabel(ConstantView.LABEL_USER_TYPE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblGenerateUserName = new CustomLabel("", ConstantView.FONT_FORM, Color.BLUE, ConstantView.BORD_FORM_LABEL);
 		this.lblUserName = new CustomLabel(ConstantView.LABEL_USER_NAME_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblPsw = new CustomLabel(ConstantView.LABEL_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
 		this.lblPswAgain = new CustomLabel(ConstantView.LABEL_CONFIRM_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
@@ -61,7 +68,6 @@ public class SignInJPanel extends JPanel {
 		this.jtfPhone = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jtfAdress = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jtfEmail = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
-		this.jtfUserName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jpfPassword = new JPasswordField(17);
 		this.jpfPasswordAgain = new JPasswordField(17);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
@@ -70,6 +76,7 @@ public class SignInJPanel extends JPanel {
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.birthdayDateChooser = new JDateChooser();
+		EnterListener.getInstance().setSignInJPanel(this);
 		this.init();
 	}
 
@@ -137,6 +144,7 @@ public class SignInJPanel extends JPanel {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 1;
+		this.jtfName.addFocusListener(EnterListener.getInstance());
 		this.panelPersonalData.add(jtfName, gbc);
 		
 		gbc.gridx = 1;
@@ -145,6 +153,7 @@ public class SignInJPanel extends JPanel {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 2;
+		this.jtfLastName.addFocusListener(EnterListener.getInstance());
 		this.panelPersonalData.add(jtfLastName, gbc);
 		
 		gbc.gridx = 1;
@@ -216,7 +225,7 @@ public class SignInJPanel extends JPanel {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 2;
-		this.panelUserData.add(jtfUserName, gbc);
+		this.panelUserData.add(lblGenerateUserName, gbc);
 		
 		gbc.gridx = 1;
 		gbc.gridy = 3;
@@ -243,9 +252,21 @@ public class SignInJPanel extends JPanel {
 		gbc.gridheight = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
+		this.returnButton.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.returnButton.setForeground(Color.WHITE);
+		this.returnButton.setFocusable(false);
+		this.returnButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.returnButton.setFont(ConstantView.FONT_LABELS_LOGIN);
 		this.panelButtons.add(returnButton, gbc);
 		
 		gbc.gridx = 7;
+		this.okButton.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.okButton.setForeground(Color.WHITE);
+		this.okButton.setFocusable(false);
+		this.okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.okButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.okButton.addActionListener(EnterListener.getInstance());
+		this.okButton.setActionCommand(EnterCommands.OK_SIGN_IN.toString());
 		this.panelButtons.add(okButton, gbc);
 	}
 
@@ -269,7 +290,50 @@ public class SignInJPanel extends JPanel {
 		this.jtfLastName.setText("");
 		this.jtfName.setText("");
 		this.jtfPhone.setText("");
-		this.jtfUserName.setText("");
+		this.lblGenerateUserName.setText("");
 		this.birthdayDateChooser.setDate(new Date());
+	}
+	
+	public CustomTxtField getJtfName() {
+		return jtfName;
+	}
+
+	public CustomTxtField getJtfLastName() {
+		return jtfLastName;
+	}
+	
+	public void showUserName() {
+		if(!isFieldIsEmpty(jtfName) && !isFieldIsEmpty(jtfLastName)) {
+			lblGenerateUserName.setText(LoginManage.getInstance().useName(jtfName.getText(), jtfLastName.getText()));
+		}
+	}
+	
+	public void validFields() {
+		if(isFieldIsEmpty(jtfName)||isFieldIsEmpty(jtfLastName)||isFieldIsEmpty(jpfPassword)||isFieldIsEmpty(jpfPasswordAgain)) {
+			JOptionPane.showMessageDialog(null, "SE DEBEN INGRESAR LOS CAMPOS OBLIGATORIOS");
+		}else {
+			try {
+				LoginManage.getInstance().generateUsername(jtfName.getText(), jtfLastName.getText(), PasswordUtil.getHash(String.valueOf(jpfPassword)));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		if(!String.valueOf(jpfPassword.getPassword()).equals(String.valueOf(jpfPasswordAgain.getPassword()))) {
+			JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
+		}else {
+			if(isFieldIsEmpty(jpfPassword)||isFieldIsEmpty(jpfPassword)) {
+				JOptionPane.showMessageDialog(null, "NO SE HA INGRESADO LA CONTRSEÑA");
+			}else {
+				try {
+					LoginManage.getInstance().generateUsername(jtfName.getText(), jtfLastName.getText(), PasswordUtil.getHash(String.valueOf(jpfPassword)));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	public boolean isFieldIsEmpty(JTextField jtf) {
+		return jtf.getText().length()==0;
 	}
 }

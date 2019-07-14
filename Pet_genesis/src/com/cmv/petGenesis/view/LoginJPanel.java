@@ -1,6 +1,8 @@
 package com.cmv.petGenesis.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -9,6 +11,7 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -17,11 +20,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+import PruebasLogin.LoginManage;
+
 
 public class LoginJPanel extends JPanel {
-	private JLabel title, lblUser, lblPassword, imgUser, imgCMV, imgLogoHealth;
+	private JLabel title, lblUser, lblPassword, imgUser, imgCMV, imgLogoHealth, imgHelp, imgAbout;
 	private CustomTxtField fldUser;
-	private JButton btnReturn, btnLogin;
+	private JButton btnExit, btnLogin;
 	private JPasswordField passwordField;
 
 	/**
@@ -36,9 +41,10 @@ public class LoginJPanel extends JPanel {
 		this.lblUser = new JLabel(ConstantView.LABEL_USER_LOGIN);
 		this.lblPassword = new JLabel(ConstantView.LABEL_PSW_LOGIN);
 		this.fldUser = new CustomTxtField(15, ConstantView.FONT_FIELD_FORM, JTextField.LEFT);
-		this.btnReturn = new JButton(ConstantView.BUTTON_RETURN_LOGIN);
+		this.btnExit = new JButton(ConstantView.BUTTON_EXIT_LOGIN);
 		this.btnLogin = new JButton(ConstantView.BUTTON_SIGNIN_LOGIN);
 		this.passwordField = new JPasswordField(15);
+		EnterListener.getInstance().setLoginJPanel(this);
 		this.init();
 	}
 
@@ -100,28 +106,71 @@ public class LoginJPanel extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 9;
 		gbc.weighty = 0.7;
+		this.btnLogin.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.btnLogin.setForeground(Color.WHITE);
+		this.btnLogin.setFocusable(false);
+		this.btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.btnLogin.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnLogin.addActionListener(EnterListener.getInstance());
+		this.btnLogin.setActionCommand(EnterCommands.OK_LOGIN.toString());
 		this.add(btnLogin, gbc);
 		
 		gbc.gridx = 0;
 		gbc.gridy = 9;
 		gbc.weightx = 0.3;
-		this.add(btnReturn, gbc);
+		this.btnExit.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.btnExit.setForeground(Color.WHITE);
+		this.btnExit.setFocusable(false);
+		this.btnExit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.btnExit.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.add(btnExit, gbc);
 		
 		gbc.gridx = 2;
 		gbc.gridy = 9;
 		gbc.weightx = 0.3;
-		JLabel l7 = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_HELP_LOGIN, new Dimension(60, 60)));
+		imgHelp = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_HELP_LOGIN, new Dimension(38, 38)));
+		imgHelp.addMouseListener(EnterListener.getInstance());
+		imgHelp.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		JLabel l8 = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_ABOUT_LOGIN, new Dimension(60, 60)));
+		imgAbout = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_ABOUT_LOGIN, new Dimension(41, 41)));
+		imgAbout.addMouseListener(EnterListener.getInstance());
+		imgAbout.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
-		JPanel jw = new JPanel();
-		jw.add(l7, BorderLayout.WEST);
-		jw.add(l8, BorderLayout.EAST);
-		this.add(jw, gbc);
+		JPanel panelInfo = new JPanel();
+		panelInfo.setOpaque(false);
+		panelInfo.add(imgHelp, BorderLayout.WEST);
+		panelInfo.add(imgAbout, BorderLayout.EAST);
+		this.add(panelInfo, gbc);
 	}
 	
 	public void clearFields() {
 		this.fldUser.setText("");
 		this.passwordField.setText("");
 	}
+
+	public JLabel getImgHelp() {
+		return imgHelp;
+	}
+
+	public JLabel getImgAbout() {
+		return imgAbout;
+	}
+	
+	public void validFields() {
+		if(isFieldIsEmpty(fldUser)||isFieldIsEmpty(passwordField)) {
+			JOptionPane.showMessageDialog(null, "HAY CAMPOS VACIOS");
+		}else {
+			if(!LoginManage.getInstance().existUser(fldUser.getText(), String.valueOf(passwordField.getPassword()))) {
+				System.out.println("Contraseña: " +String.valueOf(passwordField.getPassword()));
+				JOptionPane.showMessageDialog(null, "LOS DATOS NO COINCIDEN");
+			}else {
+				JOptionPane.showMessageDialog(null, "Se ha ingresado al sistema correctamente");
+			}
+		}
+	}
+	
+	public boolean isFieldIsEmpty(JTextField jtf) {
+		return jtf.getText().length()==0;
+	}
+	
 }
