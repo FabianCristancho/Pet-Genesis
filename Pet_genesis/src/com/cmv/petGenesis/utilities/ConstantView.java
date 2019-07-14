@@ -2,7 +2,9 @@ package com.cmv.petGenesis.utilities;
 
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
+import javax.swing.border.Border;
 
 public class ConstantView {
 	
@@ -20,7 +22,7 @@ public class ConstantView {
 	public final static Font FONT_LABELS_LOGIN = new Font("Open Sans", Font.BOLD, 15);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
-	public final static Font FONT_TITLE_SIGNIN = new Font("Elephant", Font.BOLD, 30);
+	public final static Font FONT_TITLE_SIGNIN = new Font("Open Sans", Font.BOLD, 35);
 	public final static String P_DATA_SIGNIN = "DATOS PERSONALES";
 	public final static String U_DATA_SIGNIN = "DATOS DE USUARIO";
 	public final static String LABEL_ID_SIGNIN = "Id";
@@ -41,5 +43,8 @@ public class ConstantView {
 	public final static JComboBox<String> COMBO_USER_TYPE_SIGNIN = new JComboBox<>(VALUES_COMBO);
 	public final static String BUTTON_OK_SIGNIN = "REGISTRAR USUARIO";
 	public final static String BUTTON_RETURN_SIGNIN = "REGRESAR";
+	public final static Border BORD_FORM_LABEL = BorderFactory.createEmptyBorder(0, 10, 0, 10);
+	public final static Font FONT_FORM = new Font("Open Sans", Font.BOLD, 15);
+	public final static Font FONT_FIELD_FORM = new Font("Open Sans", Font.PLAIN, 14);
 	
 }

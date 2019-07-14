@@ -14,8 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.ConstantView;
-
-import PruebasLogin.Utilities;
+import com.cmv.petGenesis.utilities.UtilityClass;
 
 
 public class LoginJPanel extends JPanel {
@@ -30,8 +29,8 @@ public class LoginJPanel extends JPanel {
 	public LoginJPanel() {
 		super(new GridBagLayout());
 		this.title = new JLabel(ConstantView.TITLE_LOGIN);
-		this.imgUser = new JLabel(Utilities.getScaledImage(ConstantView.PATH_USER_LOGIN, new Dimension(130,  130)));
-		this.imgCMV = new JLabel(Utilities.getScaledImage(ConstantView.PATH_CMV_LOGIN, new Dimension(60,  60)));
+		this.imgUser = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_USER_LOGIN, new Dimension(130,  130)));
+		this.imgCMV = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_CMV_LOGIN, new Dimension(60,  60)));
 		this.lblUser = new JLabel(ConstantView.LABEL_USER_LOGIN);
 		this.lblPassword = new JLabel(ConstantView.LABEL_PSW_LOGIN);
 		this.lblWithoutAccount = new JLabel(ConstantView.LABEL_SIGIN_LOGIN);
@@ -111,9 +110,9 @@ public class LoginJPanel extends JPanel {
 		gbc.gridx = 2;
 		gbc.gridy = 9;
 		gbc.weightx = 0.3;
-		JLabel l7 = new JLabel(Utilities.getScaledImage(ConstantView.PATH_HELP_LOGIN, new Dimension(60, 60)));
+		JLabel l7 = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_HELP_LOGIN, new Dimension(60, 60)));
 		
-		JLabel l8 = new JLabel(Utilities.getScaledImage(ConstantView.PATH_ABOUT_LOGIN, new Dimension(60, 60)));
+		JLabel l8 = new JLabel(UtilityClass.getScaledImage(ConstantView.PATH_ABOUT_LOGIN, new Dimension(60, 60)));
 		
 		JPanel jw = new JPanel();
 		jw.add(l7, BorderLayout.WEST);

@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.text.DateFormat;
@@ -13,16 +14,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.ConstantView;
+import com.cmv.petGenesis.utilities.CustomLabel;
+import com.cmv.petGenesis.utilities.CustomTxtField;
+import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
 public class SignInJPanel extends JPanel {
 
-	private JLabel title, lblId, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
+	private CustomLabel title, lblId, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
 			lblUserName, lblPsw, lblPswAgain, lblBirthDate;
-	private JTextField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
+	private CustomTxtField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
 	private JPasswordField jpfPassword, jpfPasswordAgain;
 	private JComboBox<String> comboUserType;
 	private JRadioButton activRadioButton, inactivRadioButton;
@@ -31,40 +34,40 @@ public class SignInJPanel extends JPanel {
 	private JButton returnButton;
 	private JPanel panelPersonalData;
 	private JPanel panelUserData;
+	private JPanel panelButtons;
 
 	/**
 	 * Constructor que inicaliza los componetes del panel de registro
 	 */
 	public SignInJPanel() {
 		super(new BorderLayout());
-		this.title = new JLabel(ConstantView.TITLE_SIGNIN);
-		this.lblId = new JLabel(ConstantView.LABEL_ID_SIGNIN);
-		this.lblName = new JLabel(ConstantView.LABEL_NAME_SIGNIN);
-		this.lblLastName = new JLabel(ConstantView.LABEL_LAST_NAME_SIGNIN);
-		this.lblBirthDate = new JLabel(ConstantView.LABEL_BIRTHDATE_SIGNIN);
-		this.lblPhone = new JLabel(ConstantView.LABEL_PHONE_SIGNIN);
-		this.lblEmail = new JLabel(ConstantView.LABEL_EMAIL_SIGNIN);
-		this.lblAddress = new JLabel(ConstantView.LABEL_ADDRESS_SIGNIN);
-		this.lblActiv = new JLabel(ConstantView.LABEL_ACTIVE_SIGNIN);
-		this.lblUserType = new JLabel(ConstantView.LABEL_USER_TYPE_SIGNIN);
-		this.lblUserName = new JLabel(ConstantView.LABEL_USER_NAME_SIGNIN);
-		this.lblPsw = new JLabel(ConstantView.LABEL_PASSWORD_SIGNIN);
-		this.lblPswAgain = new JLabel(ConstantView.LABEL_CONFIRM_PASSWORD_SIGNIN);
-		this.jtfId = new JTextField(20);
-		this.jtfName = new JTextField(20);
-		this.jtfLastName = new JTextField(20);
-		this.jtfPhone = new JTextField(20);
-		this.jtfAdress = new JTextField(20);
-		this.jtfEmail = new JTextField(20);
-		this.jtfUserName = new JTextField(20);
-		this.jpfPassword = new JPasswordField(20);
-		this.jpfPasswordAgain = new JPasswordField(20);
+		this.title = new CustomLabel(ConstantView.TITLE_SIGNIN);
+		this.lblId = new CustomLabel(ConstantView.LABEL_ID_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblName = new CustomLabel(ConstantView.LABEL_NAME_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblLastName = new CustomLabel(ConstantView.LABEL_LAST_NAME_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblBirthDate = new CustomLabel(ConstantView.LABEL_BIRTHDATE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblPhone = new CustomLabel(ConstantView.LABEL_PHONE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblEmail = new CustomLabel(ConstantView.LABEL_EMAIL_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblAddress = new CustomLabel(ConstantView.LABEL_ADDRESS_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblActiv = new CustomLabel(ConstantView.LABEL_ACTIVE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblUserType = new CustomLabel(ConstantView.LABEL_USER_TYPE_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblUserName = new CustomLabel(ConstantView.LABEL_USER_NAME_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblPsw = new CustomLabel(ConstantView.LABEL_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.lblPswAgain = new CustomLabel(ConstantView.LABEL_CONFIRM_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null, ConstantView.BORD_FORM_LABEL);
+		this.jtfId = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfLastName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfPhone = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfAdress = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfEmail = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jtfUserName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM);
+		this.jpfPassword = new JPasswordField(17);
+		this.jpfPasswordAgain = new JPasswordField(17);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
 		this.inactivRadioButton = new JRadioButton(ConstantView.LABEL_IS_INACTIVE_SIGNIN);
 		this.comboUserType = ConstantView.COMBO_USER_TYPE_SIGNIN;
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
-
 		this.birthdayDateChooser = new JDateChooser();
 		this.init();
 	}
@@ -77,20 +80,24 @@ public class SignInJPanel extends JPanel {
 		
 		this.initPanelPersonalData();
 		this.initSigInData();
+		this.initPanelButtons();
 		
+		UtilityClass.addBorder(this, 20, 20, 20, 20);
 		this.add(panelPersonalData, BorderLayout.WEST);
 		this.add(panelUserData, BorderLayout.EAST);
 		
 		this.title.setFont(ConstantView.FONT_TITLE_SIGNIN);
 		this.title.setHorizontalAlignment(JLabel.CENTER);
 		this.add(title, BorderLayout.NORTH);
+		
+		this.add(panelButtons, BorderLayout.SOUTH);
 	}
 
 	private void initPanelPersonalData() {
 		this.panelPersonalData = new JPanel(new GridBagLayout());
 		this.panelPersonalData.setBorder(BorderFactory.createTitledBorder(ConstantView.P_DATA_SIGNIN));
 		GridBagConstraints gbc = new GridBagConstraints();
-
+		
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.gridwidth = 1;
@@ -153,10 +160,6 @@ public class SignInJPanel extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 6;
 		this.panelPersonalData.add(jtfAdress, gbc);
-		
-		gbc.gridx = 0;
-		gbc.gridy = 7;
-		this.panelPersonalData.add(returnButton, gbc);
 	}
 
 	private void initSigInData() {
@@ -199,6 +202,8 @@ public class SignInJPanel extends JPanel {
 		gbc.gridy = 1;
 		ButtonGroup buttonGroup = new ButtonGroup();
 		inactivRadioButton.setSelected(true);
+		inactivRadioButton.setFocusable(false);
+		activRadioButton.setFocusable(false);
 		buttonGroup.add(activRadioButton);
 		buttonGroup.add(inactivRadioButton);
 		JPanel jpanelButtons = new JPanel(new BorderLayout());
@@ -212,15 +217,32 @@ public class SignInJPanel extends JPanel {
 		
 		gbc.gridx = 1;
 		gbc.gridy = 3;
+		this.jpfPassword.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+		this.jpfPassword.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPassword, gbc);
 		
 		gbc.gridx = 1;
 		gbc.gridy = 4;
+		this.jpfPasswordAgain.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+		this.jpfPasswordAgain.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPasswordAgain, gbc);
+	}
+	
+	private void initPanelButtons() {
+		this.panelButtons = new JPanel(new GridBagLayout());
+		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
+		GridBagConstraints gbc = new GridBagConstraints();
 		
-		gbc.gridx = 1;
-		gbc.gridy = 5;
-		this.panelUserData.add(okButton, gbc);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		this.panelButtons.add(returnButton, gbc);
+		
+		gbc.gridx = 7;
+		this.panelButtons.add(okButton, gbc);
 	}
 
 	/**
