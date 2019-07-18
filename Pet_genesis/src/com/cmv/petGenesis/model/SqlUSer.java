@@ -113,13 +113,17 @@ public class SqlUSer extends MyConnection {
 		}
 	}
 
-	public ArrayList<Object[]> loadData() {
+	public ArrayList<Object[]> loadData(String parameter, String field) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getconnection();
 		ArrayList<Object[]> tableData = new ArrayList<>();
 
-		String sql = "SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo";
+		String where = "";
+		if(!"".equals(field)) {
+			where = " WHERE " +parameter +" = '" +field +"'";
+		}
+		String sql = "SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where;
 
 		try {
 			ps = con.prepareStatement(sql);
@@ -137,6 +141,40 @@ public class SqlUSer extends MyConnection {
 				tableData.add(rows);
 			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tableData;
+	}
+	
+	public ArrayList<Object[]> loadData2(String field) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getconnection();
+		ArrayList<Object[]> tableData = new ArrayList<>();
+		
+		String where = "";
+		if(!"".equals(field)) {
+			where = "WHERE id_usuario = '" +field +"'";
+		}
+		String sql = "SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			ResultSetMetaData rsMd = rs.getMetaData();
+			int countCols = rsMd.getColumnCount();
+			
+			while (rs.next()) {
+				Object[] rows = new Object[countCols];
+				
+				for (int i = 0; i < rows.length; i++) {
+					rows[i] = rs.getObject(i + 1);
+				}
+				tableData.add(rows);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

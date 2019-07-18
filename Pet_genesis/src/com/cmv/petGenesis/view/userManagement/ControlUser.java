@@ -14,6 +14,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 	private static ControlUser controlUser;
 	private JFrameUser jFrameUser;
 	private JPanelCreateUser jPanelCreateUser;
+	private JpanelFindUser jpanelFindUser;
 
 	private ControlUser() {
 	}
@@ -41,7 +42,11 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 			jFrameUser.getJpanelGroupClient().showFind();
 			break;
 		case CMD_SEARCH_USER:
-			
+			jpanelFindUser.searchByParameter();
+			jpanelFindUser.getBtnLoadData().setEnabled(true);
+			break;
+		case CMD_LOAD_DATA:
+			jpanelFindUser.loadAllData();
 			break;
 		case OK_SIGN_IN:
 			saveDataSignIn();
@@ -64,6 +69,10 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 
 	public void setjPanelCreateUser(JPanelCreateUser jPanelCreateUser) {
 		this.jPanelCreateUser = jPanelCreateUser;
+	}
+	
+	public void setJpanelFindUser(JpanelFindUser jpanelFindUser) {
+		this.jpanelFindUser = jpanelFindUser;
 	}
 
 	@Override

@@ -51,10 +51,13 @@ public class ConstantView {
 	
 	
 	//User Management
+	public final static String LABEL_USER_QUERY = "CONSULTA DE USUARIOS";
+	public final static String LABEL_QUERY_WITH = "Buscar usuario por: ";
 	public final static String BUTTON_CREATE_USER = "CREAR USUARIO";
 	public final static String BUTTON_UPDATE_USER = "MODIFICAR USUARIO";
 	public final static String BUTTON_INACTIV_USER = "ACTIVAR/INACTIVAR USUARIO";
 	public final static String BUTTON_FIND_USER = "CONSULTAR USUARIO";
 	
-	
+	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Nombre", "Apellido", "Tipo de usuario"};
+	public final static JComboBox<String> COMBO_PARAMETERS = new JComboBox<>(VALUES_PARAMETERS_USER);
 }

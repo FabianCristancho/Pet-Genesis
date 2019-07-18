@@ -18,8 +18,9 @@ public class HintJTextField extends JTextField implements FocusListener {
 	private LinkedList<Character> requiredCharacters;
 	private LinkedList<Character> prohibitedCharacters;
 
-	public HintJTextField(String hint) {
+	public HintJTextField(String hint, int cols) {
 		super(hint);
+		this.setColumns(cols);
 		this.setForeground(Color.gray);
 		this.hint = hint;
 		this.showingHint = true;
@@ -28,33 +29,13 @@ public class HintJTextField extends JTextField implements FocusListener {
 		this.init();
 	}
 
-	public HintJTextField(String hint, int limit) {
-		this(hint);
+	public HintJTextField(String hint, int limit, int cols) {
+		this(hint, cols);
 		this.limit = limit;
 	}
 
 	private void init() {
 		super.addFocusListener(this);
-		super.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				char aux;
-				int i = 0;
-				
-				do {
-					aux = prohibitedCharacters.get(i);
-					if(aux==c)
-						e.consume();
-					i++;
-				} while (aux!=limit && i<prohibitedCharacters.size());
-				
-				if (limit != 0)
-					if (getText().length() == limit)
-						e.consume();
-				setForeground(isCompliant() ? Color.black : Color.red);
-			}
-		});
 	}
 
 	private boolean isCompliant() {
