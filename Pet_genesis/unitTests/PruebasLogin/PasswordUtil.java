@@ -13,6 +13,7 @@ public class PasswordUtil {
 	private static final Random random = new Random();
 	
 	public static HashSalt getHash(String password) throws Exception {
+		System.out.println("Clave es: " +password);
 		byte[] salt = new byte[16];
 		random.nextBytes(salt);
 		KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
@@ -22,7 +23,9 @@ public class PasswordUtil {
 			Base64.Encoder enc = Base64.getEncoder();
 			return new HashSalt(enc.encodeToString(hash), enc.encodeToString(salt));
 		} catch (NoSuchAlgorithmException e) {
+			System.err.println(e.getMessage());
 		} catch (InvalidKeySpecException e) {
+			System.err.println(e.getMessage());
 		}
 		throw new Exception("No se pudo crear hash");
 	}
