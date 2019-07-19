@@ -10,6 +10,7 @@ public class JpanelGroupUser extends JPanel{
 	private JPanelCreateUser jCreateUser;
 	private JpanelUpdateClient jUpdateClient;
 	private JpanelFindUser jFindUser;
+	private JPanelPrueba jPanelPrueba;
 	
 	public JpanelGroupUser() {
 		super();
@@ -17,6 +18,7 @@ public class JpanelGroupUser extends JPanel{
 		jCreateUser = new JPanelCreateUser();
 		jUpdateClient = new JpanelUpdateClient();
 		jFindUser = new JpanelFindUser();
+		jPanelPrueba = new JPanelPrueba();
 		init();
 	}
 
@@ -25,7 +27,7 @@ public class JpanelGroupUser extends JPanel{
 		this.add("Crear", jCreateUser);
 		this.add("Modificar", jUpdateClient);
 		this.add("Consultar", jFindUser);
-		cardLayout.show(this, "panel1");
+		cardLayout.show(this, "Crear");
 	}
 	
 	public void showCreate() {

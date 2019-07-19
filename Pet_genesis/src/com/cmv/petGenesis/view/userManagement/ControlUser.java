@@ -14,7 +14,9 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 	private static ControlUser controlUser;
 	private JFrameUser jFrameUser;
 	private JPanelCreateUser jPanelCreateUser;
+	private JPanelFormUser jPanelFormUser;
 	private JpanelFindUser jpanelFindUser;
+	private JpanelUpdateClient jpanelUpdateClient;
 
 	private ControlUser() {
 	}
@@ -56,12 +58,11 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 			break;
 		}
 	}
-	
+
 	private void saveDataSignIn() {
 		Usuario mod = new Usuario();
 		jPanelCreateUser.saveDataSignIn(mod);
 	}
-	
 
 	public void setjFrameUser(JFrameUser jFrameUser) {
 		this.jFrameUser = jFrameUser;
@@ -70,30 +71,38 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 	public void setjPanelCreateUser(JPanelCreateUser jPanelCreateUser) {
 		this.jPanelCreateUser = jPanelCreateUser;
 	}
-	
+
 	public void setJpanelFindUser(JpanelFindUser jpanelFindUser) {
 		this.jpanelFindUser = jpanelFindUser;
 	}
 
+	public void setjPanelFormUser(JPanelFormUser jPanelFormUser) {
+		this.jPanelFormUser = jPanelFormUser;
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char c = e.getKeyChar();
-		if (e.getComponent().equals(jPanelCreateUser.getJtfName())
-				|| e.getComponent().equals(jPanelCreateUser.getJtfLastName())) {
+		if ((e.getComponent().equals(jPanelCreateUser.getJtfName())
+				|| e.getComponent().equals(jPanelCreateUser.getJtfLastName()))
+				|| (e.getComponent().equals(jpanelUpdateClient.getJtfName())
+						|| e.getComponent().equals(jpanelUpdateClient.getJtfLastName()))) {
 			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
 				e.consume();
-		} else if (e.getComponent().equals(jPanelCreateUser.getJtfId())
-				|| e.getComponent().equals(jPanelCreateUser.getJtfPhone())) {
+		} else if ((e.getComponent().equals(jPanelCreateUser.getJtfId())
+				|| e.getComponent().equals(jPanelCreateUser.getJtfPhone()))
+				|| (e.getComponent().equals(jpanelUpdateClient.getJtfId())
+				|| e.getComponent().equals(jpanelUpdateClient.getJtfPhone()))) {
 			if (c < '0' || c > '9')
 				e.consume();
 		}
@@ -101,7 +110,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
-		
+
 	}
 
 	@Override
@@ -111,6 +120,9 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 			jPanelCreateUser.showUserName();
 		}
 	}
-	
-	
+
+	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
+		this.jpanelUpdateClient = jpanelUpdateClient;
+	}
+
 }

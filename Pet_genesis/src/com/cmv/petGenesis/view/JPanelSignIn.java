@@ -118,7 +118,7 @@ public class JPanelSignIn extends JPanel {
 		this.add(panelPersonalData, BorderLayout.WEST);
 		this.add(panelUserData, BorderLayout.EAST);
 
-		this.title.setFont(ConstantView.FONT_TITLE_SIGNIN);
+		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.title.setHorizontalAlignment(JLabel.CENTER);
 		this.add(title, BorderLayout.NORTH);
 

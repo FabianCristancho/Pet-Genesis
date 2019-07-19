@@ -24,7 +24,7 @@ public class ConstantView {
 	public final static Color COLOR_BUTTON_LOGIN = new Color(14, 109, 204);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
-	public final static Font FONT_TITLE_SIGNIN = new Font("Open Sans", Font.BOLD, 35);
+	public final static Font FONT_TITLE_CRUD = new Font("Open Sans", Font.BOLD, 35);
 	public final static String P_DATA_SIGNIN = "DATOS PERSONALES";
 	public final static String U_DATA_SIGNIN = "DATOS DE USUARIO";
 	public final static String LABEL_ID_SIGNIN = "Documento de identidad *";
@@ -57,6 +57,9 @@ public class ConstantView {
 	public final static String BUTTON_UPDATE_USER = "MODIFICAR USUARIO";
 	public final static String BUTTON_INACTIV_USER = "ACTIVAR/INACTIVAR USUARIO";
 	public final static String BUTTON_FIND_USER = "CONSULTAR USUARIO";
+	public final static String LABEL_TITLE_UPDATE_USER = "MODIFICACIÓN DE USUARIO";
+	public final static String LABEL_DESCRIPTION_UPDATE_USER = "Ingrese id de usuario";
+	public final static String BTN_SEARCH_UPDATE_USER = "VER INFORMACIÓN DE USUARIO";
 	
 	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Nombre", "Apellido", "Tipo de usuario"};
 	public final static JComboBox<String> COMBO_PARAMETERS = new JComboBox<>(VALUES_PARAMETERS_USER);
