@@ -17,19 +17,47 @@ public class SqlUSer extends MyConnection {
 		PreparedStatement ps = null;
 		Connection con = getconnection();
 
-		String sql = "INSERT INTO usuarios (nombre_usuario, apellido_usuario, fecha_nacimiento, telefono_usuario, email_usuario, direccion_residencia, tipo_usuario, estado_usuario, usuario, contrasenia) VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO usuarios (documento_usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, telefono_usuario, email_usuario, direccion_residencia, tipo_usuario, estado_usuario, usuario, contrasenia) VALUES (?, ?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, user.getName());
-			ps.setString(2, user.getLastName());
-			ps.setString(3, UtilityClass.changeFormatToDate(user.getBirthDate()));
-			ps.setString(4, "" + user.getPhone());
-			ps.setString(5, user.getEmail());
-			ps.setString(6, user.getAddress());
-			ps.setInt(7, user.getTypeUser().getIdTypeUser());
-			ps.setString(8, user.getState());
-			ps.setString(9, user.getUserName());
-			ps.setString(10, user.getPassword());
+			ps.setString(1, user.getPersonalDocument());
+			ps.setString(2, user.getName());
+			ps.setString(3, user.getLastName());
+			ps.setString(4, UtilityClass.changeFormatToDate(user.getBirthDate()));
+			ps.setString(5, "" + user.getPhone());
+			ps.setString(6, user.getEmail());
+			ps.setString(7, user.getAddress());
+			ps.setInt(8, user.getTypeUser().getIdTypeUser());
+			ps.setString(9, user.getState());
+			ps.setString(10, user.getUserName());
+			ps.setString(11, user.getPassword());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean update(Usuario user) {
+		PreparedStatement ps = null;
+		Connection con = getconnection();
+		
+		String sql = "UPDATE usuarios SET documento_usuario=?, nombre_usuario=?, apellido_usuario=?, fecha_nacimiento=?, telefono_usuario=?, email_usuario=?, direccion_residencia=?, tipo_usuario=?, estado_usuario=?, usuario=?, contrasenia=? WHERE id_usuario=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, user.getPersonalDocument());
+			ps.setString(2, user.getName());
+			ps.setString(3, user.getLastName());
+			ps.setString(4, UtilityClass.changeFormatToDate(user.getBirthDate()));
+			ps.setString(5, "" + user.getPhone());
+			ps.setString(6, user.getEmail());
+			ps.setString(7, user.getAddress());
+			ps.setInt(8, user.getTypeUser().getIdTypeUser());
+			ps.setString(9, user.getState());
+			ps.setString(10, user.getUserName());
+			ps.setString(11, user.getPassword());
+			ps.setInt(12, user.getId());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {
@@ -123,7 +151,7 @@ public class SqlUSer extends MyConnection {
 		if(!"".equals(field)) {
 			where = " WHERE " +parameter +" = '" +field +"'";
 		}
-		String sql = "SELECT u.id_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where;
+		String sql = "SELECT u.id_usuario, u.documento_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where;
 
 		try {
 			ps = con.prepareStatement(sql);

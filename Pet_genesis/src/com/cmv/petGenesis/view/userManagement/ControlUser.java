@@ -7,6 +7,8 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
+
 import com.cmv.petGenesis.model.Usuario;
 
 public class ControlUser implements ActionListener, FocusListener, KeyListener {
@@ -53,8 +55,18 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 		case OK_SIGN_IN:
 			saveDataSignIn();
 			break;
+		case CMD_WD_UPDATE_SEARCH:
+			jpanelUpdateClient.getDataQuery();
+			break;
+		case CMD_WD_UPDATE_CHANGE_DATA:
+			jpanelUpdateClient.saveDataSignIn(new Usuario());
+			break;
+		case CMD_WD_UPDATE_RETURN:
+			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
+			break;
 
 		default:
+			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
 			break;
 		}
 	}

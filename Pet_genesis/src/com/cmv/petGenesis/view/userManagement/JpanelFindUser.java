@@ -125,6 +125,7 @@ public class JpanelFindUser extends JPanel {
 		jTable.setModel(model);
 
 		model.addColumn("Codigo");
+		model.addColumn("Documento de identidad");
 		model.addColumn("Nombre");
 		model.addColumn("Apellido");
 		model.addColumn("Fecha Nacimiento");
@@ -150,17 +151,17 @@ public class JpanelFindUser extends JPanel {
 			parameter = "id_usuario";
 			break;
 		case 1:
+			parameter = "documento_usuario";
+			break;
+		case 2:
 			parameter = "nombre_usuario";
 			break;
-			
-		case 2:
+		case 3:
 			parameter = "apellido_usuario";
 			break;
-			
-		case 3:
+		case 4:
 			parameter = "tipo_usuario";
 			break;
-
 		default:
 			parameter = "id_usuario";
 			break;

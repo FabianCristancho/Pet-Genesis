@@ -5,10 +5,11 @@ import java.util.Date;
 public class Usuario {
 	
 	private int id;
+	private String personalDocument;
 	private String name;
 	private String lastName;
 	private Date birthDate;
-	private int phone;
+	private long phone;
 	private String email;
 	private String address;
 	private String userName;
@@ -17,14 +18,23 @@ public class Usuario {
 	private TypeUser typeUser;
 	private String lastSession;
 	
+	
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
 	
+	public String getPersonalDocument() {
+		return personalDocument;
+	}
+
+	public void setPersonalDocument(String personalDocument) {
+		this.personalDocument = personalDocument;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -49,11 +59,11 @@ public class Usuario {
 		this.birthDate = birthDate;
 	}
 	
-	public int getPhone() {
+	public long getPhone() {
 		return phone;
 	}
 	
-	public void setPhone(int phone) {
+	public void setPhone(long phone) {
 		this.phone = phone;
 	}
 	

@@ -58,9 +58,15 @@ public class ConstantView {
 	public final static String BUTTON_INACTIV_USER = "ACTIVAR/INACTIVAR USUARIO";
 	public final static String BUTTON_FIND_USER = "CONSULTAR USUARIO";
 	public final static String LABEL_TITLE_UPDATE_USER = "MODIFICACIÓN DE USUARIO";
-	public final static String LABEL_DESCRIPTION_UPDATE_USER = "Ingrese id de usuario";
+	public final static String LABEL_DESCRIPTION_UPDATE_USER = "Seleccione parámetro de búsqueda";
 	public final static String BTN_SEARCH_UPDATE_USER = "VER INFORMACIÓN DE USUARIO";
+	public final static String BTN_RETURN_UPDATE_USER = "REGRESAR";
+	public final static String BTN_DATA_UPDATE_USER = "ACTUALIZAR DATOS";
 	
-	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Nombre", "Apellido", "Tipo de usuario"};
+	
+	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Documento de Identidad", "Nombre", "Apellido", "Tipo de usuario"};
 	public final static JComboBox<String> COMBO_PARAMETERS = new JComboBox<>(VALUES_PARAMETERS_USER);
+	
+	public final static String[] PARAMS_UPDATE_USER = {"Id", "Documento de Identidad", "Usuario"};
+	public final static JComboBox<String> COMBO_PARAMS_UPDATE_USER = new JComboBox<>(PARAMS_UPDATE_USER);
 }

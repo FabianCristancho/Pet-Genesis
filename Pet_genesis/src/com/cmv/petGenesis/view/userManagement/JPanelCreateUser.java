@@ -212,12 +212,12 @@ public class JPanelCreateUser extends JPanel {
 					if (UtilityClass.validateEmail(jPanelFormUser.jtfEmail.getText()) || jPanelFormUser.jtfEmail.getText().length() == 0) {
 
 						String newPass = Hash.sha1(password);
-
+						mod.setPersonalDocument(jPanelFormUser.jtfId.getText());
 						mod.setName(jPanelFormUser.jtfName.getText());
 						mod.setLastName(jPanelFormUser.jtfLastName.getText());
 						mod.setBirthDate(jPanelFormUser.birthdayDateChooser.getDate());
 						if (jPanelFormUser.jtfPhone.getText().length() != 0) {
-							mod.setPhone(Integer.parseInt(jPanelFormUser.jtfPhone.getText()));
+							mod.setPhone(Long.parseLong(jPanelFormUser.jtfPhone.getText()));
 						}
 						mod.setEmail(jPanelFormUser.jtfEmail.getText());
 						mod.setAddress(jPanelFormUser.jtfAdress.getText());

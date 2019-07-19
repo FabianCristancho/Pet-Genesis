@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -96,6 +97,19 @@ public class UtilityClass {
 		return mather.find();
 	}
 	
+	public static String formatDate(String oldDate) {
+		String[] newDate = oldDate.split("-");
+		int day = ((int)newDate[2].charAt(1))+1;
+		return newDate[2].charAt(0) +"" +(char)day +"/" +newDate[1] +"/" +newDate[0];
+	}
+	
+	public static Date daysAdd(Date fecha, int dias){
+	      if (dias==0) return fecha;
+	      Calendar calendar = Calendar.getInstance();
+	      calendar.setTime(fecha); 
+	      calendar.add(Calendar.DAY_OF_YEAR, dias);  
+	      return calendar.getTime(); 
+	}
 	public static void changeWidthColumn(JTable jTable, int position, int newWidth) {
 		jTable.getColumnModel().getColumn(position).setPreferredWidth(newWidth);
 	}
