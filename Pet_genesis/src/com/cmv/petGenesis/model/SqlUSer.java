@@ -141,17 +141,23 @@ public class SqlUSer extends MyConnection {
 		}
 	}
 
-	public ArrayList<Object[]> loadData(String parameter, String field) {
+	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getconnection();
 		ArrayList<Object[]> tableData = new ArrayList<>();
 
 		String where = "";
-		if(!"".equals(field)) {
-			where = " WHERE " +parameter +" = '" +field +"'";
+		String and = "";
+		if(!"".equals(value)) {
+			where = " WHERE " +parameter +" = '" +value +"'";
 		}
-		String sql = "SELECT u.id_usuario, u.documento_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.estado_usuario, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where;
+		
+		if(!"".equals(state)) {
+			and = " AND " +parameterState +" = '" +state +"'";
+		}
+		
+		String sql = "SELECT u.id_usuario, u.documento_usuario, u.nombre_usuario, u.apellido_usuario, u.fecha_nacimiento, u.telefono_usuario, u.email_usuario, u.direccion_residencia, t.nombre_tipo, u.usuario, u.ultima_sesion FROM usuarios AS u INNER JOIN tipos_usuario AS t ON u.tipo_usuario=t.id_tipo" +where +and;
 
 		try {
 			ps = con.prepareStatement(sql);

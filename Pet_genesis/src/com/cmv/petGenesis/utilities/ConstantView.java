@@ -52,10 +52,18 @@ public class ConstantView {
 	
 	//User Management
 	public final static String LABEL_USER_QUERY = "CONSULTA DE USUARIOS";
+	public final static String LABEL_TITLE_INACTIV_USER = "INACTIVACIÓN DE USUARIOS";
 	public final static String LABEL_QUERY_WITH = "Buscar usuario por: ";
+	public final static String LABEL_INACTIV_WITH = "Inactivar usuario por: ";
+	public final static String LABEL_INACTIV_USER = "USUARIOS INACTIVOS";
+	public final static String LABEL_ACTIV_USER = "USUARIOS ACTIVOS";
+	public final static String LABEL_CLICK_TO_ACTIV = "Haga click en un usuario para activarlo";
+	public final static String LABEL_CLICK_TO_INACTIV = "Haga click en un usuario para inactivarlo";
 	public final static String BUTTON_CREATE_USER = "CREAR USUARIO";
 	public final static String BUTTON_UPDATE_USER = "MODIFICAR USUARIO";
 	public final static String BUTTON_INACTIV_USER = "ACTIVAR/INACTIVAR USUARIO";
+	public final static String TOGGLE_SHOW_ACTIV_USER = "MOSTRAR USUARIOS ACTIVOS";
+	public final static String TOGGLE_SHOW_INACTIV_USER = "MOSTRAR USUARIOS INACTIVOS";
 	public final static String BUTTON_FIND_USER = "CONSULTAR USUARIO";
 	public final static String LABEL_TITLE_UPDATE_USER = "MODIFICACIÓN DE USUARIO";
 	public final static String LABEL_DESCRIPTION_UPDATE_USER = "Seleccione parámetro de búsqueda";
@@ -66,6 +74,8 @@ public class ConstantView {
 	
 	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Documento de Identidad", "Nombre", "Apellido", "Tipo de usuario"};
 	public final static JComboBox<String> COMBO_PARAMETERS = new JComboBox<>(VALUES_PARAMETERS_USER);
+	
+	public final static String[] PARAMS_INACTIV_USER = {"Id", "Documento de Identidad", "Nombre de usuario"};
 	
 	public final static String[] PARAMS_UPDATE_USER = {"Id", "Documento de Identidad", "Usuario"};
 	public final static JComboBox<String> COMBO_PARAMS_UPDATE_USER = new JComboBox<>(PARAMS_UPDATE_USER);

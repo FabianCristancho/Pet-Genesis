@@ -10,6 +10,7 @@ public class JpanelGroupUser extends JPanel{
 	private JPanelCreateUser jCreateUser;
 	private JpanelUpdateClient jUpdateClient;
 	private JpanelFindUser jFindUser;
+	private JPanelInactivUser jPanelInactivUser;
 	private JPanelPrueba jPanelPrueba;
 	
 	public JpanelGroupUser() {
@@ -19,6 +20,7 @@ public class JpanelGroupUser extends JPanel{
 		jUpdateClient = new JpanelUpdateClient();
 		jFindUser = new JpanelFindUser();
 		jPanelPrueba = new JPanelPrueba();
+		jPanelInactivUser = new JPanelInactivUser();
 		init();
 	}
 
@@ -26,6 +28,7 @@ public class JpanelGroupUser extends JPanel{
 		this.setLayout(cardLayout);
 		this.add("Crear", jCreateUser);
 		this.add("Modificar", jUpdateClient);
+		this.add("Inactivar", jPanelInactivUser);
 		this.add("Consultar", jFindUser);
 		cardLayout.show(this, "Crear");
 	}
@@ -43,6 +46,10 @@ public class JpanelGroupUser extends JPanel{
 	public void showFind() {
 		this.cardLayout.show(this, "Consultar");
 		this.repaint();
+	}
+	
+	public void showInactive() {
+		this.cardLayout.show(this, "Inactivar");
 	}
 
 	public CardLayout getCardLayout() {

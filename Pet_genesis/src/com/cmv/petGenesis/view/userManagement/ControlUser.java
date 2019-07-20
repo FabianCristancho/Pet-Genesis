@@ -4,14 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.Usuario;
 
-public class ControlUser implements ActionListener, FocusListener, KeyListener {
+public class ControlUser implements ActionListener, FocusListener, KeyListener, MouseListener, ItemListener {
 
 	private static ControlUser controlUser;
 	private JFrameUser jFrameUser;
@@ -19,6 +23,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 	private JPanelFormUser jPanelFormUser;
 	private JpanelFindUser jpanelFindUser;
 	private JpanelUpdateClient jpanelUpdateClient;
+	private JPanelInactivUser jPanelInactivUser;
 
 	private ControlUser() {
 	}
@@ -40,7 +45,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 			jFrameUser.getJpanelGroupClient().showUpdate();
 			break;
 		case CMD_INACTIV_USER:
-			jFrameUser.getJpanelGroupClient().showUpdate();
+			jFrameUser.getJpanelGroupClient().showInactive();
 			break;
 		case CMD_FIND_USER:
 			jFrameUser.getJpanelGroupClient().showFind();
@@ -135,6 +140,48 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener {
 
 	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
 		this.jpanelUpdateClient = jpanelUpdateClient;
+	}
+	
+	public void setjPanelInactivUser(JPanelInactivUser jPanelInactivUser) {
+		this.jPanelInactivUser = jPanelInactivUser;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if(e.getComponent().equals(jPanelInactivUser.getjTable())) {
+//			System.out.println("Codigo: " +jPanelInactivUser.inactivUser(e.getPoint()));
+//			int row = jPanelInactivUser.getjTable().rowAtPoint(e.getPoint());
+			JOptionPane.showMessageDialog(null, "Codigo: " +jPanelInactivUser.inactivUser(e.getPoint()));
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if(e.getItem().equals(jPanelInactivUser.getInactivActiv())) {
+			this.jPanelInactivUser.changeStateButton(e.getStateChange());
+		}
 	}
 
 }

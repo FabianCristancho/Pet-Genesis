@@ -6,8 +6,6 @@ import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +24,6 @@ import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.toedter.calendar.JDateChooser;
 
 public class JpanelUpdateClient extends JPanel {
 
@@ -146,7 +143,7 @@ public class JpanelUpdateClient extends JPanel {
 
 	public void getDataQuery() {
 		SqlUSer sqlUSer = new SqlUSer();
-		ArrayList<Object[]> data = sqlUSer.loadData(getParam(), jtfInputId.getText());
+		ArrayList<Object[]> data = sqlUSer.loadData(getParam(), jtfInputId.getText(), "", "");
 
 		if (data.size() != 0) {
 			Object[] register = data.get(0);
