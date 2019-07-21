@@ -27,7 +27,7 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
-public class JpanelUpdateClient extends JPanel {
+public class JpanelUpdateUser extends JPanel {
 
 	private JLabel titlePanel;
 	private JLabel idUser;
@@ -41,7 +41,7 @@ public class JpanelUpdateClient extends JPanel {
 	private JButton btnUpdateUser;
 	private JComboBox<String> parameters;
 
-	public JpanelUpdateClient() {
+	public JpanelUpdateUser() {
 		super(new BorderLayout());
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_USER);
 		this.idUser = new JLabel();

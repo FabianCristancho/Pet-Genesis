@@ -25,7 +25,7 @@ public class JPanelComments extends JPanel {
 	private CustomLabel titleComments;
 	private JTextArea areaComments;
 	private JScrollPane scrollComments;
-	private JButton btnSaveComments, btnClearComments;
+	private JButton btnClearComments;
 	private JPanel jpanelButtons;
 
 	public JPanelComments() {
@@ -33,7 +33,6 @@ public class JPanelComments extends JPanel {
 		this.titleComments = new CustomLabel(ConstantView.TITLE_COMMENTS, ConstantView.FONT_TITLE_COMMENTS, null);
 		this.areaComments = new JTextArea();
 		this.scrollComments = new JScrollPane();
-		this.btnSaveComments = new JButton(ConstantView.BTN_SAVE_COMMENTS);
 		this.btnClearComments = new JButton(ConstantView.BTN_CLEAR_COMMENTS);
 		this.jpanelButtons = new JPanel(new GridBagLayout());
 		ControlHistory.getInstance().setjPanelComments(this);
@@ -41,14 +40,13 @@ public class JPanelComments extends JPanel {
 	}
 
 	private void init() {
+		this.setBorder(BorderFactory.createEmptyBorder(30, 0, 20, 20));
 		this.titleComments.setHorizontalAlignment(JLabel.CENTER);
-		this.titleComments.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
 		this.add(titleComments, BorderLayout.NORTH);
 		
 		this.areaComments.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		this.areaComments.setFont(ConstantView.FONT_AREA_COMMENTS);
 		
-		this.scrollComments.setBorder(BorderFactory.createEmptyBorder(20, 50, 15, 50));
 		this.scrollComments.setViewportView(areaComments);
 		this.add(scrollComments, BorderLayout.CENTER);
 		
@@ -58,15 +56,9 @@ public class JPanelComments extends JPanel {
 	
 	private void initPanelComments() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		
 		gbc.anchor = GridBagConstraints.EAST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 20, 20, 20));
-		this.btnSaveComments.setFocusable(false);
-		this.btnSaveComments.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.jpanelButtons.add(btnSaveComments, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 0, new Insets(20, 20, 20, 20));
+		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		UtilityClass.addCommandJButton(btnClearComments, HistoryCommands.CMD_WD_COMMENTS_CLEAR_COM.toString(), ControlHistory.getInstance());
 		this.btnClearComments.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnClearComments.setFocusable(false);

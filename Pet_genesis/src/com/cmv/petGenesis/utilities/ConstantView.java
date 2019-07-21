@@ -117,7 +117,7 @@ public class ConstantView {
 	public static final String LBL_BDATE_PET = "Fecha de nacimiento";
 	public static final String LBL_CASTRATED_PET = "Castrado";
 	public static final String LBL_COLOR_PET = "Color";
-	public static final String LBL_WEIGHT_PET = "Peso al ingresar";
+	public static final String LBL_WEIGHT_PET = "Peso (Kg)";
 	public static final String LBL_BRANDS_PET = "Marcas o Señas";
 	public static final String LBL_PROPIETARY_PET = "Propietario";
 	public static final String BTN_FIND_PROPIETARY_PET = "Buscar propietario";
@@ -127,8 +127,8 @@ public class ConstantView {
 	public static final String TABBED_MEDICINE_PET = "MEDICAMENTOS";
 	public static final String TABBED_COMMENTS_PET = "COMENTARIOS";
 	
-	public static final String TITLE_COMMENTS = "COMENTARIOS GENERALES";
-	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.ITALIC, 25);
+	public static final String TITLE_COMMENTS = "COMENTARIOS ADICIONALES";
+	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.ITALIC, 20);
 	public static final String BTN_SAVE_COMMENTS = "GUARDAR COMENTARIOS";
 	public static final String BTN_CLEAR_COMMENTS = "LIMPIAR AREA DE COMENTARIOS";
 	public static final Font FONT_AREA_COMMENTS = new Font("Open Sans", Font.ROMAN_BASELINE, 15);
@@ -148,4 +148,6 @@ public class ConstantView {
 	public static final String BTN_SAVE_VACCINE = "GUARDAR REGISTRO DE VACUNA";
 	public static final String BTN_SAVE_ANTIPARASITARY = "GUARDAR REGISTRO DE ANTIPARASITARIO";
 	public static final Font FONT_LABELS_FORM_MEDICINE = new Font("Open Sans", Font.BOLD, 13);
+	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICAS";
+	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
 }

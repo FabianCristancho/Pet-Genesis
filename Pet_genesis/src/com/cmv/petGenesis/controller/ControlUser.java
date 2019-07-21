@@ -20,7 +20,7 @@ import com.cmv.petGenesis.view.userManagement.JPanelCreateUser;
 import com.cmv.petGenesis.view.userManagement.JPanelFormUser;
 import com.cmv.petGenesis.view.userManagement.JPanelInactivUser;
 import com.cmv.petGenesis.view.userManagement.JpanelFindUser;
-import com.cmv.petGenesis.view.userManagement.JpanelUpdateClient;
+import com.cmv.petGenesis.view.userManagement.JpanelUpdateUser;
 
 public class ControlUser implements ActionListener, FocusListener, KeyListener, MouseListener, ItemListener {
 
@@ -28,7 +28,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	private JFrameUser jFrameUser;
 	private JPanelCreateUser jPanelCreateUser;
 	private JpanelFindUser jpanelFindUser;
-	private JpanelUpdateClient jpanelUpdateClient;
+	private JpanelUpdateUser jpanelUpdateClient;
 	private JPanelInactivUser jPanelInactivUser;
 	private JPanelFormUser jPanelFormUser;
 
@@ -176,7 +176,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		this.jpanelFindUser = jpanelFindUser;
 	}
 
-	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
+	public void setJpanelUpdateClient(JpanelUpdateUser jpanelUpdateClient) {
 		this.jpanelUpdateClient = jpanelUpdateClient;
 	}
 	
