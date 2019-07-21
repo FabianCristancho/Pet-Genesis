@@ -12,6 +12,9 @@ public class CustomLabel extends JLabel{
 	private Color color;
 	private Border border;
 	
+	public CustomLabel() {
+	}
+	
 	public CustomLabel(String text) {
 		super(text);
 	}

@@ -21,6 +21,12 @@ public class CustomTxtField extends JTextField{
 		this.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 	}
 	
+	public CustomTxtField(int columns, Font font) {
+		super(columns);
+		this.setFont(font);
+		this.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
+	}
+	
 	public CustomTxtField(int columns, Font font, Color color, int aligment) {
 		super(columns);
 		this.setFont(font);

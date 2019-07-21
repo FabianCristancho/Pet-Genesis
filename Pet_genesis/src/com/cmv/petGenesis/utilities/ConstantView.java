@@ -104,6 +104,7 @@ public class ConstantView {
 	private JComboBox<String> comboSpecies;
 	private JCheckBox isCastrated;
 	
+	public final static String TITLE_WD_CREATE_HISTORY = "CREAR HISTORIA CLÍNICA";
 	public static final String TITLE_PANEL_PET = "DATOS DE PACIENTE";
 	public static final String LBL_TITLE_ID_HISTORY = "ID";
 	public static final String LBL_CREATION_DATE = "Fecha de Creación*";
@@ -119,6 +120,19 @@ public class ConstantView {
 	public static final String LBL_WEIGHT_PET = "Peso al ingresar";
 	public static final String LBL_BRANDS_PET = "Marcas o Señas";
 	public static final String LBL_PROPIETARY_PET = "Propietario";
+	public static final String BTN_FIND_PROPIETARY_PET = "Buscar propietario";
 	public final static String[] COMBO_SPECIES = {"CANINO", "FELINO"};
+	public static final String TABBED_DATA_PET = "DATOS DE PACIENTE";
+	public static final String TABBED_APPOINT_PET = "CITAS DE PACIENTE";
+	public static final String TABBED_MEDICINE_PET = "MEDICAMENTOS";
+	public static final String TABBED_COMMENTS_PET = "COMENTARIOS";
+	
+	public static final String TITLE_COMMENTS = "COMENTARIOS GENERALES";
+	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.ITALIC, 25);
+	public static final String BTN_SAVE_COMMENTS = "GUARDAR COMENTARIOS";
+	public static final String BTN_CLEAR_COMMENTS = "LIMPIAR AREA DE COMENTARIOS";
+	public static final Font FONT_AREA_COMMENTS = new Font("Open Sans", Font.ROMAN_BASELINE, 15);
+	
+	
 	
 }
