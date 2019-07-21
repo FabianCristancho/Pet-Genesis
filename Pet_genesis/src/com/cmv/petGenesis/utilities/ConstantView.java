@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JComboBox;
 import javax.swing.border.Border;
 
@@ -75,12 +76,21 @@ public class ConstantView {
 	public final static String BTN_RETURN_UPDATE_USER = "REGRESAR";
 	public final static String BTN_DATA_UPDATE_USER = "ACTUALIZAR DATOS";
 	
-	
 	public final static String[] VALUES_PARAMETERS_USER = {"Id", "Documento de Identidad", "Nombre", "Apellido", "Tipo de usuario"};
 	public final static JComboBox<String> COMBO_PARAMETERS = new JComboBox<>(VALUES_PARAMETERS_USER);
-	
 	public final static String[] PARAMS_INACTIV_USER = {"Id", "Documento de Identidad", "Usuario"};
-	
 	public final static String[] PARAMS_UPDATE_USER = {"Id", "Documento de Identidad", "Usuario"};
 	public final static JComboBox<String> COMBO_PARAMS_UPDATE_USER = new JComboBox<>(PARAMS_UPDATE_USER);
+	
+	
+	//HISTORY MANAGEMENT
+	public final static String CARD_CREATE_HISTORY = "Crear Historia";
+	public final static String CARD_UPDATE_HISTORY = "Actualizar historia";
+	public final static String CARD_STATE_HISTORY = "Cambiar estado historia";
+	public final static String CARD_FIND_HISTORY = "Consultar historia";
+	public static final String BUTTON_CREATE_HISTORY = "CREAR HISTORIA CLINICA";
+	public static final String BUTTON_UPDATE_HISTORY = "MODIFICAR HISTORIA CLINICA";
+	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLINICA";
+	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLINICA";
+	
 }

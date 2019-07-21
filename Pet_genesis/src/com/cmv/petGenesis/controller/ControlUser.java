@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
+import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.view.userManagement.JFrameUser;
 import com.cmv.petGenesis.view.userManagement.JPanelCreateUser;
@@ -20,7 +21,6 @@ import com.cmv.petGenesis.view.userManagement.JPanelFormUser;
 import com.cmv.petGenesis.view.userManagement.JPanelInactivUser;
 import com.cmv.petGenesis.view.userManagement.JpanelFindUser;
 import com.cmv.petGenesis.view.userManagement.JpanelUpdateClient;
-import com.cmv.petGenesis.view.userManagement.UserCommands;
 
 public class ControlUser implements ActionListener, FocusListener, KeyListener, MouseListener, ItemListener {
 

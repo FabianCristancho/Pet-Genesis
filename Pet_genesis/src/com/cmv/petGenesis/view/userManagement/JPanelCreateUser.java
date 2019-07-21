@@ -23,6 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Hash;
 import com.cmv.petGenesis.model.SqlUSer;

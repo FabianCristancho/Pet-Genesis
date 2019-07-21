@@ -9,10 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.cmv.petGenesis.view.userManagement.UserCommands;
 
 /**
  * JPanelWindowButtons, crea los botones de opciones de la ventana principal de

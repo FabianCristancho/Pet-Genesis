@@ -17,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -84,6 +85,7 @@ public class JpanelFindUser extends JPanel {
 		
 		gbc.gridwidth = 3;
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.panelSearch.add(title, gbc);
 		
 		gbc.gridwidth = 1;
