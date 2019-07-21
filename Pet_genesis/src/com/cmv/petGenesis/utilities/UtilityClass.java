@@ -1,7 +1,9 @@
 package com.cmv.petGenesis.utilities;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -110,7 +112,19 @@ public class UtilityClass {
 	      calendar.add(Calendar.DAY_OF_YEAR, dias);  
 	      return calendar.getTime(); 
 	}
+	
 	public static void changeWidthColumn(JTable jTable, int position, int newWidth) {
 		jTable.getColumnModel().getColumn(position).setPreferredWidth(newWidth);
+	}
+	
+	public static void organizeGridLayout(GridBagConstraints gbc, int gridx, int gridy) {
+		gbc.gridx = gridx;
+		gbc.gridy = gridy;
+	}
+	
+	public static void organizeGridLayout(GridBagConstraints gbc, int gridx, int gridy, Insets insets) {
+		gbc.gridx = gridx;
+		gbc.gridy = gridy;
+		gbc.insets = insets;
 	}
 }

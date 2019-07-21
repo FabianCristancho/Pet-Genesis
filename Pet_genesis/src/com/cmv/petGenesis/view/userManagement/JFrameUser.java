@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.cmv.petGenesis.controller.ControlUser;
+
 public class JFrameUser extends JFrame{
 	
 	private JpanelGroupUser jpanelGroupClient;

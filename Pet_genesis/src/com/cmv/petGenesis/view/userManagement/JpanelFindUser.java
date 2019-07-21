@@ -15,9 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
@@ -82,31 +82,24 @@ public class JpanelFindUser extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(20, 20, 0, 20);
 		
-		gbc.gridx = 1;
-		gbc.gridy = 0;
 		gbc.gridwidth = 3;
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		this.panelSearch.add(title, gbc);
 		
-		gbc.gridx = 0;
-		gbc.gridy = 1;
 		gbc.gridwidth = 1;
-		gbc.insets = new Insets(20, 0, 20, 20);
+		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 0, 20, 20));
 		this.panelSearch.add(description, gbc);
 		
-		gbc.gridx = 1;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		this.panelSearch.add(parameters, gbc);
 		
-		gbc.gridx = 2;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 2, 1);
 		this.panelSearch.add(jtfInputQuery, gbc);
 		
-		gbc.gridx = 3;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 3, 1);
 		this.panelSearch.add(btnSearch, gbc);
 		
-		gbc.gridx = 4;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 4, 1);
 		this.panelSearch.add(btnLoadData, gbc);
 	}
 

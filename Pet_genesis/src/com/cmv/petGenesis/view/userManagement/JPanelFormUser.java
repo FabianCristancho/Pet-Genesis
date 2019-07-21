@@ -19,6 +19,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
@@ -39,9 +40,8 @@ public class JPanelFormUser extends JPanel {
 	protected JDateChooser birthdayDateChooser;
 	protected JButton okButton;
 	protected JButton returnButton;
-	protected JPanel panelPersonalData;
-	protected JPanel panelUserData;
-//	protected JComboBox<String> test1;
+	protected JPanel panelPersonalData, panelUserData, jPanelButtons;
+	protected ButtonGroup buttonGroup;
 
 	public JPanelFormUser() {
 		super();
@@ -71,6 +71,9 @@ public class JPanelFormUser extends JPanel {
 		this.comboUserType = new JComboBox<>(ConstantView.VALUES_COMBO);
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
+		this.buttonGroup = new ButtonGroup();
+		this.jPanelButtons = new JPanel(new BorderLayout());
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
@@ -103,73 +106,59 @@ public class JPanelFormUser extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(0, 0, 40, 5);
 
-		gbc.gridx = 0;
-		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
+		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
 		this.panelPersonalData.add(lblId, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		this.panelPersonalData.add(lblName, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 2;
+		UtilityClass.organizeGridLayout(gbc, 0, 2);
 		this.panelPersonalData.add(lblLastName, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 3;
+		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		this.panelPersonalData.add(lblBirthDate, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 4;
+		UtilityClass.organizeGridLayout(gbc, 0, 4);
 		this.panelPersonalData.add(lblPhone, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 5;
+		UtilityClass.organizeGridLayout(gbc, 0, 5);
 		this.panelPersonalData.add(lblEmail, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 6;
+		UtilityClass.organizeGridLayout(gbc, 0, 6);
 		this.panelPersonalData.add(lblAddress, gbc);
 
 		gbc.anchor = GridBagConstraints.EAST;
 
-		gbc.gridx = 1;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		this.jtfName.addKeyListener(ControlUser.getInstance());
 		this.jtfName.addFocusListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfName, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 0;
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		this.jtfId.addKeyListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfId, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 2;
+		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		this.jtfLastName.addKeyListener(ControlUser.getInstance());
 		this.jtfLastName.addFocusListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfLastName, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 3;
+		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		this.birthdayDateChooser.setPreferredSize(new Dimension(100, 20));
 		this.birthdayDateChooser.setMaxSelectableDate(new Date());
 		this.panelPersonalData.add(birthdayDateChooser, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 4;
+		UtilityClass.organizeGridLayout(gbc, 1, 4);
 		this.jtfPhone.addKeyListener(EnterListener.getInstance());
 		this.panelPersonalData.add(jtfPhone, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 5;
+		UtilityClass.organizeGridLayout(gbc, 1, 5);
 		this.panelPersonalData.add(jtfEmail, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 6;
+		UtilityClass.organizeGridLayout(gbc, 1, 6);
 		this.panelPersonalData.add(jtfAdress, gbc);
 	}
 
@@ -180,60 +169,50 @@ public class JPanelFormUser extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(0, 20, 40, 20);
 
-		gbc.gridx = 0;
-		gbc.gridy = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
+		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
 		this.panelUserData.add(lblUserType, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 1;
+		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		this.panelUserData.add(lblActiv, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 2;
+		UtilityClass.organizeGridLayout(gbc, 0, 2);
 		this.panelUserData.add(lblUserName, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 3;
+		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		this.panelUserData.add(lblPsw, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 4;
+		UtilityClass.organizeGridLayout(gbc, 0, 4);
 		this.panelUserData.add(lblPswAgain, gbc);
 
 		gbc.anchor = GridBagConstraints.EAST;
 
-		gbc.gridx = 1;
-		gbc.gridy = 0;
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		this.panelUserData.add(comboUserType, gbc);
 
 		gbc.gridx = 1;
 		gbc.gridy = 1;
-		ButtonGroup buttonGroup = new ButtonGroup();
+		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		inactivRadioButton.setSelected(true);
 		inactivRadioButton.setFocusable(false);
 		activRadioButton.setFocusable(false);
 		buttonGroup.add(activRadioButton);
 		buttonGroup.add(inactivRadioButton);
-		JPanel jpanelButtons = new JPanel(new BorderLayout());
-		jpanelButtons.add(activRadioButton, BorderLayout.WEST);
-		jpanelButtons.add(inactivRadioButton, BorderLayout.EAST);
-		this.panelUserData.add(jpanelButtons, gbc);
+		jPanelButtons.add(activRadioButton, BorderLayout.WEST);
+		jPanelButtons.add(inactivRadioButton, BorderLayout.EAST);
+		this.panelUserData.add(jPanelButtons, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 2;
+		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		this.panelUserData.add(jtfUserName, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 3;
+		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		this.jpfPassword.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 		this.jpfPassword.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPassword, gbc);
 
-		gbc.gridx = 1;
-		gbc.gridy = 4;
+		UtilityClass.organizeGridLayout(gbc, 1, 4);
 		this.jpfPasswordAgain.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 		this.jpfPasswordAgain.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPasswordAgain, gbc);

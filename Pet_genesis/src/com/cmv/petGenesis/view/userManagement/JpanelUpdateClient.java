@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Hash;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.TypeUser;
@@ -67,17 +68,14 @@ public class JpanelUpdateClient extends JPanel {
 	private void initPanelUp() {
 		this.jPanelUp.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(20, 30, 0, 30);
 
-		gbc.gridx = 0;
-		gbc.gridy = 0;
 		gbc.gridwidth = 4;
+		UtilityClass.organizeGridLayout(gbc, 0, 0,  new Insets(20, 30, 0, 30));
 		this.titlePanel.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.jPanelUp.add(titlePanel, gbc);
 
-		gbc.gridx = 0;
-		gbc.gridy = 1;
 		gbc.gridwidth = 1;
+		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		gbc.anchor = GridBagConstraints.EAST;
 		this.jPanelUp.add(descriptionLabel, gbc);
 
@@ -102,19 +100,18 @@ public class JpanelUpdateClient extends JPanel {
 		this.jPanelDown.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		gbc.gridwidth = 1;
-		gbc.gridheight = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
+		
 		this.btnReturn.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
 		this.btnReturn.setForeground(Color.WHITE);
 		this.btnReturn.setFocusable(false);
 		this.btnReturn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnReturn.setFont(ConstantView.FONT_LABELS_LOGIN);
+		
 		UtilityClass.addCommandJButton(btnReturn, UserCommands.CMD_WD_UPDATE_RETURN.toString(),
 				ControlUser.getInstance());
+		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		this.jPanelDown.add(btnReturn, gbc);
 
 		gbc.gridx = 7;
@@ -123,6 +120,7 @@ public class JpanelUpdateClient extends JPanel {
 		this.btnUpdateUser.setFocusable(false);
 		this.btnUpdateUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnUpdateUser.setFont(ConstantView.FONT_LABELS_LOGIN);
+		
 		UtilityClass.addCommandJButton(btnUpdateUser, UserCommands.CMD_WD_UPDATE_CHANGE_DATA.toString(),
 				ControlUser.getInstance());
 		this.jPanelDown.add(btnUpdateUser, gbc);

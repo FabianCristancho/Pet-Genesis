@@ -1,4 +1,4 @@
-package com.cmv.petGenesis.view.userManagement;
+package com.cmv.petGenesis.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,16 +14,23 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.Usuario;
+import com.cmv.petGenesis.view.userManagement.JFrameUser;
+import com.cmv.petGenesis.view.userManagement.JPanelCreateUser;
+import com.cmv.petGenesis.view.userManagement.JPanelFormUser;
+import com.cmv.petGenesis.view.userManagement.JPanelInactivUser;
+import com.cmv.petGenesis.view.userManagement.JpanelFindUser;
+import com.cmv.petGenesis.view.userManagement.JpanelUpdateClient;
+import com.cmv.petGenesis.view.userManagement.UserCommands;
 
 public class ControlUser implements ActionListener, FocusListener, KeyListener, MouseListener, ItemListener {
 
 	private static ControlUser controlUser;
 	private JFrameUser jFrameUser;
 	private JPanelCreateUser jPanelCreateUser;
-	private JPanelFormUser jPanelFormUser;
 	private JpanelFindUser jpanelFindUser;
 	private JpanelUpdateClient jpanelUpdateClient;
 	private JPanelInactivUser jPanelInactivUser;
+	private JPanelFormUser jPanelFormUser;
 
 	private ControlUser() {
 	}
@@ -69,6 +76,9 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		case CMD_WD_UPDATE_RETURN:
 			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
 			break;
+		case CMD_WD_INACTIV_EXECUTE:
+			jPanelInactivUser.changeWithField();
+			break;
 
 		default:
 			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
@@ -81,30 +91,14 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		jPanelCreateUser.saveDataSignIn(mod);
 	}
 
-	public void setjFrameUser(JFrameUser jFrameUser) {
-		this.jFrameUser = jFrameUser;
-	}
-
-	public void setjPanelCreateUser(JPanelCreateUser jPanelCreateUser) {
-		this.jPanelCreateUser = jPanelCreateUser;
-	}
-
-	public void setJpanelFindUser(JpanelFindUser jpanelFindUser) {
-		this.jpanelFindUser = jpanelFindUser;
-	}
-
-	public void setjPanelFormUser(JPanelFormUser jPanelFormUser) {
-		this.jPanelFormUser = jPanelFormUser;
-	}
-
 	@Override
 	public void keyPressed(KeyEvent e) {
-
+	
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+	
 	}
 
 	@Override
@@ -127,7 +121,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
-
+	
 	}
 
 	@Override
@@ -138,14 +132,6 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		}
 	}
 
-	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
-		this.jpanelUpdateClient = jpanelUpdateClient;
-	}
-	
-	public void setjPanelInactivUser(JPanelInactivUser jPanelInactivUser) {
-		this.jPanelInactivUser = jPanelInactivUser;
-	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
@@ -153,22 +139,16 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(e.getComponent().equals(jPanelInactivUser.getjTable())) {
-//			System.out.println("Codigo: " +jPanelInactivUser.inactivUser(e.getPoint()));
-//			int row = jPanelInactivUser.getjTable().rowAtPoint(e.getPoint());
-			JOptionPane.showMessageDialog(null, "Codigo: " +jPanelInactivUser.inactivUser(e.getPoint()));
+			jPanelInactivUser.setActivUser(e.getPoint());
 		}
 	}
 
@@ -184,4 +164,27 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		}
 	}
 
+	public void setjFrameUser(JFrameUser jFrameUser) {
+		this.jFrameUser = jFrameUser;
+	}
+
+	public void setjPanelCreateUser(JPanelCreateUser jPanelCreateUser) {
+		this.jPanelCreateUser = jPanelCreateUser;
+	}
+
+	public void setJpanelFindUser(JpanelFindUser jpanelFindUser) {
+		this.jpanelFindUser = jpanelFindUser;
+	}
+
+	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
+		this.jpanelUpdateClient = jpanelUpdateClient;
+	}
+	
+	public void setjPanelInactivUser(JPanelInactivUser jPanelInactivUser) {
+		this.jPanelInactivUser = jPanelInactivUser;
+	}
+
+	public void setjPanelFormUser(JPanelFormUser jPanelFormUser) {
+		this.jPanelFormUser = jPanelFormUser;
+	}
 }
