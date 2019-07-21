@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
-import com.cmv.petGenesis.view.clientHistoryManagement.JPanelGroupHistory;
+import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 
 public class ControlHistory implements ActionListener{
 	

@@ -1,4 +1,4 @@
-package com.cmv.petGenesis.view.clientHistoryManagement;
+package com.cmv.petGenesis.view.historyManagement;
 
 import java.awt.CardLayout;
 

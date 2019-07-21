@@ -5,8 +5,13 @@ import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.border.Border;
+
+import com.toedter.calendar.JDateChooser;
 
 public class ConstantView {
 	
@@ -92,5 +97,28 @@ public class ConstantView {
 	public static final String BUTTON_UPDATE_HISTORY = "MODIFICAR HISTORIA CLINICA";
 	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLINICA";
 	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLINICA";
+	
+	private JLabel lblCreationDate, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblCastrated, lblColor, lblWeight, lblBrands, lblPropietary;
+	private JDateChooser creationDate, birthDate;
+	private JTextField jtfPetName, jtfRace, jtfColor, jtfWeight, jtfBrands, jtfPropietary;
+	private JComboBox<String> comboSpecies;
+	private JCheckBox isCastrated;
+	
+	public static final String TITLE_PANEL_PET = "DATOS DE PACIENTE";
+	public static final String LBL_TITLE_ID_HISTORY = "ID";
+	public static final String LBL_CREATION_DATE = "Fecha de Creación*";
+	public static final String LBL_NAME_PET = "Nombre de Paciente*";
+	public static final String LBL_SPECIES_PET = "Especie";
+	public static final String LBL_RACE_PET = "Raza";
+	public static final String LBL_GENDER_PET = "Género";
+	public static final String LBL_GENDER_MALE = "Macho";
+	public static final String LBL_GENDER_FEMALE = "Hembra";
+	public static final String LBL_BDATE_PET = "Fecha de nacimiento";
+	public static final String LBL_CASTRATED_PET = "Castrado";
+	public static final String LBL_COLOR_PET = "Color";
+	public static final String LBL_WEIGHT_PET = "Peso al ingresar";
+	public static final String LBL_BRANDS_PET = "Marcas o Señas";
+	public static final String LBL_PROPIETARY_PET = "Propietario";
+	public final static String[] COMBO_SPECIES = {"CANINO", "FELINO"};
 	
 }
