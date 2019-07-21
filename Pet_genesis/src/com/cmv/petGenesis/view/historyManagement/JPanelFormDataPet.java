@@ -29,7 +29,7 @@ public class JPanelFormDataPet extends JPanel{
 	private CustomLabel lblTitleId, lblValueID, lblCreationDate, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblCastrated, lblColor, lblWeight, lblBrands, lblPropietary;
 	private JDateChooser creationDate, birthDate;
 	private CustomTxtField jtfPetName, jtfRace, jtfColor, jtfWeight, jtfBrands, jtfPropietary;
-	private JComboBox<String> comboSpecies;
+	protected static JComboBox<String> comboSpecies;
 	private JCheckBox isCastrated;
 	private ButtonGroup groupGender;
 	private JRadioButton jRButtonMale;

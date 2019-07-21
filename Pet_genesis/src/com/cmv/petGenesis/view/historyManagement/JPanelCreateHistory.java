@@ -28,6 +28,7 @@ public class JPanelCreateHistory extends JPanel{
 	private JButton returnButton;
 	private JPanel panelButtons;
 	private JPanelFormDataPet jPanelFormDataPet;
+	private JPanelMedicine jPanelMedicine;
 	private JPanelComments jPanelComments;
 	private JTabbedPane modules;
 
@@ -40,6 +41,7 @@ public class JPanelCreateHistory extends JPanel{
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.jPanelFormDataPet = new JPanelFormDataPet();
+		this.jPanelMedicine = new JPanelMedicine();
 		this.jPanelComments = new JPanelComments();
 		this.modules = new JTabbedPane();
 		this.init();
@@ -97,7 +99,7 @@ public class JPanelCreateHistory extends JPanel{
 	private void initModules() {
 		this.modules.add(ConstantView.TABBED_DATA_PET, jPanelFormDataPet);
 		this.modules.add(ConstantView.TABBED_APPOINT_PET, new JPanel());
-		this.modules.add(ConstantView.TABBED_MEDICINE_PET, new JPanel());
+		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelMedicine);
 		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
 	}
 
