@@ -87,8 +87,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	}
 
 	private void saveDataSignIn() {
-		Usuario mod = new Usuario();
-		jPanelCreateUser.saveDataSignIn(mod);
+		jPanelCreateUser.saveDataSignIn(new Usuario());
 	}
 
 	@Override

@@ -15,6 +15,12 @@ import com.toedter.calendar.JDateChooser;
 
 public class ConstantView {
 	
+	//Connection
+	public final static String NAME_DATA_BASE = "historias_clinicas_cmv";
+	public final static String USER_DATA_BASE = "root";
+	public final static String PSWD_DATA_BASE = "123";
+	
+	
 	public final static String TITLE_LOGIN = "PET GENESIS";
 	public final static String LABEL_USER_LOGIN = "Usuario";
 	public final static String LABEL_PSW_LOGIN = "Contraseña";
