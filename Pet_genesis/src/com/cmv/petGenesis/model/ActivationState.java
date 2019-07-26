@@ -17,7 +17,7 @@ public enum ActivationState {
 		this.idState = idState;
 	}
 
-	public ActivationState getState(boolean isActive) {
+	public static ActivationState getState(boolean isActive) {
 		if (isActive)
 			return ActivationState.ACTIV;
 		return ActivationState.INACTIV;

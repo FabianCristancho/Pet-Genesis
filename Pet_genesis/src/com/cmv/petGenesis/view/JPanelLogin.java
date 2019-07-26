@@ -19,8 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.model.Hash;
 import com.cmv.petGenesis.model.SqlUSer;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
@@ -162,21 +164,9 @@ public class JPanelLogin extends JPanel {
 		return imgAbout;
 	}
 	
-//	public void validFields() {
-//		if(isFieldIsEmpty(fldUser)||isFieldIsEmpty(passwordField)) {
-//			JOptionPane.showMessageDialog(null, "HAY CAMPOS VACIOS");
-//		}else {
-//			if(!LoginManage.getInstance().existUser(fldUser.getText(), String.valueOf(passwordField.getPassword()))) {
-//				System.out.println("Contraseña: " +String.valueOf(passwordField.getPassword()));
-//				JOptionPane.showMessageDialog(null, "LOS DATOS NO COINCIDEN");
-//			}else {
-//				JOptionPane.showMessageDialog(null, "Se ha ingresado al sistema correctamente");
-//			}
-//		}
-//	}
 	
-	public void validFields(Usuario mod) {
-		SqlUSer modSql = new SqlUSer();
+	public void validFields(User user) {
+		SQLUsers sqlUsers = new SQLUsers();
 		
 		Date date = new Date();
 		DateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -186,14 +176,14 @@ public class JPanelLogin extends JPanel {
 		JTextField[] fields = {fldUser, passwordField};
 		if(!UtilityClass.fieldsAreEmpty(fields)) {
 			String newPass = Hash.sha1(pass);
-			mod.setUserName(fldUser.getText());
-			mod.setPassword(newPass);
-			mod.setLastSession(dateTime.format(date));
+			user.setNameUser(fldUser.getText());
+			user.setPassword(newPass);
+			user.setLastSession(dateTime.format(date));
 			
-			if(modSql.login(mod)) {
-				new JFrameMainWindow(mod);
+			if(sqlUsers.login(user)) {
+				new JFrameMainWindow(user);
 			}else {
-				JOptionPane.showMessageDialog(null, "Datos incorrectos", "INCORRECTOS", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No puede ingresar.\nVerifique que los datos sean correctos y el usuario se encuentre activo en el sistema", "INCORRECTOS", JOptionPane.ERROR_MESSAGE);
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Debe ingresar los campos", "DATOS INCOMPLETOS", JOptionPane.INFORMATION_MESSAGE);
@@ -203,5 +193,6 @@ public class JPanelLogin extends JPanel {
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length()==0;
 	}
+	
 	
 }

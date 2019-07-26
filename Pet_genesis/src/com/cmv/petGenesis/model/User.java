@@ -1,16 +1,20 @@
 package com.cmv.petGenesis.model;
 
+import java.util.Date;
+
 public class User extends Person{
 	
 	private String nameUser;
 	private String password;
+	private String lastSession;
 	
 	public User() {
 	}
 
-	public User(String nameUser, String password) {
+	public User(String nameUser, String password, String lastSession) {
 		this.nameUser = nameUser;
 		this.password = password;
+		this.lastSession = lastSession;
 	}
 
 	public String getNameUser() {
@@ -28,4 +32,14 @@ public class User extends Person{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getLastSession() {
+		return lastSession;
+	}
+
+	public void setLastSession(String lastSession) {
+		this.lastSession = lastSession;
+	}
+	
+	
 }

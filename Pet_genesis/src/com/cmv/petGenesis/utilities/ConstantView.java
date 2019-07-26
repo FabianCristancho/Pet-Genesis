@@ -20,7 +20,7 @@ public class ConstantView {
 	public final static String USER_DATA_BASE = "root";
 	public final static String PSWD_DATA_BASE = "123";
 	
-	
+	//Window User
 	public final static String TITLE_LOGIN = "PET GENESIS";
 	public final static String LABEL_USER_LOGIN = "Usuario";
 	public final static String LABEL_PSW_LOGIN = "Contraseña";
@@ -39,7 +39,8 @@ public class ConstantView {
 	public final static Font FONT_TITLE_CRUD = new Font("Open Sans", Font.BOLD, 35);
 	public final static String P_DATA_SIGNIN = "DATOS PERSONALES";
 	public final static String U_DATA_SIGNIN = "DATOS DE USUARIO";
-	public final static String LABEL_ID_SIGNIN = "Documento de identidad *";
+	public final static String LABEL_ID_USER_SIGNIN = "ID";
+	public final static String LABEL_PERSONAL_DOC_SIGNIN = "Documento de identidad *";
 	public final static String LABEL_NAME_SIGNIN = "Nombre *";
 	public final static String LABEL_LAST_NAME_SIGNIN = "Apellido *";
 	public static final String LABEL_BIRTHDATE_SIGNIN = "Fecha de Nacimiento";
@@ -56,6 +57,7 @@ public class ConstantView {
 	public final static String[] VALUES_COMBO = {"Gerente General", "Médico Veterinario", "Asistente", "Auxiliar Veterinario"};
 	public final static JComboBox<String> COMBO_USER_TYPE_SIGNIN = new JComboBox<>(VALUES_COMBO);
 	public final static String BUTTON_OK_SIGNIN = "REGISTRAR USUARIO";
+	public final static String BUTTON_CLEAR_SIGNIN = "LIMPIAR TODOS LOS CAMPOS";
 	public final static String BUTTON_RETURN_SIGNIN = "REGRESAR";
 	public final static Border BORD_FORM_LABEL = BorderFactory.createEmptyBorder(0, 10, 0, 10);
 	public final static Font FONT_FORM = new Font("Open Sans", Font.BOLD, 17);
@@ -156,4 +158,46 @@ public class ConstantView {
 	public static final Font FONT_LABELS_FORM_MEDICINE = new Font("Open Sans", Font.BOLD, 13);
 	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICAS";
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
+
+	//APPOINTMENT MANAGEMENT
+	public static final String LABEL_ID_AP = "ID CONSULTA";
+	public static final String LABEL_DATE_AP = "FECHA CONSULTA";
+	public static final String LABEL_MOT_AP = "Motivo de la consulta";
+	
+	//EXAM
+	public static final String LBL_EXAM_WEIGHT = "PESO";
+	public static final String LBL_EXAM_APPETITE = "APETITO";
+	public static final String LBL_EXAM_STOOL = "HECES";
+	public static final String LBL_EXAM_WATER = "CONSUMO DE AGUA";
+	public static final String LBL_EXAM_DIET = "DIETA";
+	public static final String LBL_EXAM_NAILS = "UÑAS";
+	public static final String LBL_EXAM_ATT = "ACTITUD";
+	public static final String LBL_EXAM_TEMP = "TEMPERAMENTO";
+	public static final String LBL_EXAM_TMP = "TEMPERATURA (°C)";
+	public static final String LBL_EXAM_PRESSION = "PRESION (1/min)";
+	public static final String LBL_EXAM_CARD = "FRECUENCIA CARDICA (1/min)";
+	public static final String LBL_EXAM_RESP = "FRECUENCIA RESPIRATORIA (1/min)";
+	public static final String LBL_EXAM_CAVID = "CAVIDAD ORAL";
+	public static final String LBL_EXAM_FACE = "CARA";
+	public static final String LBL_EXAM_TRUNK = "TRONCO";
+	public static final String LBL_EXAM_GEN = "GENITALES";
+	public static final String LBL_EXAM_EXT = "EXTREMIDADES";
+	public static final String LBL_EXAM_SNC = "SISTEMA NERVIOSO CENTRAL";
+	public static final String JRB_EXAM_APGOOD = "Bueno";
+	public static final String JRB_EXAM_APREG = "Regular";
+	public static final String JRB_EXAM_NULL = "Nulo";
+	public static final String JRB_EXAM_SNORM = "Normales";
+	public static final String JRB_EXAM_SDIARR = "Diarrea";
+	public static final String JRB_EXAM_SCONS = "Constipacion";
+	public static final String JRB_EXAM_WNORM = "Normal";
+	public static final String JRB_EXAM_POL = "Polidipsia";
+	public static final String JRB_EXAM_POR = "Poliuria";
+	public static final String JRB_EXAM_DMEAT = "Carne";
+	public static final String JRB_EXAM_DCARB = "Carbohidratos";
+	public static final String JRB_EXAM_DVEG = "Verduras";
+	public static final String JRB_EXAM_DOTHER = "Otra dieta";
+	public static final String CH_EXAM_VOMIT = "Tiene vomito";
+	public static final String JRB_EXAM_NAIL_OK = "OK";
+	public static final String JRB_EXAM_NAIL_CUT = "Cortar";
+
 }

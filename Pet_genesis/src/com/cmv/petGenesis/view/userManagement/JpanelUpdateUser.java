@@ -18,10 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLPeople;
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
+import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.Hash;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.TypeUser;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
@@ -30,7 +34,6 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 public class JpanelUpdateUser extends JPanel {
 
 	private JLabel titlePanel;
-	private JLabel idUser;
 	private JLabel descriptionLabel;
 	private JTextField jtfInputId;
 	private JPanel jPanelUp;
@@ -40,11 +43,13 @@ public class JpanelUpdateUser extends JPanel {
 	private JButton btnReturn;
 	private JButton btnUpdateUser;
 	private JComboBox<String> parameters;
+	private String oldpIdentification;
+	private String oldUserName;
+	private String oldTelephone;
 
 	public JpanelUpdateUser() {
 		super(new BorderLayout());
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_USER);
-		this.idUser = new JLabel();
 		this.descriptionLabel = new JLabel(ConstantView.LABEL_DESCRIPTION_UPDATE_USER);
 		this.btnSearchUser = new JButton(ConstantView.BTN_SEARCH_UPDATE_USER);
 		this.jtfInputId = new JTextField(20);
@@ -71,7 +76,7 @@ public class JpanelUpdateUser extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.gridwidth = 4;
-		UtilityClass.organizeGridLayout(gbc, 0, 0,  new Insets(20, 30, 0, 30));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 30, 0, 30));
 		this.titlePanel.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.jPanelUp.add(titlePanel, gbc);
 
@@ -103,13 +108,13 @@ public class JpanelUpdateUser extends JPanel {
 
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		
+
 		this.btnReturn.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
 		this.btnReturn.setForeground(Color.WHITE);
 		this.btnReturn.setFocusable(false);
 		this.btnReturn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnReturn.setFont(ConstantView.FONT_LABELS_LOGIN);
-		
+
 		UtilityClass.addCommandJButton(btnReturn, UserCommands.CMD_WD_UPDATE_RETURN.toString(),
 				ControlUser.getInstance());
 		UtilityClass.organizeGridLayout(gbc, 0, 0);
@@ -121,7 +126,7 @@ public class JpanelUpdateUser extends JPanel {
 		this.btnUpdateUser.setFocusable(false);
 		this.btnUpdateUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnUpdateUser.setFont(ConstantView.FONT_LABELS_LOGIN);
-		
+
 		UtilityClass.addCommandJButton(btnUpdateUser, UserCommands.CMD_WD_UPDATE_CHANGE_DATA.toString(),
 				ControlUser.getInstance());
 		this.jPanelDown.add(btnUpdateUser, gbc);
@@ -132,49 +137,53 @@ public class JpanelUpdateUser extends JPanel {
 		case 0:
 			return "id_usuario";
 		case 1:
-			return "documento_usuario";
+			return "documento_identidad";
 		case 2:
-			return "usuario";
+			return "nombre_usuario";
 		default:
 			return "";
 		}
 	}
 
 	public void getDataQuery() {
-		SqlUSer sqlUSer = new SqlUSer();
-		ArrayList<Object[]> data = sqlUSer.loadData(getParam(), jtfInputId.getText(), "", "");
+		SQLUsers sqlUsers = new SQLUsers();
+		ArrayList<Object[]> data = sqlUsers.loadData(getParam(), jtfInputId.getText(), "", "");
 
 		if (data.size() != 0) {
 			Object[] register = data.get(0);
-			this.idUser.setText(""+register[0]);
-			jpanelCenter.jtfId.setText((String) register[1]);
+			jpanelCenter.resultId.setText("" + register[0]);
+			jpanelCenter.jtfUserName.setText((String) register[1]);
 			jpanelCenter.jtfName.setText((String) register[2]);
 			jpanelCenter.jtfLastName.setText((String) register[3]);
-			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd((Date) register[4], 1));
+//			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd((Date) register[4], 1));
 			jpanelCenter.jtfPhone.setText((String) register[5]);
-			jpanelCenter.jtfEmail.setText((String) register[6]);
-			jpanelCenter.jtfAdress.setText((String) register[7]);
-			jpanelCenter.comboUserType.setSelectedIndex(getRole((String) register[8]));
+			jpanelCenter.comboUserType.setSelectedIndex(((int) register[6] - 1));
 
-			if (isActive((String) register[9])) {
-				jpanelCenter.activRadioButton.setSelected(true);
+			if (!isActive((String) register[7])) {
+				jpanelCenter.inactivRadioButton.setSelected(true);
 			}
 
-			jpanelCenter.jtfUserName.setText((String) register[10]);
-
+			jpanelCenter.jtfId.setText((String) register[8]);
+			jpanelCenter.jtfEmail.setText((String) register[9]);
+			jpanelCenter.jtfAdress.setText((String) register[10]);
+			this.oldUserName = jpanelCenter.jtfUserName.getText();
+			this.oldTelephone = jpanelCenter.jtfPhone.getText();
+			this.oldpIdentification = jpanelCenter.jtfId.getText();
 		} else {
 			JOptionPane.showMessageDialog(null, "NO EXISTE EL USUARIO CONSULTADO");
 		}
 	}
 
-	public void saveDataSignIn(Usuario mod) {
-		SqlUSer modSql = new SqlUSer();
+	public void saveDataSignIn(User mod) {
+		SQLUsers sqlUsers = new SQLUsers();
+		SQLPeople sqlPeople = new SQLPeople();
 
 		String password = new String(jpanelCenter.jpfPassword.getPassword());
 		String passwordAgain = new String(jpanelCenter.jpfPasswordAgain.getPassword());
 
 		JTextField[] requiredFields = { jpanelCenter.jtfId, jpanelCenter.jtfName, jpanelCenter.jtfLastName,
-				jpanelCenter.jtfUserName, jpanelCenter.jpfPassword, jpanelCenter.jpfPasswordAgain };
+				jpanelCenter.jtfUserName, jpanelCenter.jtfPhone, jpanelCenter.jpfPassword,
+				jpanelCenter.jpfPasswordAgain };
 		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
 			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
 					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
@@ -182,36 +191,55 @@ public class JpanelUpdateUser extends JPanel {
 
 			if (password.equals(passwordAgain)) {
 
-				if (UtilityClass.validateEmail(jpanelCenter.jtfEmail.getText())
-						|| jpanelCenter.jtfEmail.getText().length() == 0) {
+				if (oldUserName.equals(jpanelCenter.jtfUserName.getText())
+						|| sqlUsers.existUser(jpanelCenter.jtfUserName.getText()) == 0) {
 
-					String newPass = Hash.sha1(password);
-					mod.setId(Integer.parseInt(this.idUser.getText()));
-					mod.setPersonalDocument(jpanelCenter.jtfId.getText());
-					mod.setName(jpanelCenter.jtfName.getText());
-					mod.setLastName(jpanelCenter.jtfLastName.getText());
-					mod.setBirthDate(jpanelCenter.birthdayDateChooser.getDate());
-					if (jpanelCenter.jtfPhone.getText().length() != 0) {
-						mod.setPhone(Long.parseLong(jpanelCenter.jtfPhone.getText()));
-					}
-					mod.setEmail(jpanelCenter.jtfEmail.getText());
-					mod.setAddress(jpanelCenter.jtfAdress.getText());
-					mod.setTypeUser(TypeUser.getTypeUser(jpanelCenter.comboUserType.getSelectedIndex() + 1));
-					mod.setState(jpanelCenter.activRadioButton.isSelected() ? jpanelCenter.activRadioButton.getText()
-							: jpanelCenter.inactivRadioButton.getText());
-					mod.setUserName(jpanelCenter.jtfUserName.getText());
-					mod.setPassword(newPass);
+					if (oldpIdentification.equals(jpanelCenter.jtfId.getText())
+							|| sqlPeople.existDocumentId(Integer.parseInt(jpanelCenter.jtfId.getText())) == 0) {
 
-					if (modSql.update(mod)) {
-						JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO CON EXITO");
+						if (oldTelephone.equals(jpanelCenter.jtfPhone.getText())
+								|| sqlPeople.existPhone(jpanelCenter.jtfPhone.getText()) == 0) {
+
+							if (UtilityClass.validateEmail(jpanelCenter.jtfEmail.getText())
+									|| jpanelCenter.jtfEmail.getText().length() == 0) {
+
+								String newPass = Hash.sha1(password);
+								mod.setIdPerson(Integer.parseInt(jpanelCenter.resultId.getText()));
+								mod.setPersonalIdentification(jpanelCenter.jtfId.getText());
+								mod.setName(jpanelCenter.jtfName.getText());
+								mod.setLastName(jpanelCenter.jtfLastName.getText());
+								mod.setBirthDate(jpanelCenter.birthdayDateChooser.getDate());
+								mod.setTelephone(jpanelCenter.jtfPhone.getText());
+								mod.setEmail(jpanelCenter.jtfEmail.getText());
+								mod.setAddress(jpanelCenter.jtfAdress.getText());
+								mod.setTypeUser(
+										TypeUser.getTypeUser(jpanelCenter.comboUserType.getSelectedIndex() + 1));
+								mod.setActivationState(
+										ActivationState.getState(jpanelCenter.activRadioButton.isSelected()));
+								mod.setNameUser(jpanelCenter.jtfUserName.getText());
+								mod.setPassword(newPass);
+
+								if (sqlUsers.updateUser(mod)) {
+									JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO CON EXITO");
+								} else {
+									JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
+										JOptionPane.INFORMATION_MESSAGE);
+
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "El telefono ingresado ya existe en el sistema",
+									"TELEFONO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
+						}
 					} else {
-						JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
-
+						JOptionPane.showMessageDialog(null, "El documento de identidad ya existe en el sistema",
+								"DOCUMENTO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
+					JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe", "USUARIO REPETIDO",
 							JOptionPane.INFORMATION_MESSAGE);
-
 				}
 
 			} else {
@@ -219,6 +247,58 @@ public class JpanelUpdateUser extends JPanel {
 			}
 		}
 	}
+//	public void saveDataSignIn(Usuario mod) {
+//		SqlUSer modSql = new SqlUSer();
+//		
+//		String password = new String(jpanelCenter.jpfPassword.getPassword());
+//		String passwordAgain = new String(jpanelCenter.jpfPasswordAgain.getPassword());
+//		
+//		JTextField[] requiredFields = { jpanelCenter.jtfId, jpanelCenter.jtfName, jpanelCenter.jtfLastName,
+//				jpanelCenter.jtfUserName, jpanelCenter.jpfPassword, jpanelCenter.jpfPasswordAgain };
+//		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
+//			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
+//					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
+//		} else {
+//			
+//			if (password.equals(passwordAgain)) {
+//				
+//				if (UtilityClass.validateEmail(jpanelCenter.jtfEmail.getText())
+//						|| jpanelCenter.jtfEmail.getText().length() == 0) {
+//					
+//					String newPass = Hash.sha1(password);
+//					mod.setId(Integer.parseInt(this.pIdentidentification.getText()));
+//					mod.setPersonalDocument(jpanelCenter.jtfId.getText());
+//					mod.setName(jpanelCenter.jtfName.getText());
+//					mod.setLastName(jpanelCenter.jtfLastName.getText());
+//					mod.setBirthDate(jpanelCenter.birthdayDateChooser.getDate());
+//					if (jpanelCenter.jtfPhone.getText().length() != 0) {
+//						mod.setPhone(Long.parseLong(jpanelCenter.jtfPhone.getText()));
+//					}
+//					mod.setEmail(jpanelCenter.jtfEmail.getText());
+//					mod.setAddress(jpanelCenter.jtfAdress.getText());
+//					mod.setTypeUser(TypeUser.getTypeUser(jpanelCenter.comboUserType.getSelectedIndex() + 1));
+//					mod.setState(jpanelCenter.activRadioButton.isSelected() ? jpanelCenter.activRadioButton.getText()
+//							: jpanelCenter.inactivRadioButton.getText());
+//					mod.setUserName(jpanelCenter.jtfUserName.getText());
+//					mod.setPassword(newPass);
+//					
+//					if (modSql.update(mod)) {
+//						JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO CON EXITO");
+//					} else {
+//						JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+//						
+//					}
+//				} else {
+//					JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
+//							JOptionPane.INFORMATION_MESSAGE);
+//					
+//				}
+//				
+//			} else {
+//				JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
+//			}
+//		}
+//	}
 
 	private int getRole(String role) {
 		switch (role) {
@@ -235,7 +315,7 @@ public class JpanelUpdateUser extends JPanel {
 	}
 
 	private boolean isActive(String state) {
-		if (state.equals("Activo"))
+		if (state.charAt(0) == 'A')
 			return true;
 		return false;
 	}
@@ -254,5 +334,17 @@ public class JpanelUpdateUser extends JPanel {
 
 	public CustomTxtField getJtfPhone() {
 		return jpanelCenter.jtfPhone;
+	}
+
+	public String getNewpIdentification() {
+		return oldpIdentification;
+	}
+
+	public String getNewUserName() {
+		return oldUserName;
+	}
+
+	public String getNewTelephone() {
+		return oldTelephone;
 	}
 }

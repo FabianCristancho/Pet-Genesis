@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 
 /**
@@ -28,13 +29,13 @@ public class JPanelMainWindow extends JPanel {
 	/**
 	 * Instancia los componentes que va a tener la ventana
 	 */
-	public JPanelMainWindow(Usuario usuario) {
+	public JPanelMainWindow(User user) {
 		super();
 		this.mainTitle = new JLabel("BIENVENIDO A PET GENESIS");
 		this.buttonExit = new JButton("SALIR");
 		this.buttonSettings = new JButton("Config");
-		this.jWindowButtons = new JPanelWindowButtons(usuario.getTypeUser().getIdTypeUser());
-		this.nameUser = new JLabel(usuario.getUserName());
+		this.jWindowButtons = new JPanelWindowButtons(user.getTypeUser().getIdTypeUser());
+		this.nameUser = new JLabel(user.getNameUser());
 		init();
 	}
 

@@ -39,6 +39,7 @@ public class DataBaseCreation extends ConnectionMySQL{
 			ps.execute();
 			createTables();
 			alterTables();
+			createTypesUser();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -187,9 +188,10 @@ public class DataBaseCreation extends ConnectionMySQL{
 		Connection con = getConnection();
 		String sql = "CREATE TABLE personas ("
 				+ "id_persona	INT(8)	NOT NULL	AUTO_INCREMENT,"
-				+ "id_tipo_usuario	INT(8)	,"
+				+ "id_tipo_usuario	INT(8)	NOT NULL,"
 				+ "nombre_persona	VARCHAR(30)	NOT NULL,"
 				+ "apellido_persona	VARCHAR(30)	NOT NULL,"
+				+ "fecha_nacimiento DATE,"
 				+ "telefono_persona	VARCHAR(30)	NOT NULL,"
 				+ "estado_activacion	CHAR(1)	NOT NULL,"
 				+ "documento_identidad	VARCHAR(30)	,"
@@ -211,10 +213,11 @@ public class DataBaseCreation extends ConnectionMySQL{
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 		String sql = "CREATE TABLE usuarios ("
-				+ "id_usuario	INT(8)	NOT NULL	AUTO_INCREMENT,"
+				+ "id_usuario	INT(8)	NOT NULL,"
 				+ "id_persona	INT(8)	NOT NULL,"
 				+ "nombre_usuario	VARCHAR(30)	NOT NULL,"
-				+ "contrasenia_usuario	VARCHAR(30)	NOT NULL,"
+				+ "contrasenia_usuario	VARCHAR(100)	NOT NULL,"
+				+ "ultima_sesion DATETIME DEFAULT '0000-00-00 00:00:00',"
 				+ "CONSTRAINT usu_pk_idu PRIMARY KEY (id_usuario)"
 				+ ");";
 		try {
@@ -502,6 +505,27 @@ public class DataBaseCreation extends ConnectionMySQL{
 			ps.execute();
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	private void createTypesUser() {
+		createTypeUser("GERENTE GENERAL");
+		createTypeUser("MEDICO VETERINARIO");
+		createTypeUser("ASISTENTE DE RECEPCION");
+		createTypeUser("AUXILIAR VETERINARIO");
+	}
+	
+	private void createTypeUser(String nameType) {
+		PreparedStatement ps = null;
+		Connection con = getConnection();
+		
+		String sql = "INSERT INTO tipos_usuario (nombre_tipo_usuario) VALUES (?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, nameType);
+			ps.execute();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

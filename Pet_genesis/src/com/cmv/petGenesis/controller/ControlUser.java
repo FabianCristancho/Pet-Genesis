@@ -14,7 +14,10 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.model.Person;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
+import com.cmv.petGenesis.utilities.UtilityClass;
 import com.cmv.petGenesis.view.userManagement.JFrameUser;
 import com.cmv.petGenesis.view.userManagement.JPanelCreateUser;
 import com.cmv.petGenesis.view.userManagement.JPanelFormUser;
@@ -71,7 +74,10 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 			jpanelUpdateClient.getDataQuery();
 			break;
 		case CMD_WD_UPDATE_CHANGE_DATA:
-			jpanelUpdateClient.saveDataSignIn(new Usuario());
+			jpanelUpdateClient.saveDataSignIn(new User());
+			break;
+		case CMD_WD_UPDATE_CLEAR:
+			jPanelFormUser.clearFields();
 			break;
 		case CMD_WD_UPDATE_RETURN:
 			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
@@ -87,7 +93,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	}
 
 	private void saveDataSignIn() {
-		jPanelCreateUser.saveDataSignIn(new Usuario());
+		jPanelCreateUser.saveDataSignIn(new User());
 	}
 
 	@Override
@@ -127,7 +133,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	public void focusLost(FocusEvent e) {
 		if (e.getComponent().equals(jPanelCreateUser.getJtfName())
 				|| e.getComponent().equals(jPanelCreateUser.getJtfLastName())) {
-			jPanelCreateUser.showUserName();
+			jPanelCreateUser.generateUserName();
 		}
 	}
 

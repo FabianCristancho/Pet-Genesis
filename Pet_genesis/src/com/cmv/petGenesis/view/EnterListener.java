@@ -41,8 +41,7 @@ public class EnterListener implements ActionListener, MouseListener, FocusListen
 	}
 
 	private void validFieldsLogin() {
-		Usuario usuario = new Usuario();
-		loginJPanel.validFields(usuario);
+		loginJPanel.validFields(new User());
 	}
 
 //	private void saveDataSignIn() {

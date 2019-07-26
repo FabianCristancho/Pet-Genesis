@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 
 public class JFrameMainWindow extends JFrame{
@@ -11,9 +12,9 @@ public class JFrameMainWindow extends JFrame{
 	private JPanelMainWindow jPanelMainWindow;
 	
 	
-	public JFrameMainWindow(Usuario usuario) {
+	public JFrameMainWindow(User user) {
 		super();
-		this.jPanelMainWindow = new JPanelMainWindow(usuario);
+		this.jPanelMainWindow = new JPanelMainWindow(user);
 		ControlMainWindow.getInstance().setjFrameMainWindow(this);
 		init();
 	}

@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.userManagement;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +20,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -31,21 +34,23 @@ import PruebasLogin.LoginManage;
 
 public class JPanelFormUser extends JPanel {
 
-	protected CustomLabel lblId, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
+	protected CustomLabel idUser, resultId, personalDoc, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
 			lblUserName, lblPsw, lblPswAgain, lblBirthDate;
 	protected CustomTxtField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
 	protected JPasswordField jpfPassword, jpfPasswordAgain;
 	protected JComboBox<String> comboUserType;
 	protected JRadioButton activRadioButton, inactivRadioButton;
 	protected JDateChooser birthdayDateChooser;
-	protected JButton okButton;
-	protected JButton returnButton;
+	protected JButton okButton, returnButton, btnClearFields;
 	protected JPanel panelPersonalData, panelUserData, jPanelButtons;
 	protected ButtonGroup buttonGroup;
+	private SimpleDateFormat sdf;
 
 	public JPanelFormUser() {
 		super();
-		this.lblId = new CustomLabel(ConstantView.LABEL_ID_SIGNIN, ConstantView.FONT_FORM, null);
+		this.idUser = new CustomLabel(ConstantView.LABEL_ID_USER_SIGNIN, ConstantView.FONT_FORM, null);
+		this.resultId = new CustomLabel("", ConstantView.FONT_FORM, null );
+		this.personalDoc = new CustomLabel(ConstantView.LABEL_PERSONAL_DOC_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblName = new CustomLabel(ConstantView.LABEL_NAME_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblLastName = new CustomLabel(ConstantView.LABEL_LAST_NAME_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblBirthDate = new CustomLabel(ConstantView.LABEL_BIRTHDATE_SIGNIN, ConstantView.FONT_FORM, null);
@@ -71,10 +76,11 @@ public class JPanelFormUser extends JPanel {
 		this.comboUserType = new JComboBox<>(ConstantView.VALUES_COMBO);
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
+		this.btnClearFields = new JButton(ConstantView.BUTTON_CLEAR_SIGNIN);
 		this.buttonGroup = new ButtonGroup();
 		this.jPanelButtons = new JPanel(new BorderLayout());
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
 		} catch (ParseException e) {
@@ -104,61 +110,69 @@ public class JPanelFormUser extends JPanel {
 		this.panelPersonalData.setBorder(BorderFactory.createTitledBorder(ConstantView.P_DATA_SIGNIN));
 		this.panelPersonalData.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(0, 0, 40, 5);
+		gbc.insets = new Insets(20, 0, 20, 5);
 
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
-		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
-		this.panelPersonalData.add(lblId, gbc);
-
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 0);
+		this.panelPersonalData.add(idUser, gbc);
+		
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
-		this.panelPersonalData.add(lblName, gbc);
+		this.panelPersonalData.add(personalDoc, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 2);
-		this.panelPersonalData.add(lblLastName, gbc);
+		this.panelPersonalData.add(lblName, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 3);
-		this.panelPersonalData.add(lblBirthDate, gbc);
+		this.panelPersonalData.add(lblLastName, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 4);
-		this.panelPersonalData.add(lblPhone, gbc);
+		this.panelPersonalData.add(lblBirthDate, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 5);
-		this.panelPersonalData.add(lblEmail, gbc);
+		this.panelPersonalData.add(lblPhone, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 6);
+		this.panelPersonalData.add(lblEmail, gbc);
+
+		UtilityClass.organizeGridLayout(gbc, 0, 7);
 		this.panelPersonalData.add(lblAddress, gbc);
 
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.panelPersonalData.add(resultId, gbc);
+		
 		gbc.anchor = GridBagConstraints.EAST;
-
+		
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
+		this.jtfId.addKeyListener(ControlUser.getInstance());
+		this.panelPersonalData.add(jtfId, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		this.jtfName.addKeyListener(ControlUser.getInstance());
 		this.jtfName.addFocusListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfName, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 0);
-		this.jtfId.addKeyListener(ControlUser.getInstance());
-		this.panelPersonalData.add(jtfId, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 2);
+		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		this.jtfLastName.addKeyListener(ControlUser.getInstance());
 		this.jtfLastName.addFocusListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfLastName, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 3);
+		UtilityClass.organizeGridLayout(gbc, 1, 4);
 		this.birthdayDateChooser.setPreferredSize(new Dimension(100, 20));
 		this.birthdayDateChooser.setMaxSelectableDate(new Date());
 		this.panelPersonalData.add(birthdayDateChooser, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 4);
-		this.jtfPhone.addKeyListener(EnterListener.getInstance());
+		UtilityClass.organizeGridLayout(gbc, 1, 5);
+		this.jtfPhone.addKeyListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfPhone, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 5);
+		UtilityClass.organizeGridLayout(gbc, 1, 6);
 		this.panelPersonalData.add(jtfEmail, gbc);
 
-		UtilityClass.organizeGridLayout(gbc, 1, 6);
+		UtilityClass.organizeGridLayout(gbc, 1, 7);
 		this.panelPersonalData.add(jtfAdress, gbc);
 	}
 
@@ -195,8 +209,8 @@ public class JPanelFormUser extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 1;
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
-		inactivRadioButton.setSelected(true);
 		inactivRadioButton.setFocusable(false);
+		activRadioButton.setSelected(true);
 		activRadioButton.setFocusable(false);
 		buttonGroup.add(activRadioButton);
 		buttonGroup.add(inactivRadioButton);
@@ -216,6 +230,13 @@ public class JPanelFormUser extends JPanel {
 		this.jpfPasswordAgain.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 		this.jpfPasswordAgain.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPasswordAgain, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 5);
+		UtilityClass.addCommandJButton(btnClearFields, UserCommands.CMD_WD_UPDATE_CLEAR.toString(), ControlUser.getInstance());
+		this.btnClearFields.setFocusable(false);
+		this.btnClearFields.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.btnClearFields.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
+		this.panelUserData.add(btnClearFields, gbc);
 	}
 
 	public void clearFields() {
@@ -226,7 +247,34 @@ public class JPanelFormUser extends JPanel {
 		this.jtfName.setText("");
 		this.jtfPhone.setText("");
 		this.jtfUserName.setText("");
-		this.birthdayDateChooser.setDate(new Date());
+		this.jpfPassword.setText("");
+		this.jpfPasswordAgain.setText("");
+		try {
+			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void newForm() {
+		this.resultId.setText("");
+		this.jtfAdress.setText("");
+		this.jtfEmail.setText("");
+		this.jtfId.setText("");
+		this.jtfLastName.setText("");
+		this.jtfName.setText("");
+		this.jtfPhone.setText("");
+		this.jtfUserName.setText("");
+		this.jpfPassword.setText("");
+		this.jtfAdress.setText("");
+		this.jpfPasswordAgain.setText("");
+		try {
+			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.activRadioButton.setSelected(true);
+		this.comboUserType.setSelectedIndex(0);
 	}
 
 	public CustomTxtField getJtfId() {
@@ -277,5 +325,10 @@ public class JPanelFormUser extends JPanel {
 
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length() == 0;
+	}
+	
+	public void createAutomaticID() {
+		SQLPeople sqlPeople = new SQLPeople();
+		resultId.setText(""+(sqlPeople.getLastIdPerson()+1));
 	}
 }

@@ -1,5 +1,6 @@
 package PruebasLogin;
 
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.view.JFrameMainWindow;
 
@@ -22,6 +23,6 @@ public class TestJPanelMainWindow {
 //		JPanelMainWindow jWindow = new JPanelMainWindow("ddf");
 //		jFrame.add(jWindow);
 //		jFrame.setVisible(true);
-		new JFrameMainWindow(new Usuario());
+		new JFrameMainWindow(new User());
 	}
 }

@@ -1,5 +1,7 @@
 package com.cmv.petGenesis.model;
 
+import java.util.Date;
+
 public class Person {
 	
 	private int idPerson;
@@ -7,6 +9,7 @@ public class Person {
 	private String name;
 	private String lastName;
 	private String telephone;
+	private Date birthDate;
 	private ActivationState activationState;
 	private String personalIdentification;
 	private String email;
@@ -109,4 +112,14 @@ public class Person {
 	public void setTypePerson(TypePerson typePerson) {
 		this.typePerson = typePerson;
 	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	
 }

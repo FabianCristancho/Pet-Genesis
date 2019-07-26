@@ -56,7 +56,7 @@ public class JPanelSignIn extends JPanel {
 	public JPanelSignIn() {
 		super(new BorderLayout());
 		this.title = new CustomLabel(ConstantView.TITLE_SIGNIN);
-		this.lblId = new CustomLabel(ConstantView.LABEL_ID_SIGNIN, ConstantView.FONT_FORM, null,
+		this.lblId = new CustomLabel(ConstantView.LABEL_PERSONAL_DOC_SIGNIN, ConstantView.FONT_FORM, null,
 				ConstantView.BORD_FORM_LABEL);
 		this.lblName = new CustomLabel(ConstantView.LABEL_NAME_SIGNIN, ConstantView.FONT_FORM, null,
 				ConstantView.BORD_FORM_LABEL);

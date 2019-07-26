@@ -24,10 +24,15 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLPeople;
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
+import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.Hash;
+import com.cmv.petGenesis.model.Person;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.TypeUser;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -56,6 +61,7 @@ public class JPanelCreateUser extends JPanel {
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.jPanelFormUser = new JPanelFormUser();
+		this.jPanelFormUser.createAutomaticID();
 		ControlUser.getInstance().setjPanelCreateUser(this);
 		this.init();
 	}
@@ -69,15 +75,14 @@ public class JPanelCreateUser extends JPanel {
 		this.initPanelButtons();
 
 		UtilityClass.addBorder(this, 20, 20, 20, 20);
-		
+
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.title.setHorizontalAlignment(JLabel.CENTER);
 		this.add(title, BorderLayout.NORTH);
-		
+
 		this.add(panelButtons, BorderLayout.SOUTH);
 		this.add(jPanelFormUser, BorderLayout.CENTER);
 	}
-
 
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
@@ -133,31 +138,41 @@ public class JPanelCreateUser extends JPanel {
 
 	public void showUserName() {
 		if (!isFieldIsEmpty(jPanelFormUser.jtfName) && !isFieldIsEmpty(jPanelFormUser.jtfLastName)) {
-			jPanelFormUser.jtfUserName.setText(LoginManage.getInstance().useName(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText()));
+			jPanelFormUser.jtfUserName.setText(LoginManage.getInstance().useName(jPanelFormUser.jtfName.getText(),
+					jPanelFormUser.jtfLastName.getText()));
+		}
+	}
+	
+	public void generateUserName() {
+		if (!isFieldIsEmpty(jPanelFormUser.jtfName) && !isFieldIsEmpty(jPanelFormUser.jtfLastName)) {
+			jPanelFormUser.jtfUserName.setText(UtilityClass.generateUserName(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText()));
 		}
 	}
 
 	public void validFields() {
-		if (isFieldIsEmpty(jPanelFormUser.jtfName) || isFieldIsEmpty(jPanelFormUser.jtfLastName) || isFieldIsEmpty(jPanelFormUser.jpfPassword)
-				|| isFieldIsEmpty(jPanelFormUser.jpfPasswordAgain)) {
+		if (isFieldIsEmpty(jPanelFormUser.jtfName) || isFieldIsEmpty(jPanelFormUser.jtfLastName)
+				|| isFieldIsEmpty(jPanelFormUser.jpfPassword) || isFieldIsEmpty(jPanelFormUser.jpfPasswordAgain)) {
 			JOptionPane.showMessageDialog(null, "SE DEBEN INGRESAR LOS CAMPOS OBLIGATORIOS");
 		} else {
 			try {
-				LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText(),
+				LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(),
+						jPanelFormUser.jtfLastName.getText(),
 						PasswordUtil.getHash(String.valueOf(jPanelFormUser.jpfPassword.getPassword())));
 				JOptionPane.showMessageDialog(null, "SE HA REGISTRADO AL USUARIO CON EXITO");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		if (!String.valueOf(jPanelFormUser.jpfPassword.getPassword()).equals(String.valueOf(jPanelFormUser.jpfPasswordAgain.getPassword()))) {
+		if (!String.valueOf(jPanelFormUser.jpfPassword.getPassword())
+				.equals(String.valueOf(jPanelFormUser.jpfPasswordAgain.getPassword()))) {
 			JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
 		} else {
 			if (isFieldIsEmpty(jPanelFormUser.jpfPassword) || isFieldIsEmpty(jPanelFormUser.jpfPassword)) {
 				JOptionPane.showMessageDialog(null, "NO SE HA INGRESADO LA CONTRSEÑA");
 			} else {
 				try {
-					LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText(),
+					LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(),
+							jPanelFormUser.jtfLastName.getText(),
 							PasswordUtil.getHash(String.valueOf(jPanelFormUser.jpfPassword.getPassword())));
 					JOptionPane.showMessageDialog(null, "SE HA REGISTRADO AL USUARIO CON EXITO");
 				} catch (Exception e) {
@@ -195,13 +210,15 @@ public class JPanelCreateUser extends JPanel {
 		this.jPanelFormUser.jpfPasswordAgain = jpfPasswordAgain;
 	}
 
-	public void saveDataSignIn(Usuario mod) {
-		SqlUSer modSql = new SqlUSer();
+	public void saveDataSignIn(User u) {
+		SQLUsers sqlUsers = new SQLUsers();
+		SQLPeople sqlPeople = new SQLPeople();
 
 		String password = new String(jPanelFormUser.jpfPassword.getPassword());
 		String passwordAgain = new String(jPanelFormUser.jpfPasswordAgain.getPassword());
 
-		JTextField[] requiredFields = { jPanelFormUser.jtfId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName, jPanelFormUser.jtfUserName, jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
+		JTextField[] requiredFields = { jPanelFormUser.jtfId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName,
+				jPanelFormUser.jtfPhone, jPanelFormUser.jtfUserName, jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
 		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
 			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
 					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
@@ -209,36 +226,51 @@ public class JPanelCreateUser extends JPanel {
 
 			if (password.equals(passwordAgain)) {
 
-				if (modSql.existUser(jPanelFormUser.jtfUserName.getText()) == 0) {
+				if (sqlUsers.existUser(jPanelFormUser.jtfUserName.getText()) == 0) {
 
-					if (UtilityClass.validateEmail(jPanelFormUser.jtfEmail.getText()) || jPanelFormUser.jtfEmail.getText().length() == 0) {
+					if (sqlPeople.existDocumentId(Integer.parseInt(jPanelFormUser.jtfId.getText())) == 0) {
 
-						String newPass = Hash.sha1(password);
-						mod.setPersonalDocument(jPanelFormUser.jtfId.getText());
-						mod.setName(jPanelFormUser.jtfName.getText());
-						mod.setLastName(jPanelFormUser.jtfLastName.getText());
-						mod.setBirthDate(jPanelFormUser.birthdayDateChooser.getDate());
-						if (jPanelFormUser.jtfPhone.getText().length() != 0) {
-							mod.setPhone(Long.parseLong(jPanelFormUser.jtfPhone.getText()));
-						}
-						mod.setEmail(jPanelFormUser.jtfEmail.getText());
-						mod.setAddress(jPanelFormUser.jtfAdress.getText());
-						mod.setTypeUser(TypeUser.getTypeUser(jPanelFormUser.comboUserType.getSelectedIndex()+1));
-						mod.setState(jPanelFormUser.activRadioButton.isSelected() ? jPanelFormUser.activRadioButton.getText()
-								: jPanelFormUser.inactivRadioButton.getText());
-						mod.setUserName(jPanelFormUser.jtfUserName.getText());
-						mod.setPassword(newPass);
+						if (sqlPeople.existPhone(jPanelFormUser.jtfPhone.getText()) == 0) {
 
-						if (modSql.register(mod)) {
-							JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
+							if (UtilityClass.validateEmail(jPanelFormUser.jtfEmail.getText())
+									|| jPanelFormUser.jtfEmail.getText().length() == 0) {
+
+								String newPass = Hash.sha1(password);
+								u.setPersonalIdentification(jPanelFormUser.jtfId.getText());
+								u.setName(jPanelFormUser.jtfName.getText());
+								u.setLastName(jPanelFormUser.jtfLastName.getText());
+								u.setBirthDate(jPanelFormUser.birthdayDateChooser.getDate());
+								u.setTelephone(jPanelFormUser.jtfPhone.getText());
+								u.setEmail(jPanelFormUser.jtfEmail.getText());
+								u.setAddress(jPanelFormUser.jtfAdress.getText());
+								u.setTypeUser(
+										TypeUser.getTypeUser(jPanelFormUser.comboUserType.getSelectedIndex() + 1));
+								u.setActivationState(
+										ActivationState.getState(jPanelFormUser.activRadioButton.isSelected()));
+
+								u.setIdPerson(Integer.parseInt(jPanelFormUser.resultId.getText()));
+								u.setNameUser(jPanelFormUser.jtfUserName.getText());
+								u.setPassword(newPass);
+
+								if (sqlPeople.registerDataUser(u) && sqlUsers.register(u)) {
+									JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
+									jPanelFormUser.newForm();
+									this.jPanelFormUser.createAutomaticID();
+								} else {
+									JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+								}
+							} else {
+								JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
+										JOptionPane.INFORMATION_MESSAGE);
+
+							}
 						} else {
-							JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-
+							JOptionPane.showMessageDialog(null, "El telefono ingresado ya existe en el sistema",
+									"TELEFONO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
-								JOptionPane.INFORMATION_MESSAGE);
-
+						JOptionPane.showMessageDialog(null, "El documento de identidad ya existe en el sistema",
+								"DOCUMENTO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe", "USUARIO REPETIDO",
@@ -250,4 +282,60 @@ public class JPanelCreateUser extends JPanel {
 			}
 		}
 	}
+
+//	public void saveDataSignIn(Usuario mod) {
+//		SqlUSer modSql = new SqlUSer();
+//		
+//		String password = new String(jPanelFormUser.jpfPassword.getPassword());
+//		String passwordAgain = new String(jPanelFormUser.jpfPasswordAgain.getPassword());
+//		
+//		JTextField[] requiredFields = { jPanelFormUser.jtfId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName, jPanelFormUser.jtfUserName, jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
+//		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
+//			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
+//					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
+//		} else {
+//			
+//			if (password.equals(passwordAgain)) {
+//				
+//				if (modSql.existUser(jPanelFormUser.jtfUserName.getText()) == 0) {
+//					
+//					if (UtilityClass.validateEmail(jPanelFormUser.jtfEmail.getText()) || jPanelFormUser.jtfEmail.getText().length() == 0) {
+//						
+//						String newPass = Hash.sha1(password);
+//						mod.setPersonalDocument(jPanelFormUser.jtfId.getText());
+//						mod.setName(jPanelFormUser.jtfName.getText());
+//						mod.setLastName(jPanelFormUser.jtfLastName.getText());
+//						mod.setBirthDate(jPanelFormUser.birthdayDateChooser.getDate());
+//						if (jPanelFormUser.jtfPhone.getText().length() != 0) {
+//							mod.setPhone(Long.parseLong(jPanelFormUser.jtfPhone.getText()));
+//						}
+//						mod.setEmail(jPanelFormUser.jtfEmail.getText());
+//						mod.setAddress(jPanelFormUser.jtfAdress.getText());
+//						mod.setTypeUser(TypeUser.getTypeUser(jPanelFormUser.comboUserType.getSelectedIndex()+1));
+//						mod.setState(jPanelFormUser.activRadioButton.isSelected() ? jPanelFormUser.activRadioButton.getText()
+//								: jPanelFormUser.inactivRadioButton.getText());
+//						mod.setUserName(jPanelFormUser.jtfUserName.getText());
+//						mod.setPassword(newPass);
+//						
+//						if (modSql.register(mod)) {
+//							JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
+//						} else {
+//							JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+//							
+//						}
+//					} else {
+//						JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
+//								JOptionPane.INFORMATION_MESSAGE);
+//						
+//					}
+//				} else {
+//					JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe", "USUARIO REPETIDO",
+//							JOptionPane.INFORMATION_MESSAGE);
+//				}
+//				
+//			} else {
+//				JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
+//			}
+//		}
+//	}
 }
