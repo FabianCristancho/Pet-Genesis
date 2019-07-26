@@ -31,6 +31,7 @@ public class JPanelCreateHistory extends JPanel{
 	private JPanelMedicine jPanelMedicine;
 	private JPanelDataPet jPanelDataPet;
 	private JPanelComments jPanelComments;
+	private JPanelConsult jPanelConsult;
 	private JTabbedPane modules;
 
 	/**
@@ -46,6 +47,7 @@ public class JPanelCreateHistory extends JPanel{
 		this.jPanelComments = new JPanelComments();
 		this.modules = new JTabbedPane();
 		this.jPanelDataPet = new JPanelDataPet();
+		this.jPanelConsult = new JPanelConsult();
 		this.init();
 	}
 
@@ -100,7 +102,7 @@ public class JPanelCreateHistory extends JPanel{
 	
 	private void initModules() {
 		this.modules.add(ConstantView.TABBED_DATA_PET, jPanelDataPet);
-		this.modules.add(ConstantView.TABBED_APPOINT_PET, new JPanel());
+		this.modules.add(ConstantView.TABBED_APPOINT_PET, jPanelConsult);
 		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelMedicine);
 		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
 	}

@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.appointment;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -63,15 +64,13 @@ public class JPanelExam extends JPanel {
 		this.jPanelRoundEcop.setBorder(BorderFactory.createTitledBorder("ORIENTADO AL PROBLEMA"));
 		this.jPanelRoundEcop.add(jPanelEcop);
 		this.add(jPanelRoundEcop, BorderLayout.SOUTH);
-//		this.add(jPanelEcop, BorderLayout.CENTER);
-//		this.add(jPanelBody, BorderLayout.SOUTH);
 	}
 
 	private void initPanelEcop() {
 		lblAttitude = new JLabel(ConstantView.LBL_EXAM_ATT);
-		jtfAttitude = new JTextField(30);
+		jtfAttitude = new JTextField(10);
 		lblTemp = new JLabel(ConstantView.LBL_EXAM_TEMP);
-		jtfTemp = new JTextField(30);
+		jtfTemp = new JTextField(10);
 		lblAppetite = new JLabel(ConstantView.LBL_EXAM_APPETITE);
 		jrbApGood = new JRadioButton(ConstantView.JRB_EXAM_APGOOD);
 		jrbApRegular = new JRadioButton(ConstantView.JRB_EXAM_APREG);
@@ -100,7 +99,7 @@ public class JPanelExam extends JPanel {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
-		UtilityClass.organizeGridLayout(gbc, 0, 0);
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(10, 20, 10, 20));
 		jPanelEcop.add(lblAttitude, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
@@ -220,6 +219,7 @@ public class JPanelExam extends JPanel {
 	}
 	
 	private void initPanelBody() {
+		lblWeigth = new JLabel(ConstantView.LBL_EXAM_WEIGHT);
 		lblOralCavid = new JLabel(ConstantView.LBL_EXAM_CAVID);
 		lblFace = new JLabel(ConstantView.LBL_EXAM_FACE);
 		lblTrunk = new JLabel(ConstantView.LBL_EXAM_TRUNK);
@@ -227,6 +227,7 @@ public class JPanelExam extends JPanel {
 		lblExtremities = new JLabel(ConstantView.LBL_EXAM_EXT);
 		lblSnc = new JLabel(ConstantView.LBL_EXAM_SNC);
 		
+		jtfWeight = new JTextField(10);
 		jtaOralCavid = new JTextArea();
 		scOralCavid = new JScrollPane();
 		jtaFace = new JTextArea();
@@ -241,46 +242,64 @@ public class JPanelExam extends JPanel {
 		scSnc = new JScrollPane();
 		
 		GridBagConstraints gbc = new GridBagConstraints();
-		UtilityClass.organizeGridLayout(gbc, 0, 0);
-		jPanelBody.add(lblOralCavid, gbc);
+		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 1);
-		scOralCavid.setViewportView(jtaOralCavid);
-		jPanelBody.add(scOralCavid, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 2);
-		jPanelBody.add(lblFace, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 3);
-		scFace.setViewportView(jtaFace);
-		jPanelBody.add(scFace, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 4);
-		jPanelBody.add(lblTrunk, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 5);
-		scTrunk.setViewportView(jtaTrunk);
-		jPanelBody.add(scTrunk, gbc);
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 20, 0, 20));
+		jPanelBody.add(lblWeigth, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
-		jPanelBody.add(lblGenitals, gbc);
+		jPanelBody.add(jtfWeight, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 20, 0, 20));
+		jPanelBody.add(lblOralCavid, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 3);
+		jPanelBody.add(lblFace, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 5);
+		jPanelBody.add(lblTrunk, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
-		scGenitals.setViewportView(jtaGenitals);
-		jPanelBody.add(scGenitals, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 2);
-		jPanelBody.add(lblExtremities, gbc);
+		jPanelBody.add(lblGenitals, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
-		scExtrem.setViewportView(jtaExtremities);
-		jPanelBody.add(scExtrem, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 4);
-		jPanelBody.add(lblSnc, gbc);
+		jPanelBody.add(lblExtremities, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 5);
+		jPanelBody.add(lblSnc, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 2, new Insets(0, 20, 0, 20));
+		scOralCavid.setViewportView(jtaOralCavid);
+		scOralCavid.setPreferredSize(new Dimension(250, 70));
+		jPanelBody.add(scOralCavid, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 4);
+		scFace.setViewportView(jtaFace);
+		scFace.setPreferredSize(new Dimension(250, 70));
+		jPanelBody.add(scFace, gbc);
+		
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 6);
+		scTrunk.setViewportView(jtaTrunk);
+		scTrunk.setPreferredSize(new Dimension(250, 70));
+		jPanelBody.add(scTrunk, gbc);
+		
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 2);
+		scGenitals.setViewportView(jtaGenitals);
+		scGenitals.setPreferredSize(new Dimension(250, 70));
+		jPanelBody.add(scGenitals, gbc);
+		
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 4);
+		scExtrem.setViewportView(jtaExtremities);
+		scExtrem.setPreferredSize(new Dimension(250, 70));
+		jPanelBody.add(scExtrem, gbc);
+		
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 6);
 		scSnc.setViewportView(jtaSnc);
+		scSnc.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scSnc, gbc);
 	}
 }

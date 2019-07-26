@@ -199,5 +199,6 @@ public class ConstantView {
 	public static final String CH_EXAM_VOMIT = "Tiene vomito";
 	public static final String JRB_EXAM_NAIL_OK = "OK";
 	public static final String JRB_EXAM_NAIL_CUT = "Cortar";
+	public static final Font FONT_TEXT_AREA = new Font("Open Sans", Font.PLAIN, 15);
 
 }
