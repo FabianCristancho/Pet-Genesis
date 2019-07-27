@@ -23,7 +23,7 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 public class JPanelComments extends JPanel {
 	
 	private CustomLabel titleComments;
-	private JTextArea areaComments;
+	private JTextArea jtaComments;
 	private JScrollPane scrollComments;
 	private JButton btnClearComments;
 	private JPanel jpanelButtons;
@@ -31,7 +31,7 @@ public class JPanelComments extends JPanel {
 	public JPanelComments() {
 		super(new BorderLayout());
 		this.titleComments = new CustomLabel(ConstantView.TITLE_COMMENTS, ConstantView.FONT_TITLE_COMMENTS, null);
-		this.areaComments = new JTextArea();
+		this.jtaComments = new JTextArea();
 		this.scrollComments = new JScrollPane();
 		this.btnClearComments = new JButton(ConstantView.BTN_CLEAR_COMMENTS);
 		this.jpanelButtons = new JPanel(new GridBagLayout());
@@ -44,10 +44,12 @@ public class JPanelComments extends JPanel {
 		this.titleComments.setHorizontalAlignment(JLabel.CENTER);
 		this.add(titleComments, BorderLayout.NORTH);
 		
-		this.areaComments.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		this.areaComments.setFont(ConstantView.FONT_AREA_COMMENTS);
+		this.jtaComments.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		this.jtaComments.setLineWrap(true);
+		this.jtaComments.setWrapStyleWord(true);
+		this.jtaComments.setFont(ConstantView.FONT_AREA_COMMENTS);
 		
-		this.scrollComments.setViewportView(areaComments);
+		this.scrollComments.setViewportView(jtaComments);
 		this.add(scrollComments, BorderLayout.CENTER);
 		
 		initPanelComments();
@@ -68,7 +70,7 @@ public class JPanelComments extends JPanel {
 	public void clearComments() {
 		int option = JOptionPane.showConfirmDialog(null, "ESTÁ SEGURO DE BORRAR TODOS LOS COMENTARIOS\nLA ACCIÓN NO TENDRÁ REVERSA", "BORRADO PERMANENTE", JOptionPane.YES_NO_OPTION);
 		if(option == 0) {
-			this.areaComments.setText("");
+			this.jtaComments.setText("");
 			JOptionPane.showMessageDialog(null, "COMENTARIOS BORRADOS CON ÉXITO", "BORRADO DE COMENTARIOS", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}

@@ -36,7 +36,7 @@ public class JPanelFormUser extends JPanel {
 
 	protected CustomLabel idUser, resultId, personalDoc, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
 			lblUserName, lblPsw, lblPswAgain, lblBirthDate;
-	protected CustomTxtField jtfId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
+	protected CustomTxtField jtfpersonalId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
 	protected JPasswordField jpfPassword, jpfPasswordAgain;
 	protected JComboBox<String> comboUserType;
 	protected JRadioButton activRadioButton, inactivRadioButton;
@@ -63,7 +63,7 @@ public class JPanelFormUser extends JPanel {
 		this.lblUserName = new CustomLabel(ConstantView.LABEL_USER_NAME_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblPsw = new CustomLabel(ConstantView.LABEL_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblPswAgain = new CustomLabel(ConstantView.LABEL_CONFIRM_PASSWORD_SIGNIN, ConstantView.FONT_FORM, null);
-		this.jtfId = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
+		this.jtfpersonalId = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jtfName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jtfLastName = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
 		this.jtfPhone = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);
@@ -146,8 +146,8 @@ public class JPanelFormUser extends JPanel {
 		gbc.anchor = GridBagConstraints.EAST;
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
-		this.jtfId.addKeyListener(ControlUser.getInstance());
-		this.panelPersonalData.add(jtfId, gbc);
+		this.jtfpersonalId.addKeyListener(ControlUser.getInstance());
+		this.panelPersonalData.add(jtfpersonalId, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		this.jtfName.addKeyListener(ControlUser.getInstance());
@@ -242,7 +242,7 @@ public class JPanelFormUser extends JPanel {
 	public void clearFields() {
 		this.jtfAdress.setText("");
 		this.jtfEmail.setText("");
-		this.jtfId.setText("");
+		this.jtfpersonalId.setText("");
 		this.jtfLastName.setText("");
 		this.jtfName.setText("");
 		this.jtfPhone.setText("");
@@ -260,7 +260,7 @@ public class JPanelFormUser extends JPanel {
 		this.resultId.setText("");
 		this.jtfAdress.setText("");
 		this.jtfEmail.setText("");
-		this.jtfId.setText("");
+		this.jtfpersonalId.setText("");
 		this.jtfLastName.setText("");
 		this.jtfName.setText("");
 		this.jtfPhone.setText("");
@@ -278,11 +278,11 @@ public class JPanelFormUser extends JPanel {
 	}
 
 	public CustomTxtField getJtfId() {
-		return jtfId;
+		return jtfpersonalId;
 	}
 
 	public void setJtfId(CustomTxtField jtfId) {
-		this.jtfId = jtfId;
+		this.jtfpersonalId = jtfId;
 	}
 
 	public CustomTxtField getJtfName() {

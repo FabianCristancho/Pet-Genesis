@@ -144,31 +144,30 @@ public class JpanelUpdateUser extends JPanel {
 			return "";
 		}
 	}
-
-	public void getDataQuery() {
+	
+	public void getDataQueryUpdate() {
 		SQLUsers sqlUsers = new SQLUsers();
-		ArrayList<Object[]> data = sqlUsers.loadData(getParam(), jtfInputId.getText(), "", "");
-
-		if (data.size() != 0) {
-			Object[] register = data.get(0);
-			jpanelCenter.resultId.setText("" + register[0]);
-			jpanelCenter.jtfUserName.setText((String) register[1]);
-			jpanelCenter.jtfName.setText((String) register[2]);
-			jpanelCenter.jtfLastName.setText((String) register[3]);
-//			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd((Date) register[4], 1));
-			jpanelCenter.jtfPhone.setText((String) register[5]);
-			jpanelCenter.comboUserType.setSelectedIndex(((int) register[6] - 1));
-
-			if (!isActive((String) register[7])) {
+		User user = sqlUsers.getDataUser(getParam(), jtfInputId.getText(), "", "");
+		
+		if (user != null) {
+			jpanelCenter.resultId.setText("" + user.getIdPerson());
+			jpanelCenter.jtfUserName.setText(user.getNameUser());
+			jpanelCenter.jtfName.setText(user.getName());
+			jpanelCenter.jtfLastName.setText(user.getLastName());
+			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd(user.getBirthDate(), 1));
+			jpanelCenter.jtfPhone.setText(user.getTelephone());
+			jpanelCenter.comboUserType.setSelectedIndex((user.getTypeUser().getIdTypeUser() - 1));
+			
+			if (!isActive(user.getActivationState().getIdState())) {
 				jpanelCenter.inactivRadioButton.setSelected(true);
 			}
-
-			jpanelCenter.jtfId.setText((String) register[8]);
-			jpanelCenter.jtfEmail.setText((String) register[9]);
-			jpanelCenter.jtfAdress.setText((String) register[10]);
+			
+			jpanelCenter.jtfpersonalId.setText(user.getPersonalIdentification());
+			jpanelCenter.jtfEmail.setText(user.getEmail());
+			jpanelCenter.jtfAdress.setText(user.getAddress());
 			this.oldUserName = jpanelCenter.jtfUserName.getText();
 			this.oldTelephone = jpanelCenter.jtfPhone.getText();
-			this.oldpIdentification = jpanelCenter.jtfId.getText();
+			this.oldpIdentification = jpanelCenter.jtfpersonalId.getText();
 		} else {
 			JOptionPane.showMessageDialog(null, "NO EXISTE EL USUARIO CONSULTADO");
 		}
@@ -181,7 +180,7 @@ public class JpanelUpdateUser extends JPanel {
 		String password = new String(jpanelCenter.jpfPassword.getPassword());
 		String passwordAgain = new String(jpanelCenter.jpfPasswordAgain.getPassword());
 
-		JTextField[] requiredFields = { jpanelCenter.jtfId, jpanelCenter.jtfName, jpanelCenter.jtfLastName,
+		JTextField[] requiredFields = { jpanelCenter.jtfpersonalId, jpanelCenter.jtfName, jpanelCenter.jtfLastName,
 				jpanelCenter.jtfUserName, jpanelCenter.jtfPhone, jpanelCenter.jpfPassword,
 				jpanelCenter.jpfPasswordAgain };
 		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
@@ -194,8 +193,8 @@ public class JpanelUpdateUser extends JPanel {
 				if (oldUserName.equals(jpanelCenter.jtfUserName.getText())
 						|| sqlUsers.existUser(jpanelCenter.jtfUserName.getText()) == 0) {
 
-					if (oldpIdentification.equals(jpanelCenter.jtfId.getText())
-							|| sqlPeople.existDocumentId(Integer.parseInt(jpanelCenter.jtfId.getText())) == 0) {
+					if (oldpIdentification.equals(jpanelCenter.jtfpersonalId.getText())
+							|| sqlPeople.existDocumentId(Integer.parseInt(jpanelCenter.jtfpersonalId.getText())) == 0) {
 
 						if (oldTelephone.equals(jpanelCenter.jtfPhone.getText())
 								|| sqlPeople.existPhone(jpanelCenter.jtfPhone.getText()) == 0) {
@@ -205,7 +204,7 @@ public class JpanelUpdateUser extends JPanel {
 
 								String newPass = Hash.sha1(password);
 								mod.setIdPerson(Integer.parseInt(jpanelCenter.resultId.getText()));
-								mod.setPersonalIdentification(jpanelCenter.jtfId.getText());
+								mod.setPersonalIdentification(jpanelCenter.jtfpersonalId.getText());
 								mod.setName(jpanelCenter.jtfName.getText());
 								mod.setLastName(jpanelCenter.jtfLastName.getText());
 								mod.setBirthDate(jpanelCenter.birthdayDateChooser.getDate());
@@ -314,8 +313,8 @@ public class JpanelUpdateUser extends JPanel {
 		return 0;
 	}
 
-	private boolean isActive(String state) {
-		if (state.charAt(0) == 'A')
+	private boolean isActive(char state) {
+		if (state =='A')
 			return true;
 		return false;
 	}
@@ -329,7 +328,7 @@ public class JpanelUpdateUser extends JPanel {
 	}
 
 	public CustomTxtField getJtfId() {
-		return jpanelCenter.jtfId;
+		return jpanelCenter.jtfpersonalId;
 	}
 
 	public CustomTxtField getJtfPhone() {

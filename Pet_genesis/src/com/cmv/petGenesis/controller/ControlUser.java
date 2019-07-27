@@ -71,7 +71,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 			saveDataSignIn();
 			break;
 		case CMD_WD_UPDATE_SEARCH:
-			jpanelUpdateClient.getDataQuery();
+			jpanelUpdateClient.getDataQueryUpdate();
 			break;
 		case CMD_WD_UPDATE_CHANGE_DATA:
 			jpanelUpdateClient.saveDataSignIn(new User());

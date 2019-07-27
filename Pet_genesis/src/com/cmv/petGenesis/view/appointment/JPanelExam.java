@@ -24,10 +24,10 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class JPanelExam extends JPanel {
 
-	private JPanel jPanelEcop, jPanelTpr, jPanelBody;
+	private JPanel jPanelEcop, jPanelTpr, jPanelBody, jPanelNorth;
 	private JPanel jPanelAp, jPanelStool, jPanelWater, jPanelDiet, jPanelNail;
 	private JPanel jPanelRoundTPR, jPanelRoundBody, jPanelRoundEcop;
-	private JLabel lblWeigth, lblAppetite, lblStool, lblWater, lblDiet, lblNails, lblAttitude, lblTemperature, lblTemp,
+	private JLabel lblTitleRutinExam, lblWeigth, lblAppetite, lblStool, lblWater, lblDiet, lblNails, lblAttitude, lblTemperature, lblTemp,
 			lblPression, lblCardiac, lblRespiratory, lblOralCavid, lblFace, lblTrunk, lblGenitals, lblExtremities,
 			lblSnc;
 	private JRadioButton jrbApGood, jrbApRegular, jrbApNull, jrbStNormal, jrbStDiarr, jrbConstip, jrbWaterNormal,
@@ -41,8 +41,11 @@ public class JPanelExam extends JPanel {
 	public JPanelExam() {
 		super(new BorderLayout());
 		this.jPanelEcop = new JPanel(new GridBagLayout());
+		this.lblTitleRutinExam = new JLabel(ConstantView.LBL_TITLE_EXAM);
+		this.lblTitleRutinExam.setFont(ConstantView.FONT_TITLE_EXAM);
 		this.jPanelTpr = new JPanel(new GridBagLayout());
 		this.jPanelBody = new JPanel(new GridBagLayout());
+		this.jPanelNorth = new JPanel(new BorderLayout());
 		this.jPanelRoundTPR = new JPanel();
 		this.jPanelRoundBody = new JPanel();
 		this.jPanelRoundEcop = new JPanel();
@@ -53,20 +56,27 @@ public class JPanelExam extends JPanel {
 		initPanelEcop();
 		initPanelTPR();
 		initPanelBody();
+		this.lblTitleRutinExam.setHorizontalAlignment(JLabel.CENTER);
+		this.lblTitleRutinExam.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 		this.jPanelRoundTPR.setBorder(BorderFactory.createTitledBorder("TPF - TEMPERATURA, PRESIÓN, RESPIRACIÓN"));
 		this.jPanelRoundTPR.add(jPanelTpr);
-		this.add(jPanelRoundTPR, BorderLayout.NORTH);
-		
-		this.jPanelRoundBody.setBorder(BorderFactory.createTitledBorder("CUERPO"));
-		this.jPanelRoundBody.add(jPanelBody);
-		this.add(jPanelRoundBody, BorderLayout.CENTER);
+		this.jPanelNorth.add(lblTitleRutinExam, BorderLayout.NORTH);
+		this.jPanelNorth.add(jPanelRoundTPR, BorderLayout.SOUTH);
+		this.add(jPanelNorth, BorderLayout.NORTH);
 		
 		this.jPanelRoundEcop.setBorder(BorderFactory.createTitledBorder("ORIENTADO AL PROBLEMA"));
 		this.jPanelRoundEcop.add(jPanelEcop);
-		this.add(jPanelRoundEcop, BorderLayout.SOUTH);
+		this.add(jPanelRoundEcop, BorderLayout.CENTER);
+		
+		this.jPanelRoundBody.setBorder(BorderFactory.createTitledBorder("CUERPO"));
+		this.jPanelRoundBody.add(jPanelBody);
+		this.add(jPanelRoundBody, BorderLayout.SOUTH);
+		
 	}
 
 	private void initPanelEcop() {
+		lblWeigth = new JLabel(ConstantView.LBL_EXAM_WEIGHT);
+		jtfWeight = new JTextField(10);
 		lblAttitude = new JLabel(ConstantView.LBL_EXAM_ATT);
 		jtfAttitude = new JTextField(10);
 		lblTemp = new JLabel(ConstantView.LBL_EXAM_TEMP);
@@ -99,19 +109,26 @@ public class JPanelExam extends JPanel {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(10, 20, 10, 20));
-		jPanelEcop.add(lblAttitude, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 5, 0, 5));
+		jPanelEcop.add(lblWeigth, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		jPanelEcop.add(jtfWeight, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
-		jPanelEcop.add(lblAppetite, gbc);
+		jPanelEcop.add(lblAttitude, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 2);
+		jPanelEcop.add(lblAppetite, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 0, 4);
 		jPanelEcop.add(checkVomit, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		jPanelEcop.add(lblDiet, gbc);
 		
-		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		jPanelEcop.add(jtfAttitude, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
@@ -125,7 +142,7 @@ public class JPanelExam extends JPanel {
 		jPanelDiet.add(jrbDietVeg);
 		jPanelEcop.add(jPanelDiet, gbc);
 		
-		UtilityClass.organizeGridLayout(gbc, 1, 1);
+		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		jPanelAp = new JPanel();
 		bgAp.add(jrbApGood);
 		bgAp.add(jrbApRegular);
@@ -135,6 +152,7 @@ public class JPanelExam extends JPanel {
 		jPanelAp.add(jrbApNull);
 		jPanelEcop.add(jPanelAp, gbc);
 		
+		gbc.insets.left = 80;
 		UtilityClass.organizeGridLayout(gbc, 3, 0);
 		jPanelEcop.add(lblTemp, gbc);
 		
@@ -147,6 +165,7 @@ public class JPanelExam extends JPanel {
 		UtilityClass.organizeGridLayout(gbc, 3, 3);
 		jPanelEcop.add(lblNails, gbc);
 		
+		gbc.insets.left = 5;
 		UtilityClass.organizeGridLayout(gbc, 4, 0);
 		jPanelEcop.add(jtfTemp, gbc);
 		
@@ -192,7 +211,7 @@ public class JPanelExam extends JPanel {
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(10, 20, 10, 20));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(10, 10, 10, 10));
 		jPanelTpr.add(lblTemperature, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 2, 0);
@@ -219,15 +238,13 @@ public class JPanelExam extends JPanel {
 	}
 	
 	private void initPanelBody() {
-		lblWeigth = new JLabel(ConstantView.LBL_EXAM_WEIGHT);
+		
 		lblOralCavid = new JLabel(ConstantView.LBL_EXAM_CAVID);
 		lblFace = new JLabel(ConstantView.LBL_EXAM_FACE);
 		lblTrunk = new JLabel(ConstantView.LBL_EXAM_TRUNK);
 		lblGenitals = new JLabel(ConstantView.LBL_EXAM_GEN);
 		lblExtremities = new JLabel(ConstantView.LBL_EXAM_EXT);
 		lblSnc = new JLabel(ConstantView.LBL_EXAM_SNC);
-		
-		jtfWeight = new JTextField(10);
 		jtaOralCavid = new JTextArea();
 		scOralCavid = new JScrollPane();
 		jtaFace = new JTextArea();
@@ -244,20 +261,11 @@ public class JPanelExam extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 20, 0, 20));
-		jPanelBody.add(lblWeigth, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 0);
-		jPanelBody.add(jtfWeight, gbc);
-		
 		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 20, 0, 20));
 		jPanelBody.add(lblOralCavid, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		jPanelBody.add(lblFace, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 5);
-		jPanelBody.add(lblTrunk, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		jPanelBody.add(lblGenitals, gbc);
@@ -265,41 +273,80 @@ public class JPanelExam extends JPanel {
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		jPanelBody.add(lblExtremities, gbc);
 		
-		UtilityClass.organizeGridLayout(gbc, 1, 5);
+		UtilityClass.organizeGridLayout(gbc, 2, 1);
+		jPanelBody.add(lblTrunk, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 2, 3);
 		jPanelBody.add(lblSnc, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 2, new Insets(0, 20, 0, 20));
+		jtaOralCavid.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaOralCavid.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaOralCavid.setLineWrap(true);
+		jtaOralCavid.setWrapStyleWord(true);
 		scOralCavid.setViewportView(jtaOralCavid);
 		scOralCavid.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scOralCavid, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 4);
+		jtaFace.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaFace.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaFace.setLineWrap(true);
+		jtaFace.setWrapStyleWord(true);
 		scFace.setViewportView(jtaFace);
 		scFace.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scFace, gbc);
 		
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 6);
+		UtilityClass.organizeGridLayout(gbc, 2, 2);
+		jtaTrunk.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaTrunk.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaTrunk.setLineWrap(true);
+		jtaTrunk.setWrapStyleWord(true);
 		scTrunk.setViewportView(jtaTrunk);
 		scTrunk.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scTrunk, gbc);
 		
-		
 		UtilityClass.organizeGridLayout(gbc, 1, 2);
+		jtaGenitals.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaGenitals.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaGenitals.setLineWrap(true);
+		jtaGenitals.setWrapStyleWord(true);
 		scGenitals.setViewportView(jtaGenitals);
 		scGenitals.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scGenitals, gbc);
 		
-		
 		UtilityClass.organizeGridLayout(gbc, 1, 4);
+		jtaExtremities.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaExtremities.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaExtremities.setLineWrap(true);
+		jtaExtremities.setWrapStyleWord(true);
 		scExtrem.setViewportView(jtaExtremities);
 		scExtrem.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scExtrem, gbc);
 		
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 6);
+		UtilityClass.organizeGridLayout(gbc, 2, 4);
+		jtaSnc.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaSnc.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaSnc.setLineWrap(true);
+		jtaSnc.setWrapStyleWord(true);
 		scSnc.setViewportView(jtaSnc);
 		scSnc.setPreferredSize(new Dimension(250, 70));
 		jPanelBody.add(scSnc, gbc);
+	}
+	
+	public void clearFields() {
+		jtaExtremities.setText("");
+		jtaFace.setText("");
+		jtaGenitals.setText("");
+		jtaOralCavid.setText("");
+		jtaSnc.setText("");
+		jtaTrunk.setText("");
+		jtfAttitude.setText("");
+		jtfCardiac.setText("");
+		jtfPression.setText("");
+		jtfRespiratory.setText("");
+		jtfTemp.setText("");
+		jtfTemperature.setText("");
+		jtfWeight.setText("");
 	}
 }

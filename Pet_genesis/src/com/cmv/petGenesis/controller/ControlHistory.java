@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
+import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
 
@@ -14,6 +15,7 @@ public class ControlHistory implements ActionListener{
 	private JPanelGroupHistory jPanelGroupHistory;
 	private JPanelComments jPanelComments;
 	private JPanelMedicine jPanelMedicine;
+	private JPanelConsult jPanelConsult;
 	
 	private ControlHistory() {
 	}
@@ -48,6 +50,9 @@ public class ControlHistory implements ActionListener{
 		case CMD_WD_MEDICINE_CLEAR_ANTI:
 			jPanelMedicine.clearCommentsAnti();
 			break;
+		case CMD_WD_EXAM_CLEAR_FIELDS:
+			jPanelConsult.clearFields();
+			break;
 			
 		default:
 			break;
@@ -64,6 +69,10 @@ public class ControlHistory implements ActionListener{
 
 	public void setjPanelMedicine(JPanelMedicine jPanelMedicine) {
 		this.jPanelMedicine = jPanelMedicine;
+	}
+
+	public void setjPanelConsult(JPanelConsult jPanelConsult) {
+		this.jPanelConsult = jPanelConsult;
 	}
 	
 }

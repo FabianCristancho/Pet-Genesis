@@ -7,13 +7,14 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
-public class SQLUsers extends ConnectionMySQL{
-	
+public class SQLUsers extends ConnectionMySQL {
+
 	public boolean register(User user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -32,7 +33,7 @@ public class SQLUsers extends ConnectionMySQL{
 			return false;
 		}
 	}
-	
+
 	public int existUser(String nameUser) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -62,7 +63,7 @@ public class SQLUsers extends ConnectionMySQL{
 			}
 		}
 	}
-	
+
 	public boolean updateUser(User user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -79,7 +80,7 @@ public class SQLUsers extends ConnectionMySQL{
 			ps.setString(5, user.getLastName());
 			ps.setString(6, UtilityClass.changeFormatToDate(user.getBirthDate()));
 			ps.setString(7, user.getTelephone());
-			ps.setString(8, ""+user.getActivationState().getIdState());
+			ps.setString(8, "" + user.getActivationState().getIdState());
 			ps.setString(9, user.getPersonalIdentification());
 			ps.setString(10, user.getEmail());
 			ps.setString(11, user.getAddress());
@@ -91,7 +92,7 @@ public class SQLUsers extends ConnectionMySQL{
 			return false;
 		}
 	}
-	
+
 	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -110,8 +111,7 @@ public class SQLUsers extends ConnectionMySQL{
 
 		String sql = "SELECT u.id_usuario, u.nombre_usuario, p.nombre_persona, p.apellido_persona, p.fecha_nacimiento, p.telefono_persona, "
 				+ "p.id_tipo_usuario, p.estado_activacion, p.documento_identidad, p.correo_electronico, p.direccion_de_residencia "
-				+ "FROM usuarios AS u INNER JOIN personas AS p "
-				+ "ON u.id_persona=p.id_persona" + where + and;
+				+ "FROM usuarios AS u INNER JOIN personas AS p " + "ON u.id_persona=p.id_persona" + where + and;
 
 		try {
 			ps = con.prepareStatement(sql);
@@ -134,7 +134,53 @@ public class SQLUsers extends ConnectionMySQL{
 		}
 		return tableData;
 	}
-	
+
+	public User getDataUser(String parameter, String value, String parameterState, String state) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		User user = null;
+
+		String where = "";
+		String and = "";
+		if (!"".equals(value)) {
+			where = " WHERE " + parameter + " = '" + value + "'";
+		}
+
+		if (!"".equals(state)) {
+			and = " AND " + parameterState + " = '" + state + "'";
+		}
+
+		String sql = "SELECT u.id_usuario, u.nombre_usuario, p.nombre_persona, p.apellido_persona, p.fecha_nacimiento, p.telefono_persona, "
+				+ "p.id_tipo_usuario, p.estado_activacion, p.documento_identidad, p.correo_electronico, p.direccion_de_residencia "
+				+ "FROM usuarios AS u INNER JOIN personas AS p " + "ON u.id_persona=p.id_persona" + where + and;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				user = new User();
+				user.setIdPerson(rs.getInt(1));
+				user.setNameUser(rs.getString(2));
+				user.setName(rs.getString(3));
+				user.setLastName(rs.getString(4));
+				user.setBirthDate(rs.getDate(5));
+				user.setTelephone(rs.getString(6));
+				user.setTypeUser(TypeUser.getTypeUser(rs.getInt(7)));
+				user.setActivationState(ActivationState.getState(rs.getString(8).charAt(0) == 'A'));
+				user.setPersonalIdentification(rs.getString(9));
+				user.setEmail(rs.getString(10));
+				user.setAddress(rs.getString(11));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return user;
+		}
+		return user;
+	}
+
 	public boolean login(User user) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -156,7 +202,7 @@ public class SQLUsers extends ConnectionMySQL{
 					ps.setString(1, user.getLastSession());
 					ps.setInt(2, rs.getInt(1));
 					ps.execute();
-					
+
 					user.setIdPerson(rs.getInt(1));
 					user.setName(rs.getString(4));
 					user.setLastName(rs.getString(5));

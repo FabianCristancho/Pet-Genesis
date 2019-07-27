@@ -165,6 +165,8 @@ public class ConstantView {
 	public static final String LABEL_MOT_AP = "Motivo de la consulta";
 	
 	//EXAM
+	public static final String LBL_TITLE_EXAM = "EXAMEN DE RUTINA";
+	public static final Font FONT_TITLE_EXAM = new Font("Open Sans", Font.BOLD, 20);
 	public static final String LBL_EXAM_WEIGHT = "PESO";
 	public static final String LBL_EXAM_APPETITE = "APETITO";
 	public static final String LBL_EXAM_STOOL = "HECES";
@@ -200,5 +202,6 @@ public class ConstantView {
 	public static final String JRB_EXAM_NAIL_OK = "OK";
 	public static final String JRB_EXAM_NAIL_CUT = "Cortar";
 	public static final Font FONT_TEXT_AREA = new Font("Open Sans", Font.PLAIN, 15);
+	public static final String BTN_CLEAR_FIELDS = "Limpiar todos los campos";
 
 }

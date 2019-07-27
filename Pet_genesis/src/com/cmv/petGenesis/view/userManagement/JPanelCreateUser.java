@@ -187,7 +187,7 @@ public class JPanelCreateUser extends JPanel {
 	}
 
 	public CustomTxtField getJtfId() {
-		return jPanelFormUser.jtfId;
+		return jPanelFormUser.jtfpersonalId;
 	}
 
 	public CustomTxtField getJtfPhone() {
@@ -217,7 +217,7 @@ public class JPanelCreateUser extends JPanel {
 		String password = new String(jPanelFormUser.jpfPassword.getPassword());
 		String passwordAgain = new String(jPanelFormUser.jpfPasswordAgain.getPassword());
 
-		JTextField[] requiredFields = { jPanelFormUser.jtfId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName,
+		JTextField[] requiredFields = { jPanelFormUser.jtfpersonalId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName,
 				jPanelFormUser.jtfPhone, jPanelFormUser.jtfUserName, jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
 		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
 			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
@@ -228,7 +228,7 @@ public class JPanelCreateUser extends JPanel {
 
 				if (sqlUsers.existUser(jPanelFormUser.jtfUserName.getText()) == 0) {
 
-					if (sqlPeople.existDocumentId(Integer.parseInt(jPanelFormUser.jtfId.getText())) == 0) {
+					if (sqlPeople.existDocumentId(Integer.parseInt(jPanelFormUser.jtfpersonalId.getText())) == 0) {
 
 						if (sqlPeople.existPhone(jPanelFormUser.jtfPhone.getText()) == 0) {
 
@@ -236,7 +236,7 @@ public class JPanelCreateUser extends JPanel {
 									|| jPanelFormUser.jtfEmail.getText().length() == 0) {
 
 								String newPass = Hash.sha1(password);
-								u.setPersonalIdentification(jPanelFormUser.jtfId.getText());
+								u.setPersonalIdentification(jPanelFormUser.jtfpersonalId.getText());
 								u.setName(jPanelFormUser.jtfName.getText());
 								u.setLastName(jPanelFormUser.jtfLastName.getText());
 								u.setBirthDate(jPanelFormUser.birthdayDateChooser.getDate());

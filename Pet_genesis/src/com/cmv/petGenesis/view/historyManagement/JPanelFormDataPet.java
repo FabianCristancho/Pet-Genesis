@@ -11,18 +11,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
-
-import otherTests.Jpanel1;
 
 public class JPanelFormDataPet extends JPanel{
 	
