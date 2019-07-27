@@ -147,7 +147,7 @@ public class JpanelUpdateUser extends JPanel {
 	
 	public void getDataQueryUpdate() {
 		SQLUsers sqlUsers = new SQLUsers();
-		User user = sqlUsers.getDataUser(getParam(), jtfInputId.getText(), "", "");
+		User user = sqlUsers.getDataUser(getParam(), jtfInputId.getText());
 		
 		if (user != null) {
 			jpanelCenter.resultId.setText("" + user.getIdPerson());

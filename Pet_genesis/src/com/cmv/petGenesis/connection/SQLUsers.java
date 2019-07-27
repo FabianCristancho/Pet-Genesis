@@ -135,7 +135,7 @@ public class SQLUsers extends ConnectionMySQL {
 		return tableData;
 	}
 
-	public User getDataUser(String parameter, String value, String parameterState, String state) {
+	public User getDataUser(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
@@ -145,10 +145,6 @@ public class SQLUsers extends ConnectionMySQL {
 		String and = "";
 		if (!"".equals(value)) {
 			where = " WHERE " + parameter + " = '" + value + "'";
-		}
-
-		if (!"".equals(state)) {
-			and = " AND " + parameterState + " = '" + state + "'";
 		}
 
 		String sql = "SELECT u.id_usuario, u.nombre_usuario, p.nombre_persona, p.apellido_persona, p.fecha_nacimiento, p.telefono_persona, "
