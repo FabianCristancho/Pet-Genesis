@@ -18,6 +18,10 @@ public class Person {
 	
 	public Person() {
 	}
+	
+	public Person(int idPerson) {
+		this.idPerson = idPerson;
+	}
 
 	public Person(int id, TypeUser typeUser, String name, String lastName, String telephone, ActivationState activationState,
 			String personalIdentification, String email, String address, TypePerson typePerson) {

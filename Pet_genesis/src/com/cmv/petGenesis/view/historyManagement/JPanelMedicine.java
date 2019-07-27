@@ -69,10 +69,12 @@ public class JPanelMedicine extends JPanel {
 		this.jPanelSaveVac = new JPanel(new GridBagLayout());
 		this.jPanelSaveAnti = new JPanel(new GridBagLayout());
 
-		if (JPanelFormDataPet.comboSpecies.getSelectedIndex() == 0)
-			this.comboNameVaccine = new JComboBox<>(ConstantView.LIST_VACCINE_CAN);
-		else
-			this.comboNameVaccine = new JComboBox<>(ConstantView.LIST_VACCINE_FELINE);
+		if(false) {
+//			if (JPanelFormDataPet.comboSpecies.getSelectedIndex() == 0)
+//				this.comboNameVaccine = new JComboBox<>(ConstantView.LIST_VACCINE_CAN);
+//			else
+//				this.comboNameVaccine = new JComboBox<>(ConstantView.LIST_VACCINE_FELINE);
+		}
 
 		this.comboTypeAntiparasitary = new JComboBox<>(ConstantView.TYPES_ANTIPARASITARY);
 

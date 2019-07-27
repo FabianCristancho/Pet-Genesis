@@ -9,6 +9,10 @@ public class Client extends Person {
 		
 	}
 	
+	public Client(int idPerson) {
+		super(idPerson);
+	}
+	
 	public Client(int id, String name, String lastName, String telephone, ActivationState activationState,
 			String personalIdentification, String email, String address, TypePerson typePerson) {
 		super(id,null,name,lastName,telephone,activationState,personalIdentification,email,address,typePerson);

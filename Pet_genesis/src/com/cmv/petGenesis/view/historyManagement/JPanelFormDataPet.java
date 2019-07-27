@@ -26,15 +26,15 @@ import com.toedter.calendar.JDateChooser;
 
 public class JPanelFormDataPet extends JPanel {
 
-	private CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate,
-			lblColor, lblPropietary, lblSearchBy;
-	private JDateChooser birthDate;
+	private CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
+			lblPropietary, lblSearchBy, lblStateHistory, lblObligate;
+	protected JDateChooser birthDate;
 	protected CustomTxtField jtfPetName, jtfColor, jtfPropietary;
-	protected static JComboBox<String> comboSpecies, comboRaces, comboParameter;
-	private JCheckBox isCastrated;
+	protected JComboBox<String> comboSpecies, comboRaces, comboParameter, comboStateHistory;
+	protected JCheckBox isCastrated;
 	private ButtonGroup groupGender;
-	private JRadioButton jRButtonMale;
-	private JRadioButton jRButtonFemale;
+	protected JRadioButton jRButtonMale;
+	protected JRadioButton jRButtonFemale;
 	private JPanel jPanelGender;
 	private JButton btnFindPropietary;
 	private SimpleDateFormat sdf;
@@ -50,11 +50,11 @@ public class JPanelFormDataPet extends JPanel {
 		this.lblBirthDate = new CustomLabel(ConstantView.LBL_BDATE_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblColor = new CustomLabel(ConstantView.LBL_COLOR_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblPropietary = new CustomLabel(ConstantView.LBL_PROPIETARY_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.comboSpecies = new JComboBox<>(ConstantView.COMBO_SPECIES);
+		this.lblStateHistory = new CustomLabel(ConstantView.LBL_STATE_HISTORY, ConstantView.FONT_LABELS_LOGIN, null);
+		this.lblObligate = new CustomLabel(ConstantView.LABEL_OBLIGATE);
 		this.jRButtonMale = new JRadioButton(ConstantView.LBL_GENDER_MALE);
 		this.jRButtonFemale = new JRadioButton(ConstantView.LBL_GENDER_FEMALE);
 		this.jtfPetName = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
-		this.comboRaces = new JComboBox<>();
 		this.jtfColor = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
 		this.jtfPropietary = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
 		this.isCastrated = new JCheckBox(ConstantView.LBL_CASTRATED_PET);
@@ -63,6 +63,7 @@ public class JPanelFormDataPet extends JPanel {
 		this.btnFindPropietary = new JButton(ConstantView.BTN_FIND_PROPIETARY_PET);
 		this.lblSearchBy = new CustomLabel(ConstantView.LBL_SEARCH_CLIENT_BY, ConstantView.FONT_LABELS_LOGIN, null);
 		this.comboParameter = new JComboBox<>(ConstantView.COMBO_SEARCH_CLIENT);
+		this.comboStateHistory = new JComboBox<>(ConstantView.COMBO_STATE_HISTORY);
 		
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
@@ -70,7 +71,12 @@ public class JPanelFormDataPet extends JPanel {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
+		SQLPets sqlPets = new SQLPets();
+		this.comboSpecies = new JComboBox<>(sqlPets.getValuesComboBox("nombre_especie", "especies", "id_especie", ""));
+		this.comboRaces = new JComboBox<>(sqlPets.getValuesComboBox("nombre_raza", "razas", "id_raza",
+				"" + (comboSpecies.getSelectedIndex() + 1)));
+
 		init();
 	}
 
@@ -78,7 +84,7 @@ public class JPanelFormDataPet extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.anchor = GridBagConstraints.WEST;
-		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 10, 20, 10));
+		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(15, 10, 20, 10));
 		this.add(lblTitleId, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
@@ -112,6 +118,7 @@ public class JPanelFormDataPet extends JPanel {
 		this.add(lblSpecies, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 6);
+		this.comboSpecies.addItemListener(ControlHistory.getInstance());
 		this.add(comboSpecies, gbc);
 
 		gbc.insets.left = 50;
@@ -134,6 +141,12 @@ public class JPanelFormDataPet extends JPanel {
 		this.add(birthDate, gbc);
 
 		gbc.insets.left = 50;
+		UtilityClass.organizeGridLayout(gbc, 2, 5);
+		this.add(lblStateHistory, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 3, 5);
+		this.add(comboStateHistory, gbc);
+		
 		UtilityClass.organizeGridLayout(gbc, 2, 7);
 		this.isCastrated.setFocusable(false);
 		this.isCastrated.setFont(ConstantView.FONT_LABELS_LOGIN);
@@ -154,10 +167,10 @@ public class JPanelFormDataPet extends JPanel {
 		gbc.insets.top = 0;
 		UtilityClass.organizeGridLayout(gbc, 0, 10);
 		this.add(lblSearchBy, gbc);
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 10);
 		this.add(comboParameter, gbc);
-			
+
 		gbc.insets.left = 20;
 		UtilityClass.organizeGridLayout(gbc, 2, 10);
 		this.jtfPropietary.addKeyListener(ControlHistory.getInstance());
@@ -167,10 +180,48 @@ public class JPanelFormDataPet extends JPanel {
 		this.btnFindPropietary.setFocusable(false);
 		this.btnFindPropietary.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.add(btnFindPropietary, gbc);
+		
+		gbc.insets.top = 10;
+		gbc.insets.bottom = 0;
+		UtilityClass.organizeGridLayout(gbc, 0, 11);
+		this.add(lblObligate, gbc);
 	}
 
 	public void createAutomaticID() {
 		SQLPets sqlPets = new SQLPets();
 		lblResultId.setText("" + (sqlPets.getLastIdPet() + 1));
+	}
+
+	public JComboBox<String> getComboSpecies() {
+		return comboSpecies;
+	}
+	
+	public void changeRaces() {
+		GridBagConstraints gbc = new GridBagConstraints();
+		this.comboRaces.setVisible(false);
+		SQLPets sqlPets = new SQLPets();
+		this.comboRaces = new JComboBox<>(sqlPets.getValuesComboBox("nombre_raza", "razas", "id_raza",
+				"" +(comboSpecies.getSelectedIndex()+1)));
+		gbc.insets.left = 0;
+		UtilityClass.organizeGridLayout(gbc, 3, 6);
+		this.add(comboRaces, gbc);
+		this.comboRaces.setVisible(true);
+	}
+	
+	public void newForm() {
+		try {
+			this.birthDate = new JDateChooser(sdf.parse("00/00/2000"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.jtfPetName.setText("");
+		this.jtfColor.setText("");
+		this.jtfPropietary.setText("");
+		this.comboSpecies.setSelectedIndex(0);
+		this.changeRaces();
+		this.comboParameter.setSelectedIndex(0);
+		this.comboStateHistory.setSelectedIndex(0);
+		this.isCastrated.setSelected(false);
+		this.jRButtonMale.setSelected(true);
 	}
 }

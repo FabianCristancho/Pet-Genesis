@@ -59,7 +59,7 @@ public class JPanelFormClient extends JPanel {
 		this.lblAddress = new CustomLabel(ConstantView.LABEL_ADDRESS_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblActiv = new CustomLabel(ConstantView.LABEL_ACTIVE_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblPet = new CustomLabel(ConstantView.LABEL_PET_SIGNIN, ConstantView.FONT_FORM, null);
-		this.lblInfo = new CustomLabel(ConstantView.LABEL_INFO_SIGNIN, ConstantView.FONT_FORM, null);
+		this.lblInfo = new CustomLabel(ConstantView.LABEL_OBLIGATE, ConstantView.FONT_FORM, null);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
 		this.inactivRadioButton = new JRadioButton(ConstantView.LABEL_IS_INACTIVE_SIGNIN);
 		this.jtfDoc = new CustomTxtField(17, ConstantView.FONT_FIELD_FORM, JTextField.RIGHT);

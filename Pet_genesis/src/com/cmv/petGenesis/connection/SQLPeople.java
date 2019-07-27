@@ -287,6 +287,40 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Metodo que obtiene el id generado por el sistema de una persona, a partir de su documento de identificacion
+	 * @return id generado de persona, en caso de ser valida
+	 */
+	public int getIdByPersonalId(int docId) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		
+		String sql = "SELECT id_persona FROM personas WHERE documento_identidad = ? AND tipo_persona='C'";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, docId);
+			
+			rs = ps.executeQuery();
+			
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			
+			return -1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public Client getDataClient(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;

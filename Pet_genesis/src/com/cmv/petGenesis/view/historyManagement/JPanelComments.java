@@ -23,7 +23,7 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 public class JPanelComments extends JPanel {
 	
 	private CustomLabel titleComments;
-	private JTextArea jtaComments;
+	protected JTextArea jtaComments;
 	private JScrollPane scrollComments;
 	private JButton btnClearComments;
 	private JPanel jpanelButtons;
@@ -73,5 +73,9 @@ public class JPanelComments extends JPanel {
 			this.jtaComments.setText("");
 			JOptionPane.showMessageDialog(null, "COMENTARIOS BORRADOS CON ÉXITO", "BORRADO DE COMENTARIOS", JOptionPane.INFORMATION_MESSAGE);
 		}
+	}
+	
+	public String getComments() {
+		return this.jtaComments.getText();
 	}
 }

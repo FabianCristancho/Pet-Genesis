@@ -9,28 +9,35 @@ import java.text.SimpleDateFormat;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLPeople;
+import com.cmv.petGenesis.connection.SQLPets;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.controller.ControlUser;
+import com.cmv.petGenesis.model.Client;
+import com.cmv.petGenesis.model.GenderPet;
+import com.cmv.petGenesis.model.Pet;
+import com.cmv.petGenesis.model.Race;
+import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+public class JPanelCreateHistory extends JPanel {
 
-
-public class JPanelCreateHistory extends JPanel{
-	
 	private CustomLabel title;
 	private JButton okButton;
 	private JButton returnButton;
 	private JPanel panelButtons;
-	private JPanelFormDataPet jPanelFormDataPet;
-	private JPanelMedicine jPanelMedicine;
+//	private JPanelMedicine jPanelMedicine;
 	private JPanelDataPet jPanelDataPet;
 	private JPanelComments jPanelComments;
 	private JPanelConsult jPanelConsult;
@@ -42,10 +49,10 @@ public class JPanelCreateHistory extends JPanel{
 	public JPanelCreateHistory() {
 		super(new BorderLayout());
 		this.title = new CustomLabel(ConstantView.TITLE_WD_CREATE_HISTORY);
-		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
+		this.okButton = new JButton(ConstantView.BUTTON_REGISTER_HISTORY);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
-		this.jPanelFormDataPet = new JPanelFormDataPet();
-		this.jPanelMedicine = new JPanelMedicine();
+//		this.jPanelFormDataPet = new JPanelFormDataPet();
+//		this.jPanelMedicine = new JPanelMedicine();
 		this.jPanelComments = new JPanelComments();
 		this.modules = new JTabbedPane();
 		this.jPanelDataPet = new JPanelDataPet();
@@ -62,18 +69,17 @@ public class JPanelCreateHistory extends JPanel{
 		this.initModules();
 		this.initPanelButtons();
 
-		UtilityClass.addBorder(this, 20, 20, 20, 20);
-		
+		UtilityClass.addBorder(this, 20, 15, 20, 15);
+
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.title.setHorizontalAlignment(JLabel.CENTER);
 		this.add(title, BorderLayout.NORTH);
-		
+
 		this.add(panelButtons, BorderLayout.SOUTH);
 		this.add(modules, BorderLayout.CENTER);
-		
+
 		this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
 	}
-
 
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
@@ -100,34 +106,87 @@ public class JPanelCreateHistory extends JPanel{
 		this.okButton.setFocusable(false);
 		this.okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.okButton.setFont(ConstantView.FONT_LABELS_LOGIN);
-		this.okButton.addActionListener(ControlUser.getInstance());
-		this.okButton.setActionCommand(UserCommands.OK_SIGN_IN.toString());
+		UtilityClass.addCommandJButton(okButton, HistoryCommands.CMD_WD_PET_REGISTER_HIS.toString(),
+				ControlHistory.getInstance());
 		this.panelButtons.add(okButton, gbc);
 	}
-	
+
 	private void initModules() {
 		this.modules.add(ConstantView.TABBED_DATA_PET, jPanelDataPet);
 		this.modules.add(ConstantView.TABBED_APPOINT_PET, jPanelConsult);
-		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelMedicine);
-		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
+//		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelMedicine);
+//		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
 	}
 
-	public JPanelFormDataPet getjPanelFormDataPet() {
-		return jPanelFormDataPet;
-	}
-	
 	public CustomTxtField getJtfPropietary() {
 		return this.jPanelDataPet.getJtfPropietary();
 	}
-	
+
 	public CustomTxtField getJtfNamePet() {
 		return this.jPanelDataPet.getJtfNamePet();
 	}
-	
+
 	public CustomTxtField getJtfColorPet() {
 		return this.jPanelDataPet.getJtfColorPet();
 	}
-	
+
+	public JComboBox<String> getComboSpecies() {
+		return jPanelDataPet.getComboSpecies();
+	}
+
+	public void changeRaces() {
+		jPanelDataPet.changeRaces();
+	}
+
+	public void registerHistory(Pet p) {
+		SQLPets sqlPets = new SQLPets();
+		if (jPanelDataPet.fieldsAreEmpty()) {
+			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
+					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
+		} else {
+			SQLPeople sqlPeople = new SQLPeople();
+			boolean validClient = false;
+			if (jPanelDataPet.getComboParameter().getSelectedIndex() == 0) {
+				if (!sqlPeople.existClient(Integer.parseInt(jPanelDataPet.getJtfPropietary().getText()))) {
+					JOptionPane.showMessageDialog(null,
+							"No se ha encontrado el cliente con codigo " + jPanelDataPet.getJtfPropietary().getText(),
+							"CLIENTE NO ENCONTRADO", JOptionPane.ERROR_MESSAGE);
+				} else {
+					p.setClient(new Client(Integer.parseInt(jPanelDataPet.getJtfPropietary().getText())));
+					validClient = true;
+				}
+			} else {
+				if (!sqlPeople.existDocumentIdClient(Integer.parseInt(jPanelDataPet.getJtfPropietary().getText()))) {
+					JOptionPane.showMessageDialog(null,
+							"No se ha encontrado el cliente con documento "
+									+ jPanelDataPet.getJtfPropietary().getText(),
+							"CLIENTE NO ENCONTRADO", JOptionPane.ERROR_MESSAGE);
+				} else {
+					p.setClient(new Client(
+							sqlPeople.getIdByPersonalId(Integer.parseInt(jPanelDataPet.getJtfPropietary().getText()))));
+					validClient = true;
+				}
+			}
+			if (validClient) {
+				p.setNamePet(jPanelDataPet.getJtfNamePet().getText());
+				p.setBirthDate(jPanelDataPet.getBirthDatePet().getDate());
+				p.setRace(new Race(jPanelDataPet.getComboRaces().getSelectedIndex() + 1));
+				p.setColorPet(jPanelDataPet.getJtfColorPet().getText());
+				p.setGenderPet(GenderPet.getGender(jPanelDataPet.maleIsSelected()));
+				p.setStatePet(StatePet.getState(jPanelDataPet.getComboStatePet().getSelectedIndex()));
+				p.setCastrated(jPanelDataPet.isCastrated());
+				p.setAditionalDescription(jPanelDataPet.getComments());
+				if (sqlPets.registerPet(p)) {
+					JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
+					this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
+					this.jPanelDataPet.newForm();
+				} else {
+					JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
+				}
+			}
+		}
+	}
+
 	/**
 	 * Metodo que verifica el campo de entrada de la fecha de nacimiento utilizando
 	 * una libreria externa y convirtiendo el valor en un String!

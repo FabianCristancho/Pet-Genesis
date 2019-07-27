@@ -16,4 +16,10 @@ public enum GenderPet {
 	public void setIdGender(char idGender) {
 		this.idGender = idGender;
 	}
+	
+	public static GenderPet getGender(boolean isMale) {
+		if (isMale)
+			return GenderPet.MALE;
+		return GenderPet.FEMALE;
+	}
 }

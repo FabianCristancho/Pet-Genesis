@@ -67,7 +67,7 @@ public class ConstantView {
 	public final static String LABEL_ID2_SIGNIN = "ID";
 	public final static String LABEL_DOC_SIGNIN = "Documento de identidad *";
 	public final static String LABEL_PET_SIGNIN = "Añadir mascota";
-	public final static String LABEL_INFO_SIGNIN = "(*) CAMPOS OBLIGATORIOS";
+	public final static String LABEL_OBLIGATE = "(*) CAMPOS OBLIGATORIOS";
 	public final static String BUTTON_CREATE_CLIENT = "CREAR CLIENTE";
 	public final static String BUTTON_FIND_CLIENT = "CONSULTAR CLIENTE";
 	public final static String BUTTON_UPDATE_CLIENT = "MODIFICAR CLIENTE";
@@ -141,6 +141,7 @@ public class ConstantView {
 	public static final String BUTTON_UPDATE_HISTORY = "MODIFICAR HISTORIA CLINICA";
 	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLINICA";
 	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLINICA";
+	public final static String BUTTON_REGISTER_HISTORY = "REGISTRAR HISTORIA";
 	
 	public final static String TITLE_WD_CREATE_HISTORY = "CREAR HISTORIA CLÍNICA";
 	public static final String TITLE_PANEL_PET = "DATOS DE PACIENTE";
@@ -154,17 +155,19 @@ public class ConstantView {
 	public static final String LBL_GENDER_FEMALE = "Hembra";
 	public static final String LBL_BDATE_PET = "Fecha de nacimiento";
 	public static final String LBL_CASTRATED_PET = "Castrado";
-	public static final String LBL_COLOR_PET = "Color";
+	public static final String LBL_COLOR_PET = "Color*";
 	public static final String LBL_WEIGHT_PET = "Peso (Kg)";
 	public static final String LBL_BRANDS_PET = "Marcas o Señas";
-	public static final String LBL_PROPIETARY_PET = "Propietario";
-	public static final String BTN_FIND_PROPIETARY_PET = "Buscar propietario";
+	public static final String LBL_PROPIETARY_PET = "Propietario*";
+	public static final String LBL_STATE_HISTORY = "Estado de Historia";
+	public static final String BTN_FIND_PROPIETARY_PET = "Nuevo cliente";
 	public final static String[] COMBO_SPECIES = {"CANINO", "FELINO"};
 	public static final String TABBED_DATA_PET = "DATOS DE PACIENTE";
 	public static final String TABBED_APPOINT_PET = "CITAS DE PACIENTE";
 	public static final String TABBED_MEDICINE_PET = "MEDICAMENTOS";
 	public static final String TABBED_COMMENTS_PET = "COMENTARIOS";
-	public static final String[] COMBO_SEARCH_CLIENT = {"Código de cliente", "Documento de Identidad"};
+	public static final String[] COMBO_SEARCH_CLIENT = {"Código de cliente generado", "Documento de Identidad"};
+	public static final String[] COMBO_STATE_HISTORY = {"Activa", "Inactiva", "Archivada", "Bloqueada"};
 	public static final String LBL_SEARCH_CLIENT_BY = "Buscar cliente por ";
 	
 	public static final String TITLE_COMMENTS = "COMENTARIOS ADICIONALES";

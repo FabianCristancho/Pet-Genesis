@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -51,18 +52,19 @@ public class JPanelUpdateHistory extends JPanel{
 		this.parameters = ConstantView.COMBO_PARAMS_UPDATE_USER;
 		this.jScrollPane = new JScrollPane();
 		this.jPanelRegion = new JPanel(new BorderLayout());
+		ControlHistory.getInstance().setjPanelUpdateHistory(this);
 		init();
 	}
 
 	private void init() {
 		initPanelUp();
 		initpanelDown();
-//		UtilityClass.addBorder(this, 20, 20, 20, 20);
+		UtilityClass.addBorder(this, 0, 10, 10, 0);
 		this.jPanelRegion.add(jPanelUp, BorderLayout.NORTH);
 		this.jPanelRegion.add(jpanelCenter, BorderLayout.CENTER);
 		this.jPanelRegion.add(jPanelDown, BorderLayout.SOUTH);
 		this.jScrollPane.setViewportView(jPanelRegion);
-		this.jScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+		this.jScrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		this.add(jScrollPane);
 	}
 
@@ -112,6 +114,7 @@ public class JPanelUpdateHistory extends JPanel{
 		this.jPanelDown.add(btnReturn, gbc);
 
 		gbc.gridx = 7;
+		gbc.insets.bottom = 10;
 		this.btnUpdateUser.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
 		this.btnUpdateUser.setForeground(Color.WHITE);
 		this.btnUpdateUser.setFocusable(false);
@@ -132,6 +135,10 @@ public class JPanelUpdateHistory extends JPanel{
 		default:
 			return "";
 		}
+	}
+	
+	public JComboBox<String> getComboSpecies() {
+		return this.jpanelCenter.getComboSpecies();
 	}
 
 	public void getDataQuery() {
@@ -158,5 +165,9 @@ public class JPanelUpdateHistory extends JPanel{
 		if (state.equals("Activo"))
 			return true;
 		return false;
+	}
+
+	public void changeRaces() {
+		this.jpanelCenter.changeRaces();
 	}
 }

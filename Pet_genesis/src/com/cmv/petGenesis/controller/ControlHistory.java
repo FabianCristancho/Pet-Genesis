@@ -2,20 +2,26 @@ package com.cmv.petGenesis.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
+import com.cmv.petGenesis.view.historyManagement.JPanelFormDataPet;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
+import com.cmv.petGenesis.view.historyManagement.JPanelUpdateHistory;
 
-public class ControlHistory implements ActionListener, KeyListener {
+public class ControlHistory implements ActionListener, KeyListener, ItemListener {
 
 	private static ControlHistory controlHistory;
 	private JPanelCreateHistory jPanelCreateHistory;
+	private JPanelUpdateHistory jPanelUpdateHistory;
 	private JPanelGroupHistory jPanelGroupHistory;
 	private JPanelComments jPanelComments;
 	private JPanelMedicine jPanelMedicine;
@@ -57,6 +63,9 @@ public class ControlHistory implements ActionListener, KeyListener {
 		case CMD_WD_EXAM_CLEAR_FIELDS:
 			jPanelConsult.clearFields();
 			break;
+		case CMD_WD_PET_REGISTER_HIS:
+			jPanelCreateHistory.registerHistory(new Pet());
+			break;
 
 		default:
 			break;
@@ -77,6 +86,12 @@ public class ControlHistory implements ActionListener, KeyListener {
 
 	public void setjPanelConsult(JPanelConsult jPanelConsult) {
 		this.jPanelConsult = jPanelConsult;
+	}
+	
+	
+
+	public void setjPanelUpdateHistory(JPanelUpdateHistory jPanelUpdateHistory) {
+		this.jPanelUpdateHistory = jPanelUpdateHistory;
 	}
 
 	@Override
@@ -99,9 +114,20 @@ public class ControlHistory implements ActionListener, KeyListener {
 				e.consume();
 		}
 	}
+	
+	
 
 	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {
 		this.jPanelCreateHistory = jPanelCreateHistory;
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		if(e.getSource().equals(jPanelCreateHistory.getComboSpecies())) {
+			jPanelCreateHistory.changeRaces();
+		}else if (e.getSource().equals(jPanelUpdateHistory.getComboSpecies())) {
+			jPanelUpdateHistory.changeRaces();
+		}
 	}
 
 }
