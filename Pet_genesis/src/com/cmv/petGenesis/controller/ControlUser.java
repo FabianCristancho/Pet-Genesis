@@ -75,6 +75,7 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 			break;
 		case CMD_WD_UPDATE_CHANGE_DATA:
 			jpanelUpdateClient.saveDataSignIn(new User());
+			jpanelUpdateClient.clearFields();
 			break;
 		case CMD_WD_UPDATE_CLEAR:
 			jPanelFormUser.clearFields();

@@ -72,7 +72,7 @@ public class SqlUSer extends MyConnection {
 		PreparedStatement ps = null;
 		Connection con = getconnection();
 
-		String sql = "UPDATE usuarios SET estado_usuario=? WHERE " + parameter + " = '" + valueParameter + "'";
+		String sql = "UPDATE personas SET estado_usuario=? WHERE " + parameter + " = '" + valueParameter + "'";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, newState);

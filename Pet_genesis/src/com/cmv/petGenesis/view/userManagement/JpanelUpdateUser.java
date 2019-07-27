@@ -346,4 +346,8 @@ public class JpanelUpdateUser extends JPanel {
 	public String getNewTelephone() {
 		return oldTelephone;
 	}
+	
+	public void clearFields() {
+		this.jpanelCenter.clearFields();
+	}
 }

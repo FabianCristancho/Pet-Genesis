@@ -240,6 +240,7 @@ public class JPanelFormUser extends JPanel {
 	}
 
 	public void clearFields() {
+		this.resultId.setText("");
 		this.jtfAdress.setText("");
 		this.jtfEmail.setText("");
 		this.jtfpersonalId.setText("");
@@ -249,6 +250,8 @@ public class JPanelFormUser extends JPanel {
 		this.jtfUserName.setText("");
 		this.jpfPassword.setText("");
 		this.jpfPasswordAgain.setText("");
+		this.activRadioButton.setSelected(true);
+		this.comboUserType.setSelectedIndex(0);
 		try {
 			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
 		} catch (ParseException e) {

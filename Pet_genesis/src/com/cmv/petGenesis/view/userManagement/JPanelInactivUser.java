@@ -25,6 +25,7 @@ import javax.swing.plaf.metal.MetalButtonUI;
 import javax.swing.table.DefaultTableModel;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -72,7 +73,7 @@ public class JPanelInactivUser extends JPanel {
 	private void init() {
 		initParameters();
 		initPanelStateTable();
-		loadTable("", "Inactivo");
+		loadTable("", "I");
 		this.setBackground(Color.CYAN);
 		
 		jScrollPane.setViewportView(jTable);
@@ -170,12 +171,36 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
+//	public void loadTable(String parameter, String state) {
+//		SqlUSer sqlUSer = new SqlUSer();
+//		this.model = new DefaultTableModel();
+//
+//		jTable.setModel(model);
+//
+//		model.addColumn("Codigo");
+//		model.addColumn("Documento de identidad");
+//		model.addColumn("Nombre");
+//		model.addColumn("Apellido");
+//		model.addColumn("Fecha Nacimiento");
+//		model.addColumn("Telefono");
+//		model.addColumn("Email");
+//		model.addColumn("Direccion de residencia");
+//		model.addColumn("Tipo de usuario");
+//		model.addColumn("Usuario");
+//		model.addColumn("Ultima Sesion");
+//
+//		ArrayList<Object[]> table = sqlUSer.loadData(parameter, jtfInputQuery.getText(), "estado_usuario", state);
+//		for (Object[] row : table) {
+//			model.addRow(row);
+//		}
+//		changeWidthColumn();
+//	}
 	public void loadTable(String parameter, String state) {
-		SqlUSer sqlUSer = new SqlUSer();
+		SQLUsers sqlUsers = new SQLUsers();
 		this.model = new DefaultTableModel();
-
+		
 		jTable.setModel(model);
-
+		
 		model.addColumn("Codigo");
 		model.addColumn("Documento de identidad");
 		model.addColumn("Nombre");
@@ -187,8 +212,8 @@ public class JPanelInactivUser extends JPanel {
 		model.addColumn("Tipo de usuario");
 		model.addColumn("Usuario");
 		model.addColumn("Ultima Sesion");
-
-		ArrayList<Object[]> table = sqlUSer.loadData(parameter, jtfInputQuery.getText(), "estado_usuario", state);
+		
+		ArrayList<Object[]> table = sqlUsers.loadData(parameter, jtfInputQuery.getText(), "estado_activacion", state);
 		for (Object[] row : table) {
 			model.addRow(row);
 		}
@@ -199,19 +224,19 @@ public class JPanelInactivUser extends JPanel {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
 		case 0:
-			parameter = "id_usuario";
+			parameter = "id_persona";
 			break;
 		case 1:
-			parameter = "documento_usuario";
+			parameter = "documento_identidad";
 			break;
 		case 2:
-			parameter = "usuario";
+			parameter = "nombre_usuario";
 			break;
 		default:
-			parameter = "id_usuario";
+			parameter = "id_persona";
 			break;
 		}
-		loadTable(parameter, "Inactivo");
+		loadTable(parameter, "I");
 		return parameter;
 	}
 
@@ -225,9 +250,9 @@ public class JPanelInactivUser extends JPanel {
 				this.jtfInputQuery.setText("");
 			}
 			if (inactivActiv.isSelected())
-				loadTable("", "Activo");
+				loadTable("", "A");
 			else
-				loadTable("", "Inactivo");
+				loadTable("", "I");
 
 		} else {
 			JOptionPane.showMessageDialog(null, "SE DEBE INGRESAR UN VALOR EN EL CAMPO", "CAMPO SIN LLENAR",
@@ -244,20 +269,20 @@ public class JPanelInactivUser extends JPanel {
 		String id = String.valueOf(jTable.getValueAt(row, 0));
 		String user = String.valueOf(jTable.getValueAt(row, 9));
 		if (inactivActiv.isSelected()) {
-			inactivUser("id_usuario", id, user);
-			loadTable("", "Activo");
+			inactivUser("id_persona", id, user);
+			loadTable("", "A");
 		} else {
-			activUser("id_usuario", id, user);
-			loadTable("", "Inactivo");
+			activUser("id_persona", id, user);
+			loadTable("", "I");
 		}
 	}
 
 	private void inactivUser(String parameter, String value, String user) {
-		SqlUSer sqlUSer = new SqlUSer();
+		SQLUsers sqlUsers = new SQLUsers();
 		int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de inactivar al usuario " + user + "?",
 				"INACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if (option == 0) {
-			if (sqlUSer.changeStateUser(parameter, value, "Inactivo")) {
+			if (sqlUsers.changeStateUser(parameter, value, "I")) {
 				JOptionPane.showMessageDialog(null, "EL USUARIO FUE INACTIVADO CON ÉXITO", "USUARIO INACTIVADO",
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {
@@ -268,11 +293,11 @@ public class JPanelInactivUser extends JPanel {
 	}
 
 	private void activUser(String parameter, String value, String user) {
-		SqlUSer sqlUSer = new SqlUSer();
+		SQLUsers sqlUsers = new SQLUsers();
 		int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de activar al usuario " + user + "?",
 				"ACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 		if (option == 0) {
-			if (sqlUSer.changeStateUser(parameter, value, "Activo")) {
+			if (sqlUsers.changeStateUser(parameter, value, "A")) {
 				JOptionPane.showMessageDialog(null, "EL USUARIO FUE ACTIVADO CON ÉXITO", "USUARIO ACTIVADO",
 						JOptionPane.INFORMATION_MESSAGE);
 			} else {
@@ -288,12 +313,12 @@ public class JPanelInactivUser extends JPanel {
 			inactivActiv.setText(ConstantView.TOGGLE_SHOW_INACTIV_USER);
 			labelStateUser.setText(ConstantView.LABEL_ACTIV_USER);
 			lblClickToActiv.setText(ConstantView.LABEL_CLICK_TO_INACTIV);
-			loadTable("", "Activo");
+			loadTable("", "A");
 		} else if (state == 2) {
 			inactivActiv.setText(ConstantView.TOGGLE_SHOW_ACTIV_USER);
 			labelStateUser.setText(ConstantView.LABEL_INACTIV_USER);
 			lblClickToActiv.setText(ConstantView.LABEL_CLICK_TO_ACTIV);
-			loadTable("", "Inactivo");
+			loadTable("", "I");
 		}
 	}
 

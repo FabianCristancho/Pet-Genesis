@@ -92,6 +92,22 @@ public class SQLUsers extends ConnectionMySQL {
 			return false;
 		}
 	}
+	
+	public boolean changeStateUser(String parameter, String valueParameter, String newState) {
+		PreparedStatement ps = null;
+		Connection con = getConnection();
+
+		String sql = "UPDATE personas SET estado_activacion=? WHERE " + parameter + " = '" + valueParameter + "'";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, newState);
+			ps.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
@@ -109,9 +125,11 @@ public class SQLUsers extends ConnectionMySQL {
 			and = " AND " + parameterState + " = '" + state + "'";
 		}
 
-		String sql = "SELECT u.id_usuario, u.nombre_usuario, p.nombre_persona, p.apellido_persona, p.fecha_nacimiento, p.telefono_persona, "
-				+ "p.id_tipo_usuario, p.estado_activacion, p.documento_identidad, p.correo_electronico, p.direccion_de_residencia "
-				+ "FROM usuarios AS u INNER JOIN personas AS p " + "ON u.id_persona=p.id_persona" + where + and;
+		String sql = "SELECT u.id_usuario, p.documento_identidad,  p.nombre_persona, p.apellido_persona, p.fecha_nacimiento, "
+				+ "p.telefono_persona, p.correo_electronico, p.direccion_de_residencia, t.nombre_tipo_usuario, u.nombre_usuario, "
+				+ "u.ultima_sesion, p.estado_activacion "
+				+ "FROM usuarios AS u INNER JOIN personas AS p ON u.id_persona=p.id_persona "
+				+ "INNER JOIN tipos_usuario AS t ON p.id_tipo_usuario=t.id_tipo_usuario" + where + and;
 
 		try {
 			ps = con.prepareStatement(sql);
