@@ -63,6 +63,42 @@ public class ConstantView {
 	public final static Font FONT_FORM = new Font("Open Sans", Font.BOLD, 17);
 	public final static Font FONT_FIELD_FORM = new Font("Open Sans", Font.PLAIN, 14);
 	
+	//Client
+	public final static String LABEL_ID2_SIGNIN = "ID";
+	public final static String LABEL_DOC_SIGNIN = "Documento de identidad *";
+	public final static String LABEL_PET_SIGNIN = "Añadir mascota";
+	public final static String LABEL_INFO_SIGNIN = "(*) CAMPOS OBLIGATORIOS";
+	public final static String BUTTON_CREATE_CLIENT = "CREAR CLIENTE";
+	public final static String BUTTON_FIND_CLIENT = "CONSULTAR CLIENTE";
+	public final static String BUTTON_UPDATE_CLIENT = "MODIFICAR CLIENTE";
+	public final static String BUTTON_INACTIV_CLIENT = "ACTIVAR/INACTIVAR CLIENTE";
+	public final static String BUTTON_EXECUTE_ACTION_CLIENT = "EJECUTAR ACCIÓN";
+	public final static String BUTTON_CLEAN_SIGNIN = "LIMPIAR";
+	public final static String LABEL_CLICK_TO_ACTIV_CLIENT = "Haga click en un usuario para activarlo";
+	public final static String LABEL_CLIENT_QUERY = "CONSULTA DE CLIENTES";
+	public final static String LABEL_TITLE_INACTIV_CLIENT = "ESTADO DE ACTIVACIÓN DE CLIENTES";
+	public final static String LABEL_CLIENT_WITH = "Cliente por: ";
+	public final static String LABEL_INACTIV_CLIENT = "CLIENTES INACTIVOS";
+	public final static String LABEL_ACTIV_CLIENT = "CLIENTES ACTIVOS";
+	public final static String TOGGLE_SHOW_ACTIV_CLIENT = "MOSTRAR CLIENTES ACTIVOS";
+	public final static String TOGGLE_SHOW_INACTIV_CLIENT = "MOSTRAR CLIENTES INACTIVOS";
+	public final static String RADIO_ACTIV_CLIENT = "Activar cliente";
+	public final static String RADIO_INACTIV_CLIENT = "Inactivar cliente";
+	public final static String[] VALUES_PARAMETERS_CLIENT = {"Id", "Documento de Identidad", "Nombre", "Apellido", "Tipo de usuario"};
+	public final static JComboBox<String> COMBO_PARAMETERS_CLIENT = new JComboBox<>(VALUES_PARAMETERS_CLIENT);
+	public final static String[] PARAMS_INACTIV_CLIENT = {"Id", "Documento de Identidad", "Cliente"};
+	public final static String[] PARAMS_UPDATE_CLIENT = {"Id", "Documento de Identidad", "Cliente"};
+	public final static JComboBox<String> COMBO_PARAMS_UPDATE_CLIENT = new JComboBox<>(PARAMS_UPDATE_CLIENT);
+	public final static String LABEL_TITLE_UPDATE_CLIENT = "MODIFICACIÓN DE CLIENTE";
+	public final static String LABEL_DESCRIPTION_UPDATE_CLIENT = "Seleccione parámetro de búsqueda";
+	public final static String BTN_SEARCH_UPDATE_CLIENT = "VER INFORMACIÓN DE CLIENT";
+	public final static String BTN_RETURN_UPDATE_CLIENT = "REGRESAR";
+	public final static String BTN_DATA_UPDATE_CLIENT = "ACTUALIZAR DATOS";
+	public final static String IMG_ADD_SIGNIN = "data/images/icon_plus.png";
+	public final static String IMG_CHECK_SIGNIN = "data/images/icon_check.png";
+	public final static String IMG_EDIT_SIGNIN = "data/images/icon_edit.png";
+	public final static String IMG_GESTION_SIGNIN = "data/images/icon_search.png";
+	public final static String IMG_PET_SIGNIN = "data/images/icon_pet.png";
 	
 	//User Management
 	public final static String LABEL_USER_QUERY = "CONSULTA DE USUARIOS";

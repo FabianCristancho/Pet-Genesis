@@ -123,6 +123,13 @@ public class UtilityClass {
 		gbc.gridx = gridx;
 		gbc.gridy = gridy;
 	}
+	
+	public static void organizeGridLayout(GridBagConstraints gbc, int gridx, int gridy, int gridWidth, int gridHeight) {
+		gbc.gridx = gridx;
+		gbc.gridy = gridy;
+		gbc.gridwidth = gridWidth;
+		gbc.gridheight = gridHeight;
+	}
 
 	public static void organizeGridLayout(GridBagConstraints gbc, int gridx, int gridy, Insets insets) {
 		gbc.gridx = gridx;

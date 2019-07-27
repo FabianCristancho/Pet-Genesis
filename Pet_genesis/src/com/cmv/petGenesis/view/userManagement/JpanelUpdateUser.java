@@ -194,7 +194,7 @@ public class JpanelUpdateUser extends JPanel {
 						|| sqlUsers.existUser(jpanelCenter.jtfUserName.getText()) == 0) {
 
 					if (oldpIdentification.equals(jpanelCenter.jtfpersonalId.getText())
-							|| sqlPeople.existDocumentId(Integer.parseInt(jpanelCenter.jtfpersonalId.getText())) == 0) {
+							|| sqlPeople.existDocumentId(Integer.parseInt(jpanelCenter.jtfpersonalId.getText()))) {
 
 						if (oldTelephone.equals(jpanelCenter.jtfPhone.getText())
 								|| sqlPeople.existPhone(jpanelCenter.jtfPhone.getText()) == 0) {

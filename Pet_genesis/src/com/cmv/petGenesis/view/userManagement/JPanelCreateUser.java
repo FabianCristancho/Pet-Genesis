@@ -228,7 +228,7 @@ public class JPanelCreateUser extends JPanel {
 
 				if (sqlUsers.existUser(jPanelFormUser.jtfUserName.getText()) == 0) {
 
-					if (sqlPeople.existDocumentId(Integer.parseInt(jPanelFormUser.jtfpersonalId.getText())) == 0) {
+					if (sqlPeople.existDocumentId(Integer.parseInt(jPanelFormUser.jtfpersonalId.getText()))) {
 
 						if (sqlPeople.existPhone(jPanelFormUser.jtfPhone.getText()) == 0) {
 
