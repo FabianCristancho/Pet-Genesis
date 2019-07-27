@@ -14,9 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
+import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 
@@ -48,6 +50,7 @@ public class JPanelCreateHistory extends JPanel{
 		this.modules = new JTabbedPane();
 		this.jPanelDataPet = new JPanelDataPet();
 		this.jPanelConsult = new JPanelConsult();
+		ControlHistory.getInstance().setjPanelCreateHistory(this);
 		this.init();
 	}
 
@@ -67,6 +70,8 @@ public class JPanelCreateHistory extends JPanel{
 		
 		this.add(panelButtons, BorderLayout.SOUTH);
 		this.add(modules, BorderLayout.CENTER);
+		
+		this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
 	}
 
 
@@ -107,6 +112,22 @@ public class JPanelCreateHistory extends JPanel{
 		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
 	}
 
+	public JPanelFormDataPet getjPanelFormDataPet() {
+		return jPanelFormDataPet;
+	}
+	
+	public CustomTxtField getJtfPropietary() {
+		return this.jPanelDataPet.getJtfPropietary();
+	}
+	
+	public CustomTxtField getJtfNamePet() {
+		return this.jPanelDataPet.getJtfNamePet();
+	}
+	
+	public CustomTxtField getJtfColorPet() {
+		return this.jPanelDataPet.getJtfColorPet();
+	}
+	
 	/**
 	 * Metodo que verifica el campo de entrada de la fecha de nacimiento utilizando
 	 * una libreria externa y convirtiendo el valor en un String!

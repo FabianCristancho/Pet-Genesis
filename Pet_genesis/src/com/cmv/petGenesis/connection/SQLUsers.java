@@ -297,7 +297,7 @@ public class SQLUsers extends ConnectionMySQL {
 		return typesUser;
 	}
 
-	public int countDataQuery(String parameterCount, String table) {
+	private int countDataQuery(String parameterCount, String table) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();

@@ -2,30 +2,34 @@ package com.cmv.petGenesis.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
+import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
 
-public class ControlHistory implements ActionListener{
-	
+public class ControlHistory implements ActionListener, KeyListener {
+
 	private static ControlHistory controlHistory;
+	private JPanelCreateHistory jPanelCreateHistory;
 	private JPanelGroupHistory jPanelGroupHistory;
 	private JPanelComments jPanelComments;
 	private JPanelMedicine jPanelMedicine;
 	private JPanelConsult jPanelConsult;
-	
+
 	private ControlHistory() {
 	}
-	
+
 	public static ControlHistory getInstance() {
-		if(controlHistory == null)
+		if (controlHistory == null)
 			controlHistory = new ControlHistory();
 		return controlHistory;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch (HistoryCommands.valueOf(e.getActionCommand())) {
@@ -53,7 +57,7 @@ public class ControlHistory implements ActionListener{
 		case CMD_WD_EXAM_CLEAR_FIELDS:
 			jPanelConsult.clearFields();
 			break;
-			
+
 		default:
 			break;
 		}
@@ -74,5 +78,30 @@ public class ControlHistory implements ActionListener{
 	public void setjPanelConsult(JPanelConsult jPanelConsult) {
 		this.jPanelConsult = jPanelConsult;
 	}
-	
+
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		char c = e.getKeyChar();
+		
+		if (e.getComponent().equals(jPanelCreateHistory.getJtfPropietary())) {
+			if (c < '0' || c > '9')
+				e.consume();
+		}else if (e.getComponent().equals(jPanelCreateHistory.getJtfNamePet()) || e.getComponent().equals(jPanelCreateHistory.getJtfColorPet())) {
+			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
+				e.consume();
+		}
+	}
+
+	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {
+		this.jPanelCreateHistory = jPanelCreateHistory;
+	}
+
 }

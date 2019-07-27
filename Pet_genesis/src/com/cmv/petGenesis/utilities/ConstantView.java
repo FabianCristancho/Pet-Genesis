@@ -142,12 +142,6 @@ public class ConstantView {
 	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLINICA";
 	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLINICA";
 	
-	private JLabel lblCreationDate, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblCastrated, lblColor, lblWeight, lblBrands, lblPropietary;
-	private JDateChooser creationDate, birthDate;
-	private JTextField jtfPetName, jtfRace, jtfColor, jtfWeight, jtfBrands, jtfPropietary;
-	private JComboBox<String> comboSpecies;
-	private JCheckBox isCastrated;
-	
 	public final static String TITLE_WD_CREATE_HISTORY = "CREAR HISTORIA CLÍNICA";
 	public static final String TITLE_PANEL_PET = "DATOS DE PACIENTE";
 	public static final String LBL_TITLE_ID_HISTORY = "ID";
@@ -170,6 +164,8 @@ public class ConstantView {
 	public static final String TABBED_APPOINT_PET = "CITAS DE PACIENTE";
 	public static final String TABBED_MEDICINE_PET = "MEDICAMENTOS";
 	public static final String TABBED_COMMENTS_PET = "COMENTARIOS";
+	public static final String[] COMBO_SEARCH_CLIENT = {"Código de cliente", "Documento de Identidad"};
+	public static final String LBL_SEARCH_CLIENT_BY = "Buscar cliente por ";
 	
 	public static final String TITLE_COMMENTS = "COMENTARIOS ADICIONALES";
 	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.ITALIC, 20);
