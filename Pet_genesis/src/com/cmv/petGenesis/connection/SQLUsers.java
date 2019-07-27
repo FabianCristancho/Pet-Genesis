@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.User;
-import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class SQLUsers extends ConnectionMySQL {
@@ -63,6 +62,36 @@ public class SQLUsers extends ConnectionMySQL {
 			}
 		}
 	}
+	
+	public boolean userHasState(String parameter, String valueParam, String valueState) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+
+		String sql = "SELECT p.id_persona, u.id_usuario FROM personas AS p INNER JOIN usuarios AS u ON p.id_persona=u.id_persona WHERE " +parameter +" = '" +valueParam +"' AND estado_activacion = '" +valueState +"'";
+		
+		try {
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 
 	public boolean updateUser(User user) {
 		PreparedStatement ps = null;
@@ -92,12 +121,12 @@ public class SQLUsers extends ConnectionMySQL {
 			return false;
 		}
 	}
-	
+
 	public boolean changeStateUser(String parameter, String valueParameter, String newState) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 
-		String sql = "UPDATE personas SET estado_activacion=? WHERE " + parameter + " = '" + valueParameter + "'";
+		String sql = "UPDATE personas AS p INNER JOIN usuarios AS u ON p.id_persona=u.id_persona SET estado_activacion=? WHERE " + parameter + " = '" + valueParameter + "'";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, newState);
@@ -242,5 +271,47 @@ public class SQLUsers extends ConnectionMySQL {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public String[] loadTypesUser() {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		String[] typesUser = null;
+
+		String sql = "SELECT nombre_tipo_usuario FROM tipos_usuario ORDER BY (id_tipo_usuario)";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			int rows = countDataQuery("id_tipo_usuario", "tipos_usuario");
+			typesUser = new String[rows];
+
+			for (int i = 0; i < typesUser.length && rs.next(); i++) {
+				typesUser[i] = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return typesUser;
+	}
+
+	public int countDataQuery(String parameterCount, String table) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+
+		String sql = "SELECT count(" + parameterCount + ") FROM " + table;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 }

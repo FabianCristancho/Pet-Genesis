@@ -167,6 +167,8 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	public void itemStateChanged(ItemEvent e) {
 		if(e.getItem().equals(jPanelInactivUser.getInactivActiv())) {
 			this.jPanelInactivUser.changeStateButton(e.getStateChange());
+		}else if(e.getSource().equals(jpanelFindUser.getParameters())) {
+			this.jpanelFindUser.changeInputQuery();
 		}
 	}
 

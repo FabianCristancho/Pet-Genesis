@@ -22,9 +22,9 @@ import com.toedter.calendar.JDateChooser;
 
 public class JPanelFormDataPet extends JPanel{
 	
-	private CustomLabel lblTitlePanel, lblTitleId, lblValueID, lblCreationDate, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblCastrated, lblColor, lblWeight, lblBrands, lblPropietary;
-	private JDateChooser creationDate, birthDate;
-	private CustomTxtField jtfPetName, jtfRace, jtfColor, jtfWeight, jtfBrands, jtfPropietary;
+	private CustomLabel lblTitlePanel, lblTitleId, lblValueID, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblCastrated, lblColor, lblPropietary;
+	private JDateChooser birthDate;
+	private CustomTxtField jtfPetName, jtfRace, jtfColor, jtfPropietary;
 	protected static JComboBox<String> comboSpecies;
 	private JCheckBox isCastrated;
 	private ButtonGroup groupGender;
@@ -38,7 +38,6 @@ public class JPanelFormDataPet extends JPanel{
 //		this.lblTitlePanel = new CustomLabel(ConstantView.TITLE_PANEL_PET, ConstantView.FONT_TITLE_COMMENTS, null);
 		this.lblTitleId = new CustomLabel(ConstantView.LBL_TITLE_ID_HISTORY, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblValueID = new CustomLabel();
-		this.lblCreationDate = new CustomLabel(ConstantView.LBL_CREATION_DATE, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblPetName = new CustomLabel(ConstantView.LBL_NAME_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblSpecies = new CustomLabel(ConstantView.LBL_SPECIES_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblRace = new CustomLabel(ConstantView.LBL_RACE_PET, ConstantView.FONT_LABELS_LOGIN, null);
@@ -46,19 +45,14 @@ public class JPanelFormDataPet extends JPanel{
 		this.lblBirthDate = new CustomLabel(ConstantView.LBL_BDATE_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblCastrated = new CustomLabel(ConstantView.LBL_CASTRATED_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblColor = new CustomLabel(ConstantView.LBL_COLOR_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblWeight = new CustomLabel(ConstantView.LBL_WEIGHT_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblBrands = new CustomLabel(ConstantView.LBL_BRANDS_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.lblPropietary = new CustomLabel(ConstantView.LBL_PROPIETARY_PET, ConstantView.FONT_LABELS_LOGIN, null);
 		this.comboSpecies = new JComboBox<>(ConstantView.COMBO_SPECIES);
 		this.jRButtonMale = new JRadioButton(ConstantView.LBL_GENDER_MALE);
 		this.jRButtonFemale = new JRadioButton(ConstantView.LBL_GENDER_FEMALE);
-		this.creationDate = new JDateChooser();
 		this.birthDate = new JDateChooser();
 		this.jtfPetName = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
 		this.jtfRace = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
 		this.jtfColor = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
-		this.jtfWeight = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
-		this.jtfBrands = new CustomTxtField(34, ConstantView.FONT_FIELD_FORM);
 		this.jtfPropietary = new CustomTxtField(10, ConstantView.FONT_FIELD_FORM);
 		this.isCastrated = new JCheckBox(ConstantView.LBL_CASTRATED_PET);
 		this.groupGender = new ButtonGroup();
@@ -76,15 +70,6 @@ public class JPanelFormDataPet extends JPanel{
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		this.add(lblValueID, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 0, 2);
-		this.add(lblCreationDate, gbc);
-		
-		UtilityClass.organizeGridLayout(gbc, 1, 2);
-		this.creationDate.setPreferredSize(new Dimension(115, 35));
-		this.creationDate.setFont(ConstantView.FONT_FIELD_FORM);
-		this.creationDate.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		this.add(creationDate, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		this.add(lblPetName, gbc);
@@ -140,21 +125,6 @@ public class JPanelFormDataPet extends JPanel{
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 7);
 		this.add(jtfColor, gbc);
-		
-		gbc.insets.left = 30;
-		UtilityClass.organizeGridLayout(gbc, 2, 6);
-		this.add(lblWeight, gbc);
-		
-		gbc.insets.left = 10;
-		UtilityClass.organizeGridLayout(gbc, 3, 6);
-		this.add(jtfWeight, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 0, 8);
-		this.add(lblBrands, gbc);
-		
-		gbc.gridwidth = 4;
-		UtilityClass.organizeGridLayout(gbc, 1, 8);
-		this.add(jtfBrands, gbc);
 		
 		gbc.gridwidth = 1;
 		UtilityClass.organizeGridLayout(gbc, 0, 9);

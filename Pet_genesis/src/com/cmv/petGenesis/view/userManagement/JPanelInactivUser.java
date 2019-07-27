@@ -66,6 +66,7 @@ public class JPanelInactivUser extends JPanel {
 		this.jRButtonActive = new JRadioButton(ConstantView.RADIO_ACTIV_USER);
 		this.jRButtonInactive = new JRadioButton(ConstantView.RADIO_INACTIV_USER);
 		this.jScrollPane = new JScrollPane();
+
 		ControlUser.getInstance().setjPanelInactivUser(this);
 		init();
 	}
@@ -75,17 +76,17 @@ public class JPanelInactivUser extends JPanel {
 		initPanelStateTable();
 		loadTable("", "I");
 		this.setBackground(Color.CYAN);
-		
+
 		jScrollPane.setViewportView(jTable);
 		jScrollPane.setPreferredSize(new Dimension(1000, 400));
 		jScrollPane.getViewport().setBackground(Color.CYAN);
 		jScrollPane.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		
+
 		jtfInputQuery.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		panelTable.setOpaque(false);
 		panelTable.add(jPanelStateTable);
 		panelTable.add(jScrollPane);
-		
+
 		jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		jTable.setEnabled(false);
 		jTable.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -124,9 +125,9 @@ public class JPanelInactivUser extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 2, 1);
 		jRButtonActive.setFocusable(false);
+		jRButtonActive.setSelected(true);
 		jRButtonInactive.setFocusable(false);
-		jRButtonInactive.setSelected(true);
-		
+
 		bg.add(jRButtonActive);
 		bg.add(jRButtonInactive);
 		panelButtons.add(jRButtonActive);
@@ -142,7 +143,7 @@ public class JPanelInactivUser extends JPanel {
 		this.inactivActiv.setFocusable(false);
 		this.inactivActiv.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.inactivActiv.setBackground(Color.CYAN);
-		
+
 		UtilityClass.addCommandJButton(btnExecute, UserCommands.CMD_WD_INACTIV_EXECUTE.toString(),
 				ControlUser.getInstance());
 		this.btnExecute.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -198,9 +199,9 @@ public class JPanelInactivUser extends JPanel {
 	public void loadTable(String parameter, String state) {
 		SQLUsers sqlUsers = new SQLUsers();
 		this.model = new DefaultTableModel();
-		
+
 		jTable.setModel(model);
-		
+
 		model.addColumn("Codigo");
 		model.addColumn("Documento de identidad");
 		model.addColumn("Nombre");
@@ -212,7 +213,7 @@ public class JPanelInactivUser extends JPanel {
 		model.addColumn("Tipo de usuario");
 		model.addColumn("Usuario");
 		model.addColumn("Ultima Sesion");
-		
+
 		ArrayList<Object[]> table = sqlUsers.loadData(parameter, jtfInputQuery.getText(), "estado_activacion", state);
 		for (Object[] row : table) {
 			model.addRow(row);
@@ -224,16 +225,16 @@ public class JPanelInactivUser extends JPanel {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
 		case 0:
-			parameter = "id_persona";
+			parameter = "p.id_persona";
 			break;
 		case 1:
-			parameter = "documento_identidad";
+			parameter = "p.documento_identidad";
 			break;
 		case 2:
-			parameter = "nombre_usuario";
+			parameter = "u.nombre_usuario";
 			break;
 		default:
-			parameter = "id_persona";
+			parameter = "p.id_persona";
 			break;
 		}
 		loadTable(parameter, "I");
@@ -245,7 +246,7 @@ public class JPanelInactivUser extends JPanel {
 			if (jRButtonInactive.isSelected()) {
 				inactivUser(getParameter(), jtfInputQuery.getText(), jtfInputQuery.getText());
 				this.jtfInputQuery.setText("");
-			}else {
+			} else {
 				activUser(getParameter(), jtfInputQuery.getText(), jtfInputQuery.getText());
 				this.jtfInputQuery.setText("");
 			}
@@ -269,40 +270,51 @@ public class JPanelInactivUser extends JPanel {
 		String id = String.valueOf(jTable.getValueAt(row, 0));
 		String user = String.valueOf(jTable.getValueAt(row, 9));
 		if (inactivActiv.isSelected()) {
-			inactivUser("id_persona", id, user);
+			inactivUser("p.id_persona", id, user);
 			loadTable("", "A");
 		} else {
-			activUser("id_persona", id, user);
+			activUser("p.id_persona", id, user);
 			loadTable("", "I");
 		}
 	}
 
 	private void inactivUser(String parameter, String value, String user) {
 		SQLUsers sqlUsers = new SQLUsers();
-		int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de inactivar al usuario " + user + "?",
-				"INACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		if (option == 0) {
-			if (sqlUsers.changeStateUser(parameter, value, "I")) {
-				JOptionPane.showMessageDialog(null, "EL USUARIO FUE INACTIVADO CON ÉXITO", "USUARIO INACTIVADO",
-						JOptionPane.INFORMATION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "NO FUE POSIBLE INACTIVAR AL USUARIO", "USUARIO NO INACTIVO",
-						JOptionPane.ERROR_MESSAGE);
+		if (!sqlUsers.userHasState(parameter, value, "A")) {
+			JOptionPane.showMessageDialog(null,
+					"El usuario " + user + " no se encuentra activo\nAsegurese de que haya ingresado un valor válido");
+		} else {
+			int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de inactivar al usuario " + user + "?",
+					"INACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			if (option == 0) {
+				if (sqlUsers.changeStateUser(parameter, value, "I")) {
+					JOptionPane.showMessageDialog(null, "EL USUARIO FUE INACTIVADO CON ÉXITO", "USUARIO INACTIVADO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "NO FUE POSIBLE INACTIVAR AL USUARIO", "USUARIO NO INACTIVO",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
+
 	}
 
 	private void activUser(String parameter, String value, String user) {
 		SQLUsers sqlUsers = new SQLUsers();
-		int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de activar al usuario " + user + "?",
-				"ACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-		if (option == 0) {
-			if (sqlUsers.changeStateUser(parameter, value, "A")) {
-				JOptionPane.showMessageDialog(null, "EL USUARIO FUE ACTIVADO CON ÉXITO", "USUARIO ACTIVADO",
-						JOptionPane.INFORMATION_MESSAGE);
-			} else {
-				JOptionPane.showMessageDialog(null, "NO FUE POSIBLE ACTIVAR AL USUARIO", "USUARIO NO ACTIVO",
-						JOptionPane.ERROR_MESSAGE);
+		if (!sqlUsers.userHasState(parameter, value, "I")) {
+			JOptionPane.showMessageDialog(null,
+					"El usuario " + user + " no se encuentra inactivo\nAsegurese de que haya ingresado un valor válido");
+		} else {
+			int option = JOptionPane.showConfirmDialog(null, "¿Está seguro de activar al usuario " + user + "?",
+					"ACTIVAR USUARIO", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			if (option == 0) {
+				if (sqlUsers.changeStateUser(parameter, value, "A")) {
+					JOptionPane.showMessageDialog(null, "EL USUARIO FUE ACTIVADO CON ÉXITO", "USUARIO ACTIVADO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "NO FUE POSIBLE ACTIVAR AL USUARIO", "USUARIO NO ACTIVO",
+							JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		}
 	}

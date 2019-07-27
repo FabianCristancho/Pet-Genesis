@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.connection.SQLPeople;
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -73,7 +74,6 @@ public class JPanelFormUser extends JPanel {
 		this.jpfPasswordAgain = new JPasswordField(17);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
 		this.inactivRadioButton = new JRadioButton(ConstantView.LABEL_IS_INACTIVE_SIGNIN);
-		this.comboUserType = new JComboBox<>(ConstantView.VALUES_COMBO);
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.btnClearFields = new JButton(ConstantView.BUTTON_CLEAR_SIGNIN);
@@ -86,6 +86,9 @@ public class JPanelFormUser extends JPanel {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		SQLUsers sqlUsers = new SQLUsers();
+		this.comboUserType = new JComboBox<>(sqlUsers.loadTypesUser());
 		ControlUser.getInstance().setjPanelFormUser(this);
 		this.init();
 	}
