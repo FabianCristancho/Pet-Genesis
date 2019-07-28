@@ -5,7 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.cmv.petGenesis.model.ActivationState;
+import com.cmv.petGenesis.model.Client;
+import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Pet;
+import com.cmv.petGenesis.model.Race;
+import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
@@ -96,6 +101,40 @@ public class SQLPets extends ConnectionMySQL{
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public Pet getDataPet(int id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		Pet pet = null;
+
+
+		String sql = "SELECT m.id_persona, m.id_raza, m.nombre_mascota, m.genero_mascota, m.fecha_de_nacimiento, "
+				+ "m.color_mascota, m.castrada, m.estado_activacion, m.descripcion_adicional "
+				+ "FROM mascotas AS m INNER JOIN personas AS p ON m.id_persona = p.id_persona "
+				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza"
+				+ "WHERE id_mascota=" + id;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pet = new Pet();
+				pet.setNamePet(rs.getString(3));
+				pet.setGenderPet(GenderPet.values()[rs.getInt(4)]);
+				pet.setBirthDate(rs.getDate(5));
+				pet.setColorPet(rs.getString(6));
+				pet.setCastrated(rs.getBoolean(7));
+				pet.setStatePet(StatePet.getState(rs.getInt(8)));
+				pet.setAditionalDescription(rs.getString(9));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return pet;
+		}
+		return pet;
 	}
 
 }

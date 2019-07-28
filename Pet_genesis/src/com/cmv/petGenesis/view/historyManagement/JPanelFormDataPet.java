@@ -16,7 +16,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.connection.SQLPets;
+import com.cmv.petGenesis.controller.ControlClient;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -179,6 +181,8 @@ public class JPanelFormDataPet extends JPanel {
 		UtilityClass.organizeGridLayout(gbc, 3, 10);
 		this.btnFindPropietary.setFocusable(false);
 		this.btnFindPropietary.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.btnFindPropietary.setActionCommand(HistoryCommands.CMD_BTN_NEW_CLIENT.toString());
+		this.btnFindPropietary.addActionListener(ControlHistory.getInstance());
 		this.add(btnFindPropietary, gbc);
 		
 		gbc.insets.top = 10;
