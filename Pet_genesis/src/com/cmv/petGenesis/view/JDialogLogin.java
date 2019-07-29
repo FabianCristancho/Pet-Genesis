@@ -2,19 +2,13 @@ package com.cmv.petGenesis.view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.FlowLayout;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
-import javax.swing.plaf.metal.MetalToggleButtonUI;
 
-import com.cmv.petGenesis.utilities.ConstantView;
 
 public class JDialogLogin extends JDialog {
 	private static JDialogLogin enterJDialog;

@@ -57,7 +57,7 @@ public class ConstantsLogin {
 	//EnterJDialog
 	public static final String LOGIN_TEXT = "Iniciar sesion";
 	public static final String SINGIN_TEXT = "Registrarse";
-	public static final String TITLE_ENTER_DIALOG = "Ingreso Pokémon";
+	public static final String TITLE_ENTER_DIALOG = "CENTRO DE MEDICINA VETERINARIA - INICIO DE SESIÓN";
 	
 	
 	//Colorsk

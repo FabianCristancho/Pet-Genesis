@@ -48,12 +48,13 @@ public class JPanelWindowButtons extends JPanel {
 	 */
 	private void init() {
 		setComponents();
-		this.setLayout(new GridLayout(2, 2));
+		this.setOpaque(false);
+		this.setLayout(new GridLayout(2, 2, 10, 10));
 		this.setBounds(new Rectangle(100, 85, 400, 400));
+		this.add(buttonUsers);
+		this.add(buttonClients);
 		this.add(buttonHistory);
 		this.add(buttonReport);
-		this.add(buttonClients);
-		this.add(buttonUsers);
 		
 		if(privileges!=1) {
 			this.buttonUsers.setEnabled(false);
@@ -73,10 +74,10 @@ public class JPanelWindowButtons extends JPanel {
 		ActionListener al = ControlMainWindow.getInstance();
 		this.buttonHistory.setFocusable(false);
 		this.buttonHistory.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.buttonHistory.setBackground(new Color(61, 145, 137));
+//		this.buttonHistory.setBackground(Color.decode("#3899E8"));
 		UtilityClass.addCommandJButton(buttonHistory, MainWindowCommands.BUTTON_MNGM_HISTORY.toString(), al);
 		
-		this.buttonUsers.setBackground(new Color(61, 145, 137));
+//		this.buttonUsers.setBackground(Color.decode("#3899E8"));
 		this.buttonUsers.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.buttonUsers.setFocusable(false);
 		UtilityClass.addCommandJButton(buttonUsers, MainWindowCommands.BUTTON_MNGM_USER.toString(), al);
