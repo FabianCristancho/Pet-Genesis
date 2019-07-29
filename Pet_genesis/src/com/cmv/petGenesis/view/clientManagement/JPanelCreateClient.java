@@ -124,14 +124,6 @@ public class JPanelCreateClient extends JPanel {
 		return jPanelFormClient.jtfDoc;
 	}
 
-	public void showUserName() {
-//		if (!isFieldIsEmpty(jPanelFormClient.jtfName) && !isFieldIsEmpty(jPanelFormClient.jtfLastName)) {
-//			jPanelFormClient.jtfClientName.setText(LoginManage.getInstance().useName(jPanelFormClient.jtfName.getText(),
-//					jPanelFormClient.jtfLastName.getText()));
-//		}
-	}
-
-
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length() == 0;
 	}
@@ -185,6 +177,14 @@ public class JPanelCreateClient extends JPanel {
 						"DOCUMENTO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
+	}
+	
+	/**
+	 * Obtiene el panel
+	 * @return jPanelFormClient panel
+	 */
+	public JPanelFormClient getjPanelFormClient() {
+		return jPanelFormClient;
 	}
 	
 }

@@ -10,6 +10,7 @@ import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Race;
+import com.cmv.petGenesis.model.Specie;
 import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.UtilityClass;
@@ -103,18 +104,20 @@ public class SQLPets extends ConnectionMySQL{
 		return 0;
 	}
 	
-	public Pet getDataPet(int id) {
+	public Pet getDataPet(String id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
 		Pet pet = null;
-
+		SQLPeople sqlClient = new SQLPeople();
 
 		String sql = "SELECT m.id_persona, m.id_raza, m.nombre_mascota, m.genero_mascota, m.fecha_de_nacimiento, "
-				+ "m.color_mascota, m.castrada, m.estado_activacion, m.descripcion_adicional "
+				+ "m.color_mascota, m.castrada, m.estado_de_activacion, m.descripcion_adicional, m.id_mascota, "
+				+ "r.id_especie, r.nombre_raza, e.nombre_especie "
 				+ "FROM mascotas AS m INNER JOIN personas AS p ON m.id_persona = p.id_persona "
-				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza"
-				+ "WHERE id_mascota=" + id;
+				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza "
+				+ "INNER JOIN especies AS e ON r.id_especie = e.id_especie "
+				+ "WHERE m.id_mascota = " + id;
 
 		try {
 			ps = con.prepareStatement(sql);
@@ -123,12 +126,15 @@ public class SQLPets extends ConnectionMySQL{
 			if (rs.next()) {
 				pet = new Pet();
 				pet.setNamePet(rs.getString(3));
-				pet.setGenderPet(GenderPet.values()[rs.getInt(4)]);
+				pet.setGenderPet(GenderPet.getGender(rs.getString(4).equals("M")));
 				pet.setBirthDate(rs.getDate(5));
 				pet.setColorPet(rs.getString(6));
 				pet.setCastrated(rs.getBoolean(7));
-				pet.setStatePet(StatePet.getState(rs.getInt(8)));
+				pet.setStatePet(StatePet.getState(rs.getString(8).charAt(0)));
 				pet.setAditionalDescription(rs.getString(9));
+				pet.setSpecie(new Specie(rs.getInt(11), rs.getString(12)));
+				pet.setRace(new Race(rs.getInt(2), rs.getString(13)));
+				pet.setClient(sqlClient.getDataClient("id_persona","" + rs.getInt(1)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

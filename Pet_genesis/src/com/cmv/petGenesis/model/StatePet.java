@@ -42,5 +42,20 @@ public enum StatePet {
 			return StatePet.ACTIV;
 		}
 	}
+	
+	public static StatePet getState(char state) {
+		switch (state) {
+		case 'A':
+			return StatePet.ACTIV;
+		case 'I':
+			return StatePet.INACTIV;
+		case 'S':
+			return StatePet.STORE;
+		case 'B':
+			return StatePet.BLOCKED;
+		default:
+			return StatePet.ACTIV;
+		}
+	}
 
 }

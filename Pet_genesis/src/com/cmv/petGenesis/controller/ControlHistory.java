@@ -71,6 +71,12 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_BTN_NEW_CLIENT:
 			jDialogNewClient = new JDialogNewClient();
 			break;
+		case CMD_BTN_SEARCH_CLIENT:
+			jPanelUpdateHistory.getDataQuery();
+			break;
+		case CMD_BTN_KEEP_HISTORY:
+			
+			break;
 		default:
 			break;
 		}

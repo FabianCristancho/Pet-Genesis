@@ -11,13 +11,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.connection.SQLPeople;
+import com.cmv.petGenesis.connection.SQLPets;
 import com.cmv.petGenesis.controller.ControlHistory;
-import com.cmv.petGenesis.controller.ControlUser;
+import com.cmv.petGenesis.model.Client;
+import com.cmv.petGenesis.model.GenderPet;
+import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
@@ -91,6 +96,8 @@ public class JPanelUpdateHistory extends JPanel{
 		this.jPanelUp.add(jtfInputId, gbc);
 
 		gbc.gridx = 3;
+		UtilityClass.addCommandJButton(btnSearchUser, HistoryCommands.CMD_BTN_SEARCH_CLIENT.toString(),
+				ControlHistory.getInstance());
 		this.btnSearchUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.jPanelUp.add(btnSearchUser, gbc);
 	}
@@ -115,6 +122,8 @@ public class JPanelUpdateHistory extends JPanel{
 
 		gbc.gridx = 7;
 		gbc.insets.bottom = 10;
+		UtilityClass.addCommandJButton(btnUpdateUser, HistoryCommands.CMD_BTN_KEEP_HISTORY.toString(),
+				ControlHistory.getInstance());
 		this.btnUpdateUser.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
 		this.btnUpdateUser.setForeground(Color.WHITE);
 		this.btnUpdateUser.setFocusable(false);
@@ -142,29 +151,28 @@ public class JPanelUpdateHistory extends JPanel{
 	}
 
 	public void getDataQuery() {
+		SQLPets sqlPets = new SQLPets();
+		Pet pet = sqlPets.getDataPet(jtfInputId.getText());
+
+		if (pet != null) {
+			jpanelCenter.jPanelFormDataPet.isCastrated.setSelected(pet.isCastrated());
+			jpanelCenter.jPanelFormDataPet.jtfPetName.setText(pet.getNamePet()); 
+			jpanelCenter.jPanelFormDataPet.jtfColor.setText(pet.getColorPet());
+			jpanelCenter.jPanelFormDataPet.birthDate.setDate(pet.getBirthDate());
+			if (pet.getGenderPet().equals(GenderPet.MALE)) {
+				jpanelCenter.jPanelFormDataPet.jRButtonMale.setSelected(true);
+			} else {
+				jpanelCenter.jPanelFormDataPet.jRButtonFemale.setSelected(true);
+			}
+			jpanelCenter.jPanelFormDataPet.comboStateHistory.setSelectedIndex(pet.getStatePet().getIdState());
+			jpanelCenter.jPanelFormDataPet.jtfPropietary.setText("" +pet.getClient().getIdPerson());
+		} else {
+			JOptionPane.showMessageDialog(null, "NO EXISTE LA MASCOTA CONSULTADA");
+		}
 	}
 
 	public void saveDataSignIn(Usuario mod) {
-	}
-
-	private int getRole(String role) {
-		switch (role) {
-		case "Gerente General":
-			return 0;
-		case "Médico":
-			return 1;
-		case "Asistente":
-			return 2;
-		case "Auxiliar":
-			return 3;
-		}
-		return 0;
-	}
-
-	private boolean isActive(String state) {
-		if (state.equals("Activo"))
-			return true;
-		return false;
+		
 	}
 
 	public void changeRaces() {

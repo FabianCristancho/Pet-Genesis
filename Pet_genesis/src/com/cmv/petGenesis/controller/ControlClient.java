@@ -109,18 +109,31 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char c = e.getKeyChar();
-		if ((e.getComponent().equals(jPanelCreateClient.getJtfName())
-				|| e.getComponent().equals(jPanelCreateClient.getJtfLastName()))
-				|| (e.getComponent().equals(jpanelUpdateClient.getJtfName())
-						|| e.getComponent().equals(jpanelUpdateClient.getJtfLastName()))) {
-			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
-				e.consume();
-		} else if (e.getComponent().equals(jPanelCreateClient.getJtfPhone())
-				|| e.getComponent().equals(jpanelUpdateClient.getJtfPhone())
-				|| e.getComponent().equals(jPanelCreateClient.getJtfDoc())) {
-			if (c < '0' || c > '9')
-				e.consume();
+		if (jpanelUpdateClient != null) {
+			if ((e.getComponent().equals(jPanelCreateClient.getJtfName())
+					|| e.getComponent().equals(jPanelCreateClient.getJtfLastName()))
+					|| (e.getComponent().equals(jpanelUpdateClient.getJtfName())
+							|| e.getComponent().equals(jpanelUpdateClient.getJtfLastName()))) {
+				if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
+					e.consume();
+			} else if (e.getComponent().equals(jPanelCreateClient.getJtfPhone())
+					|| e.getComponent().equals(jpanelUpdateClient.getJtfPhone())
+					|| e.getComponent().equals(jPanelCreateClient.getJtfDoc())) {
+				if (c < '0' || c > '9')
+					e.consume();
+			}
+		} else {
+			if ((e.getComponent().equals(jPanelCreateClient.getJtfName())
+					|| e.getComponent().equals(jPanelCreateClient.getJtfLastName()))) {
+				if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
+					e.consume();
+			} else if (e.getComponent().equals(jPanelCreateClient.getJtfPhone())
+					|| e.getComponent().equals(jPanelCreateClient.getJtfDoc())) {
+				if (c < '0' || c > '9')
+					e.consume();
+			}
 		}
+
 	}
 
 	@Override

@@ -193,7 +193,7 @@ public class ConstantView {
 	public static final Font FONT_LABELS_FORM_MEDICINE = new Font("Open Sans", Font.BOLD, 13);
 	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICAS";
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
-
+	
 	//APPOINTMENT MANAGEMENT
 	public static final String LABEL_ID_AP = "ID CONSULTA";
 	public static final String LABEL_DATE_AP = "FECHA CONSULTA";
