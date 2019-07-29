@@ -45,7 +45,7 @@ public class JPanelMainWindow extends JPanel {
 	private void init() {
 		setComponents();
 		this.setLayout(null);
-		this.setBackground(new Color(183, 223, 196));
+		this.setBackground(Color.decode("#68C0EC"));
 		this.add(mainTitle);
 		this.add(jWindowButtons);
 		this.add(buttonSettings);
@@ -57,7 +57,7 @@ public class JPanelMainWindow extends JPanel {
 	 * Da propiedades a los componentes que va a tener la ventana principal
 	 */
 	private void setComponents() {
-		this.mainTitle.setForeground(new Color(29, 69, 65));
+		this.mainTitle.setForeground(Color.WHITE);
 		this.mainTitle.setFont(new Font("Elephant", Font.BOLD, 26));
 		this.mainTitle.setBounds(50, 20, 500, 20);
 		this.nameUser.setBounds(50, 44, 100, 40);

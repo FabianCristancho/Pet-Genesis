@@ -186,5 +186,11 @@ public class JPanelCreateClient extends JPanel {
 			}
 		}
 	}
+
+	public JPanelFormClient getjPanelFormClient() {
+		return jPanelFormClient;
+	}
+	
+	
 	
 }
