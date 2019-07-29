@@ -183,14 +183,4 @@ public class JPanelCreateClient extends JPanel {
 		return jPanelFormClient;
 	}
 	
-	
-	
-	/**
-	 * Obtiene el panel
-	 * @return jPanelFormClient panel
-	 */
-	public JPanelFormClient getjPanelFormClient() {
-		return jPanelFormClient;
-	}
-	
 }

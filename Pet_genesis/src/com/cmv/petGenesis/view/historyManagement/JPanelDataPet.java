@@ -12,7 +12,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class JPanelDataPet extends JPanel {
 
-	private JPanelFormDataPet jPanelFormDataPet;
+	protected JPanelFormDataPet jPanelFormDataPet;
 	private JPanelComments jPanelComments;
 
 	public JPanelDataPet() {
