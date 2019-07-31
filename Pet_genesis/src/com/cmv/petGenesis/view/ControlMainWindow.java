@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.cmv.petGenesis.ReportManagement.JFrameReport;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.view.clientManagement.JFrameClient;
 import com.cmv.petGenesis.view.historyManagement.JFrameHistory;
 import com.cmv.petGenesis.view.userManagement.JFrameUser;
@@ -55,7 +56,7 @@ public class ControlMainWindow implements ActionListener{
 	
 	private void openHistoryManagementWindow() {
 //		this.jFrameMainWindow.dispose();
-		new JFrameHistory();
+		new JFrameHistory(this.jFrameMainWindow.getUser());
 	}
 	
 	private void openUserReporttWindow() {

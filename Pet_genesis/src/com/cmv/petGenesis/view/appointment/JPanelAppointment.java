@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+import com.cmv.petGenesis.connection.SQLConsult;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.UtilityClass;
@@ -30,7 +31,7 @@ public class JPanelAppointment extends JPanel{
 	public JPanelAppointment() {
 		super(new GridBagLayout());
 		lblIdA = new CustomLabel(ConstantView.LABEL_ID_AP, ConstantView.FONT_LABELS_LOGIN, null);
-		lblResultId = new CustomLabel();
+		lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
 		lblDate = new CustomLabel(ConstantView.LABEL_DATE_AP, ConstantView.FONT_LABELS_LOGIN, null);
 		lblMotive = new CustomLabel(ConstantView.LABEL_MOT_AP, ConstantView.FONT_LABELS_LOGIN, null);
 		jtaMotive = new JTextArea();
@@ -77,6 +78,15 @@ public class JPanelAppointment extends JPanel{
 		jScrollPane.setPreferredSize(new Dimension(300, 80));
 		jScrollPane.setViewportView(jtaMotive);
 		this.add(jScrollPane, gbc);
+	}
+	
+	public void createAutomaticId() {
+		SQLConsult sqlConsult = new SQLConsult();
+		this.lblResultId.setText("" +(sqlConsult.getLastIdConsult()+1));
+	}
+
+	public JTextArea getJtaMotive() {
+		return jtaMotive;
 	}
 	
 }

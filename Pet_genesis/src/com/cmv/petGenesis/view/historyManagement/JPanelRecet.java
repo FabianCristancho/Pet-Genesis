@@ -8,10 +8,15 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.connection.SQLMedicament;
 import com.cmv.petGenesis.controller.ControlHistory;
+import com.cmv.petGenesis.model.Medicament;
+import com.cmv.petGenesis.model.TypeMedicament;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
@@ -24,18 +29,19 @@ import com.cmv.petGenesis.utilities.UtilityClass;
  * @author Fabian Cristancho
  *
  */
-public class JPanelMedicine extends JPanel {
+public class JPanelRecet extends JPanel {
 
 	private CustomLabel lblSelectMedic, lblCreateMedic, lblTypeMedic, lblDosis, lblFrecuency;
 	private JPanel jPanelSelectMedic, jPanelRegisterMedic, jPanelAux, jPanelMedic;
-	private JComboBox<String> comboNameVaccine, comboTypeMedic;
+	private JComboBox<String> comboMedicaments, comboTypeMedic;
 	private CustomTxtField jtfDosis, jtfFrecuency, jtfNameMedic;
-	private JButton btnSaveAntiparasitary;
+	private JButton btnSaveMedicament;
+	private SQLMedicament sqlMedicament;
 
 	/**
 	 * Constructor
 	 */
-	public JPanelMedicine() {
+	public JPanelRecet() {
 		super(new BorderLayout());
 		this.lblSelectMedic = new CustomLabel(ConstantView.NAME_VACCINE_MEDICINE,
 				ConstantView.FONT_LABELS_FORM_MEDICINE, null);
@@ -45,7 +51,7 @@ public class JPanelMedicine extends JPanel {
 		this.lblDosis = new CustomLabel(ConstantView.ADD_DOSIS, ConstantView.FONT_LABELS_FORM_MEDICINE, null);
 		this.lblFrecuency = new CustomLabel(ConstantView.ADD_FRECUENCY, ConstantView.FONT_LABELS_FORM_MEDICINE, null);
 
-		this.btnSaveAntiparasitary = new JButton(ConstantView.BTN_SAVE_MEDIC);
+		this.btnSaveMedicament = new JButton(ConstantView.BTN_SAVE_MEDIC);
 
 		this.jPanelSelectMedic = new JPanel(new GridBagLayout());
 		this.jPanelRegisterMedic = new JPanel(new GridBagLayout());
@@ -58,14 +64,13 @@ public class JPanelMedicine extends JPanel {
 		this.jtfFrecuency = new CustomTxtField(15, ConstantView.FONT_FIELD_FORM, JTextField.LEFT);
 		this.jtfNameMedic = new CustomTxtField(15, ConstantView.FONT_FIELD_FORM, JTextField.LEFT);
 
-		ControlHistory.getInstance().setjPanelMedicine(this);
+		this.sqlMedicament = new SQLMedicament();
 
-		String[] typeMedic = { "a", "b", "c", "d" };
-		this.comboTypeMedic = new JComboBox<>(typeMedic);
-
-		String[] vac = { "1", "2", "3" };
-		this.comboNameVaccine = new JComboBox<>(vac);
+		loadComboTypeMedicament();
+		loadComboMedicaments();
+		
 		init();
+		ControlHistory.getInstance().setjPanelMedicine(this);
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class JPanelMedicine extends JPanel {
 		this.jPanelSelectMedic.add(lblSelectMedic, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
-		this.jPanelSelectMedic.add(comboNameVaccine, gbc);
+		this.jPanelSelectMedic.add(comboMedicaments, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 2, 0);
 		this.jPanelSelectMedic.add(lblDosis, gbc);
@@ -129,10 +134,34 @@ public class JPanelMedicine extends JPanel {
 		this.jPanelRegisterMedic.add(comboTypeMedic, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
-		this.jPanelRegisterMedic.add(btnSaveAntiparasitary, gbc);
+		UtilityClass.addCommandJButton(btnSaveMedicament, HistoryCommands.CMD_WD_RECET_ADD_MEDIC.toString(), ControlHistory.getInstance());
+		this.jPanelRegisterMedic.add(btnSaveMedicament, gbc);
 
 		jPanelMedic.add(jPanelRegisterMedic, BorderLayout.CENTER);
 		jPanelAux.setBorder(BorderFactory.createEmptyBorder(60, 0, 60, 0));
 		jPanelMedic.add(jPanelAux, BorderLayout.SOUTH);
+	}
+	
+	private void loadComboTypeMedicament() {
+		this.comboTypeMedic = new JComboBox<>(sqlMedicament.getTypeMedicaments());
+	}
+	
+	private void loadComboMedicaments() {
+		this.comboMedicaments = new JComboBox<>(sqlMedicament.getMedicaments());
+	}
+	
+	public void addMedicament(Medicament medicament) {
+		sqlMedicament = new SQLMedicament();
+		medicament.setNameMedicament(jtfNameMedic.getText());
+		medicament.setTypeMedicament(new TypeMedicament(comboTypeMedic.getSelectedIndex()+1));
+		
+		if(sqlMedicament.createMedicament(medicament)) {
+			JOptionPane.showMessageDialog(null, "El medicamento fue agregado con éxito");
+			comboTypeMedic.setSelectedIndex(0);
+			this.comboMedicaments.addItem(jtfNameMedic.getText());
+			jtfNameMedic.setText("");
+		}else {
+			JOptionPane.showMessageDialog(null, "No fue posible agregar el medicamento", "MEDICAMENTO SIN REGISTRAR", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

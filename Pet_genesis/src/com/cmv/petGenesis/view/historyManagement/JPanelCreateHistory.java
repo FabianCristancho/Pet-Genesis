@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,10 +24,13 @@ import com.cmv.petGenesis.connection.SQLPets;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Client;
+import com.cmv.petGenesis.model.Consult;
 import com.cmv.petGenesis.model.GenderPet;
+import com.cmv.petGenesis.model.Person;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Race;
 import com.cmv.petGenesis.model.StatePet;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
@@ -37,23 +42,25 @@ public class JPanelCreateHistory extends JPanel {
 	private JButton okButton;
 	private JButton returnButton;
 	private JPanel panelButtons;
-	private JPanelMedicine jPanelRecet;
+	private JPanelRecet jPanelRecet;
 	private JPanelDataPet jPanelDataPet;
 	private JPanelConsult jPanelConsult;
 	private JTabbedPane modules;
+	private User user;
 
 	/**
 	 * Constructor que inicaliza los componetes del panel de registro
 	 */
-	public JPanelCreateHistory() {
+	public JPanelCreateHistory(User user) {
 		super(new BorderLayout());
 		this.title = new CustomLabel(ConstantView.TITLE_WD_CREATE_HISTORY, null, Color.decode("#2E5569"));
 		this.okButton = new JButton(ConstantView.BUTTON_REGISTER_HISTORY);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
-		this.jPanelRecet = new JPanelMedicine();
+		this.jPanelRecet = new JPanelRecet();
 		this.modules = new JTabbedPane();
 		this.jPanelDataPet = new JPanelDataPet();
 		this.jPanelConsult = new JPanelConsult();
+		this.user = user;
 		ControlHistory.getInstance().setjPanelCreateHistory(this);
 		this.init();
 	}
@@ -181,6 +188,15 @@ public class JPanelCreateHistory extends JPanel {
 				}
 			}
 		}
+	}
+	
+	public void saveConsult(Consult consult) {
+		consult.setPet(new Pet(Integer.parseInt(jPanelDataPet.jPanelFormDataPet.lblResultId.getText())));
+		consult.setPerson(new Person(user.getIdPerson()));
+		consult.setMotiveConsult(jPanelConsult.jPanelAppointment.getJtaMotive().getText());
+		
+		Date date = new Date();
+		consult.setDateConsult(date);
 	}
 
 	/**

@@ -18,6 +18,10 @@ public class Pet {
 
 	public Pet() {
 	}
+	
+	public Pet(int id) {
+		this.id = id;
+	}
 
 	public Pet(int id, String namePet, Date birthDate, Specie specie, Race race, GenderPet genderPet,
 			boolean isCastrated, String colorPet, String aditionalDescription) {

@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 import com.cmv.petGenesis.controller.ControlHistory;
+import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.ConstantView;
 
 public class JPanelGroupHistory extends JPanel{
@@ -15,10 +16,10 @@ public class JPanelGroupHistory extends JPanel{
 	private JPanelFindHistory jFindHistory;
 	private JPanelStateHistory jChangeStateHistory;
 	
-	public JPanelGroupHistory() {
+	public JPanelGroupHistory(User user) {
 		super();
 		cardLayout = new CardLayout();
-		jCreateHistory = new JPanelCreateHistory();
+		jCreateHistory = new JPanelCreateHistory(user);
 		jUpdateHistory = new JPanelUpdateHistory();
 		jFindHistory = new JPanelFindHistory();
 		jChangeStateHistory = new JPanelStateHistory();

@@ -7,7 +7,7 @@ import com.cmv.petGenesis.view.appointment.JPanelAppointment;
 import com.cmv.petGenesis.view.appointment.JPanelECOP;
 import com.cmv.petGenesis.view.appointment.JPanelExam;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
-import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
+import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
 
 public class TestJPanelExam {
 	public static void main(String[] args) {

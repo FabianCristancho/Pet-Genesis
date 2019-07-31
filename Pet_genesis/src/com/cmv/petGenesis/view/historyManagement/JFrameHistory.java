@@ -4,15 +4,17 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 
+import com.cmv.petGenesis.model.User;
+
 public class JFrameHistory extends JFrame{
 	
 	private JPanelGroupHistory jpanelGroupHistory;
 	private JPanelOptionHistory jPanelOptionHistory;
 	
-	public JFrameHistory() {
+	public JFrameHistory(User user) {
 		super();
 		this.jPanelOptionHistory = new JPanelOptionHistory();
-		this.jpanelGroupHistory = new JPanelGroupHistory();
+		this.jpanelGroupHistory = new JPanelGroupHistory(user);
 		init();
 	}
 

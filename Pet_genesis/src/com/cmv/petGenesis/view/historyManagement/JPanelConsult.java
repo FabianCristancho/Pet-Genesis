@@ -17,7 +17,7 @@ import com.cmv.petGenesis.view.appointment.JPanelExam;
 
 public class JPanelConsult extends JPanel{
 	
-	private JPanelAppointment jPanelAppointment;
+	protected JPanelAppointment jPanelAppointment;
 	private JPanelExam jPanelExam;
 	private JScrollPane jScrollPane;
 	private JPanel jPanelRound, jPanelBtn;
@@ -37,6 +37,7 @@ public class JPanelConsult extends JPanel{
 
 	private void init() {
 		this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		this.jPanelAppointment.createAutomaticId();
 		this.add(jPanelAppointment, BorderLayout.NORTH);
 		this.jPanelRound.setBorder(BorderFactory.createEmptyBorder(0, 10, 20, 10));
 		this.jPanelRound.add(jPanelExam, BorderLayout.CENTER);

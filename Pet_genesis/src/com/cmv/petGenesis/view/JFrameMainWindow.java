@@ -10,11 +10,12 @@ import com.cmv.petGenesis.model.Usuario;
 public class JFrameMainWindow extends JFrame{
 	
 	private JPanelMainWindow jPanelMainWindow;
-	
+	private User user;
 	
 	public JFrameMainWindow(User user) {
 		super();
 		this.jPanelMainWindow = new JPanelMainWindow(user);
+		this.user = user;
 		ControlMainWindow.getInstance().setjFrameMainWindow(this);
 		init();
 	}
@@ -25,5 +26,9 @@ public class JFrameMainWindow extends JFrame{
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.add(jPanelMainWindow);
 		this.setVisible(true);
+	}
+
+	public User getUser() {
+		return user;
 	}
 }

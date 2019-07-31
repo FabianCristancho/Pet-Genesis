@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.model.Medicament;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.view.clientManagement.JDialogNewClient;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
@@ -15,7 +16,7 @@ import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFormDataPet;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
-import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
+import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
 import com.cmv.petGenesis.view.historyManagement.JPanelUpdateHistory;
 
 public class ControlHistory implements ActionListener, KeyListener, ItemListener {
@@ -25,7 +26,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelUpdateHistory jPanelUpdateHistory;
 	private JPanelGroupHistory jPanelGroupHistory;
 	private JPanelComments jPanelComments;
-	private JPanelMedicine jPanelMedicine;
+	private JPanelRecet jPanelMedicine;
 	private JPanelConsult jPanelConsult;
 	private JDialogNewClient jDialogNewClient;
 
@@ -71,6 +72,10 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_BTN_KEEP_HISTORY:
 			
 			break;
+		case CMD_WD_RECET_ADD_MEDIC:
+			jPanelMedicine.addMedicament(new Medicament());
+			break;
+			
 		default:
 			break;
 		}
@@ -84,7 +89,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		this.jPanelComments = jPanelComments;
 	}
 
-	public void setjPanelMedicine(JPanelMedicine jPanelMedicine) {
+	public void setjPanelMedicine(JPanelRecet jPanelMedicine) {
 		this.jPanelMedicine = jPanelMedicine;
 	}
 

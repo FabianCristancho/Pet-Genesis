@@ -37,6 +37,19 @@ public class Person {
 		this.typePerson = typePerson;
 	}
 
+	public Person(Person p) {
+		this.idPerson = p.getIdPerson();
+		this.typeUser = p.getTypeUser();
+		this.name = p.getName();
+		this.lastName = p.getLastName();
+		this.telephone = p.getTelephone();
+		this.activationState = p.getActivationState();
+		this.personalIdentification = p.getPersonalIdentification();
+		this.email = p.getEmail();
+		this.address = p.getAddress();
+		this.typePerson = p.getTypePerson();
+	}
+
 	public int getIdPerson() {
 		return idPerson;
 	}

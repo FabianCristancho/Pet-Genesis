@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.cmv.petGenesis.view.historyManagement.JPanelMedicine;
+import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
 
 public class TestWindowCreateDataBase {
 	public static void main(String[] args) {

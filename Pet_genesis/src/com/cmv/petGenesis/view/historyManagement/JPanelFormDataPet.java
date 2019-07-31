@@ -28,7 +28,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class JPanelFormDataPet extends JPanel {
 
-	private CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
+	protected CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
 			lblPropietary, lblSearchBy, lblStateHistory, lblObligate;
 	protected JDateChooser birthDate;
 	protected CustomTxtField jtfPetName, jtfColor, jtfPropietary;

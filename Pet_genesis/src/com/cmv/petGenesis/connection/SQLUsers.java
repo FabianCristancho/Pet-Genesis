@@ -245,7 +245,6 @@ public class SQLUsers extends ConnectionMySQL {
 					ps.setString(1, user.getLastSession());
 					ps.setInt(2, rs.getInt(1));
 					ps.execute();
-
 					user.setIdPerson(rs.getInt(1));
 					user.setName(rs.getString(4));
 					user.setLastName(rs.getString(5));
