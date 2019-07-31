@@ -178,19 +178,20 @@ public class ConstantView {
 	public static final Font FONT_AREA_COMMENTS = new Font("Open Sans", Font.ROMAN_BASELINE, 15);
 	
 	public static final String TITLE_MEDICINE = "MEDICAMENTOS";
-	public static final String PANEL_VACCINES_MEDICINE = "REGISTRO DE VACUNA";
-	public static final String PANEL_ANTIPARASITARY_MEDICINE = "REGISTRO DE ANTIPARASITARIO";
-	public static final String NAME_VACCINE_MEDICINE = "NOMBRE DE VACUNA";
+	public static final String PANEL_VACCINES_MEDICINE = "REGISTRAR RECETA";
+	public static final String PANEL_ANTIPARASITARY_MEDICINE = "¿NO ENCUENTRA EL MEDICAMENTO? REGISTRELO";
+	public static final String NAME_VACCINE_MEDICINE = "SELECCIONE EL MEDICAMENTO";
 	public static final String DATE_APP_VACCINE_MEDICINE = "FECHA DE APLICACIÓN";
-	public static final String ADD_COMMENTS_MEDICINE = "COMENTARIOS ADICIONALES";
-	public static final String TYPE_ANTIPARASITARY_MEDICINE = "TIPO DE ANTIPARASITARIO";
-	public static final String NAME_ANTIPARASITARY_MEDICINE = "NOMBRE ANTIPARASITARIO";
+	public static final String ADD_DOSIS = "DOSIS";
+	public static final String ADD_FRECUENCY = "FRECUENCIA";
+	public static final String LBL_NAME_MEDIC = "NOMBRE DE MEDICAMENTO";
+	public static final String TYPE_MEDIC = "TIPO DE MEDICAMENTO";
 	public static final String DATE_APP_ANTIPARASITARY_MEDICINE= "FECHA DE APLICACIÓN";
 	public static final String[] LIST_VACCINE_CAN = {"TRIPLE M-H-L", "PARVOVIROSIS", "CORONAVIROSIS", "KENEKCOUGH", "RABIA"};
 	public static final String[] LIST_VACCINE_FELINE = {"LEUCEMIA FELINA", "RIN CAL PANL", "RABIA"};
 	public static final String[] TYPES_ANTIPARASITARY = {"INTERNO", "EXTERNO"};
 	public static final String BTN_SAVE_VACCINE = "GUARDAR REGISTRO DE VACUNA";
-	public static final String BTN_SAVE_ANTIPARASITARY = "GUARDAR REGISTRO DE ANTIPARASITARIO";
+	public static final String BTN_SAVE_MEDIC = "REGISTRAR MEDICAMENTO";
 	public static final Font FONT_LABELS_FORM_MEDICINE = new Font("Open Sans", Font.BOLD, 13);
 	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICA";
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
@@ -221,6 +222,7 @@ public class ConstantView {
 	public static final String LBL_EXAM_GEN = "GENITALES";
 	public static final String LBL_EXAM_EXT = "EXTREMIDADES";
 	public static final String LBL_EXAM_SNC = "SISTEMA NERVIOSO CENTRAL";
+	public static final String LBL_EXAM_DIAGNOSTIC = "DIAGNÓSTICO DE CONSULTA";
 	public static final String JRB_EXAM_APGOOD = "Bueno";
 	public static final String JRB_EXAM_APREG = "Regular";
 	public static final String JRB_EXAM_NULL = "Nulo";

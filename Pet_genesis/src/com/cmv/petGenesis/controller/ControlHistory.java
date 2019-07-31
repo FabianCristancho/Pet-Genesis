@@ -56,12 +56,6 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_WD_COMMENTS_CLEAR_COM:
 			jPanelComments.clearComments();
 			break;
-		case CMD_WD_MEDICINE_CLEAR_VAC:
-			jPanelMedicine.clearCommentsVaccine();
-			break;
-		case CMD_WD_MEDICINE_CLEAR_ANTI:
-			jPanelMedicine.clearCommentsAnti();
-			break;
 		case CMD_WD_EXAM_CLEAR_FIELDS:
 			jPanelConsult.clearFields();
 			break;

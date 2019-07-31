@@ -37,9 +37,8 @@ public class JPanelCreateHistory extends JPanel {
 	private JButton okButton;
 	private JButton returnButton;
 	private JPanel panelButtons;
-//	private JPanelMedicine jPanelMedicine;
+	private JPanelMedicine jPanelRecet;
 	private JPanelDataPet jPanelDataPet;
-	private JPanelComments jPanelComments;
 	private JPanelConsult jPanelConsult;
 	private JTabbedPane modules;
 
@@ -51,9 +50,7 @@ public class JPanelCreateHistory extends JPanel {
 		this.title = new CustomLabel(ConstantView.TITLE_WD_CREATE_HISTORY, null, Color.decode("#2E5569"));
 		this.okButton = new JButton(ConstantView.BUTTON_REGISTER_HISTORY);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
-//		this.jPanelFormDataPet = new JPanelFormDataPet();
-//		this.jPanelMedicine = new JPanelMedicine();
-		this.jPanelComments = new JPanelComments();
+		this.jPanelRecet = new JPanelMedicine();
 		this.modules = new JTabbedPane();
 		this.jPanelDataPet = new JPanelDataPet();
 		this.jPanelConsult = new JPanelConsult();
@@ -114,8 +111,7 @@ public class JPanelCreateHistory extends JPanel {
 	private void initModules() {
 		this.modules.add(ConstantView.TABBED_DATA_PET, jPanelDataPet);
 		this.modules.add(ConstantView.TABBED_APPOINT_PET, jPanelConsult);
-//		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelMedicine);
-//		this.modules.add(ConstantView.TABBED_COMMENTS_PET, jPanelComments);
+		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelRecet);
 	}
 
 	public CustomTxtField getJtfPropietary() {
