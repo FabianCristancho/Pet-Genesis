@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.controller.ControlHistory;
@@ -52,5 +53,25 @@ public class JPanelConsult extends JPanel{
 	
 	public void clearFields() {
 		this.jPanelExam.clearFields();
+	}
+	
+	public JTextField getJtfWeight() {
+		return jPanelExam.getJtfWeight();
+	}
+
+	public JTextField getJtfTemperature() {
+		return jPanelExam.getJtfTemperature();
+	}
+
+	public JTextField getJtfPression() {
+		return jPanelExam.getJtfPression();
+	}
+
+	public JTextField getJtfCardiac() {
+		return jPanelExam.getJtfCardiac();
+	}
+
+	public JTextField getJtfRespiratory() {
+		return jPanelExam.getJtfRespiratory();
 	}
 }

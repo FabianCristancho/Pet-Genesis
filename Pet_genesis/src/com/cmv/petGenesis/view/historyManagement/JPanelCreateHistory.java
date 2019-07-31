@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.connection.SQLConsult;
@@ -241,5 +242,25 @@ public class JPanelCreateHistory extends JPanel {
 				JOptionPane.showMessageDialog(null, "Error al guardar la receta", "ERROR TYPE",
 						JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public JTextField getJtfWeight() {
+		return jPanelConsult.getJtfWeight();
+	}
+
+	public JTextField getJtfTemperature() {
+		return jPanelConsult.getJtfTemperature();
+	}
+
+	public JTextField getJtfPression() {
+		return jPanelConsult.getJtfPression();
+	}
+
+	public JTextField getJtfCardiac() {
+		return jPanelConsult.getJtfCardiac();
+	}
+
+	public JTextField getJtfRespiratory() {
+		return jPanelConsult.getJtfRespiratory();
 	}
 }

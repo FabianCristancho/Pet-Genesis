@@ -128,9 +128,11 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		}else if (e.getComponent().equals(jPanelCreateHistory.getJtfNamePet()) || e.getComponent().equals(jPanelCreateHistory.getJtfColorPet())) {
 			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
 				e.consume();
+		}else if (e.getComponent().equals(jPanelCreateHistory.getJtfWeight()) || e.getComponent().equals(jPanelCreateHistory.getJtfTemperature()) || e.getComponent().equals(jPanelCreateHistory.getJtfPression()) || e.getComponent().equals(jPanelCreateHistory.getJtfCardiac()) || e.getComponent().equals(jPanelCreateHistory.getJtfRespiratory())) {
+			if ((c < '0' || c > '9') && (c < '.' || c > '.'))
+				e.consume();
 		}
 	}
-	
 	
 
 	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {

@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
@@ -32,7 +33,7 @@ public class JPanelExam extends JPanel {
 	private JCheckBox checkVomit;
 	private JTextArea jtaOralCavid, jtaFace, jtaTrunk, jtaGenitals, jtaExtremities, jtaSnc, jtaDiagnostic;
 	private JScrollPane scOralCavid, scFace, scTrunk, scGenitals, scExtrem, scSnc, scDiagnostic;
-	private JTextField jtfAttitude, jtfWeight, jtfTemp, jtfTemperature, jtfPression, jtfCardiac, jtfRespiratory;
+	protected JTextField jtfAttitude, jtfWeight, jtfTemp, jtfTemperature, jtfPression, jtfCardiac, jtfRespiratory;
 	private ButtonGroup bgAp, bgStool, bgWater, bgDiet, bgNail;
 
 	public JPanelExam() {
@@ -111,6 +112,7 @@ public class JPanelExam extends JPanel {
 		jPanelEcop.add(lblWeigth, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.jtfWeight.addKeyListener(ControlHistory.getInstance());
 		jPanelEcop.add(jtfWeight, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
@@ -222,15 +224,19 @@ public class JPanelExam extends JPanel {
 
 		gbc.insets.left = 5;
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.jtfTemperature.addKeyListener(ControlHistory.getInstance());
 		jPanelTpr.add(jtfTemperature, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 3, 0);
+		this.jtfPression.addKeyListener(ControlHistory.getInstance());
 		jPanelTpr.add(jtfPression, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 5, 0);
+		this.jtfCardiac.addKeyListener(ControlHistory.getInstance());
 		jPanelTpr.add(jtfCardiac, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 7, 0);
+		this.jtfRespiratory.addKeyListener(ControlHistory.getInstance());
 		jPanelTpr.add(jtfRespiratory, gbc);
 	}
 
@@ -398,4 +404,25 @@ public class JPanelExam extends JPanel {
 	public JTextArea getJtaDiagnostic() {
 		return jtaDiagnostic;
 	}
+
+	public JTextField getJtfWeight() {
+		return jtfWeight;
+	}
+
+	public JTextField getJtfTemperature() {
+		return jtfTemperature;
+	}
+
+	public JTextField getJtfPression() {
+		return jtfPression;
+	}
+
+	public JTextField getJtfCardiac() {
+		return jtfCardiac;
+	}
+
+	public JTextField getJtfRespiratory() {
+		return jtfRespiratory;
+	}
+	
 }
