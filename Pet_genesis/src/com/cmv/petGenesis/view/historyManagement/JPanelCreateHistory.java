@@ -176,7 +176,7 @@ public class JPanelCreateHistory extends JPanel {
 			if (validClient) {
 				p.setNamePet(jPanelDataPet.getJtfNamePet().getText());
 				p.setBirthDate(jPanelDataPet.getBirthDatePet().getDate());
-				p.setRace(new Race(jPanelDataPet.getComboRaces().getSelectedIndex() + 1));
+				p.setRace(new Race(sqlPets.getIdPetByRace(jPanelDataPet.getComboRaces().getSelectedItem().toString())));
 				p.setColorPet(jPanelDataPet.getJtfColorPet().getText());
 				p.setGenderPet(GenderPet.getGender(jPanelDataPet.maleIsSelected()));
 				p.setStatePet(StatePet.getState(jPanelDataPet.getComboStatePet().getSelectedIndex()));

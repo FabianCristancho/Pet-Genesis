@@ -142,5 +142,28 @@ public class SQLPets extends ConnectionMySQL{
 		}
 		return pet;
 	}
+	
+	public int getIdPetByRace(String race) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		int id = -1;
+
+		String sql = "SELECT id_raza FROM razas "
+				+ "WHERE nombre_raza = '" +race +"'";
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				id = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return id;
+		}
+		return id;
+	}
 
 }
