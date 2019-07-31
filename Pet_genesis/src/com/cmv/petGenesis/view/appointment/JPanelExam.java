@@ -400,6 +400,16 @@ public class JPanelExam extends JPanel {
 		jtfTemperature.setText("");
 		jtfWeight.setText("");
 	}
+	
+	public boolean fieldsTPRAreEmpty() {
+		JTextField[] fields = {jtfTemperature, jtfPression, jtfCardiac, jtfRespiratory};
+		return UtilityClass.fieldsAreEmpty(fields);
+	}
+	
+	public boolean fieldsEreEmpty() {
+		JTextField[] fields = {jtfWeight, jtfTemp, jtfAttitude};
+		return UtilityClass.fieldsAreEmpty(fields);
+	}
 
 	public JTextArea getJtaDiagnostic() {
 		return jtaDiagnostic;

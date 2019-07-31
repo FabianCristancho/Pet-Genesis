@@ -209,26 +209,30 @@ public class JPanelCreateHistory extends JPanel {
 
 	public void saveExamTPR(RegisterExam registerExam) {
 		SQLExam sqlExam = new SQLExam();
-		registerExam
-				.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
-		registerExam.setExam(new Exam(1));
-		registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamTPR());
-		registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
-		if (!sqlExam.registerExam(registerExam))
-			JOptionPane.showMessageDialog(null, "Error al guardar el examen TPR", "ERROR TYPE",
-					JOptionPane.ERROR_MESSAGE);
+		if(!jPanelConsult.jPanelExam.fieldsTPRAreEmpty()) {
+			registerExam
+			.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+			registerExam.setExam(new Exam(1));
+			registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamTPR());
+			registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
+			if (!sqlExam.registerExam(registerExam))
+				JOptionPane.showMessageDialog(null, "Error al guardar el examen TPR", "ERROR TYPE",
+						JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public void saveExamEcop(RegisterExam registerExam) {
 		SQLExam sqlExam = new SQLExam();
-		registerExam
-				.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
-		registerExam.setExam(new Exam(2));
-		registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamEcop());
-		registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
-		if (!sqlExam.registerExam(registerExam))
-			JOptionPane.showMessageDialog(null, "Error al guardar el examen ECOP", "ERROR TYPE",
-					JOptionPane.ERROR_MESSAGE);
+		if(!jPanelConsult.jPanelExam.fieldsEreEmpty()) {
+			registerExam
+			.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+			registerExam.setExam(new Exam(2));
+			registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamEcop());
+			registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
+			if (!sqlExam.registerExam(registerExam))
+				JOptionPane.showMessageDialog(null, "Error al guardar el examen ECOP", "ERROR TYPE",
+						JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public void saveRecet(Recet recet) {

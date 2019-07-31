@@ -20,14 +20,13 @@ import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
+public class JPanelAppointment extends JPanel {
 
-public class JPanelAppointment extends JPanel{
-	
 	private CustomLabel lblIdA, lblResultId, lblDate, lblMotive;
 	private JTextArea jtaMotive;
 	private JDateChooser jdcDate;
 	private JScrollPane jScrollPane;
-	
+
 	public JPanelAppointment() {
 		super(new GridBagLayout());
 		lblIdA = new CustomLabel(ConstantView.LABEL_ID_AP, ConstantView.FONT_LABELS_LOGIN, null);
@@ -46,29 +45,27 @@ public class JPanelAppointment extends JPanel{
 		}
 		init();
 	}
-	
+
 	private void init() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(10, 20, 10, 20));
 		this.add(lblIdA, gbc);
-		
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		this.add(lblResultId, gbc);
-		
-		
+
 		UtilityClass.organizeGridLayout(gbc, 2, 0, new Insets(10, 20, 10, 20));
 		this.add(lblMotive, gbc);
-		
+
 		gbc.insets.bottom = 50;
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		this.add(lblDate, gbc);
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		jdcDate.setPreferredSize(new Dimension(100, 20));
 		this.add(jdcDate, gbc);
-		
+
 		gbc.gridheight = 2;
 		UtilityClass.organizeGridLayout(gbc, 3, 0);
 		jtaMotive.setLineWrap(true);
@@ -79,10 +76,14 @@ public class JPanelAppointment extends JPanel{
 		jScrollPane.setViewportView(jtaMotive);
 		this.add(jScrollPane, gbc);
 	}
-	
+
+	public boolean areaIsEmpty() {
+		return this.jtaMotive.getText().length() == 0;
+	}
+
 	public void createAutomaticId() {
 		SQLConsult sqlConsult = new SQLConsult();
-		this.lblResultId.setText("" +(sqlConsult.getLastIdConsult()+1));
+		this.lblResultId.setText("" + (sqlConsult.getLastIdConsult() + 1));
 	}
 
 	public JTextArea getJtaMotive() {
@@ -96,5 +97,5 @@ public class JPanelAppointment extends JPanel{
 	public CustomLabel getLblResultId() {
 		return lblResultId;
 	}
-	
+
 }
