@@ -57,7 +57,7 @@ public class JPanelCreateUser extends JPanel {
 	 */
 	public JPanelCreateUser() {
 		super(new BorderLayout());
-		this.title = new CustomLabel(ConstantView.TITLE_SIGNIN);
+		this.title = new CustomLabel(ConstantView.TITLE_SIGNIN, null, Color.decode("#2E5569"));
 		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.jPanelFormUser = new JPanelFormUser();
@@ -70,8 +70,7 @@ public class JPanelCreateUser extends JPanel {
 	 * Crea y agrega los componentes del panel de registro
 	 */
 	private void init() {
-		this.setOpaque(false);
-
+		this.setBackground(Color.decode("#c5dfed"));
 		this.initPanelButtons();
 
 		UtilityClass.addBorder(this, 20, 20, 20, 20);
@@ -81,6 +80,7 @@ public class JPanelCreateUser extends JPanel {
 		this.add(title, BorderLayout.NORTH);
 
 		this.add(panelButtons, BorderLayout.SOUTH);
+		this.jPanelFormUser.setOpaque(false);
 		this.add(jPanelFormUser, BorderLayout.CENTER);
 	}
 

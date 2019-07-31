@@ -83,6 +83,7 @@ public class JPanelFormDataPet extends JPanel {
 	}
 
 	private void init() {
+		this.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.anchor = GridBagConstraints.WEST;

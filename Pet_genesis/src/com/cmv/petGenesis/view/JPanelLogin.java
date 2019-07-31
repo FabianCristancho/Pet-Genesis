@@ -181,6 +181,7 @@ public class JPanelLogin extends JPanel {
 			user.setLastSession(dateTime.format(date));
 			
 			if(sqlUsers.login(user)) {
+				JDialogLogin.getInstance().dispose();
 				new JFrameMainWindow(user);
 			}else {
 				JOptionPane.showMessageDialog(null, "No puede ingresar.\nVerifique que los datos sean correctos y el usuario se encuentre activo en el sistema", "INCORRECTOS", JOptionPane.ERROR_MESSAGE);

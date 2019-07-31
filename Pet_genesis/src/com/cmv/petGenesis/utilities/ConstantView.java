@@ -36,6 +36,7 @@ public class ConstantView {
 	public final static Color COLOR_BUTTON_LOGIN = new Color(14, 109, 204);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
+	public final static String TITLE_CREATE_CLIENT = "REGISTRO DE CLIENTE";
 	public final static Font FONT_TITLE_CRUD = new Font("Open Sans", Font.BOLD, 35);
 	public final static String P_DATA_SIGNIN = "DATOS PERSONALES";
 	public final static String U_DATA_SIGNIN = "DATOS DE USUARIO";
@@ -44,7 +45,7 @@ public class ConstantView {
 	public final static String LABEL_NAME_SIGNIN = "Nombre *";
 	public final static String LABEL_LAST_NAME_SIGNIN = "Apellido *";
 	public static final String LABEL_BIRTHDATE_SIGNIN = "Fecha de Nacimiento";
-	public final static String LABEL_PHONE_SIGNIN = "Teléfono";
+	public final static String LABEL_PHONE_SIGNIN = "Teléfono*";
 	public final static String LABEL_EMAIL_SIGNIN = "Email";
 	public final static String LABEL_ADDRESS_SIGNIN = "Dirección de residencia";
 	public final static String LABEL_ACTIVE_SIGNIN = "Estado *";
@@ -91,7 +92,7 @@ public class ConstantView {
 	public final static JComboBox<String> COMBO_PARAMS_UPDATE_CLIENT = new JComboBox<>(PARAMS_UPDATE_CLIENT);
 	public final static String LABEL_TITLE_UPDATE_CLIENT = "MODIFICACIÓN DE CLIENTE";
 	public final static String LABEL_DESCRIPTION_UPDATE_CLIENT = "Seleccione parámetro de búsqueda";
-	public final static String BTN_SEARCH_UPDATE_CLIENT = "VER INFORMACIÓN DE CLIENT";
+	public final static String BTN_SEARCH_UPDATE_CLIENT = "VER INFORMACIÓN DE CLIENTE";
 	public final static String BTN_RETURN_UPDATE_CLIENT = "REGRESAR";
 	public final static String BTN_DATA_UPDATE_CLIENT = "ACTUALIZAR DATOS";
 	public final static String IMG_ADD_SIGNIN = "data/images/icon_plus.png";
@@ -191,7 +192,7 @@ public class ConstantView {
 	public static final String BTN_SAVE_VACCINE = "GUARDAR REGISTRO DE VACUNA";
 	public static final String BTN_SAVE_ANTIPARASITARY = "GUARDAR REGISTRO DE ANTIPARASITARIO";
 	public static final Font FONT_LABELS_FORM_MEDICINE = new Font("Open Sans", Font.BOLD, 13);
-	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICAS";
+	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICA";
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
 	
 	//APPOINTMENT MANAGEMENT

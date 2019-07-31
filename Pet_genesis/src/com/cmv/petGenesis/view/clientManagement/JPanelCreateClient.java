@@ -37,8 +37,8 @@ public class JPanelCreateClient extends JPanel {
 	 */
 	public JPanelCreateClient() {
 		super(new BorderLayout());
-		this.title = new CustomLabel(ConstantView.TITLE_SIGNIN);
-		this.okButton = new JButton(ConstantView.BUTTON_OK_SIGNIN);
+		this.title = new CustomLabel(ConstantView.TITLE_CREATE_CLIENT, null, Color.decode("#2E5569"));
+		this.okButton = new JButton("REGISTRAR CLIENTE");
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 		this.jPanelFormClient = new JPanelFormClient();
 		ControlClient.getInstance().setjPanelCreateClient(this);
@@ -49,7 +49,7 @@ public class JPanelCreateClient extends JPanel {
 	 * Crea y agrega los componentes del panel de registro
 	 */
 	private void init() {
-		this.setOpaque(false);
+		this.setBackground(Color.decode("#c5dfed"));
 
 		this.initPanelButtons();
 
@@ -60,6 +60,7 @@ public class JPanelCreateClient extends JPanel {
 		this.add(title, BorderLayout.NORTH);
 		
 		this.add(panelButtons, BorderLayout.SOUTH);
+		this.jPanelFormClient.setOpaque(false);
 		this.add(jPanelFormClient, BorderLayout.CENTER);
 	}
 

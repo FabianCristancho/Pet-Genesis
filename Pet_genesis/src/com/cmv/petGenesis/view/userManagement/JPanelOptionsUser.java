@@ -1,5 +1,6 @@
 package com.cmv.petGenesis.view.userManagement;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -33,6 +34,7 @@ public class JPanelOptionsUser extends JPanel {
 	}
 
 	private void init() {
+		this.setBackground(Color.decode("#2E5569"));
 		ActionListener al = ControlUser.getInstance();
 		GridBagConstraints gbc = new GridBagConstraints();
 		

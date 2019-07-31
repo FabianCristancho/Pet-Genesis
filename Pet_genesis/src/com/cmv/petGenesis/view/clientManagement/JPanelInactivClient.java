@@ -73,11 +73,11 @@ public class JPanelInactivClient extends JPanel {
 		initParameters();
 		initPanelStateTable();
 		loadTable("estado_activacion", "I");
-		this.setBackground(Color.CYAN);
+		this.setBackground(Color.decode("#c5dfed"));
 		
 		jScrollPane.setViewportView(jTable);
 		jScrollPane.setPreferredSize(new Dimension(1000, 400));
-		jScrollPane.getViewport().setBackground(Color.CYAN);
+		jScrollPane.getViewport().setBackground(Color.decode("#c5dfed"));
 		jScrollPane.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		jtfInputQuery.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -111,7 +111,9 @@ public class JPanelInactivClient extends JPanel {
 
 		gbc.gridwidth = 4;
 		UtilityClass.organizeGridLayout(gbc, 0, 0);
+		this.title.setForeground(Color.decode("#2E5569"));
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
+		this.panelSearch.setOpaque(false);
 		this.panelSearch.add(title, gbc);
 
 		gbc.gridwidth = 1;
@@ -122,12 +124,15 @@ public class JPanelInactivClient extends JPanel {
 		this.panelSearch.add(parameters, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 2, 1);
+		jRButtonActive.setOpaque(false);
 		jRButtonActive.setFocusable(false);
 		jRButtonInactive.setFocusable(false);
 		jRButtonInactive.setSelected(true);
 		
 		bg.add(jRButtonActive);
 		bg.add(jRButtonInactive);
+		jRButtonInactive.setOpaque(false);
+		this.panelButtons.setOpaque(false);
 		panelButtons.add(jRButtonActive);
 		panelButtons.add(jRButtonInactive);
 		this.panelSearch.add(panelButtons, gbc);
@@ -140,7 +145,8 @@ public class JPanelInactivClient extends JPanel {
 		gbc.gridy = 1;
 		this.inactivActiv.setFocusable(false);
 		this.inactivActiv.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.inactivActiv.setBackground(Color.CYAN);
+		this.inactivActiv.setForeground(Color.WHITE);
+		this.inactivActiv.setBackground(Color.decode("#2E5569"));
 		
 		UtilityClass.addCommandJButton(btnExecute, ClientCommands.CMD_WD_INACTIV_EXECUTE.toString(),
 				ControlClient.getInstance());

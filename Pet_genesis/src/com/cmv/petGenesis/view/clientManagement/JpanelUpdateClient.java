@@ -56,6 +56,7 @@ public class JpanelUpdateClient extends JPanel {
 	}
 
 	private void init() {
+		this.setBackground(Color.decode("#c5dfed"));
 		initPanelUp();
 		initpanelDown();
 		UtilityClass.addBorder(this, 20, 20, 20, 20);
@@ -65,10 +66,12 @@ public class JpanelUpdateClient extends JPanel {
 	}
 
 	private void initPanelUp() {
+		this.jPanelUp.setOpaque(false);
 		this.jPanelUp.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.gridwidth = 4;
+		this.titlePanel.setForeground(Color.decode("#2E5569"));
 		UtilityClass.organizeGridLayout(gbc, 0, 0,  new Insets(20, 30, 0, 30));
 		this.titlePanel.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.jPanelUp.add(titlePanel, gbc);

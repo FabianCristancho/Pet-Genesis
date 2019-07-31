@@ -62,23 +62,29 @@ public class JPanelUpdateHistory extends JPanel{
 	}
 
 	private void init() {
+		this.setBackground(Color.decode("#c5dfed"));
 		initPanelUp();
 		initpanelDown();
 		UtilityClass.addBorder(this, 0, 10, 10, 0);
+		this.jPanelRegion.setOpaque(false);
 		this.jPanelRegion.add(jPanelUp, BorderLayout.NORTH);
+		this.jpanelCenter.setBackground(Color.decode("#c5dfed"));
 		this.jPanelRegion.add(jpanelCenter, BorderLayout.CENTER);
 		this.jPanelRegion.add(jPanelDown, BorderLayout.SOUTH);
 		this.jScrollPane.setViewportView(jPanelRegion);
+		this.jScrollPane.getViewport().setBackground(Color.decode("#c5dfed"));
 		this.jScrollPane.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		this.add(jScrollPane);
 	}
 
 	private void initPanelUp() {
+		this.jPanelUp.setOpaque(false);
 		this.jPanelUp.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		gbc.gridwidth = 4;
 		UtilityClass.organizeGridLayout(gbc, 0, 0,  new Insets(20, 30, 0, 30));
+		this.titlePanel.setForeground(Color.decode("#2E5569"));
 		this.titlePanel.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.jPanelUp.add(titlePanel, gbc);
 

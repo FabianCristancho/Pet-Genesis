@@ -27,7 +27,7 @@ public class JFrameClient extends JFrame {
 
 	private void init() {
 		this.setExtendedState(MAXIMIZED_BOTH);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.add(jOptionsClient, BorderLayout.WEST);
 		this.add(jpanelGroupClient, BorderLayout.CENTER);

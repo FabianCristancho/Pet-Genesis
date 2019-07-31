@@ -59,16 +59,16 @@ public class JpanelFindUser extends JPanel {
 	private void init() {
 		initParameters();
 
+		this.setBackground(Color.decode("#c5dfed"));
 		loadTable("");
 		this.btnLoadData.setEnabled(false);
 		this.jTable.setEnabled(false);
 		JScrollPane jScrollPane = new JScrollPane();
 		jScrollPane.setViewportView(jTable);
 		jScrollPane.setPreferredSize(new Dimension(1000, 400));
-		jScrollPane.getViewport().setBackground(Color.CYAN);
+		jScrollPane.getViewport().setBackground(Color.decode("#c5dfed"));
 		jtfInputQuery.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		this.setBackground(Color.CYAN);
 		this.panelTable.setOpaque(false);
 		this.panelTable.add(jScrollPane);
 		jTable.getTableHeader().setReorderingAllowed(false);
@@ -82,12 +82,14 @@ public class JpanelFindUser extends JPanel {
 		UtilityClass.addCommandJButton(btnSearch, UserCommands.CMD_SEARCH_USER.toString(), ControlUser.getInstance());
 		UtilityClass.addCommandJButton(btnLoadData, UserCommands.CMD_LOAD_DATA.toString(), ControlUser.getInstance());
 
+		this.panelSearch.setOpaque(false);
 		this.panelSearch.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(20, 20, 0, 20);
 
 		gbc.gridwidth = 3;
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.title.setForeground(Color.decode("#2E5569"));
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.panelSearch.add(title, gbc);
 

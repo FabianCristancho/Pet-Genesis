@@ -65,7 +65,9 @@ public class JpanelUpdateUser extends JPanel {
 	private void init() {
 		initPanelUp();
 		initpanelDown();
+		this.setBackground(Color.decode("#c5dfed"));
 		UtilityClass.addBorder(this, 20, 20, 20, 20);
+		this.jPanelUp.setOpaque(false);
 		this.add(jPanelUp, BorderLayout.NORTH);
 		this.add(jpanelCenter, BorderLayout.CENTER);
 		this.add(jPanelDown, BorderLayout.SOUTH);
@@ -77,6 +79,7 @@ public class JpanelUpdateUser extends JPanel {
 
 		gbc.gridwidth = 4;
 		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(20, 30, 0, 30));
+		this.titlePanel.setForeground(Color.decode("#2E5569"));
 		this.titlePanel.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.jPanelUp.add(titlePanel, gbc);
 

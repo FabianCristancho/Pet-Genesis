@@ -53,6 +53,7 @@ public class JPanelComments extends JPanel {
 		this.add(scrollComments, BorderLayout.CENTER);
 		
 		initPanelComments();
+		this.jpanelButtons.setOpaque(false);
 		this.add(jpanelButtons, BorderLayout.SOUTH);
 	}
 	

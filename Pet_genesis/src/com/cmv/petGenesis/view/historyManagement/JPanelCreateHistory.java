@@ -48,7 +48,7 @@ public class JPanelCreateHistory extends JPanel {
 	 */
 	public JPanelCreateHistory() {
 		super(new BorderLayout());
-		this.title = new CustomLabel(ConstantView.TITLE_WD_CREATE_HISTORY);
+		this.title = new CustomLabel(ConstantView.TITLE_WD_CREATE_HISTORY, null, Color.decode("#2E5569"));
 		this.okButton = new JButton(ConstantView.BUTTON_REGISTER_HISTORY);
 		this.returnButton = new JButton(ConstantView.BUTTON_RETURN_SIGNIN);
 //		this.jPanelFormDataPet = new JPanelFormDataPet();
@@ -65,7 +65,7 @@ public class JPanelCreateHistory extends JPanel {
 	 * Crea y agrega los componentes del panel de registro
 	 */
 	private void init() {
-		this.setOpaque(false);
+		this.setBackground(Color.decode("#c5dfed"));
 		this.initModules();
 		this.initPanelButtons();
 

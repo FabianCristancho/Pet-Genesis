@@ -23,8 +23,10 @@ public class JPanelDataPet extends JPanel {
 	}
 
 	private void init() {
+		this.setOpaque(false);
 		this.setBorder(BorderFactory.createEmptyBorder(20, 30, 30, 20));
 		this.add(jPanelFormDataPet, BorderLayout.WEST);
+		this.jPanelComments.setOpaque(false);
 		this.add(jPanelComments, BorderLayout.EAST);
 	}
 

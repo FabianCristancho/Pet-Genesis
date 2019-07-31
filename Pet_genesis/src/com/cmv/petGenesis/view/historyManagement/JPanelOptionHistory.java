@@ -1,5 +1,6 @@
 package com.cmv.petGenesis.view.historyManagement;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -34,6 +35,7 @@ public class JPanelOptionHistory extends JPanel{
 
 	private void init() {
 		ActionListener al = ControlHistory.getInstance();
+		this.setBackground(Color.decode("#2E5569"));
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		gbc.gridwidth = 2;

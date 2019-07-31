@@ -62,10 +62,10 @@ public class JpanelFindClient extends JPanel {
 		JScrollPane jScrollPane = new JScrollPane();
 		jScrollPane.setViewportView(jTable);
 		jScrollPane.setPreferredSize(new Dimension(1000, 400));
-		jScrollPane.getViewport().setBackground(Color.CYAN);
+		jScrollPane.getViewport().setBackground(Color.decode("#c5dfed"));
 		jtfInputQuery.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 		jTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		this.setBackground(Color.CYAN);
+		this.setBackground(Color.decode("#c5dfed"));
 		this.panelTable.setOpaque(false);
 		this.panelTable.add(jScrollPane);
 		jTable.getTableHeader().setReorderingAllowed(false);
@@ -79,12 +79,14 @@ public class JpanelFindClient extends JPanel {
 		UtilityClass.addCommandJButton(btnSearch, ClientCommands.CMD_SEARCH_CLIENT.toString(), ControlClient.getInstance());
 		UtilityClass.addCommandJButton(btnLoadData, ClientCommands.CMD_LOAD_DATA.toString(), ControlClient.getInstance());
 		
+		this.panelSearch.setOpaque(false);
 		this.panelSearch.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(20, 20, 0, 20);
 		
 		gbc.gridwidth = 3;
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		this.title.setForeground(Color.decode("#2E5569"));
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.panelSearch.add(title, gbc);
 		

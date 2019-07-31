@@ -75,11 +75,11 @@ public class JPanelInactivUser extends JPanel {
 		initParameters();
 		initPanelStateTable();
 		loadTable("", "I");
-		this.setBackground(Color.CYAN);
+		this.setBackground(Color.decode("#c5dfed"));
 
 		jScrollPane.setViewportView(jTable);
 		jScrollPane.setPreferredSize(new Dimension(1000, 400));
-		jScrollPane.getViewport().setBackground(Color.CYAN);
+		jScrollPane.getViewport().setBackground(Color.decode("#c5dfed"));
 		jScrollPane.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 		jtfInputQuery.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
@@ -107,12 +107,14 @@ public class JPanelInactivUser extends JPanel {
 	}
 
 	private void initParameters() {
+		this.panelSearch.setOpaque(false);
 		this.panelSearch.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(20, 20, 0, 20);
 
 		gbc.gridwidth = 4;
 		UtilityClass.organizeGridLayout(gbc, 0, 0);
+		this.title.setForeground(Color.decode("#2E5569"));
 		this.title.setFont(ConstantView.FONT_TITLE_CRUD);
 		this.panelSearch.add(title, gbc);
 
@@ -124,12 +126,14 @@ public class JPanelInactivUser extends JPanel {
 		this.panelSearch.add(parameters, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 2, 1);
+		jRButtonActive.setOpaque(false);
 		jRButtonActive.setFocusable(false);
 		jRButtonActive.setSelected(true);
 		jRButtonInactive.setFocusable(false);
 
 		bg.add(jRButtonActive);
 		bg.add(jRButtonInactive);
+		jRButtonInactive.setOpaque(false);
 		panelButtons.add(jRButtonActive);
 		panelButtons.add(jRButtonInactive);
 		this.panelSearch.add(panelButtons, gbc);
@@ -141,8 +145,9 @@ public class JPanelInactivUser extends JPanel {
 		gbc.gridx = 4;
 		gbc.gridy = 1;
 		this.inactivActiv.setFocusable(false);
+		this.inactivActiv.setForeground(Color.WHITE);
 		this.inactivActiv.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.inactivActiv.setBackground(Color.CYAN);
+		this.inactivActiv.setBackground(Color.decode("#2E5569"));
 
 		UtilityClass.addCommandJButton(btnExecute, UserCommands.CMD_WD_INACTIV_EXECUTE.toString(),
 				ControlUser.getInstance());

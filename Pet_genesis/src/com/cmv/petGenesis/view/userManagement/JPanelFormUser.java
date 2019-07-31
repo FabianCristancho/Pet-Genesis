@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.userManagement;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -102,6 +103,7 @@ public class JPanelFormUser extends JPanel {
 		UtilityClass.addBorder(this, 20, 20, 20, 20);
 
 		JPanel panelPersonalUser = new JPanel(new GridLayout(1, 2, 20, 20));
+		panelPersonalUser.setOpaque(false);
 		panelPersonalUser.add(panelPersonalData);
 		panelPersonalUser.add(panelUserData);
 		this.add(panelPersonalUser);
@@ -181,6 +183,7 @@ public class JPanelFormUser extends JPanel {
 
 	private void initSigInData() {
 		this.panelUserData = new JPanel(new GridBagLayout());
+		this.panelUserData.setOpaque(false);
 		this.panelUserData.setBorder(BorderFactory.createTitledBorder(ConstantView.U_DATA_SIGNIN));
 		this.panelUserData.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -236,6 +239,7 @@ public class JPanelFormUser extends JPanel {
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 5);
 		UtilityClass.addCommandJButton(btnClearFields, UserCommands.CMD_WD_UPDATE_CLEAR.toString(), ControlUser.getInstance());
+		this.btnClearFields.setForeground(Color.WHITE);
 		this.btnClearFields.setFocusable(false);
 		this.btnClearFields.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		this.btnClearFields.setBackground(ConstantView.COLOR_BUTTON_LOGIN);

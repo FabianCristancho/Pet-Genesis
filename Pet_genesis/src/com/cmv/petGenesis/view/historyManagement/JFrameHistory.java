@@ -18,7 +18,7 @@ public class JFrameHistory extends JFrame{
 
 	private void init() {
 		this.setExtendedState(MAXIMIZED_BOTH);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.add(jPanelOptionHistory, BorderLayout.WEST);
 		this.add(jpanelGroupHistory, BorderLayout.CENTER);

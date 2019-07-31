@@ -1,5 +1,6 @@
 package com.cmv.petGenesis.view.clientManagement;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -26,7 +27,6 @@ public class JPanelOptionsClient extends JPanel {
 
 	public JPanelOptionsClient() {
 		super(new GridBagLayout());
-		this.setBorder(BorderFactory.createTitledBorder("Opciones"));
 		this.btnCreateClient = new JButton(ConstantView.BUTTON_CREATE_CLIENT);
 		this.btnUpdateClient = new JButton(ConstantView.BUTTON_UPDATE_CLIENT);
 		this.btnInactivClient = new JButton(ConstantView.BUTTON_INACTIV_CLIENT);
@@ -35,6 +35,7 @@ public class JPanelOptionsClient extends JPanel {
 	}
 
 	private void init() {
+		this.setBackground(Color.decode("#2E5569"));
 		ActionListener al = ControlClient.getInstance();
 		GridBagConstraints gbc = new GridBagConstraints();
 		
