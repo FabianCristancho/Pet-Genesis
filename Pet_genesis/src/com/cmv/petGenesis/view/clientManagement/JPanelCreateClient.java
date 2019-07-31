@@ -64,7 +64,6 @@ public class JPanelCreateClient extends JPanel {
 		this.add(jPanelFormClient, BorderLayout.CENTER);
 	}
 
-
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
 		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -162,6 +161,7 @@ public class JPanelCreateClient extends JPanel {
 							JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
 							jPanelFormClient.newForm();
 							this.jPanelFormClient.createAutomaticID();
+							this.addPet((Integer.parseInt(jPanelFormClient.lblIdSet.getText())-1) + "");
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
 						}
@@ -177,6 +177,14 @@ public class JPanelCreateClient extends JPanel {
 				JOptionPane.showMessageDialog(null, "El documento de identidad ya existe en el sistema",
 						"DOCUMENTO REPETIDO", JOptionPane.INFORMATION_MESSAGE);
 			}
+		}
+	}
+	
+	public void addPet(String idPropietary) {
+		int option = JOptionPane.showConfirmDialog(null, "¿Desea agregar una mascota?", "AÑADIR MASCOTA",
+				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+		if (option == 0) {
+			new JDialogNewPet(idPropietary);
 		}
 	}
 

@@ -23,7 +23,7 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 public class JPanelComments extends JPanel {
 	
 	private CustomLabel titleComments;
-	protected JTextArea jtaComments;
+	public JTextArea jtaComments;
 	private JScrollPane scrollComments;
 	private JButton btnClearComments;
 	private JPanel jpanelButtons;

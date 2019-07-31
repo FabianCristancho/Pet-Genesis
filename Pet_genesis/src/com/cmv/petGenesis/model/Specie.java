@@ -8,6 +8,10 @@ public class Specie {
 	public Specie() {
 	}
 	
+	public Specie(int idSpecie) {
+		this.idSpecie = idSpecie;
+	}
+	
 	public Specie(int idSpecie, String nameSpecie) {
 		this.idSpecie = idSpecie;
 		this.nameSpecie = nameSpecie;

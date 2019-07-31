@@ -208,5 +208,32 @@ public class SQLPets extends ConnectionMySQL{
 		}
 		return tableData;
 	}
+	
+	public boolean updatePet(Pet pet) {
+		PreparedStatement ps = null;
+		Connection con = getConnection();
+
+		String sql = "UPDATE mascotas AS m SET m.id_raza=?, m.nombre_mascota=?, m.genero_mascota=?, "
+				+ "m.fecha_de_nacimiento=?, m.color_mascota=?, m.castrada=?, m.estado_de_activacion=?"
+				+ ", m.descripcion_adicional=? WHERE id_mascota=?";
+		try {
+			System.out.println("p: " + pet.getNamePet() + " ID: " + pet.getId());
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, pet.getRace().getIdRace());
+			ps.setString(2, pet.getNamePet());
+			ps.setString(3, ""+pet.getGenderPet().getIdGender());
+			ps.setString(4, UtilityClass.changeFormatToDate(pet.getBirthDate()));
+			ps.setString(5, pet.getColorPet());
+			ps.setInt(6, pet.isCastrated()?1:0);
+			ps.setString(7, ""+pet.getStatePet().getNameState());
+			ps.setString(8, pet.getAditionalDescription());
+			ps.setInt(9, pet.getId());
+			ps.execute();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

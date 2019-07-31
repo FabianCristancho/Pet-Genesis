@@ -15,7 +15,9 @@ import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.command.ClientCommands;
 import com.cmv.petGenesis.model.Client;
+import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Usuario;
+import com.cmv.petGenesis.view.clientManagement.JDialogNewPet;
 import com.cmv.petGenesis.view.clientManagement.JFrameClient;
 import com.cmv.petGenesis.view.clientManagement.JPanelCreateClient;
 import com.cmv.petGenesis.view.clientManagement.JPanelFormClient;
@@ -32,6 +34,7 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 	private JpanelUpdateClient jpanelUpdateClient;
 	private JPanelInactivClient jPanelInactivClient;
 	private JPanelFormClient jPanelFormClient;
+	private JDialogNewPet jDialogNewPet;
 
 	private ControlClient() {
 	}
@@ -72,7 +75,7 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 			jpanelUpdateClient.getDataQuery();
 			break;
 		case CMD_WD_UPDATE_CHANGE_DATA:
-//			jpanelUpdateClient.saveDataSignIn(new Usuario());
+			
 			break;
 		case CMD_WD_UPDATE_CLEAR:
 			jPanelFormClient.clearFields();
@@ -86,6 +89,9 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 			break;
 		case CMD_WD_CREATE_CLEAR:
 			jPanelCreateClient.clearFileds();
+		case CMD_T_ADD_PET:
+			jDialogNewPet.registerHistory(new Pet());
+			break;
 		default:
 			JOptionPane.showMessageDialog(null, "SIN ESTABLECER");
 			break;
@@ -122,7 +128,18 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 				if (c < '0' || c > '9')
 					e.consume();
 			}
-		} else {
+		}  
+		if (jDialogNewPet != null) {
+			if (e.getComponent().equals(jDialogNewPet.getjPanelDataPet().getjPanelFormDataPet().getJtfPropietary())) {
+				if (c < '0' || c > '9')
+					e.consume();
+			}else if (e.getComponent().equals(jDialogNewPet.getjPanelDataPet().getjPanelFormDataPet().getJtfPetName())
+					|| e.getComponent().equals(jDialogNewPet.getjPanelDataPet().getjPanelFormDataPet().getJtfColor())) {
+				if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
+					e.consume();
+			}			
+		} 
+		if (jPanelCreateClient != null) {
 			if ((e.getComponent().equals(jPanelCreateClient.getJtfName())
 					|| e.getComponent().equals(jPanelCreateClient.getJtfLastName()))) {
 				if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
@@ -133,7 +150,7 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 					e.consume();
 			}
 		}
-
+		
 	}
 
 	@Override
@@ -190,5 +207,13 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 
 	public void setjPanelFormClient(JPanelFormClient jPanelFormClient) {
 		this.jPanelFormClient = jPanelFormClient;
+	}
+	
+	/**
+	 * Cambia 
+	 * @param jDialogNewPet a jDialogNewPet 
+	 */
+	public void setjDialogNewPet(JDialogNewPet jDialogNewPet) {
+		this.jDialogNewPet = jDialogNewPet;
 	}
 }

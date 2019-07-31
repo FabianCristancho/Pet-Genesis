@@ -1,4 +1,4 @@
-package com.cmv.petGenesis.view.historyManagement;
+package com.cmv.petGenesis.view.clientManagement;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -26,9 +26,9 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
-public class JPanelFormDataPet extends JPanel {
+public class JPanelFormDataPetClient extends JPanel {
 
-	protected CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
+	private CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
 			lblPropietary, lblSearchBy, lblStateHistory, lblObligate;
 	protected JDateChooser birthDate;
 	protected CustomTxtField jtfPetName, jtfColor, jtfPropietary;
@@ -41,7 +41,7 @@ public class JPanelFormDataPet extends JPanel {
 	private JButton btnFindPropietary;
 	private SimpleDateFormat sdf;
 
-	public JPanelFormDataPet() {
+	public JPanelFormDataPetClient() {
 		super(new GridBagLayout());
 		this.lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
 		this.lblTitleId = new CustomLabel(ConstantView.LBL_TITLE_ID_HISTORY, ConstantView.FONT_LABELS_LOGIN, null);
@@ -97,7 +97,7 @@ public class JPanelFormDataPet extends JPanel {
 		this.add(lblPetName, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
-		this.jtfPetName.addKeyListener(ControlHistory.getInstance());
+		this.jtfPetName.addKeyListener(ControlClient.getInstance());
 		this.add(jtfPetName, gbc);
 
 		gbc.insets.left = 50;
@@ -160,7 +160,7 @@ public class JPanelFormDataPet extends JPanel {
 		this.add(lblColor, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 7);
-		this.jtfColor.addKeyListener(ControlHistory.getInstance());
+		this.jtfColor.addKeyListener(ControlClient.getInstance());
 		this.add(jtfColor, gbc);
 
 		gbc.insets.top = 40;
@@ -176,7 +176,7 @@ public class JPanelFormDataPet extends JPanel {
 
 		gbc.insets.left = 20;
 		UtilityClass.organizeGridLayout(gbc, 2, 10);
-		this.jtfPropietary.addKeyListener(ControlHistory.getInstance());
+		this.jtfPropietary.addKeyListener(ControlClient.getInstance());
 		this.add(jtfPropietary, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 3, 10);
@@ -213,15 +213,6 @@ public class JPanelFormDataPet extends JPanel {
 		this.comboRaces.setVisible(true);
 	}
 	
-	public int getIndexRaces(String name) {
-		for (int i = 0; i < comboRaces.getItemCount(); i++) {
-			if (comboRaces.getItemAt(i).equals(name)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
 	public void newForm() {
 		try {
 			this.birthDate = new JDateChooser(sdf.parse("00/00/2000"));
@@ -241,9 +232,25 @@ public class JPanelFormDataPet extends JPanel {
 	
 	/**
 	 * Obtiene 
-	 * @return lblResultId
+	 * @return jtfPropietary
 	 */
-	public CustomLabel getLblResultId() {
-		return lblResultId;
+	public CustomTxtField getJtfPropietary() {
+		return jtfPropietary;
+	}
+	
+	/**
+	 * Obtiene 
+	 * @return jtfPetName
+	 */
+	public CustomTxtField getJtfPetName() {
+		return jtfPetName;
+	}
+	
+	/**
+	 * Obtiene 
+	 * @return jtfColor
+	 */
+	public CustomTxtField getJtfColor() {
+		return jtfColor;
 	}
 }

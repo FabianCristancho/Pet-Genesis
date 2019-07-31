@@ -1,4 +1,4 @@
-package com.cmv.petGenesis.view.historyManagement;
+package com.cmv.petGenesis.view.clientManagement;
 
 import java.awt.BorderLayout;
 
@@ -8,16 +8,17 @@ import javax.swing.JPanel;
 
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
+import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.toedter.calendar.JDateChooser;
 
-public class JPanelDataPet extends JPanel {
+public class JPanelDataPetClient extends JPanel {
 
-	protected JPanelFormDataPet jPanelFormDataPet;
+	protected JPanelFormDataPetClient jPanelFormDataPet;
 	private JPanelComments jPanelComments;
 
-	public JPanelDataPet() {
+	public JPanelDataPetClient() {
 		super(new BorderLayout());
-		this.jPanelFormDataPet = new JPanelFormDataPet();
+		this.jPanelFormDataPet = new JPanelFormDataPetClient();
 		this.jPanelComments = new JPanelComments();
 		init();
 	}
@@ -30,7 +31,7 @@ public class JPanelDataPet extends JPanel {
 		this.add(jPanelComments, BorderLayout.EAST);
 	}
 
-	public JPanelFormDataPet getjPanelFormDataPet() {
+	public JPanelFormDataPetClient getjPanelFormDataPet() {
 		return jPanelFormDataPet;
 	}
 	
@@ -86,10 +87,6 @@ public class JPanelDataPet extends JPanel {
 	public void newForm() {
 		this.jPanelFormDataPet.newForm();
 		this.jPanelComments.jtaComments.setText("");
-	}
-	
-	public int getIdPet() {
-		return Integer.parseInt(jPanelFormDataPet.lblResultId.getText());
 	}
 	
 	public String getComments() {

@@ -79,6 +79,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			jPanelUpdateHistory.getDataQuery();
 			break;
 		case CMD_BTN_KEEP_HISTORY:
+			jPanelUpdateHistory.saveDataSignIn(new Pet());
 			break;
 		case CMD_WD_RECET_ADD_MEDIC:
 			jPanelMedicine.addMedicament(new Medicament());

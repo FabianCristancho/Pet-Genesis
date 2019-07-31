@@ -58,7 +58,7 @@ public class JPanelFormClient extends JPanel {
 		this.lblEmail = new CustomLabel(ConstantView.LABEL_EMAIL_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblAddress = new CustomLabel(ConstantView.LABEL_ADDRESS_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblActiv = new CustomLabel(ConstantView.LABEL_ACTIVE_SIGNIN, ConstantView.FONT_FORM, null);
-		this.lblPet = new CustomLabel(ConstantView.LABEL_PET_SIGNIN, ConstantView.FONT_FORM, null);
+//		this.lblPet = new CustomLabel(ConstantView.LABEL_PET_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblInfo = new CustomLabel(ConstantView.LABEL_OBLIGATE, ConstantView.FONT_FORM, null);
 		this.activRadioButton = new JRadioButton(ConstantView.LABEL_IS_ACTIVE_SIGNIN);
 		this.inactivRadioButton = new JRadioButton(ConstantView.LABEL_IS_INACTIVE_SIGNIN);
@@ -72,7 +72,7 @@ public class JPanelFormClient extends JPanel {
 		this.jPanelRadios = new JPanel(new BorderLayout());
 		this.jPanelButtons = new JPanel(new FlowLayout());
 		this.cleanButton = new JButton(ConstantView.BUTTON_CLEAN_SIGNIN);
-		this.addPetButton = new JButton();
+//		this.addPetButton = new JButton();
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
@@ -96,7 +96,7 @@ public class JPanelFormClient extends JPanel {
 
 	private void initPanelPersonalData() {
 		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.insets = new Insets(0, 10, 22, 20);
+		gbc.insets = new Insets(0, 10, 30, 20);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0, 1, 1);
 		this.add(lblIdSet, gbc);
@@ -129,8 +129,8 @@ public class JPanelFormClient extends JPanel {
 		UtilityClass.organizeGridLayout(gbc, 2, 5, 1, 1);
 		this.add(lblActiv, gbc);
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 6, 1, 1);
-		this.add(lblPet, gbc);
+//		UtilityClass.organizeGridLayout(gbc, 0, 6, 1, 1);
+//		this.add(lblPet, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 8, 4, 1);
 		this.add(lblInfo, gbc);
@@ -174,14 +174,15 @@ public class JPanelFormClient extends JPanel {
 		jPanelRadios.add(inactivRadioButton, BorderLayout.EAST);
 		this.add(jPanelRadios, gbc);
 		
-		UtilityClass.organizeGridLayout(gbc, 3, 6, 1, 1);
-		addPetButton.setForeground(Color.WHITE);
-		addPetButton.setFocusable(false);
-		addPetButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		addPetButton.setFont(ConstantView.FONT_LABELS_LOGIN);
-		ImageIcon icon = new ImageIcon(ConstantView.IMG_PET_SIGNIN);
-		addPetButton.setIcon(icon);
-		this.add(addPetButton, gbc);
+//		UtilityClass.organizeGridLayout(gbc, 3, 6, 1, 1);
+//		addPetButton.setForeground(Color.WHITE);
+//		addPetButton.setFocusable(false);
+//		addPetButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//		addPetButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+//		UtilityClass.addCommandJButton(addPetButton, ClientCommands.CMD_BT_NEW_PET.toString(), ControlClient.getInstance());
+//		ImageIcon icon = new ImageIcon(ConstantView.IMG_PET_SIGNIN);
+//		addPetButton.setIcon(icon);
+//		this.add(addPetButton, gbc);
 		
 		this.addButtons();
 		

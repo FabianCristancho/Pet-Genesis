@@ -20,9 +20,12 @@ import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.connection.SQLPets;
 import com.cmv.petGenesis.controller.ControlHistory;
+import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Pet;
+import com.cmv.petGenesis.model.Race;
+import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
@@ -142,13 +145,11 @@ public class JPanelUpdateHistory extends JPanel{
 	public String getParam() {
 		switch (parameters.getSelectedIndex()) {
 		case 0:
-			return "id_usuario";
-		case 1:
-			return "documento_usuario";
-		case 2:
-			return "usuario";
+			return "id_mascota";
+//		case 1:
+//			return "documento_usuario";
 		default:
-			return "";
+			return "id_mascota";
 		}
 	}
 	
@@ -161,6 +162,7 @@ public class JPanelUpdateHistory extends JPanel{
 		Pet pet = sqlPets.getDataPet(jtfInputId.getText());
 
 		if (pet != null) {
+			jpanelCenter.jPanelFormDataPet.lblResultId.setText(jtfInputId.getText());
 			jpanelCenter.jPanelFormDataPet.isCastrated.setSelected(pet.isCastrated());
 			jpanelCenter.jPanelFormDataPet.jtfPetName.setText(pet.getNamePet()); 
 			jpanelCenter.jPanelFormDataPet.jtfColor.setText(pet.getColorPet());
@@ -171,13 +173,48 @@ public class JPanelUpdateHistory extends JPanel{
 				jpanelCenter.jPanelFormDataPet.jRButtonFemale.setSelected(true);
 			}
 			jpanelCenter.jPanelFormDataPet.comboStateHistory.setSelectedIndex(pet.getStatePet().getIdState());
+			jpanelCenter.jPanelFormDataPet.comboSpecies.setSelectedIndex(pet.getSpecie().getIdSpecie() -1);
+			this.changeRaces();
+			jpanelCenter.jPanelFormDataPet.comboRaces.setSelectedIndex(
+					jpanelCenter.jPanelFormDataPet.getIndexRaces(pet.getSpecie().getNameSpecie()));
+			
 			jpanelCenter.jPanelFormDataPet.jtfPropietary.setText("" +pet.getClient().getIdPerson());
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "NO EXISTE LA MASCOTA CONSULTADA");
 		}
 	}
 
-	public void saveDataSignIn(Usuario mod) {
+	public void saveDataSignIn(Pet pet) {
+		SQLPets sqlPets = new SQLPets();
+		
+		JTextField[] requiredFields = { jpanelCenter.getJtfColorPet(), jpanelCenter.getJtfNamePet(),
+				jpanelCenter.getJtfPropietary()};
+		
+		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
+			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
+					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
+		} else {
+			pet.setId(jpanelCenter.getIdPet());
+			pet.setCastrated(jpanelCenter.isCastrated());
+			pet.setAditionalDescription(jpanelCenter.getComments());
+			pet.setBirthDate(jpanelCenter.getBirthDatePet().getDate());
+			pet.setColorPet(jpanelCenter.getJtfColorPet().getText());
+			pet.setNamePet(jpanelCenter.getJtfNamePet().getText());
+			if (jpanelCenter.maleIsSelected()) {
+				pet.setGenderPet(GenderPet.getGender(true));
+			} else {
+				pet.setGenderPet(GenderPet.getGender(false));
+			}
+			pet.setRace(new Race(sqlPets.getIdPetByRace(jpanelCenter.getComboRaces().getSelectedItem().toString())));
+			pet.setStatePet(StatePet.getState(jpanelCenter.getComboStatePet().getSelectedIndex()));
+
+			if (sqlPets.updatePet(pet)) {
+				JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO CON EXITO");
+			} else {
+				JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
+			}
+		}
 		
 	}
 
