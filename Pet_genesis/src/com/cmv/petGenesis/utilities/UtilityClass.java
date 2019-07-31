@@ -8,14 +8,17 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -123,7 +126,7 @@ public class UtilityClass {
 		gbc.gridx = gridx;
 		gbc.gridy = gridy;
 	}
-	
+
 	public static void organizeGridLayout(GridBagConstraints gbc, int gridx, int gridy, int gridWidth, int gridHeight) {
 		gbc.gridx = gridx;
 		gbc.gridy = gridy;
@@ -150,4 +153,25 @@ public class UtilityClass {
 
 		return nameUser;
 	}
+
+	/**
+	 * Retorna un jRadioButton seleccionado de un objeto ButtonGroup pasado por
+	 * parametro
+	 * 
+	 * @param group Objeto ButtonGroup
+	 * @return jRadioButton seleccionado
+	 */
+	public static JRadioButton getSelection(ButtonGroup group) {
+		for (Enumeration e = group.getElements(); e.hasMoreElements();) {
+			JRadioButton b = (JRadioButton) e.nextElement();
+			if (b.getModel() == group.getSelection()) {
+				return b;
+			}
+		}
+
+		return null;
+	}
+	
+	
+	
 }

@@ -18,7 +18,7 @@ import com.cmv.petGenesis.view.appointment.JPanelExam;
 public class JPanelConsult extends JPanel{
 	
 	protected JPanelAppointment jPanelAppointment;
-	private JPanelExam jPanelExam;
+	protected JPanelExam jPanelExam;
 	private JScrollPane jScrollPane;
 	private JPanel jPanelRound, jPanelBtn;
 	private JButton btnClearFields;

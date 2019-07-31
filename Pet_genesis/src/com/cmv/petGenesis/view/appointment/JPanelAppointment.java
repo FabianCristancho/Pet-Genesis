@@ -88,5 +88,13 @@ public class JPanelAppointment extends JPanel{
 	public JTextArea getJtaMotive() {
 		return jtaMotive;
 	}
+
+	public JDateChooser getJdcDate() {
+		return jdcDate;
+	}
+
+	public CustomLabel getLblResultId() {
+		return lblResultId;
+	}
 	
 }

@@ -182,8 +182,8 @@ public class ConstantView {
 	public static final String PANEL_ANTIPARASITARY_MEDICINE = "¿NO ENCUENTRA EL MEDICAMENTO? REGISTRELO";
 	public static final String NAME_VACCINE_MEDICINE = "SELECCIONE EL MEDICAMENTO";
 	public static final String DATE_APP_VACCINE_MEDICINE = "FECHA DE APLICACIÓN";
-	public static final String ADD_DOSIS = "DOSIS";
-	public static final String ADD_FRECUENCY = "FRECUENCIA";
+	public static final String ADD_DOSIS = "DOSIS*";
+	public static final String ADD_FRECUENCY = "FRECUENCIA*";
 	public static final String LBL_NAME_MEDIC = "NOMBRE DE MEDICAMENTO";
 	public static final String TYPE_MEDIC = "TIPO DE MEDICAMENTO";
 	public static final String DATE_APP_ANTIPARASITARY_MEDICINE= "FECHA DE APLICACIÓN";
@@ -204,7 +204,7 @@ public class ConstantView {
 	//EXAM
 	public static final String LBL_TITLE_EXAM = "EXAMEN DE RUTINA";
 	public static final Font FONT_TITLE_EXAM = new Font("Open Sans", Font.BOLD, 20);
-	public static final String LBL_EXAM_WEIGHT = "PESO";
+	public static final String LBL_EXAM_WEIGHT = "PESO (Kg)";
 	public static final String LBL_EXAM_APPETITE = "APETITO";
 	public static final String LBL_EXAM_STOOL = "HECES";
 	public static final String LBL_EXAM_WATER = "CONSUMO DE AGUA";

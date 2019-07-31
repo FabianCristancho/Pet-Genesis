@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.Consult;
-import com.cmv.petGenesis.model.Medicament;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class SQLConsult extends ConnectionMySQL{
@@ -28,6 +27,7 @@ public class SQLConsult extends ConnectionMySQL{
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}

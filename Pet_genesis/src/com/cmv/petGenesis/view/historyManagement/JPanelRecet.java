@@ -33,8 +33,8 @@ public class JPanelRecet extends JPanel {
 
 	private CustomLabel lblSelectMedic, lblCreateMedic, lblTypeMedic, lblDosis, lblFrecuency;
 	private JPanel jPanelSelectMedic, jPanelRegisterMedic, jPanelAux, jPanelMedic;
-	private JComboBox<String> comboMedicaments, comboTypeMedic;
-	private CustomTxtField jtfDosis, jtfFrecuency, jtfNameMedic;
+	protected JComboBox<String> comboMedicaments, comboTypeMedic;
+	protected CustomTxtField jtfDosis, jtfFrecuency, jtfNameMedic;
 	private JButton btnSaveMedicament;
 	private SQLMedicament sqlMedicament;
 
@@ -150,6 +150,10 @@ public class JPanelRecet extends JPanel {
 		this.comboMedicaments = new JComboBox<>(sqlMedicament.getMedicaments());
 	}
 	
+	/**
+	 * Agrega un nuevo medicamento a la base de datos
+	 * @param medicament Instancia de medicamento
+	 */
 	public void addMedicament(Medicament medicament) {
 		sqlMedicament = new SQLMedicament();
 		medicament.setNameMedicament(jtfNameMedic.getText());
@@ -163,5 +167,14 @@ public class JPanelRecet extends JPanel {
 		}else {
 			JOptionPane.showMessageDialog(null, "No fue posible agregar el medicamento", "MEDICAMENTO SIN REGISTRAR", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	/**
+	 * Evalua si los valores de la receta (Dosis y frecuencia estan o no vacios)
+	 * @return true si valores estan vacios
+	 */
+	public boolean valuesAreEmpty() {
+		CustomTxtField[] fields = {jtfDosis, jtfDosis};
+		return UtilityClass.fieldsAreEmpty(fields);
 	}
 }

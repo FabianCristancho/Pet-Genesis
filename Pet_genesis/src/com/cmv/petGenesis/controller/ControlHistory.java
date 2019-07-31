@@ -8,8 +8,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.model.Consult;
 import com.cmv.petGenesis.model.Medicament;
 import com.cmv.petGenesis.model.Pet;
+import com.cmv.petGenesis.model.Recet;
+import com.cmv.petGenesis.model.RegisterExam;
 import com.cmv.petGenesis.view.clientManagement.JDialogNewClient;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
@@ -62,6 +65,10 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			break;
 		case CMD_WD_PET_REGISTER_HIS:
 			jPanelCreateHistory.registerHistory(new Pet());
+			jPanelCreateHistory.saveConsult(new Consult());
+			jPanelCreateHistory.saveExamEcop(new RegisterExam());
+			jPanelCreateHistory.saveExamTPR(new RegisterExam());
+			jPanelCreateHistory.saveRecet(new Recet());
 			break;
 		case CMD_BTN_NEW_CLIENT:
 			jDialogNewClient = new JDialogNewClient();

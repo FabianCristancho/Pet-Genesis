@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -18,17 +15,22 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
 import com.cmv.petGenesis.command.HistoryCommands;
-import com.cmv.petGenesis.command.UserCommands;
+import com.cmv.petGenesis.connection.SQLConsult;
+import com.cmv.petGenesis.connection.SQLExam;
 import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.connection.SQLPets;
+import com.cmv.petGenesis.connection.SQLRecet;
 import com.cmv.petGenesis.controller.ControlHistory;
-import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.Consult;
+import com.cmv.petGenesis.model.Exam;
 import com.cmv.petGenesis.model.GenderPet;
+import com.cmv.petGenesis.model.Medicament;
 import com.cmv.petGenesis.model.Person;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Race;
+import com.cmv.petGenesis.model.Recet;
+import com.cmv.petGenesis.model.RegisterExam;
 import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -181,66 +183,63 @@ public class JPanelCreateHistory extends JPanel {
 				p.setAditionalDescription(jPanelDataPet.getComments());
 				if (sqlPets.registerPet(p)) {
 					JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
-					this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
-					this.jPanelDataPet.newForm();
 				} else {
 					JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
 				}
 			}
 		}
 	}
-	
+
 	public void saveConsult(Consult consult) {
+		SQLConsult sqlConsult = new SQLConsult();
 		consult.setPet(new Pet(Integer.parseInt(jPanelDataPet.jPanelFormDataPet.lblResultId.getText())));
 		consult.setPerson(new Person(user.getIdPerson()));
 		consult.setMotiveConsult(jPanelConsult.jPanelAppointment.getJtaMotive().getText());
-		
-		Date date = new Date();
-		consult.setDateConsult(date);
+
+		consult.setDateConsult(jPanelConsult.jPanelAppointment.getJdcDate().getDate());
+		if (!sqlConsult.registerConsult(consult)) {
+			JOptionPane.showMessageDialog(null, "Error al guardar la consulta", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
+			this.jPanelDataPet.newForm();
+		}
 	}
 
-	/**
-	 * Metodo que verifica el campo de entrada de la fecha de nacimiento utilizando
-	 * una libreria externa y convirtiendo el valor en un String!
-	 * 
-	 * @return la cadena con el valor extraido del textfield si lo encuantra, sino
-	 *         devuelve un null!
-	 */
-//	public String getBirthDate() {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		if (jPanelFormUser.birthdayDateChooser.getDate() != null)
-//			return sdf.format(jPanelFormUser.birthdayDateChooser.getDate());
-//		return null;
-//	}
-//
-//	public void validFields() {
-//		if (isFieldIsEmpty(jPanelFormUser.jtfName) || isFieldIsEmpty(jPanelFormUser.jtfLastName) || isFieldIsEmpty(jPanelFormUser.jpfPassword)
-//				|| isFieldIsEmpty(jPanelFormUser.jpfPasswordAgain)) {
-//			JOptionPane.showMessageDialog(null, "SE DEBEN INGRESAR LOS CAMPOS OBLIGATORIOS");
-//		} else {
-//			try {
-//				LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText(),
-//						PasswordUtil.getHash(String.valueOf(jPanelFormUser.jpfPassword.getPassword())));
-//				JOptionPane.showMessageDialog(null, "SE HA REGISTRADO AL USUARIO CON EXITO");
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		if (!String.valueOf(jPanelFormUser.jpfPassword.getPassword()).equals(String.valueOf(jPanelFormUser.jpfPasswordAgain.getPassword()))) {
-//			JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
-//		} else {
-//			if (isFieldIsEmpty(jPanelFormUser.jpfPassword) || isFieldIsEmpty(jPanelFormUser.jpfPassword)) {
-//				JOptionPane.showMessageDialog(null, "NO SE HA INGRESADO LA CONTRSEÑA");
-//			} else {
-//				try {
-//					LoginManage.getInstance().generateUsername(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText(),
-//							PasswordUtil.getHash(String.valueOf(jPanelFormUser.jpfPassword.getPassword())));
-//					JOptionPane.showMessageDialog(null, "SE HA REGISTRADO AL USUARIO CON EXITO");
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
+	public void saveExamTPR(RegisterExam registerExam) {
+		SQLExam sqlExam = new SQLExam();
+		registerExam
+				.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+		registerExam.setExam(new Exam(1));
+		registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamTPR());
+		registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
+		if (!sqlExam.registerExam(registerExam))
+			JOptionPane.showMessageDialog(null, "Error al guardar el examen TPR", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
+	}
 
+	public void saveExamEcop(RegisterExam registerExam) {
+		SQLExam sqlExam = new SQLExam();
+		registerExam
+				.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+		registerExam.setExam(new Exam(2));
+		registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamEcop());
+		registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
+		if (!sqlExam.registerExam(registerExam))
+			JOptionPane.showMessageDialog(null, "Error al guardar el examen ECOP", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
+	}
+
+	public void saveRecet(Recet recet) {
+		SQLRecet sqlRecet = new SQLRecet();
+		if (!jPanelRecet.valuesAreEmpty()) {
+			recet.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+			recet.setMedicament(new Medicament(jPanelRecet.comboMedicaments.getSelectedIndex() + 1));
+			recet.setDosis(jPanelRecet.jtfDosis.getText());
+			recet.setFrecuency(jPanelRecet.jtfFrecuency.getText());
+			if (!sqlRecet.registerRecet(recet))
+				JOptionPane.showMessageDialog(null, "Error al guardar la receta", "ERROR TYPE",
+						JOptionPane.ERROR_MESSAGE);
+		}
+	}
 }

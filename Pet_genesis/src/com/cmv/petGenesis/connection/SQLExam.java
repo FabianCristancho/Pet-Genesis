@@ -6,22 +6,21 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import com.cmv.petGenesis.model.Recet;
 import com.cmv.petGenesis.model.RegisterExam;
 
-public class SQLRecet extends ConnectionMySQL{
+public class SQLExam extends ConnectionMySQL{
 	
-	public boolean registerRecet(Recet recet) {
+	public boolean registerExam(RegisterExam registerExam) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 
-		String sql = "INSERT INTO recetas (id_medicamento, id_consulta, dosis, frecuencia) VALUES (?,?,?,?)";
+		String sql = "INSERT INTO registros_examen (id_consulta, id_examen, resultado_examen, diagnostico_examen) VALUES (?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setInt(1, recet.getMedicament().getIdMedicament());
-			ps.setInt(2, recet.getConsult().getIdConsult());
-			ps.setString(3, recet.getDosis());
-			ps.setString(4, recet.getFrecuency());
+			ps.setInt(1, registerExam.getConsult().getIdConsult());
+			ps.setInt(2, registerExam.getExam().getIdExam());
+			ps.setString(3, registerExam.getResultExam());
+			ps.setString(4, registerExam.getDiagnosticExam());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {

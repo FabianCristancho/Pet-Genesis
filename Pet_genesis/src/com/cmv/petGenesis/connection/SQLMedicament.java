@@ -24,6 +24,7 @@ public class SQLMedicament extends ConnectionMySQL{
 			return true;
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
