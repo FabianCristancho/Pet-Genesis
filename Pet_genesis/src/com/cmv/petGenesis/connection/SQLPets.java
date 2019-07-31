@@ -3,7 +3,9 @@ package com.cmv.petGenesis.connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.cmv.petGenesis.model.ActivationState;
 import com.cmv.petGenesis.model.Client;
@@ -164,6 +166,47 @@ public class SQLPets extends ConnectionMySQL{
 			return id;
 		}
 		return id;
+	}
+	
+	public ArrayList<Object[]> loadDataPets(String valueId) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		ArrayList<Object[]> tableData = new ArrayList<>();
+		
+		String and = "";
+		
+		if(!"".equals(valueId))
+			and = " AND m.id_mascota = '" +valueId +"'";
+
+		String sql = "SELECT m.id_mascota, m.nombre_mascota, m.genero_mascota, e.nombre_especie, r.nombre_raza, m.fecha_de_nacimiento, "
+				+ "m.color_mascota, m.castrada, p.nombre_persona, p.apellido_persona "
+				+ "FROM mascotas AS m "
+				+ "INNER JOIN personas AS p ON m.id_persona = p.id_persona "
+				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza "
+				+ "INNER JOIN especies AS e ON r.id_especie = e.id_especie "
+				+ "WHERE estado_de_activacion = 'A'" + and;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			ResultSetMetaData rsMd = rs.getMetaData();
+			int countCols = rsMd.getColumnCount();
+
+			while (rs.next()) {
+				Object[] rows = new Object[countCols];
+
+				for (int i = 0; i < rows.length; i++) {
+					rows[i] = rs.getObject(i + 1);
+				}
+				tableData.add(rows);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tableData;
 	}
 
 }

@@ -17,6 +17,7 @@ import com.cmv.petGenesis.view.clientManagement.JDialogNewClient;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
+import com.cmv.petGenesis.view.historyManagement.JPanelFindHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFormDataPet;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
@@ -31,6 +32,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelComments jPanelComments;
 	private JPanelRecet jPanelMedicine;
 	private JPanelConsult jPanelConsult;
+	private JPanelFindHistory jPanelFindHistory;
 	private JDialogNewClient jDialogNewClient;
 
 	private ControlHistory() {
@@ -77,11 +79,17 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			jPanelUpdateHistory.getDataQuery();
 			break;
 		case CMD_BTN_KEEP_HISTORY:
-			
 			break;
 		case CMD_WD_RECET_ADD_MEDIC:
 			jPanelMedicine.addMedicament(new Medicament());
 			break;
+		case CMD_WD_SEARCH_PET:
+			jPanelFindHistory.getTableSearch();
+			break;
+		case CMD_WD_LOAD_DATA:
+			jPanelFindHistory.loadAllData();
+			break;
+			
 			
 		default:
 			break;
@@ -108,6 +116,11 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	public void setjPanelUpdateHistory(JPanelUpdateHistory jPanelUpdateHistory) {
 		this.jPanelUpdateHistory = jPanelUpdateHistory;
+	}
+	
+
+	public void setjPanelFindHistory(JPanelFindHistory jPanelFindHistory) {
+		this.jPanelFindHistory = jPanelFindHistory;
 	}
 
 	@Override

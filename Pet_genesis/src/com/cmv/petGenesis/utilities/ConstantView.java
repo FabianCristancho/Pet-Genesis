@@ -196,6 +196,11 @@ public class ConstantView {
 	public static final String LABEL_TITLE_UPDATE_HISTORY = "MODIFICACIÓN DE HISTORIA CLÍNICA";
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
 	
+	public final static String LABEL_PET_QUERY = "CONSULTA DE MASCOTAS";
+	public final static String LABEL_SEARCH_PET_QUERY = "Ingrese id de mascota a consultar";
+	public final static String BTN_LOAD_ALL_DATA = "CARGAR TODOS LOS DATOS";
+	public final static String BTN_SEARCH_PET = "BUSCAR MASCOTA";
+	
 	//APPOINTMENT MANAGEMENT
 	public static final String LABEL_ID_AP = "ID CONSULTA";
 	public static final String LABEL_DATE_AP = "FECHA CONSULTA";
