@@ -6,6 +6,12 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
+/**
+ * Clase CustomTxtField - Se encarga de crear
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class CustomTxtField extends JTextField{
 	
 	
