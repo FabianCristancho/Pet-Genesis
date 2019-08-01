@@ -23,11 +23,11 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 /**
- * Se encarga de registrar una receta especifica y permite crear nuevos
+ * Clase JPanelRecet - Se encarga de registrar una receta especifica y permite crear nuevos
  * medicamentos
- * 
- * @author Fabian Cristancho
  *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
  */
 public class JPanelRecet extends JPanel {
 
@@ -39,7 +39,7 @@ public class JPanelRecet extends JPanel {
 	private SQLMedicament sqlMedicament;
 
 	/**
-	 * Constructor
+	 * Constructor del panel
 	 */
 	public JPanelRecet() {
 		super(new BorderLayout());
@@ -142,10 +142,16 @@ public class JPanelRecet extends JPanel {
 		jPanelMedic.add(jPanelAux, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Carga el combo con los tipos de medicamentos
+	 */
 	private void loadComboTypeMedicament() {
 		this.comboTypeMedic = new JComboBox<>(sqlMedicament.getTypeMedicaments());
 	}
 	
+	/**
+	 * Carga el combo con los medicmentos de la base
+	 */
 	private void loadComboMedicaments() {
 		this.comboMedicaments = new JComboBox<>(sqlMedicament.getMedicaments());
 	}

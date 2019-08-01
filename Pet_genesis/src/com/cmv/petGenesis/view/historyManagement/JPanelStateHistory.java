@@ -10,7 +10,6 @@ import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -28,6 +27,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelStateHistory - Se encarga de la creación del panel para la manipulación
+ * de los estados de la historia de la mascota
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelStateHistory extends JPanel {
 	
 	private JTable jTable;
@@ -40,6 +46,9 @@ public class JPanelStateHistory extends JPanel {
 	private DefaultTableModel model;
 	private JScrollPane jScrollPane;
 	
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelStateHistory() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -60,6 +69,9 @@ public class JPanelStateHistory extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa los componetes del panel
+	 */
 	private void init() {
 		initParameters();
 		initPanelStateTable();
@@ -86,6 +98,9 @@ public class JPanelStateHistory extends JPanel {
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Inicializa la tabla con los estados
+	 */
 	private void initPanelStateTable() {
 		this.jPanelStateTable.setOpaque(false);
 		this.jPanelStateTable.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -93,6 +108,9 @@ public class JPanelStateHistory extends JPanel {
 		this.jPanelStateTable.add(labelStateClient, BorderLayout.NORTH);
 	}
 
+	/**
+	 * Inicializa los componetes para la busqueda
+	 */
 	private void initParameters() {
 		this.panelSearch.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -146,6 +164,9 @@ public class JPanelStateHistory extends JPanel {
 		this.panelSearch.add(btnEnter, gbc);
 	}
 
+	/**
+	 * Cambia el ancho de las columnas
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 140, 140, 110, 110, 200, 200, 140, 200, 200};
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -153,6 +174,11 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Carga los datos de la tabla por un
+	 * @param parameter atributo
+	 * @param state valor del atributo
+	 */
 	public void loadTable(String parameter, String state) {
 		SQLPets sqlPets = new SQLPets();
 		this.model = new DefaultTableModel();
@@ -178,6 +204,10 @@ public class JPanelStateHistory extends JPanel {
 		changeWidthColumn();
 	}
 
+	/**
+	 * Obtiene el estado de la historia seleccioando en el combobox
+	 * @return parameter estado
+	 */
 	public String getStateHistory() {
 		String parameter = null;
 		switch (statesBox.getSelectedIndex()) {
@@ -201,6 +231,9 @@ public class JPanelStateHistory extends JPanel {
 		return parameter;
 	}
 
+	/**
+	 * Cambia el estado de una historia buscando su id en un campo
+	 */
 	public void changeWithField() {
 		if (!jtfInputQuery.getText().equals("")) {
 			if (getStateHistory().equals("Activa")) {
@@ -223,10 +256,20 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtien la tabla donde se muestran los resultados
+	 * @return jTable tabla
+	 */
 	public JTable getjTable() {
 		return jTable;
 	}
 
+	/**
+	 * Inicativa una historia buscando a la mascota por
+	 * @param parameter atributo
+	 * @param value valor del atributo
+	 * @param user mascota
+	 */
 	private void inactivPet(String parameter, String value, String user) {
 		SQLPets sqlPets = new SQLPets();
 		
@@ -252,6 +295,12 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Activa una historia buscando por
+	 * @param parameter parametro
+	 * @param value valor parametro
+	 * @param user id mascota
+	 */
 	private void activPet(String parameter, String value, String user) {
 		SQLPets sqlPets = new SQLPets();
 		
@@ -277,6 +326,12 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 	
+	/**
+	 * Bloquea una historia buscando por
+	 * @param parameter atributo
+	 * @param value valor atributo
+	 * @param user id mascota
+	 */
 	private void blockPet(String parameter, String value, String user) {
 		SQLPets sqlPets = new SQLPets();
 		
@@ -302,6 +357,12 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 	
+	/**
+	 * Archiva las historias de un mascota buscando por
+	 * @param parameter atributo
+	 * @param value valo atributo
+	 * @param user id mascota
+	 */
 	private void storePet(String parameter, String value, String user) {
 		SQLPets sqlPets = new SQLPets();
 		
@@ -327,6 +388,10 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Cambia los datos para saber cuakes son las mascotas que muestra, dependiendo
+	 * de su estado
+	 */
 	public void changeStateButton() {
 		jtfInputQuery.setText("");
 		if (getStateHistory().equals("Activa")) {
@@ -344,6 +409,10 @@ public class JPanelStateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtiene el campo para buscar una mascota
+	 * @return jtfInputQuery text
+	 */
 	public HintJTextField getJtfInputQuery() {
 		return jtfInputQuery;
 	}

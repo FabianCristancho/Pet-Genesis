@@ -23,6 +23,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelFindHistory - Se encarga de encontrar los datos de la historia
+ * en un jtable
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelFindHistory extends JPanel{
 	
 	private JTable jTable;
@@ -35,6 +42,9 @@ public class JPanelFindHistory extends JPanel{
 	private HintJTextField jtfInputQuery;
 	private DefaultTableModel model;
 
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelFindHistory() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -50,6 +60,9 @@ public class JPanelFindHistory extends JPanel{
 		init();
 	}
 
+	/**
+	 * Inicializa los campos para encontrar las historia
+	 */
 	private void init() {
 		initParameters();
 
@@ -72,6 +85,9 @@ public class JPanelFindHistory extends JPanel{
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Inicializa los parametros
+	 */
 	private void initParameters() {
 		UtilityClass.addCommandJButton(btnSearch, HistoryCommands.CMD_WD_SEARCH_PET.toString(), ControlHistory.getInstance());
 		UtilityClass.addCommandJButton(btnLoadData, HistoryCommands.CMD_WD_LOAD_DATA.toString(), ControlHistory.getInstance());
@@ -101,6 +117,9 @@ public class JPanelFindHistory extends JPanel{
 		this.panelSearch.add(btnLoadData, gbc);
 	}
 
+	/**
+	 * Cambia la el ancho de las columnas de la tabla
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 120, 140, 150, 150, 120, 100, 130, 130 };
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -108,6 +127,10 @@ public class JPanelFindHistory extends JPanel{
 		}
 	}
 
+	/**
+	 * Carga los valores de la tabla
+	 * @param valueId id
+	 */
 	private void loadTable(String valueId) {
 		SQLPets sqlPets = new SQLPets();
 		this.model = new DefaultTableModel();
@@ -133,16 +156,25 @@ public class JPanelFindHistory extends JPanel{
 		this.jtfInputQuery.setText("");
 	}
 
+	/**
+	 * Obtiene la tabla de busueda
+	 */
 	public void getTableSearch() {
 		loadTable(jtfInputQuery.getText());
 		this.btnLoadData.setEnabled(true);
 	}
 
-
+	/**
+	 * Carga todos los datos de la tabla
+	 */
 	public void loadAllData() {
 		this.loadTable("");
 	}
 
+	/**
+	 * Obtien ele boton para cargar los datos
+	 * @return btnLoadData button
+	 */
 	public JButton getBtnLoadData() {
 		return btnLoadData;
 	}

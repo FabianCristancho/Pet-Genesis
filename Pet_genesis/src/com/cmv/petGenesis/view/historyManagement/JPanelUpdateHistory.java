@@ -17,23 +17,25 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.HistoryCommands;
-import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.connection.SQLPets;
 import com.cmv.petGenesis.controller.ControlHistory;
-import com.cmv.petGenesis.model.ActivationState;
-import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Race;
 import com.cmv.petGenesis.model.StatePet;
-import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelUpdateHistory - Se encarga de crear el panel para actualizar los datos de una
+ *  mascota
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelUpdateHistory extends JPanel{
 	
 	private JLabel titlePanel;
-	private JLabel idUser;
 	private JLabel descriptionLabel;
 	private JTextField jtfInputId;
 	private JPanel jPanelUp;
@@ -45,6 +47,9 @@ public class JPanelUpdateHistory extends JPanel{
 	private JScrollPane jScrollPane;
 	private JPanel jPanelRegion;
 
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelUpdateHistory() {
 		super();
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_HISTORY);
@@ -61,6 +66,9 @@ public class JPanelUpdateHistory extends JPanel{
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void init() {
 		this.setBackground(Color.decode("#c5dfed"));
 		initPanelUp();
@@ -78,6 +86,9 @@ public class JPanelUpdateHistory extends JPanel{
 		this.add(jScrollPane);
 	}
 
+	/**
+	 * Inicializa los componetes superiores del panel
+	 */
 	private void initPanelUp() {
 		this.jPanelUp.setOpaque(false);
 		this.jPanelUp.setLayout(new GridBagLayout());
@@ -105,6 +116,9 @@ public class JPanelUpdateHistory extends JPanel{
 		this.jPanelUp.add(btnSearchUser, gbc);
 	}
 
+	/**
+	 * Inicializa los componentes inferiores del panel
+	 */
 	private void initpanelDown() {
 		this.jPanelDown = new JPanel(new GridBagLayout());
 		this.jPanelDown.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -136,10 +150,17 @@ public class JPanelUpdateHistory extends JPanel{
 		this.jPanelDown.add(btnUpdateUser, gbc);
 	}
 	
+	/**
+	 * Obtiene el combo de especies
+	 * @return getComboSpecies combobox
+	 */
 	public JComboBox<String> getComboSpecies() {
 		return this.jpanelCenter.getComboSpecies();
 	}
 
+	/**
+	 * Obtiene los datos de una mascota buscada (Si existe)
+	 */
 	public void getDataQuery() {
 		SQLPets sqlPets = new SQLPets();
 		Pet pet = sqlPets.getDataPet(jtfInputId.getText());
@@ -168,6 +189,10 @@ public class JPanelUpdateHistory extends JPanel{
 		}
 	}
 
+	/**
+	 * Actualiza los datos de la mascota, con los datos del formulario
+	 * @param pet mascota
+	 */
 	public void saveDataSignIn(Pet pet) {
 		SQLPets sqlPets = new SQLPets();
 		
@@ -201,6 +226,9 @@ public class JPanelUpdateHistory extends JPanel{
 		
 	}
 
+	/**
+	 * Actualiza los datos de la raza
+	 */
 	public void changeRaces() {
 		this.jpanelCenter.changeRaces();
 	}

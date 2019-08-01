@@ -16,6 +16,12 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 import com.cmv.petGenesis.view.appointment.JPanelAppointment;
 import com.cmv.petGenesis.view.appointment.JPanelExam;
 
+/**
+ * Clase JPanelConsult - Se encarga del manejo del panel de para las consultas
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelConsult extends JPanel{
 	
 	protected JPanelAppointment jPanelAppointment;
@@ -24,6 +30,9 @@ public class JPanelConsult extends JPanel{
 	private JPanel jPanelRound, jPanelBtn;
 	private JButton btnClearFields;
 	
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelConsult() {
 		super(new BorderLayout());
 		this.jPanelRound = new JPanel(new BorderLayout());
@@ -36,6 +45,9 @@ public class JPanelConsult extends JPanel{
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void init() {
 		this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 		this.jPanelAppointment.createAutomaticId();
@@ -51,26 +63,49 @@ public class JPanelConsult extends JPanel{
 		UtilityClass.addCommandJButton(btnClearFields, HistoryCommands.CMD_WD_EXAM_CLEAR_FIELDS.toString(),ControlHistory.getInstance());
 	}
 	
+	/**
+	 * Limipia los espacios del formulario
+	 */
 	public void clearFields() {
 		this.jPanelExam.clearFields();
 	}
 	
+	/**
+	 * Obtiene el peso del campo
+	 * @return jPanelExam text
+	 */
 	public JTextField getJtfWeight() {
 		return jPanelExam.getJtfWeight();
 	}
 
+	/**
+	 * Obtiene la temperatura del campo
+	 * @return getJtfTemperature text
+	 */
 	public JTextField getJtfTemperature() {
 		return jPanelExam.getJtfTemperature();
 	}
 
+	/**
+	 * Obtiene la presión del campo
+	 * @return getJtfPression text
+	 */
 	public JTextField getJtfPression() {
 		return jPanelExam.getJtfPression();
 	}
 
+	/**
+	 * Obtien la informacion cardiaca del campo
+	 * @return getJtfCardiac text
+	 */
 	public JTextField getJtfCardiac() {
 		return jPanelExam.getJtfCardiac();
 	}
 
+	/**
+	 * Obtener la informacion de la respiración del campo
+	 * @return getJtfRespiratory text
+	 */
 	public JTextField getJtfRespiratory() {
 		return jPanelExam.getJtfRespiratory();
 	}

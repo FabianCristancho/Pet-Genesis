@@ -39,6 +39,13 @@ import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelCreateHistory - Se encarga de crear el panel para la creación de la
+ * mascota y la historia
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelCreateHistory extends JPanel {
 
 	private CustomLabel title;
@@ -88,6 +95,9 @@ public class JPanelCreateHistory extends JPanel {
 		this.jPanelDataPet.getjPanelFormDataPet().createAutomaticID();
 	}
 
+	/**
+	 * Inicializa los botones del panel del formulario
+	 */
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
 		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -118,32 +128,58 @@ public class JPanelCreateHistory extends JPanel {
 		this.panelButtons.add(okButton, gbc);
 	}
 
+	/**
+	 * Inicializa los modulos
+	 */
 	private void initModules() {
 		this.modules.add(ConstantView.TABBED_DATA_PET, jPanelDataPet);
 		this.modules.add(ConstantView.TABBED_APPOINT_PET, jPanelConsult);
 		this.modules.add(ConstantView.TABBED_MEDICINE_PET, jPanelRecet);
 	}
 
+	/**
+	 * Obtiene el campo del propietario
+	 * @return getJtfPropietary text
+	 */
 	public CustomTxtField getJtfPropietary() {
 		return this.jPanelDataPet.getJtfPropietary();
 	}
 
+	/**
+	 * Obtiene el nombre de la mascota
+	 * @return getJtfNamePet text
+	 */
 	public CustomTxtField getJtfNamePet() {
 		return this.jPanelDataPet.getJtfNamePet();
 	}
 
+	/**
+	 * Obtiene el color de la masta del campo
+	 * @return getJtfColorPet text
+	 */
 	public CustomTxtField getJtfColorPet() {
 		return this.jPanelDataPet.getJtfColorPet();
 	}
 
+	/**
+	 * Obtien el combo de especies
+	 * @return getComboSpecies combobox
+	 */
 	public JComboBox<String> getComboSpecies() {
 		return jPanelDataPet.getComboSpecies();
 	}
 
+	/**
+	 * Actualiza el valor de la raza del combobox dependiendo de la especie
+	 */
 	public void changeRaces() {
 		jPanelDataPet.changeRaces();
 	}
 
+	/**
+	 * Registra la historia clinica
+	 * @param p mascota
+	 */
 	public void registerHistory(Pet p) {
 		SQLPets sqlPets = new SQLPets();
 		if (jPanelDataPet.fieldsAreEmpty()) {
@@ -191,6 +227,10 @@ public class JPanelCreateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Guarda los valores de la consulta
+	 * @param consult consulta
+	 */
 	public void saveConsult(Consult consult) {
 		SQLConsult sqlConsult = new SQLConsult();
 		consult.setPet(new Pet(Integer.parseInt(jPanelDataPet.jPanelFormDataPet.lblResultId.getText())));
@@ -207,6 +247,10 @@ public class JPanelCreateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Guarda los datos del examen tpr
+	 * @param registerExam examen a registrar
+	 */
 	public void saveExamTPR(RegisterExam registerExam) {
 		SQLExam sqlExam = new SQLExam();
 		if(!jPanelConsult.jPanelExam.fieldsTPRAreEmpty()) {
@@ -221,6 +265,10 @@ public class JPanelCreateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Guarda los datos del examen Ecop
+	 * @param registerExam datos a guardar
+	 */
 	public void saveExamEcop(RegisterExam registerExam) {
 		SQLExam sqlExam = new SQLExam();
 		if(!jPanelConsult.jPanelExam.fieldsEreEmpty()) {
@@ -235,6 +283,10 @@ public class JPanelCreateHistory extends JPanel {
 		}
 	}
 
+	/**
+	 * Guardar la inofrmación de la receta
+	 * @param recet receta
+	 */
 	public void saveRecet(Recet recet) {
 		SQLRecet sqlRecet = new SQLRecet();
 		if (!jPanelRecet.valuesAreEmpty()) {
@@ -248,22 +300,42 @@ public class JPanelCreateHistory extends JPanel {
 		}
 	}
 	
+	/**
+	 * Obtiene el campo del peso
+	 * @return getJtfWeight text
+	 */
 	public JTextField getJtfWeight() {
 		return jPanelConsult.getJtfWeight();
 	}
 
+	/**
+	 * Obtiene el campo de la temperatura
+	 * @return getJtfTemperature text
+	 */
 	public JTextField getJtfTemperature() {
 		return jPanelConsult.getJtfTemperature();
 	}
 
+	/**
+	 * Obtiene el campo de la presión
+	 * @return getJtfPression text
+	 */
 	public JTextField getJtfPression() {
 		return jPanelConsult.getJtfPression();
 	}
 
+	/**
+	 * Obtiene el campo de la infromación cardiaca
+	 * @return getJtfCardiac text
+	 */
 	public JTextField getJtfCardiac() {
 		return jPanelConsult.getJtfCardiac();
 	}
 
+	/**
+	 * Obtiene el campo de la información de la respiración
+	 * @return getJtfRespiratory text
+	 */
 	public JTextField getJtfRespiratory() {
 		return jPanelConsult.getJtfRespiratory();
 	}

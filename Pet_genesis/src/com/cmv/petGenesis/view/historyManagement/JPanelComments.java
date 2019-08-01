@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -20,6 +19,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelComments - Se encarga de crear el formulario de comentarios de las
+ * historias clinicas
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelComments extends JPanel {
 	
 	private CustomLabel titleComments;
@@ -28,6 +34,9 @@ public class JPanelComments extends JPanel {
 	private JButton btnClearComments;
 	private JPanel jpanelButtons;
 
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelComments() {
 		super(new BorderLayout());
 		this.titleComments = new CustomLabel(ConstantView.TITLE_COMMENTS, ConstantView.FONT_TITLE_COMMENTS, null);
@@ -39,6 +48,9 @@ public class JPanelComments extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes del panel
+	 */
 	private void init() {
 		this.setBorder(BorderFactory.createEmptyBorder(30, 0, 20, 20));
 		this.titleComments.setHorizontalAlignment(JLabel.CENTER);
@@ -57,6 +69,9 @@ public class JPanelComments extends JPanel {
 		this.add(jpanelButtons, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Inicializa los componentes para los comentarios
+	 */
 	private void initPanelComments() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.EAST;
@@ -68,6 +83,9 @@ public class JPanelComments extends JPanel {
 		this.jpanelButtons.add(btnClearComments, gbc);
 	}
 	
+	/**
+	 * Limpia el area de comentarios
+	 */
 	public void clearComments() {
 		int option = JOptionPane.showConfirmDialog(null, "ESTÁ SEGURO DE BORRAR TODOS LOS COMENTARIOS\nLA ACCIÓN NO TENDRÁ REVERSA", "BORRADO PERMANENTE", JOptionPane.YES_NO_OPTION);
 		if(option == 0) {
@@ -76,6 +94,10 @@ public class JPanelComments extends JPanel {
 		}
 	}
 	
+	/**
+	 * Obtener los componentes 
+	 * @return jtaComments text
+	 */
 	public String getComments() {
 		return this.jtaComments.getText();
 	}

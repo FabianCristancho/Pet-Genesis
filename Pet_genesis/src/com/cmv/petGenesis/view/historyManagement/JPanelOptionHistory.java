@@ -17,6 +17,13 @@ import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelOptionHistory - Se encarga de rear el panel con los botones de las 
+ * opciones para visualizar un panel de las historias
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelOptionHistory extends JPanel{
 	
 	private JButton btnCreateHistory;
@@ -24,6 +31,9 @@ public class JPanelOptionHistory extends JPanel{
 	private JButton btnStateHistory;
 	private JButton btnFindHistory;
 
+	/**
+	 * Constructor del panel
+	 */
 	public JPanelOptionHistory() {
 		super(new GridBagLayout());
 		this.btnCreateHistory = new JButton(ConstantView.BUTTON_CREATE_HISTORY);
@@ -33,6 +43,9 @@ public class JPanelOptionHistory extends JPanel{
 		init();
 	}
 
+	/**
+	 * Inicializa los botones del panel
+	 */
 	private void init() {
 		ActionListener al = ControlHistory.getInstance();
 		this.setBackground(Color.decode("#2E5569"));

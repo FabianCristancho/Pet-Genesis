@@ -18,7 +18,6 @@ import javax.swing.JRadioButton;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.connection.SQLPets;
-import com.cmv.petGenesis.controller.ControlClient;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -26,6 +25,13 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
+/**
+ * Clase JPanelFormDataPet - Se encarga de crear el formulario para los campos para 
+ * agregar una mascota
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelFormDataPet extends JPanel {
 
 	protected CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
@@ -41,6 +47,9 @@ public class JPanelFormDataPet extends JPanel {
 	private JButton btnFindPropietary;
 	private SimpleDateFormat sdf;
 
+	/**
+	 * Constructor del formulario
+	 */
 	public JPanelFormDataPet() {
 		super(new GridBagLayout());
 		this.lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
@@ -82,6 +91,9 @@ public class JPanelFormDataPet extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa los campos de panel
+	 */
 	private void init() {
 		this.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -192,15 +204,25 @@ public class JPanelFormDataPet extends JPanel {
 		this.add(lblObligate, gbc);
 	}
 
+	/**
+	 * Crea el id automaticamente
+	 */
 	public void createAutomaticID() {
 		SQLPets sqlPets = new SQLPets();
 		lblResultId.setText("" + (sqlPets.getLastIdPet() + 1));
 	}
 
+	/**
+	 * Obtiene el combo de la especie
+	 * @return comboSpecies combobox
+	 */
 	public JComboBox<String> getComboSpecies() {
 		return comboSpecies;
 	}
 	
+	/**
+	 * Cambia las razas del combobosx
+	 */
 	public void changeRaces() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.comboRaces.setVisible(false);
@@ -213,6 +235,11 @@ public class JPanelFormDataPet extends JPanel {
 		this.comboRaces.setVisible(true);
 	}
 	
+	/**
+	 * Obtiene la posición de un dato del combobox
+	 * @param name item combo
+	 * @return numero con la posición - si no encuentra, devuelve -1
+	 */
 	public int getIndexRaces(String name) {
 		for (int i = 0; i < comboRaces.getItemCount(); i++) {
 			if (comboRaces.getItemAt(i).equals(name)) {
@@ -222,6 +249,9 @@ public class JPanelFormDataPet extends JPanel {
 		return -1;
 	}
 	
+	/**
+	 * Crear un nuevo formulario
+	 */
 	public void newForm() {
 		try {
 			this.birthDate = new JDateChooser(sdf.parse("00/00/2000"));
@@ -240,16 +270,16 @@ public class JPanelFormDataPet extends JPanel {
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return lblResultId
+	 * Obtiene el label del id
+	 * @return lblResultId id
 	 */
 	public CustomLabel getLblResultId() {
 		return lblResultId;
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return btnFindPropietary
+	 * Obtiene el botón del propietario
+	 * @return btnFindPropietary button
 	 */
 	public JButton getBtnFindPropietary() {
 		return btnFindPropietary;
