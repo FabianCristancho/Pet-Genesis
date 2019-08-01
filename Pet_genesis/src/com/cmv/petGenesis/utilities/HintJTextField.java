@@ -3,13 +3,17 @@ package com.cmv.petGenesis.utilities;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import javax.swing.JTextField;
 
-
+/**
+ * Clase HintJTextField - Se encarga de crear un texto que desaparece al escribir en un
+ * jtextfield
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class HintJTextField extends JTextField implements FocusListener {
 	private static final long serialVersionUID = 1L;
 	private final String hint;
@@ -18,6 +22,11 @@ public class HintJTextField extends JTextField implements FocusListener {
 	private LinkedList<Character> requiredCharacters;
 	private LinkedList<Character> prohibitedCharacters;
 
+	/**
+	 * Constructor con:
+	 * @param hint texto a ocultar
+	 * @param cols columnas - tamaños
+	 */
 	public HintJTextField(String hint, int cols) {
 		super(hint);
 		this.setColumns(cols);
@@ -29,15 +38,28 @@ public class HintJTextField extends JTextField implements FocusListener {
 		this.init();
 	}
 
+	/**
+	 * Constructor con:
+	 * @param hint texto oculto
+	 * @param limit limite
+	 * @param cols columnas
+	 */
 	public HintJTextField(String hint, int limit, int cols) {
 		this(hint, cols);
 		this.limit = limit;
 	}
 
+	/**
+	 * Inicializa el focuslistener
+	 */
 	private void init() {
 		super.addFocusListener(this);
 	}
 
+	/**
+	 * Verificador de caracteres
+	 * @return true - false
+	 */
 	private boolean isCompliant() {
 		for (Character c : this.requiredCharacters) {
 			if (!this.getText().contains(c + ""))
@@ -46,12 +68,20 @@ public class HintJTextField extends JTextField implements FocusListener {
 		return true;
 	}
 
+	/**
+	 * Se encarga de evitar que se escriban letras
+	 * @param chars caracteres
+	 */
 	public void prohibitedCharacters(char... chars) {
 		for (int i = 0; i < chars.length; i++) {
 			this.prohibitedCharacters.add(chars[i]);
 		}
 	}
 
+	/**
+	 * Caracteres requeridos
+	 * @param chars caracteres
+	 */
 	public void requiredCharacters(char... chars) {
 		for (int i = 0; i < chars.length; i++) {
 			this.requiredCharacters.add(chars[i]);
@@ -76,6 +106,9 @@ public class HintJTextField extends JTextField implements FocusListener {
 		}
 	}
 
+	/**
+	 * Cambia de color al texto oculto
+	 */
 	public void putHint() {
 		setText(hint);
 		this.setForeground(Color.gray);
