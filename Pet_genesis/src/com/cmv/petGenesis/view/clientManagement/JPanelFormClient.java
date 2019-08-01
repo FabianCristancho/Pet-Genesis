@@ -22,11 +22,11 @@ import javax.swing.JTextField;
 import com.cmv.petGenesis.command.ClientCommands;
 import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.controller.ControlClient;
+import com.cmv.petGenesis.controller.ControlLogin;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.cmv.petGenesis.view.mainWindow.EnterListener;
 import com.toedter.calendar.JDateChooser;
 
 /**
@@ -163,7 +163,7 @@ public class JPanelFormClient extends JPanel {
 		this.add(birthdayDateChooser, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 4, 1, 1);
-		this.jtfPhone.addKeyListener(EnterListener.getInstance());
+		this.jtfPhone.addKeyListener(ControlLogin.getInstance());
 		this.add(jtfPhone, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 3, 4, 1, 1);

@@ -9,12 +9,13 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.cmv.petGenesis.controller.ControlLogin;
+
 
 public class JDialogLogin extends JDialog {
 	private static JDialogLogin enterJDialog;
 	private CardLayout cardLayout;
 	private JPanelLogin loginJPanel;
-	private JPanelSignIn signInJPanel;
 	private JPanel downJPanel;
 
 	/**
@@ -22,10 +23,9 @@ public class JDialogLogin extends JDialog {
 	 * login
 	 */
 	private JDialogLogin() {
-		EnterListener.getInstance().setEnterJDialog(this);
+		ControlLogin.getInstance().setEnterJDialog(this);
 		this.cardLayout = new CardLayout();
 		this.loginJPanel = new JPanelLogin();
-		this.signInJPanel = new JPanelSignIn();
 		this.downJPanel = new JPanel(cardLayout);
 		this.init();
 	}
@@ -43,7 +43,6 @@ public class JDialogLogin extends JDialog {
 		backgroundImage.add(upJPanel, BorderLayout.SOUTH);
 
 		downJPanel.add(loginJPanel, ConstantsLogin.LOGIN);
-		downJPanel.add(signInJPanel, ConstantsLogin.SIGN_IN);
 		this.downJPanel.setOpaque(false);
 		backgroundImage.add(downJPanel, BorderLayout.CENTER);
 		this.add(backgroundImage);
@@ -67,7 +66,6 @@ public class JDialogLogin extends JDialog {
 
 	public void clearFields() {
 		this.loginJPanel.clearFields();
-		this.signInJPanel.clearFields();
 		
 	}
 

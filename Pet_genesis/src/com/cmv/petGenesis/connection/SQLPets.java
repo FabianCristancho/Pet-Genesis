@@ -353,7 +353,6 @@ public class SQLPets extends ConnectionMySQL{
 		ArrayList<Object[]> tableData = new ArrayList<>();
 
 		String where = "";
-		String and = "";
 		if (!"".equals(value)) {
 			where = " WHERE " + parameter + " = '" + value + "'";
 		}

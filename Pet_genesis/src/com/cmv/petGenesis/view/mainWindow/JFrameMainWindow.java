@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.cmv.petGenesis.controller.ControlMainWindow;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 

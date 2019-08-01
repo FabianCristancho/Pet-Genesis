@@ -11,8 +11,21 @@ import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase SQLRegisterUser, encargada de gestionar el registro de un usuario en la
+ * base de datos
+ * 
+ * @author Fabian Cristrancho - Yohan Caro
+ *
+ */
 public class SQLRegisterUser extends ConnectionMySQL {
 
+	/**
+	 * Registra un nuevo usuario en el sistema
+	 * 
+	 * @param user Nuevo usuario
+	 * @return true si fue registrado con exito
+	 */
 	public boolean register(Usuario user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -40,6 +53,12 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Actualiza los datos de un usuario
+	 * 
+	 * @param user Objeto de usuario a actualizar
+	 * @return
+	 */
 	public boolean update(Usuario user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -68,6 +87,14 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Cambia el estado de activacion de un usuario
+	 * 
+	 * @param parameter      Parametro de busqueda
+	 * @param valueParameter Valor del parametro
+	 * @param newState       Nuevo estado de usuario
+	 * @return true si el estado se cambia
+	 */
 	public boolean changeStateUser(String parameter, String valueParameter, String newState) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -84,6 +111,12 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Evalua si existe un usuario en el sistema
+	 * 
+	 * @param nameUser Nombre de usuario a buscar
+	 * @return 1 si encuentra al usuario
+	 */
 	public int existUser(String nameUser) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -114,6 +147,13 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Se encarga de realizar operaciones para el inicio de sesion, tales como fecha
+	 * de ultima sesion del usuario que ingresa al sistema
+	 * 
+	 * @param user Objeto de usuario que ingresa
+	 * @return true si ingresa con exito
+	 */
 	public boolean login(Usuario user) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -160,6 +200,16 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Carga un arraylist de tipo array object con el fin de almacenar los datos mas
+	 * relevantes de los usaurios
+	 * 
+	 * @param parameter      Parametro de busqueda
+	 * @param value          Valor buscado
+	 * @param parameterState Estado del parametro
+	 * @param state          Estado del usuario
+	 * @return Lista con los usuarios obtenidos dependiendo de las condiciones dadas
+	 */
 	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -202,6 +252,12 @@ public class SQLRegisterUser extends ConnectionMySQL {
 		return tableData;
 	}
 
+	/**
+	 * Se encarga de listar a los usuarios a partir del valor de un unico campo
+	 * 
+	 * @param field campo de texto
+	 * @return lista de usuario segun condiciones
+	 */
 	public ArrayList<Object[]> loadData2(String field) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
