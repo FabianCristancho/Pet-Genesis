@@ -10,8 +10,21 @@ import javax.swing.JOptionPane;
 import com.cmv.petGenesis.model.Consult;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
-public class SQLConsult extends ConnectionMySQL{
-	
+/**
+ * Clase SQLConsult, se encarga de las operaciones realizadas en la tabla de
+ * consultas
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
+public class SQLConsult extends ConnectionMySQL {
+
+	/**
+	 * Registra una nueva consulta en la base de datos
+	 * 
+	 * @param consult Objeto consulta a registrar
+	 * @return true si la operacion fue correcta
+	 */
 	public boolean registerConsult(Consult consult) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -31,17 +44,22 @@ public class SQLConsult extends ConnectionMySQL{
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Obtiene el ultimo id de la tabla consultas
+	 * 
+	 * @return ultimo id
+	 */
 	public int getLastIdConsult() {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
 		String sql = "SELECT MAX(id_consulta) AS max_id FROM consultas";
-		
+
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			if(rs.next())
+			if (rs.next())
 				return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();

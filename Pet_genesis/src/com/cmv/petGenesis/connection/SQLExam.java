@@ -8,8 +8,22 @@ import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.RegisterExam;
 
-public class SQLExam extends ConnectionMySQL{
-	
+/**
+ * Clase SQLExam, se encarga de las operaciones realizadas en las tablas de
+ * examenes y registros_examen
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
+public class SQLExam extends ConnectionMySQL {
+
+	/**
+	 * Se encarga de almacenar un nuevo registro de examen realizado durante una
+	 * consulta
+	 * 
+	 * @param registerExam Objeto de tipo RegisterExam
+	 * @return
+	 */
 	public boolean registerExam(RegisterExam registerExam) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();

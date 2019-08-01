@@ -7,10 +7,22 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.Recet;
-import com.cmv.petGenesis.model.RegisterExam;
 
-public class SQLRecet extends ConnectionMySQL{
-	
+/**
+ * Clase SQLRecet - Se encaraga de crear la conexión con la tabla 'recetas' en
+ * la base de datos, y agregar una nueva receta
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
+public class SQLRecet extends ConnectionMySQL {
+
+	/**
+	 * Se encarga de agregar una nueva receta en la base de datos
+	 * 
+	 * @param recet Nueva receta
+	 * @return true si la receta fue agregada exitosamente
+	 */
 	public boolean registerRecet(Recet recet) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
