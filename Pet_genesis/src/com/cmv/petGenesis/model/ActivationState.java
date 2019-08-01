@@ -1,5 +1,11 @@
 package com.cmv.petGenesis.model;
 
+/**
+ * Clase ActivationState.java - 
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public enum ActivationState {
 	INACTIV('I'), ACTIV('A');
 
