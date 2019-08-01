@@ -7,18 +7,28 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.cmv.petGenesis.model.ActivationState;
-import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Race;
 import com.cmv.petGenesis.model.Specie;
 import com.cmv.petGenesis.model.StatePet;
-import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase SQLPets - Se encaraga de crear la conexión con la tabla 'mascotas' en 
+ * la base de datos, también realiza las consultas correspondientes para
+ * añadir, modificar y consultar mascotas.
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class SQLPets extends ConnectionMySQL{
 	
+	/**
+	 * Registra una mascota en la base de datos, la cual lleva por parametros
+	 * @param pet mascota a añadir
+	 * @return true si la agrego - false si no la pudo agregar
+	 */
 	public boolean registerPet(Pet pet) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -44,6 +54,10 @@ public class SQLPets extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Obtiene el último id de la tabla de mascotas, para agregar a la siguiente
+	 * @return valor de id o -1 si fi falló
+	 */
 	public int getLastIdPet() {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -61,6 +75,14 @@ public class SQLPets extends ConnectionMySQL{
 		return -1;
 	}
 	
+	/**
+	 * Obtiene los valores de un combobox, por ejemplo: las razas y las especies
+	 * @param atribute a seleccinar en la tabla
+	 * @param table tabla a consultar
+	 * @param order valor por el que se va aordenar la consulta
+	 * @param valueSpecie id 
+	 * @return array con los datos de una tabla
+	 */
 	public String[] getValuesComboBox(String atribute, String table, String order, String valueSpecie) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -88,6 +110,13 @@ public class SQLPets extends ConnectionMySQL{
 		return values;
 	}
 	
+	/**
+	 * Cuenta los datos de una tabla especifca por un parametro especifico (consulta)
+	 * @param parameterCount atributo por el que se va acontar
+	 * @param table tabla a consultar
+	 * @param where condicion
+	 * @return cantidad si encuentra
+	 */
 	private int countDataQuery(String parameterCount, String table, String where) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -106,6 +135,11 @@ public class SQLPets extends ConnectionMySQL{
 		return 0;
 	}
 	
+	/**
+	 * Obteien los datos de una mascota buscando por su id
+	 * @param id de la mascota a buscar
+	 * @return pet mascota
+	 */
 	public Pet getDataPet(String id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -145,6 +179,11 @@ public class SQLPets extends ConnectionMySQL{
 		return pet;
 	}
 	
+	/**
+	 * Obtien el id de la raza buscando por su nombre
+	 * @param race  nombre de laraza
+	 * @return valor con el id
+	 */
 	public int getIdPetByRace(String race) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -168,6 +207,12 @@ public class SQLPets extends ConnectionMySQL{
 		return id;
 	}
 	
+	/**
+	 * Carga los datos de una tabla buscando por su estado de activacion
+	 * y tambien puede por otra condicion
+	 * @param valueId id
+	 * @return lista con los datos de las mascotas
+	 */
 	public ArrayList<Object[]> loadDataPets(String valueId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -209,6 +254,11 @@ public class SQLPets extends ConnectionMySQL{
 		return tableData;
 	}
 	
+	/**
+	 * Actualiza los datos de una mascota
+	 * @param pet datos a actualizar
+	 * @return true si pudo agregar - false si no
+	 */
 	public boolean updatePet(Pet pet) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -235,6 +285,11 @@ public class SQLPets extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Verifica si una mascota existe por
+	 * @param id su id
+	 * @return true si existe - false si no
+	 */
 	public boolean existPet(int id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -262,6 +317,13 @@ public class SQLPets extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Cambia el estado de activación de una mascota
+	 * @param parameter parametro a buscar
+	 * @param valueParameter valor del parametro
+	 * @param newState nuevo estado de activacion
+	 * @return true si lo lorgó - false si no
+	 */
 	public boolean changeStatePet(String parameter, String valueParameter, String newState) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -278,6 +340,12 @@ public class SQLPets extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Carga una lista de mascotas buscando por un atributo y valor especifico
+	 * @param parameter atributo
+	 * @param value valor del atributo
+	 * @return lista con las mascotas
+	 */
 	public ArrayList<Object[]> loadData(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
