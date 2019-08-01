@@ -13,7 +13,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.model.Hash;
-import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 

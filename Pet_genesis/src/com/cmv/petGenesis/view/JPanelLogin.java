@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 
 import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.model.Hash;
-import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;

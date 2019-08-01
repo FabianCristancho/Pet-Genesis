@@ -23,7 +23,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.model.Hash;
-import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -397,59 +396,4 @@ public class JPanelSignIn extends JPanel {
 		this.jpfPasswordAgain = jpfPasswordAgain;
 	}
 
-	public void saveDataSignIn(Usuario mod) {
-		SqlUSer modSql = new SqlUSer();
-
-		String password = new String(jpfPassword.getPassword());
-		String passwordAgain = new String(jpfPasswordAgain.getPassword());
-
-		JTextField[] requiredFields = { jtfId, jtfName, jtfLastName, jtfUserName, jpfPassword, jpfPasswordAgain };
-		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
-			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
-					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
-		} else {
-
-			if (password.equals(passwordAgain)) {
-
-				if (modSql.existUser(jtfUserName.getText()) == 0) {
-
-					if (UtilityClass.validateEmail(jtfEmail.getText()) || jtfEmail.getText().length() == 0) {
-
-						String newPass = Hash.sha1(password);
-
-						mod.setName(jtfName.getText());
-						mod.setLastName(jtfLastName.getText());
-						mod.setBirthDate(birthdayDateChooser.getDate());
-						if (jtfPhone.getText().length() != 0) {
-							mod.setPhone(Integer.parseInt(jtfPhone.getText()));
-						}
-						mod.setEmail(jtfEmail.getText());
-						mod.setAddress(jtfAdress.getText());
-						mod.setTypeUser(TypeUser.getTypeUser(comboUserType.getSelectedIndex()+1));
-						mod.setState(activRadioButton.isSelected() ? activRadioButton.getText()
-								: inactivRadioButton.getText());
-						mod.setUserName(jtfUserName.getText());
-						mod.setPassword(newPass);
-
-						if (modSql.register(mod)) {
-							JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
-						} else {
-							JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-
-						}
-					} else {
-						JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
-								JOptionPane.INFORMATION_MESSAGE);
-
-					}
-				} else {
-					JOptionPane.showMessageDialog(null, "El nombre de usuario ya existe", "USUARIO REPETIDO",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-
-			} else {
-				JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
-			}
-		}
-	}
 }

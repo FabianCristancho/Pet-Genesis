@@ -4,15 +4,16 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-import com.toedter.calendar.JDateChooser;
-
+/**
+ * Clase ConstantView - Se encarga de contener todos los textos en contantes para el manejo
+ * en toda la apliación
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class ConstantView {
 	
 	//Connection
