@@ -18,12 +18,19 @@ import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFindHistory;
-import com.cmv.petGenesis.view.historyManagement.JPanelFormDataPet;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
 import com.cmv.petGenesis.view.historyManagement.JPanelStateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelUpdateHistory;
 
+/**
+ * Clase ControlHistory - Se encarga de la conexión de la vista y el modelo para los enventos 
+ * de la interfaz de usuario de la historia clinica y la lógica de la historia ( de las 
+ * mascotas)
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class ControlHistory implements ActionListener, KeyListener, ItemListener {
 
 	private static ControlHistory controlHistory;
@@ -37,9 +44,16 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelStateHistory jPanelStateHistory;
 	private JDialogNewClient jDialogNewClient;
 
+	/**
+	 * Constructor vacio
+	 */
 	private ControlHistory() {
 	}
 
+	/**
+	 * Instancia única del controlador (Singleton)
+	 * @return controlClient controlador
+	 */
 	public static ControlHistory getInstance() {
 		if (controlHistory == null)
 			controlHistory = new ControlHistory();
@@ -103,29 +117,50 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		}
 	}
 
+	/**
+	 * Cambia el valor de panel de agrupacion
+	 * @param jPanelGroupHistory jpanel
+	 */
 	public void setjPanelGroupHistory(JPanelGroupHistory jPanelGroupHistory) {
 		this.jPanelGroupHistory = jPanelGroupHistory;
 	}
 
+	/**
+	 * Cambia el valor del panel de comentarios
+	 * @param jPanelComments jpanel
+	 */
 	public void setjPanelComments(JPanelComments jPanelComments) {
 		this.jPanelComments = jPanelComments;
 	}
 
+	/**
+	 * Cambia el valor del panel de recetas
+	 * @param jPanelMedicine jpanel
+	 */
 	public void setjPanelMedicine(JPanelRecet jPanelMedicine) {
 		this.jPanelMedicine = jPanelMedicine;
 	}
 
+	/**
+	 * Cambia el valor del panel de consultas
+	 * @param jPanelConsult jpanel
+	 */
 	public void setjPanelConsult(JPanelConsult jPanelConsult) {
 		this.jPanelConsult = jPanelConsult;
 	}
 	
-	
-
+	/**
+	 * Cambia el valor del panel de actualizar historias
+	 * @param jPanelUpdateHistory jpanel
+	 */
 	public void setjPanelUpdateHistory(JPanelUpdateHistory jPanelUpdateHistory) {
 		this.jPanelUpdateHistory = jPanelUpdateHistory;
 	}
 	
-
+	/**
+	 * Cambia el valor del panel de encontrar historias
+	 * @param jPanelFindHistory jpanel
+	 */
 	public void setjPanelFindHistory(JPanelFindHistory jPanelFindHistory) {
 		this.jPanelFindHistory = jPanelFindHistory;
 	}
@@ -154,12 +189,16 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		}
 	}
 
+	/**
+	 * Cambia el valor del panel de crear historias
+	 * @param jPanelCreateHistory jpanel
+	 */
 	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {
 		this.jPanelCreateHistory = jPanelCreateHistory;
 	}
 	
 	/**
-	 * Cambia 
+	 * Cambia el valor de
 	 * @param jPanelStateHistory a jPanelStateHistory 
 	 */
 	public void setjPanelStateHistory(JPanelStateHistory jPanelStateHistory) {

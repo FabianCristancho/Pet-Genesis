@@ -14,10 +14,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.command.UserCommands;
-import com.cmv.petGenesis.model.Person;
 import com.cmv.petGenesis.model.User;
-import com.cmv.petGenesis.model.Usuario;
-import com.cmv.petGenesis.utilities.UtilityClass;
 import com.cmv.petGenesis.view.userManagement.JFrameUser;
 import com.cmv.petGenesis.view.userManagement.JPanelCreateUser;
 import com.cmv.petGenesis.view.userManagement.JPanelFormUser;
@@ -25,6 +22,13 @@ import com.cmv.petGenesis.view.userManagement.JPanelInactivUser;
 import com.cmv.petGenesis.view.userManagement.JpanelFindUser;
 import com.cmv.petGenesis.view.userManagement.JpanelUpdateUser;
 
+/**
+ * Clase ControlUser - Se encarga de la conexión de la vista y el modelo para los enventos 
+ * de la interfaz de usuario del usuario y la lógica del usuario
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class ControlUser implements ActionListener, FocusListener, KeyListener, MouseListener, ItemListener {
 
 	private static ControlUser controlUser;
@@ -35,9 +39,16 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 	private JPanelInactivUser jPanelInactivUser;
 	private JPanelFormUser jPanelFormUser;
 
+	/**
+	 * Constructor vacio
+	 */
 	private ControlUser() {
 	}
 
+	/**
+	 * Instancia única del controlador (Singleton)
+	 * @return controlClient controlador
+	 */
 	public static ControlUser getInstance() {
 		if (controlUser == null) {
 			controlUser = new ControlUser();
@@ -93,6 +104,9 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		}
 	}
 
+	/**
+	 * Guarda los valores del formulario de clientes
+	 */
 	private void saveDataSignIn() {
 		jPanelCreateUser.saveDataSignIn(new User());
 	}
@@ -172,26 +186,50 @@ public class ControlUser implements ActionListener, FocusListener, KeyListener, 
 		}
 	}
 
+	/**
+	 * Cambia el frame de usuarios
+	 * @param jFrameUser jframe
+	 */
 	public void setjFrameUser(JFrameUser jFrameUser) {
 		this.jFrameUser = jFrameUser;
 	}
 
+	/**
+	 * Cambia el panel de crear usuarios
+	 * @param jPanelCreateUser jpanel
+	 */
 	public void setjPanelCreateUser(JPanelCreateUser jPanelCreateUser) {
 		this.jPanelCreateUser = jPanelCreateUser;
 	}
 
+	/**
+	 * Cambia el panel de encontrar usuarios
+	 * @param jpanelFindUser jpanel
+	 */
 	public void setJpanelFindUser(JpanelFindUser jpanelFindUser) {
 		this.jpanelFindUser = jpanelFindUser;
 	}
 
+	/**
+	 * Cambia el panel de actualizar usuarios
+	 * @param jpanelUpdateClient jpanel
+	 */
 	public void setJpanelUpdateClient(JpanelUpdateUser jpanelUpdateClient) {
 		this.jpanelUpdateClient = jpanelUpdateClient;
 	}
 	
+	/**
+	 * Cambia el panel de activar usuarios
+	 * @param jPanelInactivUser jpanel
+	 */
 	public void setjPanelInactivUser(JPanelInactivUser jPanelInactivUser) {
 		this.jPanelInactivUser = jPanelInactivUser;
 	}
 
+	/**
+	 * Cambia el panel de formulario de usuarios
+	 * @param jPanelFormUser jpanel
+	 */
 	public void setjPanelFormUser(JPanelFormUser jPanelFormUser) {
 		this.jPanelFormUser = jPanelFormUser;
 	}

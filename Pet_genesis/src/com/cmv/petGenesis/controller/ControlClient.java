@@ -2,8 +2,6 @@ package com.cmv.petGenesis.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
@@ -16,7 +14,6 @@ import javax.swing.JOptionPane;
 import com.cmv.petGenesis.command.ClientCommands;
 import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.Pet;
-import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.view.clientManagement.JDialogNewPet;
 import com.cmv.petGenesis.view.clientManagement.JFrameClient;
 import com.cmv.petGenesis.view.clientManagement.JPanelCreateClient;
@@ -25,6 +22,13 @@ import com.cmv.petGenesis.view.clientManagement.JPanelInactivClient;
 import com.cmv.petGenesis.view.clientManagement.JpanelFindClient;
 import com.cmv.petGenesis.view.clientManagement.JpanelUpdateClient;
 
+/**
+ * Clase ControlClient - Se encarga de la conexión de la vista y el modelo para los enventos 
+ * de la interfaz de usuario del cliente y la lógica del cliente
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class ControlClient implements ActionListener, KeyListener, MouseListener, ItemListener {
 
 	private static ControlClient controlClient;
@@ -36,9 +40,16 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 	private JPanelFormClient jPanelFormClient;
 	private JDialogNewPet jDialogNewPet;
 
+	/**
+	 * Constructor vacio
+	 */
 	private ControlClient() {
 	}
 
+	/**
+	 * Instancia única del controlador (Singleton)
+	 * @return controlClient controlador
+	 */
 	public static ControlClient getInstance() {
 		if (controlClient == null) {
 			controlClient = new ControlClient();
@@ -98,6 +109,9 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 		}
 	}
 
+	/**
+	 * Guarda los datos de los campos del formulario del cliente
+	 */
 	private void saveDataSignIn() {
 		jPanelCreateClient.saveDataSignIn(new Client());
 	}
@@ -185,32 +199,56 @@ public class ControlClient implements ActionListener, KeyListener, MouseListener
 		}
 	}
 
+	/**
+	 * Setea el jframe del cliente
+	 * @param jFrameClient frame
+	 */
 	public void setjFrameClient(JFrameClient jFrameClient) {
 		this.jFrameClient = jFrameClient;
 	}
 
+	/**
+	 * Setea el panel de crear clientes
+	 * @param jPanelCreateClient jpanel
+	 */
 	public void setjPanelCreateClient(JPanelCreateClient jPanelCreateClient) {
 		this.jPanelCreateClient = jPanelCreateClient;
 	}
 
+	/**
+	 * Setea el panel de encontrar clientes
+	 * @param jpanelFindClient jpanel
+	 */
 	public void setJpanelFindClient(JpanelFindClient jpanelFindClient) {
 		this.jpanelFindClient = jpanelFindClient;
 	}
 
+	/**
+	 * Setea el panel de actualizar clientes
+	 * @param jpanelUpdateClient jpanel
+	 */
 	public void setJpanelUpdateClient(JpanelUpdateClient jpanelUpdateClient) {
 		this.jpanelUpdateClient = jpanelUpdateClient;
 	}
 	
+	/**
+	 * Setea el panel de activar clientes
+	 * @param jPanelInactivClient jpanel
+	 */
 	public void setjPanelInactivClient(JPanelInactivClient jPanelInactivClient) {
 		this.jPanelInactivClient = jPanelInactivClient;
 	}
 
+	/**
+	 * Setea el pandel de formulario del cliente
+	 * @param jPanelFormClient jpanel
+	 */
 	public void setjPanelFormClient(JPanelFormClient jPanelFormClient) {
 		this.jPanelFormClient = jPanelFormClient;
 	}
 	
 	/**
-	 * Cambia 
+	 * Cambia el panel de personas
 	 * @param jDialogNewPet a jDialogNewPet 
 	 */
 	public void setjDialogNewPet(JDialogNewPet jDialogNewPet) {
