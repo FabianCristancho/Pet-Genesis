@@ -1,8 +1,20 @@
 package com.cmv.petGenesis.model;
 
+/**
+ * Clase Hash - Se encarga de la codificación y decodificación de las contraeñas
+ * para los usuarios
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class Hash {
 
-	/* Retorna un hash a partir de un tipo y un texto */
+	/**
+	 * Retorna un hash a partir de un tipo y un texto
+	 * @param txt texto
+	 * @param hashType tipo
+	 * @return cadena s
+	 */
 	public static String getHash(String txt, String hashType) {
 		try {
 			java.security.MessageDigest md = java.security.MessageDigest.getInstance(hashType);
@@ -18,12 +30,20 @@ public class Hash {
 		return null;
 	}
 
-	/* Retorna un hash MD5 a partir de un texto */
+	/**
+	 * Retorna un hash MD5 a partir de un texto
+	 * @param txt texto
+	 * @return cadena s
+	 */
 	public static String md5(String txt) {
 		return Hash.getHash(txt, "MD5");
 	}
 
-	/* Retorna un hash SHA1 a partir de un texto */
+	/**
+	 * Retorna un hash SHA1 a partir de un texto
+	 * @param txt texto
+	 * @return cadena s
+	 */
 	public static String sha1(String txt) {
 		return Hash.getHash(txt, "SHA1");
 	}
