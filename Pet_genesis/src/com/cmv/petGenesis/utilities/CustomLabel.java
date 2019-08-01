@@ -34,10 +34,10 @@ public class CustomLabel extends JLabel{
 	
 	/**
 	 * Constructor con:
-	 * @param text
-	 * @param font
-	 * @param color
-	 * @param border
+	 * @param text texto
+	 * @param font fuente
+	 * @param color color
+	 * @param border dorde
 	 */
 	public CustomLabel(String text, Font font, Color color, Border border) {
 		super(text);
@@ -47,6 +47,12 @@ public class CustomLabel extends JLabel{
 		init();
 	}
 	
+	/**
+	 * Constructor con:
+	 * @param text texto
+	 * @param font fuente
+	 * @param color color
+	 */
 	public CustomLabel(String text, Font font, Color color) {
 		super(text);
 		this.font = font;
@@ -54,6 +60,9 @@ public class CustomLabel extends JLabel{
 		init();
 	}
 
+	/**
+	 * Inicia componentes
+	 */
 	private void init() {
 		if(font!=null) {
 			this.setFont(font);
