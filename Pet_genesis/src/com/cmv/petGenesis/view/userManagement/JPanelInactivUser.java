@@ -27,7 +27,6 @@ import javax.swing.table.DefaultTableModel;
 import com.cmv.petGenesis.command.UserCommands;
 import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
-import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
