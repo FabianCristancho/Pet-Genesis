@@ -31,6 +31,13 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 import PruebasLogin.LoginManage;
 import PruebasLogin.PasswordUtil;
 
+/**
+ * Clase JPanelCreateUser, encargada de mostrar la vista correspondiente a la
+ * creacion de un nuevo usuario en el sistema
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JPanelCreateUser extends JPanel {
 
 	private CustomLabel title;
@@ -71,6 +78,9 @@ public class JPanelCreateUser extends JPanel {
 		this.add(jPanelFormUser, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Se encarga de inicializar el panel con los botones de accion de la ventana
+	 */
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
 		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -115,27 +125,30 @@ public class JPanelCreateUser extends JPanel {
 		return null;
 	}
 
-	public CustomTxtField getJtfName() {
-		return jPanelFormUser.jtfName;
-	}
-
-	public CustomTxtField getJtfLastName() {
-		return jPanelFormUser.jtfLastName;
-	}
-
+	/**
+	 * Se encarga de mostrar el nombre de usuario generado por el sistema
+	 */
 	public void showUserName() {
 		if (!isFieldIsEmpty(jPanelFormUser.jtfName) && !isFieldIsEmpty(jPanelFormUser.jtfLastName)) {
 			jPanelFormUser.jtfUserName.setText(LoginManage.getInstance().useName(jPanelFormUser.jtfName.getText(),
 					jPanelFormUser.jtfLastName.getText()));
 		}
 	}
-	
+
+	/**
+	 * Genera un nuevo nombre de usuario, validando los campos de nombre y apellido
+	 * del usuario
+	 */
 	public void generateUserName() {
 		if (!isFieldIsEmpty(jPanelFormUser.jtfName) && !isFieldIsEmpty(jPanelFormUser.jtfLastName)) {
-			jPanelFormUser.jtfUserName.setText(UtilityClass.generateUserName(jPanelFormUser.jtfName.getText(), jPanelFormUser.jtfLastName.getText()));
+			jPanelFormUser.jtfUserName.setText(UtilityClass.generateUserName(jPanelFormUser.jtfName.getText(),
+					jPanelFormUser.jtfLastName.getText()));
 		}
 	}
 
+	/**
+	 * Valida que todos los campos esten ingresados correctamente
+	 */
 	public void validFields() {
 		if (isFieldIsEmpty(jPanelFormUser.jtfName) || isFieldIsEmpty(jPanelFormUser.jtfLastName)
 				|| isFieldIsEmpty(jPanelFormUser.jpfPassword) || isFieldIsEmpty(jPanelFormUser.jpfPasswordAgain)) {
@@ -169,34 +182,94 @@ public class JPanelCreateUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Evalua si un campo de texto se encuentra vacio
+	 * 
+	 * @param jtf Campo de texto a evaluar
+	 * @return true si esta vacio
+	 */
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length() == 0;
 	}
 
+	/**
+	 * Obtiene un objeto de la clase CustomTxtField
+	 * 
+	 * @return Objeto jtfName
+	 */
+	public CustomTxtField getJtfName() {
+		return jPanelFormUser.jtfName;
+	}
+
+	/**
+	 * Obtiene un objeto de la clase CustomTxtField
+	 * 
+	 * @return Objeto jtfLastName
+	 */
+	public CustomTxtField getJtfLastName() {
+		return jPanelFormUser.jtfLastName;
+	}
+
+	/**
+	 * Obtiene un objeto de la clase CustomTxtField
+	 * 
+	 * @return Objeto jtfpersonalId
+	 */
 	public CustomTxtField getJtfId() {
 		return jPanelFormUser.jtfpersonalId;
 	}
 
+	/**
+	 * Obtiene un objeto de la clase CustomTxtField
+	 * 
+	 * @return Objeto jtfPhone
+	 */
 	public CustomTxtField getJtfPhone() {
 		return jPanelFormUser.jtfPhone;
 	}
 
+	/**
+	 * Obtiene un objeto de la clase JPasswordField
+	 * 
+	 * @return Objeto jpfPassword
+	 */
 	public JPasswordField getJpfPassword() {
 		return jPanelFormUser.jpfPassword;
 	}
 
+	/**
+	 * Asigna un valor al campo de la contrasenia
+	 * 
+	 * @param jpfPassword Valor asignado
+	 */
 	public void setJpfPassword(JPasswordField jpfPassword) {
 		this.jPanelFormUser.jpfPassword = jpfPassword;
 	}
 
+	/**
+	 * Obtiene un objeto de la clase JPasswordField
+	 * 
+	 * @return Objeto jpfPasswordAgain
+	 */
 	public JPasswordField getJpfPasswordAgain() {
 		return jPanelFormUser.jpfPasswordAgain;
 	}
 
+	/**
+	 * Asigna un nuevo valor al campo de confirmacion de la contrasenia
+	 * 
+	 * @param jpfPasswordAgain valor asignado
+	 */
 	public void setJpfPasswordAgain(JPasswordField jpfPasswordAgain) {
 		this.jPanelFormUser.jpfPasswordAgain = jpfPasswordAgain;
 	}
 
+	/**
+	 * Se encarga de almacenar el registro de un usuario, validando previamente
+	 * todos los campos
+	 * 
+	 * @param u Nuevo usuario
+	 */
 	public void saveDataSignIn(User u) {
 		SQLUsers sqlUsers = new SQLUsers();
 		SQLPeople sqlPeople = new SQLPeople();
@@ -204,8 +277,9 @@ public class JPanelCreateUser extends JPanel {
 		String password = new String(jPanelFormUser.jpfPassword.getPassword());
 		String passwordAgain = new String(jPanelFormUser.jpfPasswordAgain.getPassword());
 
-		JTextField[] requiredFields = { jPanelFormUser.jtfpersonalId, jPanelFormUser.jtfName, jPanelFormUser.jtfLastName,
-				jPanelFormUser.jtfPhone, jPanelFormUser.jtfUserName, jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
+		JTextField[] requiredFields = { jPanelFormUser.jtfpersonalId, jPanelFormUser.jtfName,
+				jPanelFormUser.jtfLastName, jPanelFormUser.jtfPhone, jPanelFormUser.jtfUserName,
+				jPanelFormUser.jpfPassword, jPanelFormUser.jpfPasswordAgain };
 		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
 			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
 					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);

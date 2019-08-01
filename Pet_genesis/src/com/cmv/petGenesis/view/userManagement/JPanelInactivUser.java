@@ -31,6 +31,12 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelFindUser, encargada mostrar el modulo de cambio de estado de usuarios
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JPanelInactivUser extends JPanel {
 
 	private JTable jTable;
@@ -45,6 +51,9 @@ public class JPanelInactivUser extends JPanel {
 	private DefaultTableModel model;
 	private JScrollPane jScrollPane;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public JPanelInactivUser() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -70,6 +79,9 @@ public class JPanelInactivUser extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa componentes principales
+	 */
 	private void init() {
 		initParameters();
 		initPanelStateTable();
@@ -97,6 +109,9 @@ public class JPanelInactivUser extends JPanel {
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Inicializa panel de estado de tabla
+	 */
 	private void initPanelStateTable() {
 		this.jPanelStateTable.setOpaque(false);
 		this.jPanelStateTable.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -105,6 +120,9 @@ public class JPanelInactivUser extends JPanel {
 		this.jPanelStateTable.add(lblClickToActiv, BorderLayout.WEST);
 	}
 
+	/**
+	 * Inicializa parametros de busqueda
+	 */
 	private void initParameters() {
 		this.panelSearch.setOpaque(false);
 		this.panelSearch.setLayout(new GridBagLayout());
@@ -169,6 +187,9 @@ public class JPanelInactivUser extends JPanel {
 		this.panelSearch.add(inactivActiv, gbc);
 	}
 
+	/**
+	 * Cambia tamanio de columna de tabla
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 140, 140, 110, 110, 200, 200, 110, 130, 150 };
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -176,30 +197,11 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
-//	public void loadTable(String parameter, String state) {
-//		SqlUSer sqlUSer = new SqlUSer();
-//		this.model = new DefaultTableModel();
-//
-//		jTable.setModel(model);
-//
-//		model.addColumn("Codigo");
-//		model.addColumn("Documento de identidad");
-//		model.addColumn("Nombre");
-//		model.addColumn("Apellido");
-//		model.addColumn("Fecha Nacimiento");
-//		model.addColumn("Telefono");
-//		model.addColumn("Email");
-//		model.addColumn("Direccion de residencia");
-//		model.addColumn("Tipo de usuario");
-//		model.addColumn("Usuario");
-//		model.addColumn("Ultima Sesion");
-//
-//		ArrayList<Object[]> table = sqlUSer.loadData(parameter, jtfInputQuery.getText(), "estado_usuario", state);
-//		for (Object[] row : table) {
-//			model.addRow(row);
-//		}
-//		changeWidthColumn();
-//	}
+	/**
+	 * Carga la tabla
+	 * @param parameter Parametro de busqueda
+	 * @param state Estado de usuario
+	 */
 	public void loadTable(String parameter, String state) {
 		SQLUsers sqlUsers = new SQLUsers();
 		this.model = new DefaultTableModel();
@@ -225,6 +227,10 @@ public class JPanelInactivUser extends JPanel {
 		changeWidthColumn();
 	}
 
+	/**
+	 * Obtiene el parametro de busqueda
+	 * @return Parametro
+	 */
 	public String getParameter() {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
@@ -245,6 +251,9 @@ public class JPanelInactivUser extends JPanel {
 		return parameter;
 	}
 
+	/**
+	 * Cambia de un campo a otro ,dependiendo del estado del usuario
+	 */
 	public void changeWithField() {
 		if (!jtfInputQuery.getText().equals("")) {
 			if (jRButtonInactive.isSelected()) {
@@ -265,10 +274,18 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtiene la tabla de la clase
+	 * @return tabla
+	 */
 	public JTable getjTable() {
 		return jTable;
 	}
 
+	/**
+	 * Activa a un usuario
+	 * @param p Punto de la tabla
+	 */
 	public void setActivUser(Point p) {
 		int row = jTable.rowAtPoint(p);
 		String id = String.valueOf(jTable.getValueAt(row, 0));
@@ -282,6 +299,10 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Inactiva a un usuario
+	 * @param p Punto de la tabla
+	 */
 	private void inactivUser(String parameter, String value, String user) {
 		SQLUsers sqlUsers = new SQLUsers();
 		if (!sqlUsers.userHasState(parameter, value, "A")) {
@@ -303,6 +324,12 @@ public class JPanelInactivUser extends JPanel {
 
 	}
 
+	/**
+	 * Activa a un usuario dependiendo del valor y parametro
+	 * @param parameter Parametro de busqueda
+	 * @param value Valor de consulta
+	 * @param user Usuario
+	 */
 	private void activUser(String parameter, String value, String user) {
 		SQLUsers sqlUsers = new SQLUsers();
 		if (!sqlUsers.userHasState(parameter, value, "I")) {
@@ -323,6 +350,10 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Cambia el estado del boton, de activo a inactivo o viceversa
+	 * @param state Estado de boton
+	 */
 	public void changeStateButton(int state) {
 		jtfInputQuery.setText("");
 		if (state == 1) {
@@ -338,11 +369,11 @@ public class JPanelInactivUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtiene el boton de estado de usuario
+	 * @return
+	 */
 	public JToggleButton getInactivActiv() {
 		return inactivActiv;
-	}
-
-	public HintJTextField getJtfInputQuery() {
-		return jtfInputQuery;
 	}
 }

@@ -24,6 +24,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelFindUser, encargada de realizar las respectivas consultas para
+ * encontrar un usuario que se encuentra o no en el sistema
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JpanelFindUser extends JPanel {
 
 	private JTable jTable;
@@ -37,6 +44,9 @@ public class JpanelFindUser extends JPanel {
 	private JComboBox<String> parameters, typesUser;
 	private DefaultTableModel model;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public JpanelFindUser() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -56,6 +66,9 @@ public class JpanelFindUser extends JPanel {
 		ControlUser.getInstance().setJpanelFindUser(this);
 	}
 
+	/**
+	 * Inicializa los componentes principales de la clase
+	 */
 	private void init() {
 		initParameters();
 
@@ -78,6 +91,10 @@ public class JpanelFindUser extends JPanel {
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 
+	/*
+	 * Se encarga de inicializar los parametros por los que se va a buscar al
+	 * usuario
+	 */
 	private void initParameters() {
 		UtilityClass.addCommandJButton(btnSearch, UserCommands.CMD_SEARCH_USER.toString(), ControlUser.getInstance());
 		UtilityClass.addCommandJButton(btnLoadData, UserCommands.CMD_LOAD_DATA.toString(), ControlUser.getInstance());
@@ -115,6 +132,10 @@ public class JpanelFindUser extends JPanel {
 		this.panelSearch.add(btnLoadData, gbc);
 	}
 
+	/**
+	 * Asigna un nuevo tamanio a las columnas de la tabla que contiene los datos de
+	 * los usuarios
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 140, 140, 110, 110, 200, 200, 110, 130, 150 };
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -122,6 +143,11 @@ public class JpanelFindUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Carga de la base de datos los datos del usuario
+	 * 
+	 * @param parameter Parametro de busqueda de usuario
+	 */
 	private void loadTable(String parameter) {
 		SQLUsers sqlUsers = new SQLUsers();
 		this.model = new DefaultTableModel();
@@ -153,6 +179,9 @@ public class JpanelFindUser extends JPanel {
 		changeWidthColumn();
 	}
 
+	/**
+	 * Filtra la busqueda de un usuario dependiendo del parametro elegido
+	 */
 	public void searchByParameter() {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
@@ -179,6 +208,9 @@ public class JpanelFindUser extends JPanel {
 		this.jtfInputQuery.setText("");
 	}
 
+	/**
+	 * Cambia entre el campo de consulta y el combobox
+	 */
 	public void changeInputQuery() {
 		if (parameters.getSelectedIndex() == 4) {
 			jtfInputQuery.setVisible(false);
@@ -189,6 +221,9 @@ public class JpanelFindUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Carga en la tabla todos los usuarios activos en el sistema
+	 */
 	public void loadAllData() {
 		parameters.setSelectedIndex(0);
 		typesUser.setVisible(false);
@@ -197,10 +232,20 @@ public class JpanelFindUser extends JPanel {
 		this.loadTable("");
 	}
 
+	/**
+	 * Obtiene el combobox de parametros
+	 * 
+	 * @return combobox
+	 */
 	public JComboBox<String> getParameters() {
 		return parameters;
 	}
 
+	/**
+	 * Obtiene el boton que carga los datos
+	 * 
+	 * @return Boton de carga de datos
+	 */
 	public JButton getBtnLoadData() {
 		return btnLoadData;
 	}

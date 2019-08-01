@@ -27,6 +27,12 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelPanelUpdateUser, muestra la ventana de actualizacion de usuario
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JpanelUpdateUser extends JPanel {
 
 	private JLabel titlePanel;
@@ -43,6 +49,9 @@ public class JpanelUpdateUser extends JPanel {
 	private String oldUserName;
 	private String oldTelephone;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public JpanelUpdateUser() {
 		super(new BorderLayout());
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_USER);
@@ -58,6 +67,9 @@ public class JpanelUpdateUser extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa paneles y componentes
+	 */
 	private void init() {
 		initPanelUp();
 		initpanelDown();
@@ -69,6 +81,9 @@ public class JpanelUpdateUser extends JPanel {
 		this.add(jPanelDown, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Inicializa panel superior
+	 */
 	private void initPanelUp() {
 		this.jPanelUp.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -99,6 +114,9 @@ public class JpanelUpdateUser extends JPanel {
 		this.jPanelUp.add(btnSearchUser, gbc);
 	}
 
+	/**
+	 * Inicializa panel inferior
+	 */
 	private void initpanelDown() {
 		this.jPanelDown = new JPanel(new GridBagLayout());
 		this.jPanelDown.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -131,6 +149,11 @@ public class JpanelUpdateUser extends JPanel {
 		this.jPanelDown.add(btnUpdateUser, gbc);
 	}
 
+	/**
+	 * Obtiene parametro de busqueda
+	 * 
+	 * @return parametro
+	 */
 	public String getParam() {
 		switch (parameters.getSelectedIndex()) {
 		case 0:
@@ -143,11 +166,14 @@ public class JpanelUpdateUser extends JPanel {
 			return "";
 		}
 	}
-	
+
+	/**
+	 * Obtiene datos de consulta de usuario
+	 */
 	public void getDataQueryUpdate() {
 		SQLUsers sqlUsers = new SQLUsers();
 		User user = sqlUsers.getDataUser(getParam(), jtfInputId.getText());
-		
+
 		if (user != null) {
 			jpanelCenter.resultId.setText("" + user.getIdPerson());
 			jpanelCenter.jtfUserName.setText(user.getNameUser());
@@ -156,11 +182,11 @@ public class JpanelUpdateUser extends JPanel {
 			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd(user.getBirthDate(), 1));
 			jpanelCenter.jtfPhone.setText(user.getTelephone());
 			jpanelCenter.comboUserType.setSelectedIndex((user.getTypeUser().getIdTypeUser() - 1));
-			
+
 			if (!isActive(user.getActivationState().getIdState())) {
 				jpanelCenter.inactivRadioButton.setSelected(true);
 			}
-			
+
 			jpanelCenter.jtfpersonalId.setText(user.getPersonalIdentification());
 			jpanelCenter.jtfEmail.setText(user.getEmail());
 			jpanelCenter.jtfAdress.setText(user.getAddress());
@@ -172,6 +198,11 @@ public class JpanelUpdateUser extends JPanel {
 		}
 	}
 
+	/**
+	 * Almacena los nuevos valores del usuario
+	 * 
+	 * @param mod Usuario
+	 */
 	public void saveDataSignIn(User mod) {
 		SQLUsers sqlUsers = new SQLUsers();
 		SQLPeople sqlPeople = new SQLPeople();
@@ -245,107 +276,85 @@ public class JpanelUpdateUser extends JPanel {
 			}
 		}
 	}
-//	public void saveDataSignIn(Usuario mod) {
-//		SqlUSer modSql = new SqlUSer();
-//		
-//		String password = new String(jpanelCenter.jpfPassword.getPassword());
-//		String passwordAgain = new String(jpanelCenter.jpfPasswordAgain.getPassword());
-//		
-//		JTextField[] requiredFields = { jpanelCenter.jtfId, jpanelCenter.jtfName, jpanelCenter.jtfLastName,
-//				jpanelCenter.jtfUserName, jpanelCenter.jpfPassword, jpanelCenter.jpfPasswordAgain };
-//		if (UtilityClass.fieldsAreEmpty(requiredFields)) {
-//			JOptionPane.showMessageDialog(null, "Se debe ingresar información en los campos que son obligatorios (*)",
-//					"EXISTENCIA DE CAMPOS VACIOS", JOptionPane.ERROR_MESSAGE);
-//		} else {
-//			
-//			if (password.equals(passwordAgain)) {
-//				
-//				if (UtilityClass.validateEmail(jpanelCenter.jtfEmail.getText())
-//						|| jpanelCenter.jtfEmail.getText().length() == 0) {
-//					
-//					String newPass = Hash.sha1(password);
-//					mod.setId(Integer.parseInt(this.pIdentidentification.getText()));
-//					mod.setPersonalDocument(jpanelCenter.jtfId.getText());
-//					mod.setName(jpanelCenter.jtfName.getText());
-//					mod.setLastName(jpanelCenter.jtfLastName.getText());
-//					mod.setBirthDate(jpanelCenter.birthdayDateChooser.getDate());
-//					if (jpanelCenter.jtfPhone.getText().length() != 0) {
-//						mod.setPhone(Long.parseLong(jpanelCenter.jtfPhone.getText()));
-//					}
-//					mod.setEmail(jpanelCenter.jtfEmail.getText());
-//					mod.setAddress(jpanelCenter.jtfAdress.getText());
-//					mod.setTypeUser(TypeUser.getTypeUser(jpanelCenter.comboUserType.getSelectedIndex() + 1));
-//					mod.setState(jpanelCenter.activRadioButton.isSelected() ? jpanelCenter.activRadioButton.getText()
-//							: jpanelCenter.inactivRadioButton.getText());
-//					mod.setUserName(jpanelCenter.jtfUserName.getText());
-//					mod.setPassword(newPass);
-//					
-//					if (modSql.update(mod)) {
-//						JOptionPane.showMessageDialog(null, "REGISTRO MODIFICADO CON EXITO");
-//					} else {
-//						JOptionPane.showMessageDialog(null, "ERROR AL MODIFICAR");
-//						
-//					}
-//				} else {
-//					JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
-//							JOptionPane.INFORMATION_MESSAGE);
-//					
-//				}
-//				
-//			} else {
-//				JOptionPane.showMessageDialog(null, "LAS CONTRASEÑAS NO COINCIDEN");
-//			}
-//		}
-//	}
 
-	private int getRole(String role) {
-		switch (role) {
-		case "Gerente General":
-			return 0;
-		case "Médico":
-			return 1;
-		case "Asistente":
-			return 2;
-		case "Auxiliar":
-			return 3;
-		}
-		return 0;
-	}
-
+	/**
+	 * Evalua si usuario esta activo
+	 * 
+	 * @param state Valor de activacion
+	 * @return true si esta activo
+	 */
 	private boolean isActive(char state) {
-		if (state =='A')
+		if (state == 'A')
 			return true;
 		return false;
 	}
 
+	/**
+	 * Obtiene campo de nombre
+	 * 
+	 * @return campo de nombre
+	 */
 	public CustomTxtField getJtfName() {
 		return jpanelCenter.jtfName;
 	}
 
+	/**
+	 * Obtiene campo de apellido
+	 * 
+	 * @return Campo de apellido
+	 */
 	public CustomTxtField getJtfLastName() {
 		return jpanelCenter.jtfLastName;
 	}
 
+	/**
+	 * Obtiene campo id
+	 * 
+	 * @return campo id
+	 */
 	public CustomTxtField getJtfId() {
 		return jpanelCenter.jtfpersonalId;
 	}
 
+	/**
+	 * Obtiene campo telefono
+	 * 
+	 * @return campo telefono
+	 */
 	public CustomTxtField getJtfPhone() {
 		return jpanelCenter.jtfPhone;
 	}
 
+	/**
+	 * Obtiene campo id
+	 * 
+	 * @return id
+	 */
 	public String getNewpIdentification() {
 		return oldpIdentification;
 	}
 
+	/**
+	 * Obtiene usuario nuevo
+	 * 
+	 * @return usuario nuevo
+	 */
 	public String getNewUserName() {
 		return oldUserName;
 	}
 
+	/**
+	 * Obtiene nuevo telefono
+	 * 
+	 * @return nuevo telefono
+	 */
 	public String getNewTelephone() {
 		return oldTelephone;
 	}
-	
+
+	/**
+	 * Limpia los campos
+	 */
 	public void clearFields() {
 		this.jpanelCenter.clearFields();
 	}

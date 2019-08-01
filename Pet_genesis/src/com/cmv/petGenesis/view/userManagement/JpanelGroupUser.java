@@ -4,6 +4,12 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+/**
+ * Clase JPanelFindUser, encargada mostrar el modulo de gestion de usuarios
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JpanelGroupUser extends JPanel{
 	
 	private CardLayout cardLayout;
@@ -12,6 +18,9 @@ public class JpanelGroupUser extends JPanel{
 	private JpanelFindUser jFindUser;
 	private JPanelInactivUser jPanelInactivUser;
 	
+	/**
+	 * Constructor de la clase
+	 */
 	public JpanelGroupUser() {
 		super();
 		cardLayout = new CardLayout();
@@ -22,6 +31,9 @@ public class JpanelGroupUser extends JPanel{
 		init();
 	}
 
+	/**
+	 * Agrega los modulos de gestion de usuarios 
+	 */
 	private void init() {
 		this.setLayout(cardLayout);
 		this.add("Crear", jCreateUser);
@@ -31,47 +43,44 @@ public class JpanelGroupUser extends JPanel{
 		cardLayout.show(this, "Crear");
 	}
 	
+	/**
+	 * Muestra la ventana de registro de usuario
+	 */
 	public void showCreate() {
 		this.cardLayout.show(this, "Crear");
 		this.repaint();
 	}
 	
+	/**
+	 * Muestra la ventana de modificacion de usuario
+	 */
 	public void showUpdate() {
 		this.cardLayout.show(this, "Modificar");
 		this.repaint();
 	}
 	
+	/**
+	 * Muestra la ventana de consulta de usuario
+	 */
 	public void showFind() {
 		this.cardLayout.show(this, "Consultar");
 		this.jFindUser.loadAllData();
 		this.repaint();
 	}
 	
+	/**
+	 * Muestra la ventana de estado de usuario
+	 */
 	public void showInactive() {
 		this.cardLayout.show(this, "Inactivar");
 	}
-
-	public CardLayout getCardLayout() {
-		return cardLayout;
-	}
-
-	public JPanelCreateUser getjCreateClient() {
-		return jCreateUser;
-	}
-
-	public JpanelUpdateUser getjUpdateClient() {
-		return jUpdateClient;
-	}
-
-	public void setCardLayout(CardLayout cardLayout) {
-		this.cardLayout = cardLayout;
-	}
-
+	
+	/**
+	 * Asigna un nuevo panel al atributo propio 
+	 * @param jCreateClient atributo propio de la clase
+	 */
 	public void setjCreateUser(JPanelCreateUser jCreateClient) {
 		this.jCreateUser = jCreateClient;
 	}
 
-	public void setjUpdateClient(JpanelUpdateUser jUpdateClient) {
-		this.jUpdateClient = jUpdateClient;
-	}
 }

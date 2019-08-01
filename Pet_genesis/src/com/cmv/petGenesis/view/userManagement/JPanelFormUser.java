@@ -29,15 +29,20 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.cmv.petGenesis.view.EnterListener;
 import com.toedter.calendar.JDateChooser;
 
-import PruebasLogin.LoginManage;
 
+/**
+ * Clase JPanelFindUser, encargada mostrar el formulario de registro de un
+ * usuario
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro -Fabian Cristancho
+ */
 public class JPanelFormUser extends JPanel {
 
-	protected CustomLabel idUser, resultId, personalDoc, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv, lblUserType,
-			lblUserName, lblPsw, lblPswAgain, lblBirthDate;
+	protected CustomLabel idUser, resultId, personalDoc, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblActiv,
+			lblUserType, lblUserName, lblPsw, lblPswAgain, lblBirthDate;
 	protected CustomTxtField jtfpersonalId, jtfName, jtfLastName, jtfPhone, jtfEmail, jtfAdress, jtfUserName;
 	protected JPasswordField jpfPassword, jpfPasswordAgain;
 	protected JComboBox<String> comboUserType;
@@ -48,10 +53,13 @@ public class JPanelFormUser extends JPanel {
 	protected ButtonGroup buttonGroup;
 	private SimpleDateFormat sdf;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public JPanelFormUser() {
 		super();
 		this.idUser = new CustomLabel(ConstantView.LABEL_ID_USER_SIGNIN, ConstantView.FONT_FORM, null);
-		this.resultId = new CustomLabel("", ConstantView.FONT_FORM, null );
+		this.resultId = new CustomLabel("", ConstantView.FONT_FORM, null);
 		this.personalDoc = new CustomLabel(ConstantView.LABEL_PERSONAL_DOC_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblName = new CustomLabel(ConstantView.LABEL_NAME_SIGNIN, ConstantView.FONT_FORM, null);
 		this.lblLastName = new CustomLabel(ConstantView.LABEL_LAST_NAME_SIGNIN, ConstantView.FONT_FORM, null);
@@ -80,20 +88,23 @@ public class JPanelFormUser extends JPanel {
 		this.btnClearFields = new JButton(ConstantView.BUTTON_CLEAR_SIGNIN);
 		this.buttonGroup = new ButtonGroup();
 		this.jPanelButtons = new JPanel(new BorderLayout());
-		
+
 		this.sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			this.birthdayDateChooser = new JDateChooser(sdf.parse("00/00/2000"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		SQLUsers sqlUsers = new SQLUsers();
 		this.comboUserType = new JComboBox<>(sqlUsers.loadTypesUser());
 		ControlUser.getInstance().setjPanelFormUser(this);
 		this.init();
 	}
 
+	/**
+	 * Inicializa los componentes principales de la clase
+	 */
 	private void init() {
 		this.setOpaque(false);
 
@@ -110,6 +121,9 @@ public class JPanelFormUser extends JPanel {
 		this.requestFocusInWindow(true);
 	}
 
+	/**
+	 * Inicializa el panel de datos personales
+	 */
 	private void initPanelPersonalData() {
 		this.panelPersonalData = new JPanel(new GridBagLayout());
 		this.panelPersonalData.setBorder(BorderFactory.createTitledBorder(ConstantView.P_DATA_SIGNIN));
@@ -120,10 +134,10 @@ public class JPanelFormUser extends JPanel {
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.anchor = GridBagConstraints.WEST;
-		
+
 		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		this.panelPersonalData.add(idUser, gbc);
-		
+
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		this.panelPersonalData.add(personalDoc, gbc);
 
@@ -147,18 +161,17 @@ public class JPanelFormUser extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		this.panelPersonalData.add(resultId, gbc);
-		
+
 		gbc.anchor = GridBagConstraints.EAST;
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 1);
 		this.jtfpersonalId.addKeyListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfpersonalId, gbc);
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		this.jtfName.addKeyListener(ControlUser.getInstance());
 		this.jtfName.addFocusListener(ControlUser.getInstance());
 		this.panelPersonalData.add(jtfName, gbc);
-
 
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		this.jtfLastName.addKeyListener(ControlUser.getInstance());
@@ -181,6 +194,9 @@ public class JPanelFormUser extends JPanel {
 		this.panelPersonalData.add(jtfAdress, gbc);
 	}
 
+	/**
+	 * Inicializa el panel de registro de un usuario
+	 */
 	private void initSigInData() {
 		this.panelUserData = new JPanel(new GridBagLayout());
 		this.panelUserData.setOpaque(false);
@@ -236,9 +252,10 @@ public class JPanelFormUser extends JPanel {
 		this.jpfPasswordAgain.setBorder(BorderFactory.createEmptyBorder(2, 5, 2, 5));
 		this.jpfPasswordAgain.setFont(ConstantView.FONT_FIELD_FORM);
 		this.panelUserData.add(jpfPasswordAgain, gbc);
-		
+
 		UtilityClass.organizeGridLayout(gbc, 1, 5);
-		UtilityClass.addCommandJButton(btnClearFields, UserCommands.CMD_WD_UPDATE_CLEAR.toString(), ControlUser.getInstance());
+		UtilityClass.addCommandJButton(btnClearFields, UserCommands.CMD_WD_UPDATE_CLEAR.toString(),
+				ControlUser.getInstance());
 		this.btnClearFields.setForeground(Color.WHITE);
 		this.btnClearFields.setFocusable(false);
 		this.btnClearFields.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -246,6 +263,9 @@ public class JPanelFormUser extends JPanel {
 		this.panelUserData.add(btnClearFields, gbc);
 	}
 
+	/**
+	 * Limpia todos los datos del formulario
+	 */
 	public void clearFields() {
 		this.resultId.setText("");
 		this.jtfAdress.setText("");
@@ -265,7 +285,10 @@ public class JPanelFormUser extends JPanel {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Obtiene un nuevo formulario con datos actualizados
+	 */
 	public void newForm() {
 		this.resultId.setText("");
 		this.jtfAdress.setText("");
@@ -287,58 +310,11 @@ public class JPanelFormUser extends JPanel {
 		this.comboUserType.setSelectedIndex(0);
 	}
 
-	public CustomTxtField getJtfId() {
-		return jtfpersonalId;
-	}
-
-	public void setJtfId(CustomTxtField jtfId) {
-		this.jtfpersonalId = jtfId;
-	}
-
-	public CustomTxtField getJtfName() {
-		return jtfName;
-	}
-
-	public void setJtfName(CustomTxtField jtfName) {
-		this.jtfName = jtfName;
-	}
-
-	public CustomTxtField getJtfLastName() {
-		return jtfLastName;
-	}
-
-	public void setJtfLastName(CustomTxtField jtfLastName) {
-		this.jtfLastName = jtfLastName;
-	}
-
-	public CustomTxtField getJtfPhone() {
-		return jtfPhone;
-	}
-
-	public void setJtfPhone(CustomTxtField jtfPhone) {
-		this.jtfPhone = jtfPhone;
-	}
-
-	public CustomTxtField getJtfUserName() {
-		return jtfUserName;
-	}
-
-	public void setJtfUserName(CustomTxtField jtfUserName) {
-		this.jtfUserName = jtfUserName;
-	}
-
-	public void showUserName() {
-		if (!isFieldIsEmpty(jtfName) && !isFieldIsEmpty(jtfLastName)) {
-			jtfUserName.setText(LoginManage.getInstance().useName(jtfName.getText(), jtfLastName.getText()));
-		}
-	}
-
-	public boolean isFieldIsEmpty(JTextField jtf) {
-		return jtf.getText().length() == 0;
-	}
-	
+	/**
+	 * Se encarga de crear un id automatico para el formulario de usuario
+	 */
 	public void createAutomaticID() {
 		SQLPeople sqlPeople = new SQLPeople();
-		resultId.setText(""+(sqlPeople.getLastIdPerson()+1));
+		resultId.setText("" + (sqlPeople.getLastIdPerson() + 1));
 	}
 }
