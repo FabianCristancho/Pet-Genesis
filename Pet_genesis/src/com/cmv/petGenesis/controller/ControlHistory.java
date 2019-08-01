@@ -21,6 +21,7 @@ import com.cmv.petGenesis.view.historyManagement.JPanelFindHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFormDataPet;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
+import com.cmv.petGenesis.view.historyManagement.JPanelStateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelUpdateHistory;
 
 public class ControlHistory implements ActionListener, KeyListener, ItemListener {
@@ -33,6 +34,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelRecet jPanelMedicine;
 	private JPanelConsult jPanelConsult;
 	private JPanelFindHistory jPanelFindHistory;
+	private JPanelStateHistory jPanelStateHistory;
 	private JDialogNewClient jDialogNewClient;
 
 	private ControlHistory() {
@@ -90,8 +92,12 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_WD_LOAD_DATA:
 			jPanelFindHistory.loadAllData();
 			break;
-			
-			
+		case CMD_WD_INACTIV_EXECUTE:
+			jPanelStateHistory.changeWithField();
+			break;
+		case CMD_WD_INACTIV_CHANGE_TABLE:
+			jPanelStateHistory.changeStateButton();
+			break;
 		default:
 			break;
 		}
@@ -147,10 +153,17 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 				e.consume();
 		}
 	}
-	
 
 	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {
 		this.jPanelCreateHistory = jPanelCreateHistory;
+	}
+	
+	/**
+	 * Cambia 
+	 * @param jPanelStateHistory a jPanelStateHistory 
+	 */
+	public void setjPanelStateHistory(JPanelStateHistory jPanelStateHistory) {
+		this.jPanelStateHistory = jPanelStateHistory;
 	}
 
 	@Override

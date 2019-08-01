@@ -75,7 +75,7 @@ public class ConstantView {
 	public final static String BUTTON_INACTIV_CLIENT = "ACTIVAR/INACTIVAR CLIENTE";
 	public final static String BUTTON_EXECUTE_ACTION_CLIENT = "EJECUTAR ACCIÓN";
 	public final static String BUTTON_CLEAN_SIGNIN = "LIMPIAR";
-	public final static String LABEL_CLICK_TO_ACTIV_CLIENT = "Haga click en un usuario para activarlo";
+	public final static String LABEL_CLICK_TO_ACTIV_CLIENT = "Haga click en un cliente para activarlo";
 	public final static String LABEL_CLIENT_QUERY = "CONSULTA DE CLIENTES";
 	public final static String LABEL_TITLE_INACTIV_CLIENT = "ESTADO DE ACTIVACIÓN DE CLIENTES";
 	public final static String LABEL_CLIENT_WITH = "Cliente por: ";
@@ -200,6 +200,16 @@ public class ConstantView {
 	public final static String LABEL_SEARCH_PET_QUERY = "Ingrese id de mascota a consultar";
 	public final static String BTN_LOAD_ALL_DATA = "CARGAR TODOS LOS DATOS";
 	public final static String BTN_SEARCH_PET = "BUSCAR MASCOTA";
+	
+	public final static String LABEL_SEARCH_PET_HISTORY = "Ingrese el id de la mascota";
+	public final static String LABEL_PET_WITH = "Id de la mascota: ";
+	public final static String BTN_CHANGE_STATE_PET = "Mostrar";
+	public final static String LABEL_TITLE_INACTIV_PETS = "ESTADO DE ACTIVACIÓN DE MASCOTAS";
+	public final static String LABEL_INACTIV_PET = "MASCOTAS INACTIVAS";
+	public final static String LABEL_ACTIV_PET = "MASCOTAS ACTIVAS";
+	public final static String LABEL_BLOCK_PET = "MASCOTAS BLOQUEADAS";
+	public final static String LABEL_STORE_PET = "MASCOTAS ARCHIVADAS";
+	public final static String LABEL_CLICK_TO_ACTIV_PET = "Haga click en una mascota para activarlo";
 	
 	//APPOINTMENT MANAGEMENT
 	public static final String LABEL_ID_AP = "ID CONSULTA";

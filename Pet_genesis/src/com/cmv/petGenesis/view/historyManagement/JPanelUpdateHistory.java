@@ -42,22 +42,19 @@ public class JPanelUpdateHistory extends JPanel{
 	private JButton btnSearchUser;
 	private JButton btnReturn;
 	private JButton btnUpdateUser;
-	private JComboBox<String> parameters;
 	private JScrollPane jScrollPane;
 	private JPanel jPanelRegion;
 
 	public JPanelUpdateHistory() {
 		super();
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_HISTORY);
-		this.idUser = new JLabel();
-		this.descriptionLabel = new JLabel(ConstantView.LABEL_DESCRIPTION_UPDATE_USER);
+		this.descriptionLabel = new JLabel(ConstantView.LABEL_SEARCH_PET_HISTORY);
 		this.btnSearchUser = new JButton(ConstantView.BTN_SEARCH_UPDATE_HISTORY);
 		this.jtfInputId = new JTextField(20);
 		this.jPanelUp = new JPanel();
 		this.jpanelCenter = new JPanelDataPet();
 		this.btnReturn = new JButton(ConstantView.BTN_RETURN_UPDATE_USER);
 		this.btnUpdateUser = new JButton(ConstantView.BTN_DATA_UPDATE_USER);
-		this.parameters = ConstantView.COMBO_PARAMS_UPDATE_USER;
 		this.jScrollPane = new JScrollPane();
 		this.jPanelRegion = new JPanel(new BorderLayout());
 		ControlHistory.getInstance().setjPanelUpdateHistory(this);
@@ -68,6 +65,7 @@ public class JPanelUpdateHistory extends JPanel{
 		this.setBackground(Color.decode("#c5dfed"));
 		initPanelUp();
 		initpanelDown();
+		this.jpanelCenter.jPanelFormDataPet.getBtnFindPropietary().setVisible(false);
 		UtilityClass.addBorder(this, 0, 10, 10, 0);
 		this.jPanelRegion.setOpaque(false);
 		this.jPanelRegion.add(jPanelUp, BorderLayout.NORTH);
@@ -95,10 +93,6 @@ public class JPanelUpdateHistory extends JPanel{
 		UtilityClass.organizeGridLayout(gbc, 0, 1);
 		gbc.anchor = GridBagConstraints.EAST;
 		this.jPanelUp.add(descriptionLabel, gbc);
-
-		gbc.gridx = 1;
-		gbc.anchor = GridBagConstraints.CENTER;
-		this.jPanelUp.add(parameters, gbc);
 
 		gbc.gridx = 2;
 		gbc.anchor = GridBagConstraints.CENTER;
@@ -140,17 +134,6 @@ public class JPanelUpdateHistory extends JPanel{
 		this.btnUpdateUser.setFont(ConstantView.FONT_LABELS_LOGIN);
 		
 		this.jPanelDown.add(btnUpdateUser, gbc);
-	}
-
-	public String getParam() {
-		switch (parameters.getSelectedIndex()) {
-		case 0:
-			return "id_mascota";
-//		case 1:
-//			return "documento_usuario";
-		default:
-			return "id_mascota";
-		}
 	}
 	
 	public JComboBox<String> getComboSpecies() {

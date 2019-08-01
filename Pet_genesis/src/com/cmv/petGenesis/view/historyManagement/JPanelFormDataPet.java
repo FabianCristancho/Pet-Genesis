@@ -246,4 +246,12 @@ public class JPanelFormDataPet extends JPanel {
 	public CustomLabel getLblResultId() {
 		return lblResultId;
 	}
+	
+	/**
+	 * Obtiene 
+	 * @return btnFindPropietary
+	 */
+	public JButton getBtnFindPropietary() {
+		return btnFindPropietary;
+	}
 }

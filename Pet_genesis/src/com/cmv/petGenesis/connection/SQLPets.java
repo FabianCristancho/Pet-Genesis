@@ -217,7 +217,6 @@ public class SQLPets extends ConnectionMySQL{
 				+ "m.fecha_de_nacimiento=?, m.color_mascota=?, m.castrada=?, m.estado_de_activacion=?"
 				+ ", m.descripcion_adicional=? WHERE id_mascota=?";
 		try {
-			System.out.println("p: " + pet.getNamePet() + " ID: " + pet.getId());
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, pet.getRace().getIdRace());
 			ps.setString(2, pet.getNamePet());
@@ -234,6 +233,91 @@ public class SQLPets extends ConnectionMySQL{
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public boolean existPet(int id) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+
+		String sql = "SELECT nombre_mascota FROM mascotas WHERE id_mascota=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return true;
+			}
+			return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public boolean changeStatePet(String parameter, String valueParameter, String newState) {
+		PreparedStatement ps = null;
+		Connection con = getConnection();
+
+		String sql = "UPDATE mascotas SET estado_de_activacion=? WHERE " + parameter + " = '" + valueParameter + "'";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, newState);
+			ps.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public ArrayList<Object[]> loadData(String parameter, String value) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		ArrayList<Object[]> tableData = new ArrayList<>();
+
+		String where = "";
+		String and = "";
+		if (!"".equals(value)) {
+			where = " WHERE " + parameter + " = '" + value + "'";
+		}
+
+		String sql = "SELECT m.id_mascota, m.nombre_mascota, m.genero_mascota, e.nombre_especie, r.nombre_raza,"
+				+ " m.fecha_de_nacimiento, m.color_mascota, m.castrada, m.estado_de_activacion, "
+				+ "p.nombre_persona, p.apellido_persona "
+				+ "FROM mascotas AS m "
+				+ "INNER JOIN personas AS p ON m.id_persona = p.id_persona "
+				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza "
+				+ "INNER JOIN especies AS e ON r.id_especie = e.id_especie " + where;
+
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			ResultSetMetaData rsMd = rs.getMetaData();
+			int countCols = rsMd.getColumnCount();
+
+			while (rs.next()) {
+				Object[] rows = new Object[countCols];
+
+				for (int i = 0; i < rows.length; i++) {
+					rows[i] = rs.getObject(i + 1);
+				}
+				tableData.add(rows);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tableData;
 	}
 
 }
