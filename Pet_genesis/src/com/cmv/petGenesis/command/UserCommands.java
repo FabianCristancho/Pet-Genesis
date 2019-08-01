@@ -1,7 +1,7 @@
 package com.cmv.petGenesis.command;
 
 /**
- * Clase UserCommands - Enumerado que se encarga de listar todos los comandos
+ * Enum UserCommands - Enumerado que se encarga de listar todos los comandos
  * que se vana a utilizar para las acciones de los botones de interfaz del usuario.
  *
  * @version 1.0 - 22/07/2019
