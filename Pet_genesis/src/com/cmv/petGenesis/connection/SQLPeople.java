@@ -12,8 +12,20 @@ import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase SQLPeople - Se encaraga de crear la conexión con la tabla 'personas' en 
+ * la base de datos, también realiza las consultas correspondientes para
+ * añadir, modificar y consultar personas.
+ *
+ * @version 1.0 - 31/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class SQLPeople extends ConnectionMySQL{
 	
+	/**
+	 * Obtiene el id de la ultima persona de la tabla de personas
+	 * @return id v
+	 */
 	public int getLastIdPerson() {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -31,6 +43,11 @@ public class SQLPeople extends ConnectionMySQL{
 		return -1;
 	}
 	
+	/**
+	 * Registra los datos personales del usuario
+	 * @param user usuario
+	 * @return true si lo hizo -false si no
+	 */
 	public boolean registerDataUser(User user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -57,6 +74,11 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Registra un cliente e la tabla de personas
+	 * @param client cliente
+	 * @return true si lo logró - false si se presentó un problema
+	 */
 	public boolean registerDataClient(Client client) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -83,6 +105,11 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Verifica si un telefono existe
+	 * @param phone telefono
+	 * @return 1 si no existe y 0 si sí
+	 */
 	public int existPhone(String phone) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -90,6 +117,7 @@ public class SQLPeople extends ConnectionMySQL{
 
 		String sql = "SELECT count(id_persona) FROM personas WHERE telefono_persona = ?";
 		try {
+	
 			ps = con.prepareStatement(sql);
 			ps.setString(1, phone);
 
@@ -113,6 +141,11 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Verifica si un docuento de una persona ya fue registrado
+	 * @param docId documento de identidad
+	 * @return true si está - false si no
+	 */
 	public boolean existDocumentId(int docId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -143,6 +176,15 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Obteien una lista con los dtos de las personas buscando por unos atributos y 
+	 * condiciones especificas
+	 * @param parameter atributo 1
+	 * @param value valor atributo 1
+	 * @param parameterState atributo 2
+	 * @param state valor atributo 2
+	 * @return lista de personas
+	 */
 	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -185,6 +227,11 @@ public class SQLPeople extends ConnectionMySQL{
 		return tableData;
 	}
 	
+	/**
+	 * Actualiza la información de un cliente
+	 * @param client cliente
+	 * @return true si actualizó -false si no
+	 */
 	public boolean updateClient(Client client) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -211,6 +258,13 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Cambia el estado de activación de un cliente por un parámetro específico
+	 * @param parameter atributo
+	 * @param valueParameter valor del atributo
+	 * @param newState nuevo estado
+	 * @return true si lo cambió - false si no
+	 */
 	public boolean changeStateClient(String parameter, String valueParameter, String newState) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -227,6 +281,11 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Verifica si un cliente existe buscando por su
+	 * @param id identificador
+	 * @return true si existe - false si no
+	 */
 	public boolean existClient(int id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -257,6 +316,11 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Verifica si un documento de identidad ya existe y si la persona es un cliente
+	 * @param docId documento
+	 * @return true si existe - false si no
+	 */
 	public boolean existDocumentIdClient(int docId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -321,6 +385,12 @@ public class SQLPeople extends ConnectionMySQL{
 		}
 	}
 	
+	/**
+	 * Obtiene el dato de cliente buscando por un atributo y valor específicos
+	 * @param parameter atributo
+	 * @param value valor del atributo
+	 * @return client con los datos
+	 */
 	public Client getDataClient(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
