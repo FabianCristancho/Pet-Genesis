@@ -12,8 +12,21 @@ import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase SQLUsers - Se encaraga de crear la conexión con la tabla 'usuarios' en 
+ * la base de datos, también realiza las consultas correspondientes para
+ * añadir, modificar y consultar usuarios.
+ *
+ * @version 1.0 - 22/07/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class SQLUsers extends ConnectionMySQL {
 
+	/**
+	 * Registra un usuario en la tabla de usuarios
+	 * @param user usuario
+	 * @return true  si lo añadió- false si no
+	 */
 	public boolean register(User user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -33,6 +46,11 @@ public class SQLUsers extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Verifica si un nombre de usuario ya existe en la tabla
+	 * @param nameUser nombre a verificar
+	 * @return 0 si no existe - 1 si existe
+	 */
 	public int existUser(String nameUser) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -63,12 +81,21 @@ public class SQLUsers extends ConnectionMySQL {
 		}
 	}
 	
+	/**
+	 * Verifica el estado de un usuario, buscando por un parametro especifico
+	 * @param parameter atributo
+	 * @param valueParam valor del atributo
+	 * @param valueState estado a verificar
+	 * @return true si lo tiene -false si no
+	 */
 	public boolean userHasState(String parameter, String valueParam, String valueState) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
 
-		String sql = "SELECT p.id_persona, u.id_usuario FROM personas AS p INNER JOIN usuarios AS u ON p.id_persona=u.id_persona WHERE " +parameter +" = '" +valueParam +"' AND estado_activacion = '" +valueState +"'";
+		String sql = "SELECT p.id_persona, u.id_usuario FROM personas AS p INNER JOIN usuarios AS u ON "
+				+ "p.id_persona=u.id_persona WHERE " +parameter +" = '" +valueParam +"' AND estado_activacion = '" 
+				+valueState +"'";
 		
 		try {
 			ps = con.prepareStatement(sql);
@@ -92,7 +119,11 @@ public class SQLUsers extends ConnectionMySQL {
 		return false;
 	}
 	
-
+	/**
+	 * Actualiza la información de un usuario
+	 * @param user usuario a modificar
+	 * @return true si modifico -false si no
+	 */
 	public boolean updateUser(User user) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -122,6 +153,13 @@ public class SQLUsers extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Cambia el estado de un usuario
+	 * @param parameter atributo a buscar
+	 * @param valueParameter valor del atributo
+	 * @param newState nuevo estado a modificar
+	 * @return true si lo cambió - false si no
+	 */
 	public boolean changeStateUser(String parameter, String valueParameter, String newState) {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
@@ -138,6 +176,15 @@ public class SQLUsers extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Carga los datos de la tabla de usuarios buscando por un atributo y valor especificos
+	 * y una condición adicional
+	 * @param parameter atributo
+	 * @param value valor
+	 * @param parameterState atributo 2
+	 * @param state valor atributo 2
+	 * @return
+	 */
 	public ArrayList<Object[]> loadData(String parameter, String value, String parameterState, String state) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -182,6 +229,12 @@ public class SQLUsers extends ConnectionMySQL {
 		return tableData;
 	}
 
+	/**
+	 * Obteien un usuario buscando por un atributo especifico
+	 * @param parameter atributo
+	 * @param value valor del atributo
+	 * @return user con los datos
+	 */
 	public User getDataUser(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -224,6 +277,11 @@ public class SQLUsers extends ConnectionMySQL {
 		return user;
 	}
 
+	/**
+	 * Verifica que los datos para que un usuario se conecte sean validos
+	 * @param user usuario
+	 * @return true si son validos -false si no
+	 */
 	public boolean login(User user) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -272,6 +330,10 @@ public class SQLUsers extends ConnectionMySQL {
 		}
 	}
 
+	/**
+	 * Carga los tipo de usario en un array
+	 * @return array de string
+	 */
 	public String[] loadTypesUser() {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -296,6 +358,12 @@ public class SQLUsers extends ConnectionMySQL {
 		return typesUser;
 	}
 
+	/**
+	 * Cuenta los datos por un atributo especifico
+	 * @param parameterCount atributo
+	 * @param table valor atributo
+	 * @return cantidad c
+	 */
 	private int countDataQuery(String parameterCount, String table) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
