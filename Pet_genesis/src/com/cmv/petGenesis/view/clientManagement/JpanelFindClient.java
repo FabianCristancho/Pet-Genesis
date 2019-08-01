@@ -24,6 +24,12 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JpanelFindClient - Se encarga del panel de encontrar clientes
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JpanelFindClient extends JPanel {
 
 	private JTable jTable;
@@ -37,6 +43,9 @@ public class JpanelFindClient extends JPanel {
 	private JComboBox<String> parameters;
 	private DefaultTableModel model;
 
+	/**
+	 * Constructor
+	 */
 	public JpanelFindClient() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -53,6 +62,9 @@ public class JpanelFindClient extends JPanel {
 		ControlClient.getInstance().setJpanelFindClient(this);
 	}
 
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		initParameters();
 
@@ -75,6 +87,9 @@ public class JpanelFindClient extends JPanel {
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Inicializa los parámetros
+	 */
 	private void initParameters() {
 		UtilityClass.addCommandJButton(btnSearch, ClientCommands.CMD_SEARCH_CLIENT.toString(), ControlClient.getInstance());
 		UtilityClass.addCommandJButton(btnLoadData, ClientCommands.CMD_LOAD_DATA.toString(), ControlClient.getInstance());
@@ -107,7 +122,9 @@ public class JpanelFindClient extends JPanel {
 		this.panelSearch.add(btnLoadData, gbc);
 	}
 
-	
+	/**
+	 * Cambia el ancho de las columnas de la tabla
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 140, 140, 110, 110, 200, 200, 110 };
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -115,6 +132,10 @@ public class JpanelFindClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Carga la tabla por un parametro de busqueda
+	 * @param parameter atributo
+	 */
 	private void loadTable(String parameter) {
 		SQLPeople sqlPeople = new SQLPeople();
 		this.model = new DefaultTableModel();
@@ -138,6 +159,9 @@ public class JpanelFindClient extends JPanel {
 		changeWidthColumn();
 	}
 	
+	/**
+	 * Busca por un parámetro
+	 */
 	public void searchByParameter() {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
@@ -161,11 +185,18 @@ public class JpanelFindClient extends JPanel {
 		this.jtfInputQuery.setText("");
 	}
 
+	/**
+	 * Carga todos los datos de la tabla
+	 */
 	public void loadAllData() {
 		this.jtfInputQuery.setText("");
 		this.loadTable("");
 	}
 
+	/**
+	 * Carga los datos
+	 * @return btnLoadData btn
+	 */
 	public JButton getBtnLoadData() {
 		return btnLoadData;
 	}

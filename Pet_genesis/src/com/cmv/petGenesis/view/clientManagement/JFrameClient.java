@@ -7,16 +7,20 @@ import javax.swing.JFrame;
 import com.cmv.petGenesis.controller.ControlClient;
 
 /**
- * Clase JFrameClient - 
+ * Clase JFrameClient - Se encarga de crear elframe principal de la vista del
+ * cliente
  *
- * @author Yohan Caro
- * @version 1.0 - 18/07/2019
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
  */
 public class JFrameClient extends JFrame {
 	
 	private JpanelGroupClient jpanelGroupClient;
 	private JPanelOptionsClient jOptionsClient;
 	
+	/**
+	 * Constructor
+	 */
 	public JFrameClient() {
 		super();
 		this.jOptionsClient = new JPanelOptionsClient();
@@ -25,6 +29,9 @@ public class JFrameClient extends JFrame {
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		this.setExtendedState(MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -34,14 +41,26 @@ public class JFrameClient extends JFrame {
 		this.setVisible(true);
 	}
 
+	/**
+	 * Obtien el grupo de paneles
+	 * @return jpanelGroupClient jpanel
+	 */
 	public JpanelGroupClient getJpanelGroupClient() {
 		return jpanelGroupClient;
 	}
 
+	/**
+	 * Obtiene el panel de botones de opciones
+	 * @return jOptionsClient jpanel
+	 */
 	public JPanelOptionsClient getjOptionsClient() {
 		return jOptionsClient;
 	}
 	
+	/**
+	 * Cambia el panel de crear un cliente
+	 * @param jPanelCreateClient jpanel
+	 */
 	public void setJCreateClient(JPanelCreateClient jPanelCreateClient) {
 		this.jpanelGroupClient.setjCreateClient(jPanelCreateClient);
 	}

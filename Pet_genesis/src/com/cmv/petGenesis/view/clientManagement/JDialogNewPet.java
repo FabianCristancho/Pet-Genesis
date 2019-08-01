@@ -24,13 +24,12 @@ import com.cmv.petGenesis.model.Race;
 import com.cmv.petGenesis.model.StatePet;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.cmv.petGenesis.view.historyManagement.JPanelDataPet;
 
 /**
- * Clase JDialogNewPet - 
+ * Clase JDialogNewPet - Se encarag de crear un dialog para añdir una mascota
  *
  * @version 1.0 - 31/07/2019
- * @author 
+ * @author Yohan Caro -Fabian Cristancho
  */
 public class JDialogNewPet extends JDialog {
 	
@@ -41,7 +40,7 @@ public class JDialogNewPet extends JDialog {
 	private String idPropietary;
 	
 	/**
-	 * Constructor 
+	 * Constructor, string de propietario
 	 */
 	public JDialogNewPet(String idPropietary) {
 		super();
@@ -54,6 +53,9 @@ public class JDialogNewPet extends JDialog {
 		init();
 	}
 	
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		this.setSize(1100, 650);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -70,6 +72,9 @@ public class JDialogNewPet extends JDialog {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Se encarga de crear los botones de acciones del dialog
+	 */
 	private void createButtons() {
 		this.jPanelButtons = new JPanel(new GridBagLayout());
 		this.jPanelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -103,6 +108,10 @@ public class JDialogNewPet extends JDialog {
 		this.add(jPanelButtons, BorderLayout.SOUTH);
 	}
 	
+	/**
+	 * Se encarga de registrar una mascota
+	 * @param p mascota
+	 */
 	public void registerHistory(Pet p) {
 		SQLPets sqlPets = new SQLPets();
 		if (jPanelDataPet.fieldsAreEmpty()) {
@@ -153,8 +162,8 @@ public class JDialogNewPet extends JDialog {
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return jPanelDataPet
+	 * Obtiene  el jPanelDataPet
+	 * @return jPanelDataPet jpanel
 	 */
 	public JPanelDataPetClient getjPanelDataPet() {
 		return jPanelDataPet;

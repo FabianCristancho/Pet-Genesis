@@ -26,6 +26,12 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.toedter.calendar.JDateChooser;
 
+/**
+ * Clase JPanelFormDataPetClient - Formulario para llenar la mascota
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelFormDataPetClient extends JPanel {
 
 	private CustomLabel lblResultId, lblTitleId, lblPetName, lblSpecies, lblRace, lblGender, lblBirthDate, lblColor,
@@ -41,6 +47,9 @@ public class JPanelFormDataPetClient extends JPanel {
 	private JButton btnFindPropietary;
 	private SimpleDateFormat sdf;
 
+	/**
+	 * Constructor
+	 */
 	public JPanelFormDataPetClient() {
 		super(new GridBagLayout());
 		this.lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
@@ -82,6 +91,9 @@ public class JPanelFormDataPetClient extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializador
+	 */
 	private void init() {
 		this.setOpaque(false);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -192,15 +204,25 @@ public class JPanelFormDataPetClient extends JPanel {
 		this.add(lblObligate, gbc);
 	}
 
+	/**
+	 * Crea el id automatcamente
+	 */
 	public void createAutomaticID() {
 		SQLPets sqlPets = new SQLPets();
 		lblResultId.setText("" + (sqlPets.getLastIdPet() + 1));
 	}
 
+	/**
+	 * Obtiene el combo de especies
+	 * @return comboSpecies combobox
+	 */
 	public JComboBox<String> getComboSpecies() {
 		return comboSpecies;
 	}
 	
+	/**
+	 * Cambia las razas
+	 */
 	public void changeRaces() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		this.comboRaces.setVisible(false);
@@ -213,6 +235,9 @@ public class JPanelFormDataPetClient extends JPanel {
 		this.comboRaces.setVisible(true);
 	}
 	
+	/**
+	 * Crea un nuevo formulario
+	 */
 	public void newForm() {
 		try {
 			this.birthDate = new JDateChooser(sdf.parse("00/00/2000"));
@@ -231,24 +256,24 @@ public class JPanelFormDataPetClient extends JPanel {
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return jtfPropietary
+	 * Obtiene el campo de propietario
+	 * @return jtfPropietary propietario
 	 */
 	public CustomTxtField getJtfPropietary() {
 		return jtfPropietary;
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return jtfPetName
+	 * Obtiene l campo de nombre
+	 * @return jtfPetName nombre
 	 */
 	public CustomTxtField getJtfPetName() {
 		return jtfPetName;
 	}
 	
 	/**
-	 * Obtiene 
-	 * @return jtfColor
+	 * Obtiene rl campo de color
+	 * @return jtfColor color
 	 */
 	public CustomTxtField getJtfColor() {
 		return jtfColor;

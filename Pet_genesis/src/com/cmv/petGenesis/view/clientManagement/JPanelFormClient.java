@@ -14,7 +14,6 @@ import java.util.Date;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -30,6 +29,12 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 import com.cmv.petGenesis.view.EnterListener;
 import com.toedter.calendar.JDateChooser;
 
+/**
+ * Clase JPanelFormClient - Se encarag de crear el formulario
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelFormClient extends JPanel {
 	
 	protected CustomLabel lblId, lblIdSet, lblName, lblLastName, lblPhone, lblEmail, lblAddress, lblBirthDate, lblDoc,
@@ -43,7 +48,7 @@ public class JPanelFormClient extends JPanel {
 	private SimpleDateFormat sdf;
 
 	/**
-	 * 
+	 * Construtor
 	 */
 	public JPanelFormClient() {
 		super();
@@ -83,6 +88,9 @@ public class JPanelFormClient extends JPanel {
 		this.init();
 	}
 	
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		this.setOpaque(false);
 
@@ -94,6 +102,9 @@ public class JPanelFormClient extends JPanel {
 		this.requestFocusInWindow(true);
 	}
 
+	/**
+	 * Inicaliza y ordena los campos en un GBL
+	 */
 	private void initPanelPersonalData() {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(0, 10, 30, 20);
@@ -128,10 +139,7 @@ public class JPanelFormClient extends JPanel {
 		
 		UtilityClass.organizeGridLayout(gbc, 2, 5, 1, 1);
 		this.add(lblActiv, gbc);
-		
-//		UtilityClass.organizeGridLayout(gbc, 0, 6, 1, 1);
-//		this.add(lblPet, gbc);
-		
+				
 		UtilityClass.organizeGridLayout(gbc, 0, 8, 4, 1);
 		this.add(lblInfo, gbc);
 
@@ -173,17 +181,7 @@ public class JPanelFormClient extends JPanel {
 		jPanelRadios.add(activRadioButton, BorderLayout.WEST);
 		jPanelRadios.add(inactivRadioButton, BorderLayout.EAST);
 		this.add(jPanelRadios, gbc);
-		
-//		UtilityClass.organizeGridLayout(gbc, 3, 6, 1, 1);
-//		addPetButton.setForeground(Color.WHITE);
-//		addPetButton.setFocusable(false);
-//		addPetButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-//		addPetButton.setFont(ConstantView.FONT_LABELS_LOGIN);
-//		UtilityClass.addCommandJButton(addPetButton, ClientCommands.CMD_BT_NEW_PET.toString(), ControlClient.getInstance());
-//		ImageIcon icon = new ImageIcon(ConstantView.IMG_PET_SIGNIN);
-//		addPetButton.setIcon(icon);
-//		this.add(addPetButton, gbc);
-		
+				
 		this.addButtons();
 		
 		UtilityClass.organizeGridLayout(gbc, 2, 7, 2, 1);
@@ -191,6 +189,9 @@ public class JPanelFormClient extends JPanel {
 		this.add(jPanelButtons, gbc);
 	}
 	
+	/**
+	 * Añade los botones al panel
+	 */
 	private void addButtons() {		
 		UtilityClass.addCommandJButton(cleanButton, ClientCommands.CMD_WD_UPDATE_CLEAR.toString(), ControlClient.getInstance());
 		this.cleanButton.setBackground(ConstantView.COLOR_BUTTON_LOGIN);
@@ -201,6 +202,9 @@ public class JPanelFormClient extends JPanel {
 		jPanelButtons.add(cleanButton);
 	}
 
+	/**
+	 * Limpia los campos
+	 */
 	public void clearFields() {
 		this.jtfAdress.setText("");
 		this.jtfEmail.setText("");
@@ -211,6 +215,9 @@ public class JPanelFormClient extends JPanel {
 		this.birthdayDateChooser.setDate(new Date());
 	}
 	
+	/**
+	 * Crea un juevo formulario
+	 */
 	public void newForm() {
 		this.jtfAdress.setText("");
 		this.jtfEmail.setText("");
@@ -227,35 +234,67 @@ public class JPanelFormClient extends JPanel {
 		this.activRadioButton.setSelected(true);
 	}
 	
+	/**
+	 * Crea un id automaticamente
+	 */
 	public void createAutomaticID() {
 		SQLPeople sqlPeople = new SQLPeople();
 		lblIdSet.setText(""+(sqlPeople.getLastIdPerson()+1));
 	}
 
+	/**
+	 * Obtiene le nombre del campo
+	 * @return jtfName text
+	 */
 	public CustomTxtField getJtfName() {
 		return jtfName;
 	}
 
+	/**
+	 * Cambia el nombre del campo
+	 * @param jtfName text
+	 */
 	public void setJtfName(CustomTxtField jtfName) {
 		this.jtfName = jtfName;
 	}
 
+	/**
+	 * Obtiene el campo de apellido
+	 * @return jtfLastName text
+	 */
 	public CustomTxtField getJtfLastName() {
 		return jtfLastName;
 	}
 
+	/**
+	 * Cambia el campo de apellido
+	 * @param jtfLastName text
+	 */
 	public void setJtfLastName(CustomTxtField jtfLastName) {
 		this.jtfLastName = jtfLastName;
 	}
 
+	/**
+	 * Obtien el telefono
+	 * @return jtfPhone text
+	 */
 	public CustomTxtField getJtfPhone() {
 		return jtfPhone;
 	}
 
+	/**
+	 * Cambia el campo del telefono
+	 * @param jtfPhone text
+	 */
 	public void setJtfPhone(CustomTxtField jtfPhone) {
 		this.jtfPhone = jtfPhone;
 	}
 
+	/**
+	 * Verifica si el text esta vacio
+	 * @param jtf jtextfield
+	 * @return true vacio -false no
+	 */
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length() == 0;
 	}

@@ -7,7 +7,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -18,6 +17,12 @@ import com.cmv.petGenesis.controller.ControlClient;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelOptionsClient - Se encarga de crear los botones de las opciones del cliente
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelOptionsClient extends JPanel {
 	
 	private JButton btnCreateClient;
@@ -25,6 +30,9 @@ public class JPanelOptionsClient extends JPanel {
 	private JButton btnInactivClient;
 	private JButton btnFindClient;
 
+	/**
+	 * Constructor
+	 */
 	public JPanelOptionsClient() {
 		super(new GridBagLayout());
 		this.btnCreateClient = new JButton(ConstantView.BUTTON_CREATE_CLIENT);
@@ -34,6 +42,9 @@ public class JPanelOptionsClient extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		this.setBackground(Color.decode("#2E5569"));
 		ActionListener al = ControlClient.getInstance();

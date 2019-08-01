@@ -6,7 +6,6 @@ import java.awt.Cursor;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -25,6 +24,12 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JpanelUpdateClient - Se encarga de crear el panel para actualizar los datos de cliente
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JpanelUpdateClient extends JPanel {
 
 	private JLabel titlePanel;
@@ -40,6 +45,9 @@ public class JpanelUpdateClient extends JPanel {
 	private String oldpIdentification;
 	private String oldTelephone;
 
+	/**
+	 * Constructor
+	 */
 	public JpanelUpdateClient() {
 		super(new BorderLayout());
 		this.titlePanel = new JLabel(ConstantView.LABEL_TITLE_UPDATE_CLIENT);
@@ -55,6 +63,9 @@ public class JpanelUpdateClient extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializa los componentes
+	 */
 	private void init() {
 		this.setBackground(Color.decode("#c5dfed"));
 		initPanelUp();
@@ -65,6 +76,9 @@ public class JpanelUpdateClient extends JPanel {
 		this.add(jPanelDown, BorderLayout.SOUTH);
 	}
 
+	/**
+	 * Inicializa el panel superior
+	 */
 	private void initPanelUp() {
 		this.jPanelUp.setOpaque(false);
 		this.jPanelUp.setLayout(new GridBagLayout());
@@ -96,6 +110,9 @@ public class JpanelUpdateClient extends JPanel {
 		this.jPanelUp.add(btnSearchClient, gbc);
 	}
 
+	/**
+	 * Inicializa el panel inferior
+	 */
 	private void initpanelDown() {
 		this.jPanelDown = new JPanel(new GridBagLayout());
 		this.jPanelDown.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -128,6 +145,10 @@ public class JpanelUpdateClient extends JPanel {
 		this.jPanelDown.add(btnUpdateClient, gbc);
 	}
 
+	/**
+	 * Obtiene el parametro de busqueda
+	 * @return cadena s
+	 */
 	public String getParam() {
 		switch (parameters.getSelectedIndex()) {
 		case 0:
@@ -139,6 +160,9 @@ public class JpanelUpdateClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtiene los datos con la persona buscada y los pone en el formulario
+	 */
 	public void getDataQuery() {
 		SQLPeople sqlPeople = new SQLPeople();
 		Client client = sqlPeople.getDataClient(getParam(), jtfInputId.getText());
@@ -147,7 +171,6 @@ public class JpanelUpdateClient extends JPanel {
 			jpanelCenter.lblIdSet.setText("" + client.getIdPerson());
 			jpanelCenter.jtfName.setText(client.getName());
 			jpanelCenter.jtfLastName.setText(client.getLastName());
-//			jpanelCenter.birthdayDateChooser.setDate(UtilityClass.daysAdd((Date) register[4], 1));
 			jpanelCenter.jtfPhone.setText(client.getTelephone());
 
 			if (!isActive(client.getActivationState().name())) {
@@ -164,6 +187,10 @@ public class JpanelUpdateClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Actualiza los datos del formulario en el cliente
+	 * @param client c
+	 */
 	public void saveDataSignIn(Client client) {
 		SQLPeople sqlPeople = new SQLPeople();
 
@@ -215,20 +242,37 @@ public class JpanelUpdateClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Verifica si el estado está activo
+	 * @param state estado
+	 * @return true si -false no
+	 */
 	private boolean isActive(String state) {
 		if (state.equals("ACTIV"))
 			return true;
 		return false;
 	}
 
+	/**
+	 * Obtiene le campo del nombre
+	 * @return jtfName text
+	 */
 	public CustomTxtField getJtfName() {
 		return jpanelCenter.jtfName;
 	}
 
+	/**
+	 * Obtiene el campo del apellido
+	 * @return jtfLastName text
+	 */
 	public CustomTxtField getJtfLastName() {
 		return jpanelCenter.jtfLastName;
 	}
 
+	/**
+	 * Obtiene el campo del telefono
+	 * @return jtfPhone telefono
+	 */
 	public CustomTxtField getJtfPhone() {
 		return jpanelCenter.jtfPhone;
 	}

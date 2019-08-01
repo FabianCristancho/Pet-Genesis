@@ -24,6 +24,12 @@ import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelCreateClient - Se encarga de crear el panel para añadir un cliente
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelCreateClient extends JPanel {
 
 	private CustomLabel title;
@@ -64,6 +70,9 @@ public class JPanelCreateClient extends JPanel {
 		this.add(jPanelFormClient, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Inicializa los botones y el panel que los contiene
+	 */
 	private void initPanelButtons() {
 		this.panelButtons = new JPanel(new GridBagLayout());
 		this.panelButtons.setBorder(BorderFactory.createEmptyBorder(10, 5, 0, 5));
@@ -94,6 +103,9 @@ public class JPanelCreateClient extends JPanel {
 		this.panelButtons.add(okButton, gbc);
 	}
 	
+	/**
+	 * Limpia los campos del formulario
+	 */
 	public void clearFileds() {
 		this.jPanelFormClient.clearFields();
 	}
@@ -112,26 +124,51 @@ public class JPanelCreateClient extends JPanel {
 		return null;
 	}
 
+	/**
+	 * Obtiene el nombre del campo
+	 * @return jtfName text
+	 */
 	public CustomTxtField getJtfName() {
 		return jPanelFormClient.jtfName;
 	}
 
+	/**
+	 * Obtiene el apellido del campo
+	 * @return jtfLastName text
+	 */
 	public CustomTxtField getJtfLastName() {
 		return jPanelFormClient.jtfLastName;
 	}
 	
+	/**
+	 * Obtiene el documento del campo
+	 * @return jtfDoc doc
+	 */
 	public CustomTxtField getJtfDoc() {
 		return jPanelFormClient.jtfDoc;
 	}
 
+	/**
+	 * Verifica si el un jtextfield está vacio
+	 * @param jtf jtextfield
+	 * @return true -false
+	 */
 	public boolean isFieldIsEmpty(JTextField jtf) {
 		return jtf.getText().length() == 0;
 	}
 
+	/**
+	 * Obtien el numero de telefono del campo
+	 * @return jtfPhone txt
+	 */
 	public CustomTxtField getJtfPhone() {
 		return jPanelFormClient.jtfPhone;
 	}
 	
+	/**
+	 * Guarda los datos y los envia a la tabla
+	 * @param client cliente
+	 */
 	public void saveDataSignIn(Client client) {
 		SQLPeople sqlPeople = new SQLPeople();
 
@@ -180,6 +217,10 @@ public class JPanelCreateClient extends JPanel {
 		}
 	}
 	
+	/**
+	 * AÑade una persona
+	 * @param idPropietary id del propietario
+	 */
 	public void addPet(String idPropietary) {
 		int option = JOptionPane.showConfirmDialog(null, "¿Desea agregar una mascota?", "AÑADIR MASCOTA",
 				JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
@@ -188,6 +229,10 @@ public class JPanelCreateClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtien el formulario del cliente
+	 * @return jPanelFormClient j
+	 */
 	public JPanelFormClient getjPanelFormClient() {
 		return jPanelFormClient;
 	}

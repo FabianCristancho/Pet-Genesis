@@ -31,6 +31,13 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.HintJTextField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
+/**
+ * Clase JPanelInactivClient - Se encarga de la interfaz grafica para el maneho del estado
+ * de activación del clientes
+ *
+ * @version 1.0 - 1/08/2019
+ * @author Yohan Caro - Fabian Cristancho
+ */
 public class JPanelInactivClient extends JPanel {
 
 	private JTable jTable;
@@ -45,6 +52,9 @@ public class JPanelInactivClient extends JPanel {
 	private DefaultTableModel model;
 	private JScrollPane jScrollPane;
 
+	/**
+	 * Constructor
+	 */
 	public JPanelInactivClient() {
 		super(new BorderLayout());
 		this.jTable = new JTable();
@@ -69,6 +79,9 @@ public class JPanelInactivClient extends JPanel {
 		init();
 	}
 
+	/**
+	 * Inicializador de componentes
+	 */
 	private void init() {
 		initParameters();
 		initPanelStateTable();
@@ -96,6 +109,9 @@ public class JPanelInactivClient extends JPanel {
 		this.add(panelTable, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Inicializa la tabla de estados
+	 */
 	private void initPanelStateTable() {
 		this.jPanelStateTable.setOpaque(false);
 		this.jPanelStateTable.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -104,6 +120,9 @@ public class JPanelInactivClient extends JPanel {
 		this.jPanelStateTable.add(lblClickToActiv, BorderLayout.WEST);
 	}
 
+	/**
+	 * Inicaliza los parametros
+	 */
 	private void initParameters() {
 		this.panelSearch.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -169,6 +188,9 @@ public class JPanelInactivClient extends JPanel {
 		this.panelSearch.add(inactivActiv, gbc);
 	}
 
+	/**
+	 * Cambia el tamaño de las columnas
+	 */
 	private void changeWidthColumn() {
 		int[] widthColumns = { 50, 140, 140, 140, 110, 110, 200, 200, 140};
 		for (int i = 0; i < widthColumns.length; i++) {
@@ -176,6 +198,11 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Carga la tabla por:
+	 * @param parameter atributo
+	 * @param state valor del atributo
+	 */
 	public void loadTable(String parameter, String state) {
 		SQLPeople sqlPeople = new SQLPeople();
 		this.model = new DefaultTableModel();
@@ -192,7 +219,6 @@ public class JPanelInactivClient extends JPanel {
 		model.addColumn("Email");
 		model.addColumn("Direccion de residencia");
 
-//		ArrayList<Object[]> table = sqlPeople.loadData(parameter, jtfInputQuery.getText(), "estado_activacion", state);
 		ArrayList<Object[]> table = sqlPeople.loadData("estado_activacion", state, "tipo_persona", "C");
 		for (Object[] row : table) {
 			model.addRow(row);
@@ -200,6 +226,10 @@ public class JPanelInactivClient extends JPanel {
 		changeWidthColumn();
 	}
 
+	/**
+	 * Obtiene un parámetro
+	 * @return cadena s
+	 */
 	public String getParameter() {
 		String parameter = null;
 		switch (parameters.getSelectedIndex()) {
@@ -217,6 +247,9 @@ public class JPanelInactivClient extends JPanel {
 		return parameter;
 	}
 
+	/**
+	 * Cambia el el estado con un jtf
+	 */
 	public void changeWithField() {
 		if (!jtfInputQuery.getText().equals("")) {
 			if (jRButtonInactive.isSelected()) {
@@ -237,10 +270,18 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtiene la tabla
+	 * @return jTable
+	 */
 	public JTable getjTable() {
 		return jTable;
 	}
 
+	/**
+	 * Cambia el estado dependeiendo donde clickee
+	 * @param p
+	 */
 	public void setActivClient(Point p) {
 		int row = jTable.rowAtPoint(p);
 		String id = String.valueOf(jTable.getValueAt(row, 0));
@@ -254,6 +295,12 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Incativa a un usuario
+	 * @param parameter atributo
+	 * @param value valor
+	 * @param user user
+	 */
 	private void inactivUser(String parameter, String value, String user) {
 		SQLPeople sqlPeople = new SQLPeople();
 		
@@ -297,6 +344,12 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Cativa a un cliente
+	 * @param parameter atributo
+	 * @param value valor
+	 * @param user cliente
+	 */
 	private void activUser(String parameter, String value, String user) {
 		SQLPeople sqlPeople = new SQLPeople();
 		
@@ -340,6 +393,10 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Cambia el estado por medio de un botón
+	 * @param state estado
+	 */
 	public void changeStateButton(int state) {
 		jtfInputQuery.setText("");
 		if (state == 1) {
@@ -355,10 +412,18 @@ public class JPanelInactivClient extends JPanel {
 		}
 	}
 
+	/**
+	 * Obtien el toogle button
+	 * @return inactivActiv butoon
+	 */
 	public JToggleButton getInactivActiv() {
 		return inactivActiv;
 	}
 
+	/**
+	 * Obtiene le campo de buscar
+	 * @return jtfInputQuery text
+	 */
 	public HintJTextField getJtfInputQuery() {
 		return jtfInputQuery;
 	}
