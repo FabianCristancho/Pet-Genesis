@@ -435,7 +435,6 @@ public class JPanelSignIn extends JPanel {
 							JOptionPane.showMessageDialog(null, "REGISTRO GUARDADO CON EXITO");
 						} else {
 							JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR");
-
 						}
 					} else {
 						JOptionPane.showMessageDialog(null, "Correo no valido", "CORREO SIN FORMATO",
