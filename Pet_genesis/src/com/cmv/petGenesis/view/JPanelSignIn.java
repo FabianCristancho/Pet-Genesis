@@ -22,8 +22,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.model.Hash;
-import com.cmv.petGenesis.model.SqlUSer;
 import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.Usuario;
 import com.cmv.petGenesis.utilities.ConstantView;
@@ -398,7 +398,7 @@ public class JPanelSignIn extends JPanel {
 	}
 
 	public void saveDataSignIn(Usuario mod) {
-		SqlUSer modSql = new SqlUSer();
+		SQLUsers modSql = new SQLUsers();
 
 		String password = new String(jpfPassword.getPassword());
 		String passwordAgain = new String(jpfPasswordAgain.getPassword());

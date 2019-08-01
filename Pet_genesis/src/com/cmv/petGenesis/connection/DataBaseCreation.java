@@ -188,7 +188,7 @@ public class DataBaseCreation extends ConnectionMySQL{
 		Connection con = getConnection();
 		String sql = "CREATE TABLE personas ("
 				+ "id_persona	INT(8)	NOT NULL	AUTO_INCREMENT,"
-				+ "id_tipo_usuario	INT(8)	NOT NULL,"
+				+ "id_tipo_usuario	INT(8),"
 				+ "nombre_persona	VARCHAR(30)	NOT NULL,"
 				+ "apellido_persona	VARCHAR(30)	NOT NULL,"
 				+ "fecha_nacimiento DATE,"
@@ -239,7 +239,6 @@ public class DataBaseCreation extends ConnectionMySQL{
 				+ "nombre_mascota	VARCHAR(30)	NOT NULL,"
 				+ "genero_mascota	CHAR(1)	NOT NULL,"
 				+ "fecha_de_nacimiento	DATE	NOT NULL,"
-				+ "peso_mascota	INT	NOT NULL,"
 				+ "color_mascota	VARCHAR(30)	NOT NULL,"
 				+ "castrada	INT(1)	NOT NULL,"
 				+ "estado_de_activacion	CHAR(1)	NOT NULL,"
@@ -282,7 +281,7 @@ public class DataBaseCreation extends ConnectionMySQL{
 				+ "id_receta	INT(8)	NOT NULL	AUTO_INCREMENT,"
 				+ "id_medicamento	INT(8)	NOT NULL,"
 				+ "id_consulta	INT(8)	NOT NULL,"
-				+ "dosis	INT(5)	NOT NULL,"
+				+ "dosis	VARCHAR(30)	NOT NULL,"
 				+ "frecuencia	VARCHAR(50)	NOT NULL,"
 				+ "CONSTRAINT rec_pk_idrmc PRIMARY KEY (id_receta, id_medicamento, id_consulta)"
 				+ ");";
@@ -302,7 +301,8 @@ public class DataBaseCreation extends ConnectionMySQL{
 				+ "id_registro_examen	INT(8)	NOT NULL	AUTO_INCREMENT,"
 				+ "id_consulta	INT(8)	NOT NULL,"
 				+ "id_examen	INT(8)	NOT NULL,"
-				+ "resultado_examen	VARCHAR(300)	NOT NULL,"
+				+ "resultado_examen	VARCHAR(500)	NOT NULL,"
+				+ "diagnostico_examen VARCHAR(500) ,"
 				+ "CONSTRAINT regexa_pk_idrec PRIMARY KEY (id_registro_examen, id_consulta, id_examen)"
 				+ ");";
 		try {
@@ -480,7 +480,6 @@ public class DataBaseCreation extends ConnectionMySQL{
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 		String sql = "ALTER TABLE recetas ADD ("
-				+ "CONSTRAINT rec_ck_dos CHECK (dosis > 0),"
 				+ "CONSTRAINT rec_fk_idm FOREIGN KEY (id_medicamento) REFERENCES medicamentos(id_medicamento),"
 				+ "CONSTRAINT rec_fk_idc FOREIGN KEY (id_consulta) REFERENCES consultas(id_consulta)"
 				+ ");";
