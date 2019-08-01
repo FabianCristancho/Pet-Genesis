@@ -6,18 +6,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Clase de prueba MyConnection, encargada de conectar la aplicacion a la base
+ * de datos
+ * 
+ * @author usuario
+ *
+ */
 public class MyConnection {
 
 	public Connection connection;
 	public Statement sentence;
 	public ResultSet result;
 
+	/**
+	 * Se conecta a la bd
+	 * 
+	 * @param bd
+	 */
 	public void connectWithBD(String bd) {
 		try {
 			String controller = "com.mysql.cj.jdbc.Driver";
 			Class.forName(controller);
 			String urlBD = "jdbc:mysql://localhost:3306/?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
-			String urlBD2 = "jdbc:mysql://localhost:3306/" + bd +"?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
+			String urlBD2 = "jdbc:mysql://localhost:3306/" + bd
+					+ "?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC";
 			if (bd.equals("")) {
 				connection = DriverManager.getConnection(urlBD, "root", "123");
 			} else {
@@ -29,6 +42,9 @@ public class MyConnection {
 		}
 	}
 
+	/**
+	 * Se desconecta de la base de datos
+	 */
 	public void disconnectedBD() {
 		try {
 			if (connection != null) {
@@ -42,7 +58,12 @@ public class MyConnection {
 			System.exit(1);
 		}
 	}
-	
+
+	/**
+	 * Obtiene una conexion a la base de datos
+	 * 
+	 * @return
+	 */
 	public Connection getConnection() {
 		return connection;
 	}

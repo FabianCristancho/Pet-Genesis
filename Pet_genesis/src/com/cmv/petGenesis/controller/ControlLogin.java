@@ -9,6 +9,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
+
 import com.cmv.petGenesis.command.LoginCommands;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.view.about.JDialogAbout;
@@ -77,7 +79,8 @@ public class ControlLogin implements ActionListener, MouseListener, FocusListene
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getComponent().equals(this.loginJPanel.getImgHelp())) {
-			System.out.println("Click en ayuda");
+			JOptionPane.showMessageDialog(null,
+					"Para instrucciones es recomendable leer el README\nSi tiene dudas especificas comuniquese con los desarrolladores a traves de:\nfabian.cristancho02@uptc.edu.co\nyohan.carouptc.edu.co");
 		} else if (e.getComponent().equals(this.loginJPanel.getImgAbout())) {
 			JDialogAbout jDialogAbout = new JDialogAbout();
 			jDialogAbout.setVisible(true);
@@ -87,9 +90,7 @@ public class ControlLogin implements ActionListener, MouseListener, FocusListene
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		if (e.getComponent().equals(this.loginJPanel.getImgHelp())) {
-			System.out.println("Entra al boton de ayuda");
 		} else if (e.getComponent().equals(this.loginJPanel.getImgAbout())) {
-			System.out.println("Entra en información");
 		}
 	}
 

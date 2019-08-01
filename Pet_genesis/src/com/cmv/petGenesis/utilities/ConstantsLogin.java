@@ -1,4 +1,4 @@
-package com.cmv.petGenesis.view.mainWindow;
+package com.cmv.petGenesis.utilities;
 
 import java.awt.Color;
 import java.awt.Font;

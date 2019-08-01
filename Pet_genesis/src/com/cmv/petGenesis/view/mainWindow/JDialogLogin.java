@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.cmv.petGenesis.controller.ControlLogin;
+import com.cmv.petGenesis.utilities.ConstantsLogin;
 
 
 public class JDialogLogin extends JDialog {

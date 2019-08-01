@@ -10,9 +10,6 @@ public class TestExistBD {
 		
 		if(sqlDataBase.existDataBase(nameDataBase)) {
 			JOptionPane.showMessageDialog(null, "LA BASE DE DATOS EXISTE");
-			if(sqlDataBase.createTableGuess()) {
-				JOptionPane.showMessageDialog(null, "Se ha creado la tabla Huespedes");
-			}
 		}else
 			JOptionPane.showMessageDialog(null, "LA BASE DE DATOS NO EXISTE");
 	}

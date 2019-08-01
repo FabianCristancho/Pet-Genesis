@@ -1,5 +1,8 @@
 package com.cmv.petGenesis.runner;
 
+import javax.swing.JOptionPane;
+
+import com.cmv.petGenesis.connection.DataBaseCreation;
 import com.cmv.petGenesis.view.mainWindow.JDialogLogin;
 
 /**
@@ -12,9 +15,16 @@ public class Run {
 
 	/**
 	 * El Main
+	 * 
 	 * @param args argumentos
 	 */
 	public static void main(String[] args) {
-		JDialogLogin.getInstance().setVisible(true);
+		DataBaseCreation dataBaseCreation = new DataBaseCreation();
+		if (!dataBaseCreation.existDataBase()) {
+			JOptionPane.showMessageDialog(null, "CREANDO BASE DE DATOS\nPUEDE TARDAR ALGUNOS MINUTOS");
+			dataBaseCreation.createDataBase();
+			JOptionPane.showMessageDialog(null, "BASE DE DATOS CREADA CON EXITO");
+		} else
+			JDialogLogin.getInstance().setVisible(true);
 	}
 }

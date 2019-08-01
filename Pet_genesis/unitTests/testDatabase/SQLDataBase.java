@@ -40,26 +40,4 @@ public class SQLDataBase extends MyConnection {
 			return false;
 		}
 	}
-	
-	public boolean createTableGuess() {
-		PreparedStatement ps = null;
-		connectWithBD("Residencia");
-		Connection con = getConnection();
-		String sql = "CREATE TABLE huespedes ("
-				+"id_huesped	INT(8)	NOT NULL	AUTO_INCREMENT,"
-				+"nombre_huesped	VARCHAR(30)	NOT NULL,"
-				+"apellido_huesped	VARCHAR(30)	NOT NULL,"
-				+"telefono_huesped	VARCHAR(30)	NOT NULL,"
-				+"CONSTRAINT hue_pk_idh PRIMARY KEY (id_huesped)"
-				+");";
-		try {
-			ps = con.prepareStatement(sql);
-			ps.execute();
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
 }
