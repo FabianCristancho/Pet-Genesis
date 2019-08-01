@@ -35,7 +35,6 @@ public class JPanelStateHistory extends JPanel {
 	private JPanel panelTable, panelSearch, jPanelStateTable, panelButtons;
 	private JButton btnEnter;
 	private JButton btnExecute;
-	private ButtonGroup bg;
 	private HintJTextField jtfInputQuery;
 	private JComboBox<String> statesBox;
 	private DefaultTableModel model;
@@ -56,7 +55,6 @@ public class JPanelStateHistory extends JPanel {
 		this.statesBox = new JComboBox<>(ConstantView.COMBO_STATE_HISTORY);
 		this.btnEnter = new JButton(ConstantView.BTN_CHANGE_STATE_PET);
 		this.jPanelStateTable = new JPanel(new BorderLayout());
-		this.bg = new ButtonGroup();
 		this.jScrollPane = new JScrollPane();
 		ControlHistory.getInstance().setjPanelStateHistory(this);
 		init();
