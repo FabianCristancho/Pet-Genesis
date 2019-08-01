@@ -26,7 +26,7 @@ import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
-import com.cmv.petGenesis.view.EnterListener;
+import com.cmv.petGenesis.view.mainWindow.EnterListener;
 import com.toedter.calendar.JDateChooser;
 
 /**

@@ -1,6 +1,6 @@
 package com.cmv.petGenesis.runner;
 
-import com.cmv.petGenesis.views.MainWindow;
+import com.cmv.petGenesis.view.mainWindow.JDialogLogin;
 
 /**
  * Clase Run - Se encarga de inicar la aplicación
@@ -15,7 +15,6 @@ public class Run {
 	 * @param args argumentos
 	 */
 	public static void main(String[] args) {
-		System.out.println("HELLO FRIENDS");
-		new MainWindow();
+		JDialogLogin.getInstance().setVisible(true);
 	}
 }

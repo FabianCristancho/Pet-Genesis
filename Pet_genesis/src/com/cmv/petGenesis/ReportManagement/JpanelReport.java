@@ -20,8 +20,6 @@ import javax.swing.JTextField;
 
 import com.cmv.petGenesis.utilities.UtilityClass;
 
-import otherTests.Jpanel1;
-
 public class JpanelReport extends JPanel{
 	
 	private JLabel title;

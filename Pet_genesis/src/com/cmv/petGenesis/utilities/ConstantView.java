@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.utilities;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
@@ -258,4 +259,20 @@ public class ConstantView {
 	public static final Font FONT_TEXT_AREA = new Font("Open Sans", Font.PLAIN, 15);
 	public static final String BTN_CLEAR_FIELDS = "Limpiar todos los campos";
 
+	//About
+	public static final Font FONT_ABOUT = new Font("Elephant", 1, 20);
+	public static final String APP_NAME = "PET GENESIS";
+	public static final Font FONT_TEXT_ABOUT = new Font("Bahnschrift SemiBold", 1, 13);
+	public static final String RETURN_PRINCIPAL_WIN = "REGRESAR";
+	public static final Dimension DIMENSION_ABOUT = new Dimension(624, 400);
+	public static final String ABOUT = "\nPET GENESIS © 1.0\n" + "\n"
+			+ "Copyright © 2019 PET GENESIS Company Systems Incorporated and its licensors. \nAll Rights Reserved.\n"
+			+ "Desarrollado por: Yohan Caro y Fabian Cristancho \nBases de Datos 1 UPTC\n" + "TUNJA 08/2019\n" + "\n"
+			+ "TENGA EN CUENTA:  el uso que haga de este software está sujeto a los terminos\n"
+			+ "y condiciones del contrato de licencia con el que adquirió el software.\n"
+			+ "La reproduccion o distribucion no autorizada de este programa o de cualquier parte de el\n"
+			+ "puede dar lugar a severas sanciones civiles y penales.\n" + "\n"
+			+ "¿Tiene algun comentario? ¿Ha encontrado un error?\n" + "Haganoslo saber:\n"
+			+ "https://www.petGenesisSwf_register_app.com/help/support/coments/\n" + "o petGenesis@mailapp.com";
+	
 }

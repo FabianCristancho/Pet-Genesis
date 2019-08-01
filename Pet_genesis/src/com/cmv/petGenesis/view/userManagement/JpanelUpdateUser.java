@@ -20,11 +20,11 @@ import com.cmv.petGenesis.connection.SQLPeople;
 import com.cmv.petGenesis.connection.SQLUsers;
 import com.cmv.petGenesis.controller.ControlUser;
 import com.cmv.petGenesis.model.ActivationState;
-import com.cmv.petGenesis.model.Hash;
 import com.cmv.petGenesis.model.TypeUser;
 import com.cmv.petGenesis.model.User;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomTxtField;
+import com.cmv.petGenesis.utilities.Hash;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 /**
