@@ -10,7 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import com.cmv.petGenesis.command.HistoryCommands;
+import com.cmv.petGenesis.connection.SQLExam;
 import com.cmv.petGenesis.controller.ControlHistory;
+import com.cmv.petGenesis.model.ExamBody;
+import com.cmv.petGenesis.model.ExamTPR;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 import com.cmv.petGenesis.view.appointment.JPanelAppointment;

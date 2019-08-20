@@ -84,8 +84,10 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_WD_PET_REGISTER_HIS:
 			jPanelCreateHistory.registerHistory(new Pet());
 			jPanelCreateHistory.saveConsult(new Consult());
-			jPanelCreateHistory.saveExamEcop(new RegisterExam());
-			jPanelCreateHistory.saveExamTPR(new RegisterExam());
+			jPanelCreateHistory.saveExamEcop();
+			jPanelCreateHistory.saveExamTPR();
+			jPanelCreateHistory.saveExamBody();;
+			jPanelCreateHistory.saveRegisterExam(new RegisterExam());
 			jPanelCreateHistory.saveRecet(new Recet());
 			break;
 		case CMD_BTN_NEW_CLIENT:

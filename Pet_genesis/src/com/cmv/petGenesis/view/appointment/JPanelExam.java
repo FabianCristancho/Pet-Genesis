@@ -16,39 +16,51 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import com.cmv.petGenesis.connection.SQLExam;
 import com.cmv.petGenesis.controller.ControlHistory;
+import com.cmv.petGenesis.model.ExamBody;
+import com.cmv.petGenesis.model.ExamECOP;
+import com.cmv.petGenesis.model.ExamTPR;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class JPanelExam extends JPanel {
 
-	private JPanel jPanelEcop, jPanelTpr, jPanelBody, jPanelNorth, jPanelDiag, jPanelDown;
+	private JPanel jPanelEcop, jPanelTpr, jPanelNorth, jPanelDiag, jPanelDown;
+	private JPanelBody jPanelBody;
 	private JPanel jPanelAp, jPanelStool, jPanelWater, jPanelDiet, jPanelNail;
 	private JPanel jPanelRoundTPR, jPanelRoundBody, jPanelRoundEcop;
 	private JLabel lblTitleRutinExam, lblWeigth, lblAppetite, lblStool, lblWater, lblDiet, lblNails, lblAttitude,
-			lblTemperature, lblTemp, lblPression, lblCardiac, lblRespiratory, lblOralCavid, lblFace, lblTrunk,
-			lblGenitals, lblExtremities, lblSnc;
+			lblTemperature, lblTemp, lblPression, lblCardiac, lblRespiratory;
 	private JRadioButton jrbApGood, jrbApRegular, jrbApNull, jrbStNormal, jrbStDiarr, jrbConstip, jrbWaterNormal,
 			jrbWaterPolid, jrbWaterPoliu, jrbDietMeat, jrbDietVeg, jrbDietCarb, jrbOtherDiet, jrbNailNormal, jrbNailCut;
 	private JCheckBox checkVomit;
 	private JTextArea jtaOralCavid, jtaFace, jtaTrunk, jtaGenitals, jtaExtremities, jtaSnc, jtaDiagnostic;
-	private JScrollPane scOralCavid, scFace, scTrunk, scGenitals, scExtrem, scSnc, scDiagnostic;
+	private JScrollPane scDiagnostic;
 	protected JTextField jtfAttitude, jtfWeight, jtfTemp, jtfTemperature, jtfPression, jtfCardiac, jtfRespiratory;
 	private ButtonGroup bgAp, bgStool, bgWater, bgDiet, bgNail;
 
+	private int idExamTPR;
+	private int idExamECOP;
+	
 	public JPanelExam() {
 		super(new BorderLayout());
 		this.jPanelEcop = new JPanel(new GridBagLayout());
 		this.lblTitleRutinExam = new JLabel(ConstantView.LBL_TITLE_EXAM);
 		this.lblTitleRutinExam.setFont(ConstantView.FONT_TITLE_EXAM);
 		this.jPanelTpr = new JPanel(new GridBagLayout());
-		this.jPanelBody = new JPanel(new GridBagLayout());
 		this.jPanelNorth = new JPanel(new BorderLayout());
 		this.jPanelDiag = new JPanel(new GridBagLayout());
 		this.jPanelRoundTPR = new JPanel();
 		this.jPanelRoundBody = new JPanel();
 		this.jPanelRoundEcop = new JPanel();
 		this.jPanelDown = new JPanel(new BorderLayout());
+		this.jPanelBody = new JPanelBody();
+		
+		SQLExam sqlExam = new SQLExam();
+		idExamTPR = sqlExam.getLastTPR()+1;
+		idExamECOP = sqlExam.getLastECOP()+1;
+		
 		init();
 	}
 
@@ -132,6 +144,7 @@ public class JPanelExam extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 1, 3);
 		jPanelDiet = new JPanel();
+		jrbDietMeat.setSelected(true);
 		bgDiet.add(jrbDietMeat);
 		bgDiet.add(jrbDietCarb);
 		bgDiet.add(jrbDietVeg);
@@ -143,6 +156,7 @@ public class JPanelExam extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 1, 2);
 		jPanelAp = new JPanel();
+		jrbApGood.setSelected(true);
 		bgAp.add(jrbApGood);
 		bgAp.add(jrbApRegular);
 		bgAp.add(jrbApNull);
@@ -170,6 +184,7 @@ public class JPanelExam extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 4, 1);
 		jPanelStool = new JPanel();
+		jrbStNormal.setSelected(true);
 		bgStool.add(jrbStNormal);
 		bgStool.add(jrbStDiarr);
 		bgStool.add(jrbConstip);
@@ -180,6 +195,7 @@ public class JPanelExam extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 4, 2);
 		jPanelWater = new JPanel();
+		jrbWaterNormal.setSelected(true);
 		bgWater.add(jrbWaterNormal);
 		bgWater.add(jrbWaterPolid);
 		bgWater.add(jrbWaterPoliu);
@@ -192,6 +208,7 @@ public class JPanelExam extends JPanel {
 		jPanelNail = new JPanel();
 		bgNail.add(jrbNailNormal);
 		bgNail.add(jrbNailCut);
+		jrbNailNormal.setSelected(true);
 		jPanelNail.add(jrbNailNormal);
 		jPanelNail.add(jrbNailCut);
 		jPanelEcop.add(jPanelNail, gbc);
@@ -240,108 +257,7 @@ public class JPanelExam extends JPanel {
 		jPanelTpr.add(jtfRespiratory, gbc);
 	}
 
-	private void initPanelBody() {
-
-		lblOralCavid = new JLabel(ConstantView.LBL_EXAM_CAVID);
-		lblFace = new JLabel(ConstantView.LBL_EXAM_FACE);
-		lblTrunk = new JLabel(ConstantView.LBL_EXAM_TRUNK);
-		lblGenitals = new JLabel(ConstantView.LBL_EXAM_GEN);
-		lblExtremities = new JLabel(ConstantView.LBL_EXAM_EXT);
-		lblSnc = new JLabel(ConstantView.LBL_EXAM_SNC);
-		jtaOralCavid = new JTextArea();
-		scOralCavid = new JScrollPane();
-		jtaFace = new JTextArea();
-		scFace = new JScrollPane();
-		jtaTrunk = new JTextArea();
-		scTrunk = new JScrollPane();
-		jtaGenitals = new JTextArea();
-		scGenitals = new JScrollPane();
-		jtaExtremities = new JTextArea();
-		jtaDiagnostic = new JTextArea();
-		scExtrem = new JScrollPane();
-		jtaSnc = new JTextArea();
-		scSnc = new JScrollPane();
-		scDiagnostic = new JScrollPane();
-
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.anchor = GridBagConstraints.WEST;
-
-		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 20, 0, 20));
-		jPanelBody.add(lblOralCavid, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 0, 3);
-		jPanelBody.add(lblFace, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 1, 1);
-		jPanelBody.add(lblGenitals, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 1, 3);
-		jPanelBody.add(lblExtremities, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 2, 1);
-		jPanelBody.add(lblTrunk, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 2, 3);
-		jPanelBody.add(lblSnc, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 0, 2, new Insets(0, 20, 20, 20));
-		jtaOralCavid.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaOralCavid.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaOralCavid.setLineWrap(true);
-		jtaOralCavid.setWrapStyleWord(true);
-		scOralCavid.setViewportView(jtaOralCavid);
-		scOralCavid.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scOralCavid, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 0, 4);
-		jtaFace.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaFace.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaFace.setLineWrap(true);
-		jtaFace.setWrapStyleWord(true);
-		scFace.setViewportView(jtaFace);
-		scFace.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scFace, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 2, 2);
-		jtaTrunk.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaTrunk.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaTrunk.setLineWrap(true);
-		jtaTrunk.setWrapStyleWord(true);
-		scTrunk.setViewportView(jtaTrunk);
-		scTrunk.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scTrunk, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 1, 2);
-		jtaGenitals.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaGenitals.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaGenitals.setLineWrap(true);
-		jtaGenitals.setWrapStyleWord(true);
-		scGenitals.setViewportView(jtaGenitals);
-		scGenitals.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scGenitals, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 1, 4);
-		jtaExtremities.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaExtremities.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaExtremities.setLineWrap(true);
-		jtaExtremities.setWrapStyleWord(true);
-		scExtrem.setViewportView(jtaExtremities);
-		scExtrem.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scExtrem, gbc);
-
-		UtilityClass.organizeGridLayout(gbc, 2, 4);
-		jtaSnc.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		jtaSnc.setFont(ConstantView.FONT_TEXT_AREA);
-		jtaSnc.setLineWrap(true);
-		jtaSnc.setWrapStyleWord(true);
-		scSnc.setViewportView(jtaSnc);
-		scSnc.setPreferredSize(new Dimension(250, 70));
-		jPanelBody.add(scSnc, gbc);
-
-	}
-
 	private void initJPanelDown() {
-		initPanelBody();
 		initJPanelDiagnostic();
 		this.jPanelRoundBody.setBorder(BorderFactory.createTitledBorder("CUERPO"));
 		this.jPanelRoundBody.add(jPanelBody);
@@ -354,34 +270,48 @@ public class JPanelExam extends JPanel {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 20, 20, 20));
+		jtaDiagnostic = new JTextArea();
 		jtaDiagnostic.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		jtaDiagnostic.setFont(ConstantView.FONT_TEXT_AREA);
 		jtaDiagnostic.setLineWrap(true);
 		jtaDiagnostic.setWrapStyleWord(true);
+		scDiagnostic = new JScrollPane();
 		scDiagnostic.setViewportView(jtaDiagnostic);
 		scDiagnostic.setPreferredSize(new Dimension(500, 100));
 		jPanelDiag.add(scDiagnostic, gbc);
 	}
 
-	public String getResultExamTPR() {
-		String result = "Temperatura: " + jtfTemperature.getText() + ",";
-		result += "Presión: " + jtfPression.getText() + ",";
-		result += "Frecuencia cardiaca: " + jtfCardiac.getText() + ",";
-		result += "Frecuencia Respiratoria: " + jtfRespiratory.getText();
-		return result;
+	public ExamTPR getResultExamTPR() {
+		ExamTPR examTPR = new ExamTPR();
+		
+		examTPR.setIdTpr(idExamTPR);
+		examTPR.setTemperature(jtfTemperature.getText());
+		examTPR.setPression(jtfPression.getText());
+		examTPR.setfCardiac(jtfCardiac.getText());
+		examTPR.setfRespiratory(jtfRespiratory.getText());
+		
+		return examTPR;
 	}
 
-	public String getResultExamEcop() {
-		String result = "Peso: " +jtfWeight.getText() +",";
-		result+="Temperamento: " +jtfTemp.getText() +",";
-		result+="Actitud: " +jtfAttitude.getText() +",";
-		result+="Heces: " +UtilityClass.getSelection(bgStool).getText() +",";
-		result+="Apetito: " +UtilityClass.getSelection(bgAp).getText() +",";
-		result+="Consumo de agua: " +UtilityClass.getSelection(bgWater).getText() +",";
-		result+="Dieta: " +UtilityClass.getSelection(bgDiet).getText() +",";
-		result+="Uñas: " +UtilityClass.getSelection(bgNail).getText() +",";
-		result+=checkVomit.isSelected()?"Paciente con vómito":"No presenta vómito";
-		return result;
+	public ExamECOP getResultExamEcop() {
+		ExamECOP examECOP = new ExamECOP();
+		
+		examECOP.setIdEcop(idExamECOP);
+		examECOP.setWeight(jtfWeight.getText());
+		examECOP.setTemperament(jtfTemp.getText());
+		examECOP.setAttitude(jtfAttitude.getText());
+		examECOP.setStool(UtilityClass.getSelection(bgStool).getText());
+		examECOP.setApetitte(UtilityClass.getSelection(bgAp).getText());
+		examECOP.setWater(UtilityClass.getSelection(bgWater).getText());
+		examECOP.setDiet(UtilityClass.getSelection(bgDiet).getText());
+		examECOP.setNails(UtilityClass.getSelection(bgNail).getText());
+		examECOP.setVomit(checkVomit.isSelected()?"Paciente con vómito":"No presenta vómito");
+		
+		return examECOP;
+	}
+	
+	public ExamBody getResultExamBody() {
+		return jPanelBody.getResultExamBody();
 	}
 
 	public void clearFields() {
@@ -433,6 +363,18 @@ public class JPanelExam extends JPanel {
 
 	public JTextField getJtfRespiratory() {
 		return jtfRespiratory;
+	}
+
+	public JPanelBody getjPanelBody() {
+		return jPanelBody;
+	}
+
+	public int getIdExamTPR() {
+		return idExamTPR;
+	}
+
+	public int getIdExamECOP() {
+		return idExamECOP;
 	}
 	
 }

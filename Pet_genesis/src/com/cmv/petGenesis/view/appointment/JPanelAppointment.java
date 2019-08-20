@@ -22,7 +22,7 @@ import com.toedter.calendar.JDateChooser;
 
 public class JPanelAppointment extends JPanel {
 
-	private CustomLabel lblIdA, lblResultId, lblDate, lblMotive;
+	protected CustomLabel lblIdA, lblResultId, lblDate, lblMotive;
 	private JTextArea jtaMotive;
 	private JDateChooser jdcDate;
 	private JScrollPane jScrollPane;

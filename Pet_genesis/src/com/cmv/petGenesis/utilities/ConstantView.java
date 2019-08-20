@@ -20,7 +20,7 @@ public class ConstantView {
 	//Connection
 	public final static String NAME_DATA_BASE = "historias_clinicas_cmv";
 	public final static String USER_DATA_BASE = "root";
-	public final static String PSWD_DATA_BASE = "123";
+	public final static String PSWD_DATA_BASE = "1234";
 	
 	//Window User
 	public final static String TITLE_LOGIN = "PET GENESIS";
@@ -35,6 +35,7 @@ public class ConstantView {
 	public final static String PATH_ABOUT_LOGIN = "./res/images/iconAbout.png";
 	public final static Font FONT_TITLE_LOGIN = new Font("Elephant", Font.BOLD, 30);
 	public final static Font FONT_LABELS_LOGIN = new Font("Open Sans", Font.BOLD, 15);
+	public final static Font FONT_LABELS_BODY = new Font("Open Sans", Font.PLAIN, 14);
 	public final static Color COLOR_BUTTON_LOGIN = new Color(14, 109, 204);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
@@ -199,9 +200,10 @@ public class ConstantView {
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
 	
 	public final static String LABEL_PET_QUERY = "CONSULTA DE MASCOTAS";
-	public final static String LABEL_SEARCH_PET_QUERY = "Ingrese id de mascota a consultar";
+	public final static String LABEL_SEARCH_PET_QUERY = "Consultar mascota por";
 	public final static String BTN_LOAD_ALL_DATA = "CARGAR TODOS LOS DATOS";
 	public final static String BTN_SEARCH_PET = "BUSCAR MASCOTA";
+	public final static String[] COMBO_SEARCH_PET_BY = {"Id mascota", "Nombre mascota", "Id propietario", "Documento Identidad Propietario"};
 	
 	public final static String LABEL_SEARCH_PET_HISTORY = "Ingrese el id de la mascota";
 	public final static String LABEL_PET_WITH = "Id de la mascota: ";

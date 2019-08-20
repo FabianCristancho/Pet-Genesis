@@ -11,7 +11,9 @@ public class RegisterExam {
 
 	private int idRegister;
 	private Consult consult;
-	private Exam exam;
+	private ExamTPR examTPR;
+	private ExamECOP examECOP;
+	private ExamBody examBody;
 	private String resultExam;
 	private String diagnosticExam;
 
@@ -47,21 +49,6 @@ public class RegisterExam {
 		this.consult = consult;
 	}
 
-	/**
-	 * Obtiene el examen
-	 * @return exam e
-	 */
-	public Exam getExam() {
-		return exam;
-	}
-
-	/**
-	 * Cambia el examen
-	 * @param exam e
-	 */
-	public void setExam(Exam exam) {
-		this.exam = exam;
-	}
 
 	/**
 	 * Obtiene el resultado del examen
@@ -94,4 +81,29 @@ public class RegisterExam {
 	public void setDiagnosticExam(String diagnosticExam) {
 		this.diagnosticExam = diagnosticExam;
 	}
+
+	public ExamTPR getExamTPR() {
+		return examTPR;
+	}
+
+	public void setExamTPR(ExamTPR examTPR) {
+		this.examTPR = examTPR;
+	}
+
+	public ExamECOP getExamECOP() {
+		return examECOP;
+	}
+
+	public void setExamECOP(ExamECOP examECOP) {
+		this.examECOP = examECOP;
+	}
+
+	public ExamBody getExamBody() {
+		return examBody;
+	}
+
+	public void setExamBody(ExamBody examBody) {
+		this.examBody = examBody;
+	}
+	
 }

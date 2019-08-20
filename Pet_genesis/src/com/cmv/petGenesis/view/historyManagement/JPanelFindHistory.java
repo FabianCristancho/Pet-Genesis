@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -39,6 +40,7 @@ public class JPanelFindHistory extends JPanel{
 	private JPanel panelSearch;
 	private JButton btnSearch;
 	private JButton btnLoadData;
+	private JComboBox<String> dataSearchBy;
 	private HintJTextField jtfInputQuery;
 	private DefaultTableModel model;
 
@@ -56,6 +58,7 @@ public class JPanelFindHistory extends JPanel{
 		this.btnSearch = new JButton(ConstantView.BTN_SEARCH_PET);
 		this.btnLoadData = new JButton(ConstantView.BTN_LOAD_ALL_DATA);
 		this.model = new DefaultTableModel();
+		this.dataSearchBy = new JComboBox<>(ConstantView.COMBO_SEARCH_PET_BY);
 		ControlHistory.getInstance().setjPanelFindHistory(this);
 		init();
 	}
@@ -106,6 +109,9 @@ public class JPanelFindHistory extends JPanel{
 		gbc.gridwidth = 1;
 		UtilityClass.organizeGridLayout(gbc, 0, 1, new Insets(20, 0, 20, 20));
 		this.panelSearch.add(description, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 1);
+		this.panelSearch.add(dataSearchBy, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 2, 1);
 		this.panelSearch.add(jtfInputQuery, gbc);

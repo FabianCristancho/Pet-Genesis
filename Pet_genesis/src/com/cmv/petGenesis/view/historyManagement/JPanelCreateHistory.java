@@ -24,7 +24,9 @@ import com.cmv.petGenesis.connection.SQLRecet;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.model.Client;
 import com.cmv.petGenesis.model.Consult;
-import com.cmv.petGenesis.model.Exam;
+import com.cmv.petGenesis.model.ExamBody;
+import com.cmv.petGenesis.model.ExamECOP;
+import com.cmv.petGenesis.model.ExamTPR;
 import com.cmv.petGenesis.model.GenderPet;
 import com.cmv.petGenesis.model.Medicament;
 import com.cmv.petGenesis.model.Person;
@@ -40,8 +42,8 @@ import com.cmv.petGenesis.utilities.CustomTxtField;
 import com.cmv.petGenesis.utilities.UtilityClass;
 
 /**
- * Clase JPanelCreateHistory - Se encarga de crear el panel para la creación de la
- * mascota y la historia
+ * Clase JPanelCreateHistory - Se encarga de crear el panel para la creación de
+ * la mascota y la historia
  *
  * @version 1.0 - 1/08/2019
  * @author Yohan Caro - Fabian Cristancho
@@ -139,6 +141,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el campo del propietario
+	 * 
 	 * @return getJtfPropietary text
 	 */
 	public CustomTxtField getJtfPropietary() {
@@ -147,6 +150,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el nombre de la mascota
+	 * 
 	 * @return getJtfNamePet text
 	 */
 	public CustomTxtField getJtfNamePet() {
@@ -155,6 +159,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el color de la masta del campo
+	 * 
 	 * @return getJtfColorPet text
 	 */
 	public CustomTxtField getJtfColorPet() {
@@ -163,6 +168,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtien el combo de especies
+	 * 
 	 * @return getComboSpecies combobox
 	 */
 	public JComboBox<String> getComboSpecies() {
@@ -178,6 +184,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Registra la historia clinica
+	 * 
 	 * @param p mascota
 	 */
 	public void registerHistory(Pet p) {
@@ -229,6 +236,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Guarda los valores de la consulta
+	 * 
 	 * @param consult consulta
 	 */
 	public void saveConsult(Consult consult) {
@@ -249,42 +257,53 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Guarda los datos del examen tpr
+	 * 
 	 * @param registerExam examen a registrar
 	 */
-	public void saveExamTPR(RegisterExam registerExam) {
+	public void saveExamTPR() {
 		SQLExam sqlExam = new SQLExam();
-		if(!jPanelConsult.jPanelExam.fieldsTPRAreEmpty()) {
-			registerExam
-			.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
-			registerExam.setExam(new Exam(1));
-			registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamTPR());
-			registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
-			if (!sqlExam.registerExam(registerExam))
-				JOptionPane.showMessageDialog(null, "Error al guardar el examen TPR", "ERROR TYPE",
-						JOptionPane.ERROR_MESSAGE);
-		}
+
+		if (!sqlExam.registerExamTPR(jPanelConsult.jPanelExam.getResultExamTPR()))
+			JOptionPane.showMessageDialog(null, "Error al guardar el examen TPR", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
 	}
 
 	/**
 	 * Guarda los datos del examen Ecop
+	 * 
 	 * @param registerExam datos a guardar
 	 */
-	public void saveExamEcop(RegisterExam registerExam) {
+	public void saveExamEcop() {
 		SQLExam sqlExam = new SQLExam();
-		if(!jPanelConsult.jPanelExam.fieldsEreEmpty()) {
-			registerExam
-			.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
-			registerExam.setExam(new Exam(2));
-			registerExam.setResultExam(jPanelConsult.jPanelExam.getResultExamEcop());
-			registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
-			if (!sqlExam.registerExam(registerExam))
-				JOptionPane.showMessageDialog(null, "Error al guardar el examen ECOP", "ERROR TYPE",
-						JOptionPane.ERROR_MESSAGE);
-		}
+		if (!sqlExam.registerExamECOP(jPanelConsult.jPanelExam.getResultExamEcop()))
+			JOptionPane.showMessageDialog(null, "Error al guardar el examen ECOP", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void saveExamBody() {
+		SQLExam sqlExam = new SQLExam();
+		if (!sqlExam.registerExamBody(jPanelConsult.jPanelExam.getResultExamBody()))
+			JOptionPane.showMessageDialog(null, "Error al guardar el examen de cuerpo", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void saveRegisterExam(RegisterExam registerExam) {
+		SQLExam sqlExam = new SQLExam();
+		
+		registerExam.setConsult(new Consult(Integer.parseInt(jPanelConsult.jPanelAppointment.getLblResultId().getText())));
+		registerExam.setExamTPR(new ExamTPR(jPanelConsult.jPanelExam.getIdExamTPR()));
+		registerExam.setExamECOP(new ExamECOP(jPanelConsult.jPanelExam.getIdExamECOP()));
+		registerExam.setExamBody(new ExamBody(jPanelConsult.jPanelExam.getjPanelBody().getIdExamBody()));
+		registerExam.setDiagnosticExam(jPanelConsult.jPanelExam.getJtaDiagnostic().getText());
+	
+		if(!sqlExam.registerExam(registerExam))
+			JOptionPane.showMessageDialog(null, "Error al guardar el registro de los examenes", "ERROR TYPE",
+					JOptionPane.ERROR_MESSAGE);
 	}
 
 	/**
 	 * Guardar la inofrmación de la receta
+	 * 
 	 * @param recet receta
 	 */
 	public void saveRecet(Recet recet) {
@@ -299,9 +318,10 @@ public class JPanelCreateHistory extends JPanel {
 						JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
+
 	/**
 	 * Obtiene el campo del peso
+	 * 
 	 * @return getJtfWeight text
 	 */
 	public JTextField getJtfWeight() {
@@ -310,6 +330,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el campo de la temperatura
+	 * 
 	 * @return getJtfTemperature text
 	 */
 	public JTextField getJtfTemperature() {
@@ -318,6 +339,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el campo de la presión
+	 * 
 	 * @return getJtfPression text
 	 */
 	public JTextField getJtfPression() {
@@ -326,6 +348,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el campo de la infromación cardiaca
+	 * 
 	 * @return getJtfCardiac text
 	 */
 	public JTextField getJtfCardiac() {
@@ -334,6 +357,7 @@ public class JPanelCreateHistory extends JPanel {
 
 	/**
 	 * Obtiene el campo de la información de la respiración
+	 * 
 	 * @return getJtfRespiratory text
 	 */
 	public JTextField getJtfRespiratory() {
