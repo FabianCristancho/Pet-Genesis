@@ -126,7 +126,7 @@ public class JpanelUpdateClient extends JPanel {
 		this.btnReturn.setForeground(Color.WHITE);
 		this.btnReturn.setFocusable(false);
 		this.btnReturn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnReturn.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnReturn.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		
 		UtilityClass.addCommandJButton(btnReturn, ClientCommands.CMD_WD_UPDATE_RETURN.toString(),
 				ControlClient.getInstance());
@@ -138,7 +138,7 @@ public class JpanelUpdateClient extends JPanel {
 		this.btnUpdateClient.setForeground(Color.WHITE);
 		this.btnUpdateClient.setFocusable(false);
 		this.btnUpdateClient.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnUpdateClient.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnUpdateClient.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		
 		UtilityClass.addCommandJButton(btnUpdateClient, ClientCommands.CMD_WD_UPDATE_CHANGE_DATA.toString(),
 				ControlClient.getInstance());

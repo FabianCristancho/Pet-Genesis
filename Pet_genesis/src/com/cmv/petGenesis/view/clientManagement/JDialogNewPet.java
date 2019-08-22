@@ -92,7 +92,7 @@ public class JDialogNewPet extends JDialog {
 		this.returnButton.setForeground(Color.WHITE);
 		this.returnButton.setFocusable(false);
 		this.returnButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.returnButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.returnButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.jPanelButtons.add(returnButton, gbc);
 
 		gbc.gridx = 7;
@@ -100,7 +100,7 @@ public class JDialogNewPet extends JDialog {
 		this.okButton.setForeground(Color.WHITE);
 		this.okButton.setFocusable(false);
 		this.okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.okButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.okButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		UtilityClass.addCommandJButton(okButton, ClientCommands.CMD_T_ADD_PET.toString(),
 				ControlClient.getInstance());
 		this.jPanelButtons.add(okButton, gbc);

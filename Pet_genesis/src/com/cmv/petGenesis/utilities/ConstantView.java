@@ -34,8 +34,10 @@ public class ConstantView {
 	public final static String PATH_HELP_LOGIN = "./res/images/iconHelp.png";
 	public final static String PATH_ABOUT_LOGIN = "./res/images/iconAbout.png";
 	public final static Font FONT_TITLE_LOGIN = new Font("Elephant", Font.BOLD, 30);
-	public final static Font FONT_LABELS_LOGIN = new Font("Open Sans", Font.BOLD, 15);
-	public final static Font FONT_LABELS_BODY = new Font("Open Sans", Font.PLAIN, 14);
+	public final static Font FONT_PRINCIPAL_LABELS = new Font("Open Sans", Font.BOLD, 15);
+	public final static Font FONT_PRINCIPAL_LABELS_RESULT = new Font("Open Sans", Font.PLAIN, 15);
+	public final static Font FONT_LABELS_BODY = new Font("Open Sans", Font.BOLD, 15);
+	public final static Font FONT_LABELS_BODY_RESULT = new Font("Open Sans", Font.PLAIN, 15);
 	public final static Color COLOR_BUTTON_LOGIN = new Color(14, 109, 204);
 	
 	public final static String TITLE_SIGNIN = "REGISTRO";
@@ -175,7 +177,7 @@ public class ConstantView {
 	public static final String LBL_SEARCH_CLIENT_BY = "Buscar cliente por ";
 	
 	public static final String TITLE_COMMENTS = "COMENTARIOS ADICIONALES";
-	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.ITALIC, 20);
+	public static final Font FONT_TITLE_COMMENTS = new Font("Open Sans", Font.BOLD, 20);
 	public static final String BTN_SAVE_COMMENTS = "GUARDAR COMENTARIOS";
 	public static final String BTN_CLEAR_COMMENTS = "LIMPIAR AREA DE COMENTARIOS";
 	public static final Font FONT_AREA_COMMENTS = new Font("Open Sans", Font.ROMAN_BASELINE, 15);

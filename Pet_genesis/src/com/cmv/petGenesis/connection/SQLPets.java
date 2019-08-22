@@ -136,7 +136,7 @@ public class SQLPets extends ConnectionMySQL{
 	}
 	
 	/**
-	 * Obteien los datos de una mascota buscando por su id
+	 * Obtiene los datos de una mascota buscando por su id
 	 * @param id de la mascota a buscar
 	 * @return pet mascota
 	 */
@@ -210,10 +210,10 @@ public class SQLPets extends ConnectionMySQL{
 	/**
 	 * Carga los datos de una tabla buscando por su estado de activacion
 	 * y tambien puede por otra condicion
-	 * @param valueId id
+	 * @param value parametro
 	 * @return lista con los datos de las mascotas
 	 */
-	public ArrayList<Object[]> loadDataPets(String valueId) {
+	public ArrayList<Object[]> loadDataPets(String parameter, String value) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
@@ -221,11 +221,11 @@ public class SQLPets extends ConnectionMySQL{
 		
 		String and = "";
 		
-		if(!"".equals(valueId))
-			and = " AND m.id_mascota = '" +valueId +"'";
+		if(!"".equals(value))
+			and = " AND " +parameter +" = '" +value +"'";
 
 		String sql = "SELECT m.id_mascota, m.nombre_mascota, m.genero_mascota, e.nombre_especie, r.nombre_raza, m.fecha_de_nacimiento, "
-				+ "m.color_mascota, m.castrada, p.nombre_persona, p.apellido_persona "
+				+ "m.color_mascota, m.castrada, p.id_persona, p.documento_identidad, p.nombre_persona, p.apellido_persona "
 				+ "FROM mascotas AS m "
 				+ "INNER JOIN personas AS p ON m.id_persona = p.id_persona "
 				+ "INNER JOIN razas AS r ON m.id_raza = r.id_raza "

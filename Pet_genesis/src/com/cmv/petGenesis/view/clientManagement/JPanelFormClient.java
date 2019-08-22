@@ -198,7 +198,7 @@ public class JPanelFormClient extends JPanel {
 		this.cleanButton.setForeground(Color.WHITE);
 		this.cleanButton.setFocusable(false);
 		this.cleanButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.cleanButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.cleanButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		jPanelButtons.add(cleanButton);
 	}
 

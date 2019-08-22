@@ -7,16 +7,18 @@ package com.cmv.petGenesis.model;
  * @author Yohan Caro - Fabian Cristancho
  */
 public enum GenderPet {
-	MALE('M'), FEMALE('F');
+	MALE('M', "Macho"), FEMALE('F', "Hembra");
 
 	private char idGender;
+	private String nameGender;
 
 	/**
 	 * Constructor vacio
 	 * @param idGender genero
 	 */
-	private GenderPet(char idGender) {
+	private GenderPet(char idGender, String nameGender) {
 		this.idGender = idGender;
+		this.nameGender = nameGender;
 	}
 	
 	/**
@@ -35,6 +37,14 @@ public enum GenderPet {
 		this.idGender = idGender;
 	}
 	
+	public String getNameGender() {
+		return nameGender;
+	}
+
+	public void setNameGender(String nameGender) {
+		this.nameGender = nameGender;
+	}
+
 	/**
 	 * Cambia el genero de la mascota verificando si es macho
 	 * @param isMale macho

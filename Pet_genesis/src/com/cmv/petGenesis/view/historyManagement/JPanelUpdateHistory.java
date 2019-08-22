@@ -132,7 +132,7 @@ public class JPanelUpdateHistory extends JPanel{
 		this.btnReturn.setForeground(Color.WHITE);
 		this.btnReturn.setFocusable(false);
 		this.btnReturn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnReturn.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnReturn.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		
 		UtilityClass.organizeGridLayout(gbc, 0, 0);
 		this.jPanelDown.add(btnReturn, gbc);
@@ -145,7 +145,7 @@ public class JPanelUpdateHistory extends JPanel{
 		this.btnUpdateUser.setForeground(Color.WHITE);
 		this.btnUpdateUser.setFocusable(false);
 		this.btnUpdateUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnUpdateUser.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnUpdateUser.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		
 		this.jPanelDown.add(btnUpdateUser, gbc);
 	}

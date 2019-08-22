@@ -53,15 +53,15 @@ public class JPanelFormDataPet extends JPanel {
 	public JPanelFormDataPet() {
 		super(new GridBagLayout());
 		this.lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
-		this.lblTitleId = new CustomLabel(ConstantView.LBL_TITLE_ID_HISTORY, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblPetName = new CustomLabel(ConstantView.LBL_NAME_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblSpecies = new CustomLabel(ConstantView.LBL_SPECIES_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblRace = new CustomLabel(ConstantView.LBL_RACE_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblGender = new CustomLabel(ConstantView.LBL_GENDER_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblBirthDate = new CustomLabel(ConstantView.LBL_BDATE_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblColor = new CustomLabel(ConstantView.LBL_COLOR_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblPropietary = new CustomLabel(ConstantView.LBL_PROPIETARY_PET, ConstantView.FONT_LABELS_LOGIN, null);
-		this.lblStateHistory = new CustomLabel(ConstantView.LBL_STATE_HISTORY, ConstantView.FONT_LABELS_LOGIN, null);
+		this.lblTitleId = new CustomLabel(ConstantView.LBL_TITLE_ID_HISTORY, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblPetName = new CustomLabel(ConstantView.LBL_NAME_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblSpecies = new CustomLabel(ConstantView.LBL_SPECIES_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblRace = new CustomLabel(ConstantView.LBL_RACE_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblGender = new CustomLabel(ConstantView.LBL_GENDER_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblBirthDate = new CustomLabel(ConstantView.LBL_BDATE_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblColor = new CustomLabel(ConstantView.LBL_COLOR_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblPropietary = new CustomLabel(ConstantView.LBL_PROPIETARY_PET, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		this.lblStateHistory = new CustomLabel(ConstantView.LBL_STATE_HISTORY, ConstantView.FONT_PRINCIPAL_LABELS, null);
 		this.lblObligate = new CustomLabel(ConstantView.LABEL_OBLIGATE);
 		this.jRButtonMale = new JRadioButton(ConstantView.LBL_GENDER_MALE);
 		this.jRButtonFemale = new JRadioButton(ConstantView.LBL_GENDER_FEMALE);
@@ -72,7 +72,7 @@ public class JPanelFormDataPet extends JPanel {
 		this.groupGender = new ButtonGroup();
 		this.jPanelGender = new JPanel();
 		this.btnFindPropietary = new JButton(ConstantView.BTN_FIND_PROPIETARY_PET);
-		this.lblSearchBy = new CustomLabel(ConstantView.LBL_SEARCH_CLIENT_BY, ConstantView.FONT_LABELS_LOGIN, null);
+		this.lblSearchBy = new CustomLabel(ConstantView.LBL_SEARCH_CLIENT_BY, ConstantView.FONT_PRINCIPAL_LABELS, null);
 		this.comboParameter = new JComboBox<>(ConstantView.COMBO_SEARCH_CLIENT);
 		this.comboStateHistory = new JComboBox<>(ConstantView.COMBO_STATE_HISTORY);
 		
@@ -164,7 +164,7 @@ public class JPanelFormDataPet extends JPanel {
 		
 		UtilityClass.organizeGridLayout(gbc, 2, 7);
 		this.isCastrated.setFocusable(false);
-		this.isCastrated.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.isCastrated.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.add(isCastrated, gbc);
 
 		gbc.insets.left = 10;

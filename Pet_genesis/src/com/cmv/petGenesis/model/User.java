@@ -37,6 +37,10 @@ public class User extends Person{
 		this.password = password;
 		this.lastSession = lastSession;
 	}
+	
+	public User(String nameUser, String lastName) {
+		super(nameUser, lastName);
+	}
 
 	/**
 	 * Obtien el nombre de usuario

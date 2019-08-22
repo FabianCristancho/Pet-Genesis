@@ -15,6 +15,10 @@ public class Client extends Person {
 		
 	}
 	
+	public Client(String name, String lastName) {
+		super(name, lastName);
+	}
+	
 	/**
 	 * Crea un cliente por el id
 	 * Constructor 

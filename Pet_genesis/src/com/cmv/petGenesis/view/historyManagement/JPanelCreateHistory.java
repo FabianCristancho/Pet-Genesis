@@ -116,7 +116,7 @@ public class JPanelCreateHistory extends JPanel {
 		this.returnButton.setForeground(Color.WHITE);
 		this.returnButton.setFocusable(false);
 		this.returnButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.returnButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.returnButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.panelButtons.add(returnButton, gbc);
 
 		gbc.gridx = 7;
@@ -124,7 +124,7 @@ public class JPanelCreateHistory extends JPanel {
 		this.okButton.setForeground(Color.WHITE);
 		this.okButton.setFocusable(false);
 		this.okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.okButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.okButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		UtilityClass.addCommandJButton(okButton, HistoryCommands.CMD_WD_PET_REGISTER_HIS.toString(),
 				ControlHistory.getInstance());
 		this.panelButtons.add(okButton, gbc);

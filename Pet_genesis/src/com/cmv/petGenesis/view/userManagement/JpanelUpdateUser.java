@@ -130,7 +130,7 @@ public class JpanelUpdateUser extends JPanel {
 		this.btnReturn.setForeground(Color.WHITE);
 		this.btnReturn.setFocusable(false);
 		this.btnReturn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnReturn.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnReturn.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 
 		UtilityClass.addCommandJButton(btnReturn, UserCommands.CMD_WD_UPDATE_RETURN.toString(),
 				ControlUser.getInstance());
@@ -142,7 +142,7 @@ public class JpanelUpdateUser extends JPanel {
 		this.btnUpdateUser.setForeground(Color.WHITE);
 		this.btnUpdateUser.setFocusable(false);
 		this.btnUpdateUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnUpdateUser.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnUpdateUser.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 
 		UtilityClass.addCommandJButton(btnUpdateUser, UserCommands.CMD_WD_UPDATE_CHANGE_DATA.toString(),
 				ControlUser.getInstance());

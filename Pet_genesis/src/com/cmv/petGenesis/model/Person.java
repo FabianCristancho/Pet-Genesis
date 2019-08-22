@@ -36,6 +36,11 @@ public class Person {
 	public Person(int idPerson) {
 		this.idPerson = idPerson;
 	}
+	
+	public Person(String name, String lastName) {
+		this.name = name;
+		this.lastName = lastName;
+	}
 
 	/**
 	 * Constructor con

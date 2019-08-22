@@ -95,7 +95,7 @@ public class JPanelLogin extends JPanel {
 		gbc.gridx = 1;
 		gbc.gridy = 4;
 		gbc.weighty = 0;
-		lblUser.setFont(ConstantView.FONT_LABELS_LOGIN);
+		lblUser.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		lblUser.setBorder(BorderFactory.createEmptyBorder(30, 5, 5, 5));
 		this.add(lblUser, gbc);
 
@@ -107,7 +107,7 @@ public class JPanelLogin extends JPanel {
 
 		gbc.gridx = 1;
 		gbc.gridy = 6;
-		lblPassword.setFont(ConstantView.FONT_LABELS_LOGIN);
+		lblPassword.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		lblPassword.setBorder(BorderFactory.createEmptyBorder(20, 5, 5, 5));
 		this.add(lblPassword, gbc);
 
@@ -124,7 +124,7 @@ public class JPanelLogin extends JPanel {
 		this.btnLogin.setForeground(Color.WHITE);
 		this.btnLogin.setFocusable(false);
 		this.btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnLogin.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnLogin.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.btnLogin.addActionListener(ControlLogin.getInstance());
 		this.btnLogin.setActionCommand(LoginCommands.OK_LOGIN.toString());
 		this.add(btnLogin, gbc);
@@ -136,7 +136,7 @@ public class JPanelLogin extends JPanel {
 		this.btnExit.setForeground(Color.WHITE);
 		this.btnExit.setFocusable(false);
 		this.btnExit.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.btnExit.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.btnExit.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.add(btnExit, gbc);
 
 		gbc.gridx = 2;

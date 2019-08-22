@@ -246,4 +246,9 @@ public class UtilityClass {
 		return null;
 	}
 	
+	public static String changeFormatDate(String date) {
+		String[] dateInput = date.split("/");
+		return dateInput[2] +"-" +dateInput[1] +"-" +dateInput[0];
+	}
+	
 }

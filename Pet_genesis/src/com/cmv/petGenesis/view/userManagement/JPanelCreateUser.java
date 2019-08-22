@@ -97,7 +97,7 @@ public class JPanelCreateUser extends JPanel {
 		this.returnButton.setForeground(Color.WHITE);
 		this.returnButton.setFocusable(false);
 		this.returnButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.returnButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.returnButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.panelButtons.add(returnButton, gbc);
 
 		gbc.gridx = 7;
@@ -105,7 +105,7 @@ public class JPanelCreateUser extends JPanel {
 		this.okButton.setForeground(Color.WHITE);
 		this.okButton.setFocusable(false);
 		this.okButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		this.okButton.setFont(ConstantView.FONT_LABELS_LOGIN);
+		this.okButton.setFont(ConstantView.FONT_PRINCIPAL_LABELS);
 		this.okButton.addActionListener(ControlUser.getInstance());
 		this.okButton.setActionCommand(UserCommands.OK_SIGN_IN.toString());
 		this.panelButtons.add(okButton, gbc);

@@ -6,6 +6,10 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JOptionPane;
 
 import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.model.Consult;
@@ -20,23 +24,25 @@ import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFindHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
+import com.cmv.petGenesis.view.historyManagement.JPanelSeeHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelStateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelUpdateHistory;
 
 /**
- * Clase ControlHistory - Se encarga de la conexión de la vista y el modelo para los enventos 
- * de la interfaz de usuario de la historia clinica y la lógica de la historia ( de las 
- * mascotas)
+ * Clase ControlHistory - Se encarga de la conexión de la vista y el modelo para
+ * los enventos de la interfaz de usuario de la historia clinica y la lógica de
+ * la historia ( de las mascotas)
  *
  * @version 1.0 - 31/07/2019
  * @author Yohan Caro - Fabian Cristancho
  */
-public class ControlHistory implements ActionListener, KeyListener, ItemListener {
+public class ControlHistory implements ActionListener, KeyListener, ItemListener, MouseListener {
 
 	private static ControlHistory controlHistory;
 	private JPanelCreateHistory jPanelCreateHistory;
 	private JPanelUpdateHistory jPanelUpdateHistory;
 	private JPanelGroupHistory jPanelGroupHistory;
+	private JPanelSeeHistory jPanelSeeHistory;
 	private JPanelComments jPanelComments;
 	private JPanelRecet jPanelMedicine;
 	private JPanelConsult jPanelConsult;
@@ -52,6 +58,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Instancia única del controlador (Singleton)
+	 * 
 	 * @return controlClient controlador
 	 */
 	public static ControlHistory getInstance() {
@@ -86,7 +93,8 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			jPanelCreateHistory.saveConsult(new Consult());
 			jPanelCreateHistory.saveExamEcop();
 			jPanelCreateHistory.saveExamTPR();
-			jPanelCreateHistory.saveExamBody();;
+			jPanelCreateHistory.saveExamBody();
+			;
 			jPanelCreateHistory.saveRegisterExam(new RegisterExam());
 			jPanelCreateHistory.saveRecet(new Recet());
 			break;
@@ -121,6 +129,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Cambia el valor de panel de agrupacion
+	 * 
 	 * @param jPanelGroupHistory jpanel
 	 */
 	public void setjPanelGroupHistory(JPanelGroupHistory jPanelGroupHistory) {
@@ -129,6 +138,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Cambia el valor del panel de comentarios
+	 * 
 	 * @param jPanelComments jpanel
 	 */
 	public void setjPanelComments(JPanelComments jPanelComments) {
@@ -137,6 +147,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Cambia el valor del panel de recetas
+	 * 
 	 * @param jPanelMedicine jpanel
 	 */
 	public void setjPanelMedicine(JPanelRecet jPanelMedicine) {
@@ -145,22 +156,25 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Cambia el valor del panel de consultas
+	 * 
 	 * @param jPanelConsult jpanel
 	 */
 	public void setjPanelConsult(JPanelConsult jPanelConsult) {
 		this.jPanelConsult = jPanelConsult;
 	}
-	
+
 	/**
 	 * Cambia el valor del panel de actualizar historias
+	 * 
 	 * @param jPanelUpdateHistory jpanel
 	 */
 	public void setjPanelUpdateHistory(JPanelUpdateHistory jPanelUpdateHistory) {
 		this.jPanelUpdateHistory = jPanelUpdateHistory;
 	}
-	
+
 	/**
 	 * Cambia el valor del panel de encontrar historias
+	 * 
 	 * @param jPanelFindHistory jpanel
 	 */
 	public void setjPanelFindHistory(JPanelFindHistory jPanelFindHistory) {
@@ -178,14 +192,19 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char c = e.getKeyChar();
-		
+
 		if (e.getComponent().equals(jPanelCreateHistory.getJtfPropietary())) {
 			if (c < '0' || c > '9')
 				e.consume();
-		}else if (e.getComponent().equals(jPanelCreateHistory.getJtfNamePet()) || e.getComponent().equals(jPanelCreateHistory.getJtfColorPet())) {
+		} else if (e.getComponent().equals(jPanelCreateHistory.getJtfNamePet())
+				|| e.getComponent().equals(jPanelCreateHistory.getJtfColorPet())) {
 			if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' '))
 				e.consume();
-		}else if (e.getComponent().equals(jPanelCreateHistory.getJtfWeight()) || e.getComponent().equals(jPanelCreateHistory.getJtfTemperature()) || e.getComponent().equals(jPanelCreateHistory.getJtfPression()) || e.getComponent().equals(jPanelCreateHistory.getJtfCardiac()) || e.getComponent().equals(jPanelCreateHistory.getJtfRespiratory())) {
+		} else if (e.getComponent().equals(jPanelCreateHistory.getJtfWeight())
+				|| e.getComponent().equals(jPanelCreateHistory.getJtfTemperature())
+				|| e.getComponent().equals(jPanelCreateHistory.getJtfPression())
+				|| e.getComponent().equals(jPanelCreateHistory.getJtfCardiac())
+				|| e.getComponent().equals(jPanelCreateHistory.getJtfRespiratory())) {
 			if ((c < '0' || c > '9') && (c < '.' || c > '.'))
 				e.consume();
 		}
@@ -193,27 +212,62 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	/**
 	 * Cambia el valor del panel de crear historias
+	 * 
 	 * @param jPanelCreateHistory jpanel
 	 */
 	public void setjPanelCreateHistory(JPanelCreateHistory jPanelCreateHistory) {
 		this.jPanelCreateHistory = jPanelCreateHistory;
 	}
-	
+
 	/**
 	 * Cambia el valor de
-	 * @param jPanelStateHistory a jPanelStateHistory 
+	 * 
+	 * @param jPanelStateHistory a jPanelStateHistory
 	 */
 	public void setjPanelStateHistory(JPanelStateHistory jPanelStateHistory) {
 		this.jPanelStateHistory = jPanelStateHistory;
 	}
 
+	public void setjPanelSeeHistory(JPanelSeeHistory jPanelSeeHistory) {
+		this.jPanelSeeHistory = jPanelSeeHistory;
+	}
+
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		if(e.getSource().equals(jPanelCreateHistory.getComboSpecies())) {
+		if (e.getSource().equals(jPanelSeeHistory.getDataConsult())) {
+			jPanelSeeHistory.setData();
+		} else if (e.getSource().equals(jPanelCreateHistory.getComboSpecies())) {
 			jPanelCreateHistory.changeRaces();
-		}else if (e.getSource().equals(jPanelUpdateHistory.getComboSpecies())) {
+		} else if (e.getSource().equals(jPanelUpdateHistory.getComboSpecies())) {
 			jPanelUpdateHistory.changeRaces();
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		if (e.getComponent().equals(jPanelFindHistory.getjTable())) {
+			jPanelFindHistory.showAllHistory(e.getPoint());
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+
 	}
 
 }

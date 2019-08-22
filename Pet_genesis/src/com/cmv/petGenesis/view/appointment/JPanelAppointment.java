@@ -29,10 +29,10 @@ public class JPanelAppointment extends JPanel {
 
 	public JPanelAppointment() {
 		super(new GridBagLayout());
-		lblIdA = new CustomLabel(ConstantView.LABEL_ID_AP, ConstantView.FONT_LABELS_LOGIN, null);
+		lblIdA = new CustomLabel(ConstantView.LABEL_ID_AP, ConstantView.FONT_PRINCIPAL_LABELS, null);
 		lblResultId = new CustomLabel("", ConstantView.FONT_FORM, null);
-		lblDate = new CustomLabel(ConstantView.LABEL_DATE_AP, ConstantView.FONT_LABELS_LOGIN, null);
-		lblMotive = new CustomLabel(ConstantView.LABEL_MOT_AP, ConstantView.FONT_LABELS_LOGIN, null);
+		lblDate = new CustomLabel(ConstantView.LABEL_DATE_AP, ConstantView.FONT_PRINCIPAL_LABELS, null);
+		lblMotive = new CustomLabel(ConstantView.LABEL_MOT_AP, ConstantView.FONT_PRINCIPAL_LABELS, null);
 		jtaMotive = new JTextArea();
 		jScrollPane = new JScrollPane();
 		Date date = new Date();
