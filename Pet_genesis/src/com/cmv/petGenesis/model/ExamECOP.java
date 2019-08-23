@@ -12,6 +12,7 @@ public class ExamECOP {
 	private String diet;
 	private String nails;
 	private String vomit;
+	private String observations;
 	
 	public ExamECOP() {
 	}
@@ -79,6 +80,14 @@ public class ExamECOP {
 	}
 	public void setVomit(String vomit) {
 		this.vomit = vomit;
+	}
+
+	public String getObservations() {
+		return observations;
+	}
+
+	public void setObservations(String observations) {
+		this.observations = observations;
 	}
 	
 }

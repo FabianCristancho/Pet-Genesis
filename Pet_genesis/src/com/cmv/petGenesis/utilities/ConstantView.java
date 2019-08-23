@@ -231,6 +231,7 @@ public class ConstantView {
 	public static final String LBL_EXAM_WATER = "CONSUMO DE AGUA";
 	public static final String LBL_EXAM_DIET = "DIETA";
 	public static final String LBL_EXAM_NAILS = "UÑAS";
+	public static final String LBL_OTHER_OBS = "OBSERVACIONES ADICIONALES";
 	public static final String LBL_EXAM_ATT = "ACTITUD";
 	public static final String LBL_EXAM_TEMP = "TEMPERAMENTO";
 	public static final String LBL_EXAM_TMP = "TEMPERATURA (°C)";

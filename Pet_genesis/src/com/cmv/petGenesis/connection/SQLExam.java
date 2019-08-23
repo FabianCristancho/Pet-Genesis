@@ -74,7 +74,7 @@ public class SQLExam extends ConnectionMySQL {
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 		
-		String sql = "INSERT INTO examenesECOP VALUES (?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO examenesECOP VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, examECOP.getIdEcop());
@@ -87,6 +87,7 @@ public class SQLExam extends ConnectionMySQL {
 			ps.setString(8, examECOP.getDiet());
 			ps.setString(9, examECOP.getNails());
 			ps.setString(10, examECOP.getVomit());
+			ps.setString(11, examECOP.getObservations());
 			ps.execute();
 			return true;
 		} catch (SQLException e) {

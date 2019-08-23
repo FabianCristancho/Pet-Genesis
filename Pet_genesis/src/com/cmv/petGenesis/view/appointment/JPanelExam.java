@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.appointment;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -31,12 +32,12 @@ public class JPanelExam extends JPanel {
 	private JPanel jPanelAp, jPanelStool, jPanelWater, jPanelDiet, jPanelNail;
 	private JPanel jPanelRoundTPR, jPanelRoundBody, jPanelRoundEcop;
 	private JLabel lblTitleRutinExam, lblWeigth, lblAppetite, lblStool, lblWater, lblDiet, lblNails, lblAttitude,
-			lblTemperature, lblTemp, lblPression, lblCardiac, lblRespiratory;
+			lblTemperature, lblTemp, lblPression, lblCardiac, lblRespiratory, lblObsECOP;
 	private JRadioButton jrbApGood, jrbApRegular, jrbApNull, jrbStNormal, jrbStDiarr, jrbConstip, jrbWaterNormal,
 			jrbWaterPolid, jrbWaterPoliu, jrbDietMeat, jrbDietVeg, jrbDietCarb, jrbOtherDiet, jrbNailNormal, jrbNailCut;
 	private JCheckBox checkVomit;
-	private JTextArea jtaOralCavid, jtaFace, jtaTrunk, jtaGenitals, jtaExtremities, jtaSnc, jtaDiagnostic;
-	private JScrollPane scDiagnostic;
+	private JTextArea jtaOralCavid, jtaFace, jtaTrunk, jtaGenitals, jtaExtremities, jtaSnc, jtaDiagnostic, jtaObsECOP;
+	private JScrollPane scDiagnostic, jspObsECOP;
 	protected JTextField jtfAttitude, jtfWeight, jtfTemp, jtfTemperature, jtfPression, jtfCardiac, jtfRespiratory;
 	private ButtonGroup bgAp, bgStool, bgWater, bgDiet, bgNail;
 
@@ -111,6 +112,10 @@ public class JPanelExam extends JPanel {
 		lblNails = new JLabel(ConstantView.LBL_EXAM_NAILS);
 		jrbNailNormal = new JRadioButton(ConstantView.JRB_EXAM_NAIL_OK);
 		jrbNailCut = new JRadioButton(ConstantView.JRB_EXAM_NAIL_CUT);
+		jrbOtherDiet = new JRadioButton(ConstantView.JRB_EXAM_DOTHER);
+		jspObsECOP = new JScrollPane();
+		jtaObsECOP = new JTextArea();
+		lblObsECOP = new JLabel(ConstantView.LBL_OTHER_OBS);
 		bgAp = new ButtonGroup();
 		bgDiet = new ButtonGroup();
 		bgNail = new ButtonGroup();
@@ -152,6 +157,7 @@ public class JPanelExam extends JPanel {
 		jPanelDiet.add(jrbDietMeat);
 		jPanelDiet.add(jrbDietCarb);
 		jPanelDiet.add(jrbDietVeg);
+		jPanelDiet.add(jrbOtherDiet);
 		jPanelEcop.add(jPanelDiet, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 1, 2);
@@ -177,9 +183,24 @@ public class JPanelExam extends JPanel {
 
 		UtilityClass.organizeGridLayout(gbc, 3, 3);
 		jPanelEcop.add(lblNails, gbc);
+		
+		gbc.gridwidth = 2;
+		UtilityClass.organizeGridLayout(gbc, 3, 4);
+		jPanelEcop.add(lblObsECOP, gbc);
+		
+		gbc.insets.bottom = 0;
+		gbc.insets.top = 0;
+		UtilityClass.organizeGridLayout(gbc, 3, 5);
+		jtaObsECOP.setLineWrap(true);
+		jtaObsECOP.setWrapStyleWord(true);
+		jtaObsECOP.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaObsECOP.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaObsECOP.setForeground(Color.BLACK);
+		jspObsECOP.setPreferredSize(new Dimension(300, 80));
+		jspObsECOP.setViewportView(jtaObsECOP);
+		jPanelEcop.add(jspObsECOP, gbc);
 
-		gbc.insets.left = 5;
-		UtilityClass.organizeGridLayout(gbc, 4, 0);
+		UtilityClass.organizeGridLayout(gbc, 4, 0, new Insets(20, 5, 0, 5));
 		jPanelEcop.add(jtfTemp, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 4, 1);
@@ -212,7 +233,6 @@ public class JPanelExam extends JPanel {
 		jPanelNail.add(jrbNailNormal);
 		jPanelNail.add(jrbNailCut);
 		jPanelEcop.add(jPanelNail, gbc);
-
 	}
 
 	private void initPanelTPR() {
@@ -306,7 +326,7 @@ public class JPanelExam extends JPanel {
 		examECOP.setDiet(UtilityClass.getSelection(bgDiet).getText());
 		examECOP.setNails(UtilityClass.getSelection(bgNail).getText());
 		examECOP.setVomit(checkVomit.isSelected()?"Paciente con vómito":"No presenta vómito");
-		
+		examECOP.setObservations(jtaObsECOP.getText());
 		return examECOP;
 	}
 	

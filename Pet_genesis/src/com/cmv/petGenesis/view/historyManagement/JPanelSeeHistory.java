@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,7 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.table.DefaultTableModel;
 
+import com.cmv.petGenesis.command.HistoryCommands;
 import com.cmv.petGenesis.connection.SQLHistory;
 import com.cmv.petGenesis.controller.ControlHistory;
 import com.cmv.petGenesis.model.Client;
@@ -57,16 +60,18 @@ public class JPanelSeeHistory extends JPanel{
 	private CustomLabel lblTemperature, lblRTemperature, lblPression, lblRPression, lblCardiac, lblRCardiac, lblRespiratory, lblRRespiratory;
 	private CustomLabel lblTitleMedicaments;
 	private JTable jTableMedicines;
+	private DefaultTableModel model;
 	private JScrollPane jspMedicines;
 	private JComboBox<String> dataConsult;
 	private JButton btnReturn;
 	private JScrollPane jspRoundHistory;
 	private JTextArea jtaDiagnostic;
-	private JTextArea jtaCommentsPet;
-	private JScrollPane jspCommentsPet;
+	private JTextArea jtaCommentsPet, jtaObs;
+	private JScrollPane jspCommentsPet, jspObs;
 	private CustomLabel lblDiagnostic;
 	private JScrollPane jspDiagnostic;
-	private CustomLabel lblWeight, lblRWeight, lblTemperament, lblRTemperament, lblAttitude, lblRAttitude, lblStool, lblRStool, lblApetit, lblRApetit, lblWater, lblRWater, lblDiet, lblRDiet, lblNails, lblRNails, lblRVomit;
+	private CustomLabel lblWeight, lblRWeight, lblTemperament, lblRTemperament, lblAttitude, lblRAttitude, lblStool, lblRStool, lblApetit, lblRApetit, lblWater, lblRWater, lblDiet, lblRDiet, lblNails, lblRNails, lblRVomit, lblObs, lblRObs;
+	private JButton btnShowWeightControl;
 	private int idPet;
 	
 	private SQLHistory sqlHistory;
@@ -196,6 +201,7 @@ public class JPanelSeeHistory extends JPanel{
 		lblRBirth = new CustomLabel("", ConstantView.FONT_PRINCIPAL_LABELS_RESULT, Color.BLACK);
 		lblNameProp = new CustomLabel("Propietario", ConstantView.FONT_PRINCIPAL_LABELS, Color.BLACK);
 		lblRNameProp = new CustomLabel("", ConstantView.FONT_PRINCIPAL_LABELS_RESULT, Color.BLACK);
+		btnShowWeightControl = new JButton("CONTROL PESO");
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
@@ -239,6 +245,14 @@ public class JPanelSeeHistory extends JPanel{
 		UtilityClass.organizeGridLayout(gbc, 4, 2);
 		jPanelDataPet.add(lblRCastrated, gbc);
 		
+		UtilityClass.organizeGridLayout(gbc, 4, 3);
+		btnShowWeightControl.setFocusable(false);
+		btnShowWeightControl.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnShowWeightControl.setForeground(Color.WHITE);
+		btnShowWeightControl.setBackground(new Color(9, 92, 150));
+		UtilityClass.addCommandJButton(btnShowWeightControl, HistoryCommands.CMD_WD_RHISTORY_WEIGHT.toString(), ControlHistory.getInstance());
+		jPanelDataPet.add(btnShowWeightControl, gbc);
+		
 		UtilityClass.organizeGridLayout(gbc, 0, 3);
 		jPanelDataPet.add(lblBirth, gbc);
 
@@ -268,7 +282,7 @@ public class JPanelSeeHistory extends JPanel{
 		jtaCommentsPet.setFont(ConstantView.FONT_TEXT_AREA);
 		jtaCommentsPet.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		jspCommentsPet.setPreferredSize(new Dimension(400, 80));
-		jspCommentsPet.setViewportView(jtaDiagnostic);
+		jspCommentsPet.setViewportView(jtaCommentsPet);
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
 		jPanelCommentsPet.add(jspCommentsPet, gbc);
 	}
@@ -402,6 +416,10 @@ public class JPanelSeeHistory extends JPanel{
 		lblNails = new CustomLabel("UÑAS", ConstantView.FONT_PRINCIPAL_LABELS, Color.BLACK);
 		lblRNails = new CustomLabel("", ConstantView.FONT_PRINCIPAL_LABELS_RESULT, Color.BLACK);
 		lblRVomit = new CustomLabel("", ConstantView.FONT_PRINCIPAL_LABELS_RESULT, Color.BLACK);
+		lblObs = new CustomLabel("OBSERVACIONES ADICIONALES", ConstantView.FONT_PRINCIPAL_LABELS, Color.BLACK);
+		lblRObs = new CustomLabel("", ConstantView.FONT_PRINCIPAL_LABELS_RESULT, Color.BLACK);
+		jtaObs = new JTextArea();
+		jspObs = new JScrollPane();
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
@@ -445,9 +463,24 @@ public class JPanelSeeHistory extends JPanel{
 
 		UtilityClass.organizeGridLayout(gbc, 3, 3);
 		jPanelECOP.add(lblNails, gbc);
-
-		gbc.insets.left = 5;
-		UtilityClass.organizeGridLayout(gbc, 4, 0);
+		
+		gbc.gridwidth = 2;
+		UtilityClass.organizeGridLayout(gbc, 3, 4);
+		jPanelECOP.add(lblObs, gbc);
+		
+		gbc.insets.top = 0;
+		UtilityClass.organizeGridLayout(gbc, 3, 5);
+		jtaObs.setLineWrap(true);
+		jtaObs.setWrapStyleWord(true);
+		jtaObs.setEditable(false);
+		jtaObs.setFont(ConstantView.FONT_TEXT_AREA);
+		jtaObs.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		jtaObs.setForeground(Color.BLACK);
+		jspObs.setPreferredSize(new Dimension(300, 80));
+		jspObs.setViewportView(jtaObs);
+		jPanelECOP.add(jspObs, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 4, 0, new Insets(20, 5, 0, 5));
 		jPanelECOP.add(lblRTemperament, gbc);
 
 		UtilityClass.organizeGridLayout(gbc, 4, 1);
@@ -508,6 +541,7 @@ public class JPanelSeeHistory extends JPanel{
 		jPanelMedicines = new JPanel();
 		jTableMedicines = new JTable();
 		jspMedicines = new JScrollPane();
+		model = new DefaultTableModel();
 		
 		jTableMedicines.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		jTableMedicines.setEnabled(false);
@@ -517,19 +551,32 @@ public class JPanelSeeHistory extends JPanel{
 		jspMedicines.setViewportView(jTableMedicines);
 		jspMedicines.setPreferredSize(new Dimension(800, 200));
 		jspMedicines.getViewport().setBackground(Color.decode("#c5dfed"));
-		jspMedicines.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		
 		jPanelMedicines.add(jspMedicines);
+	}
+	
+	private void changeWidthColumn() {
+		int[] widthColumns = { 140, 160, 160, 160, 177};
+		for (int i = 0; i < widthColumns.length; i++) {
+			jTableMedicines.getColumnModel().getColumn(i).setPreferredWidth(widthColumns[i]);
+		}
+	}
+	
+	private void loadTableMedicines() {
+		jTableMedicines.setModel(model);
 		
-//		Id medicamento
-//
-//		Nombre Medicamento
-//
-//		Tipo Medicamento
-//
-//		Dosis
-//
-//		Frecuencia
+		model.addColumn("Id Medicamento");
+		model.addColumn("Nombre Medicamento");
+		model.addColumn("Tipo medicamento");
+		model.addColumn("Dosis");
+		model.addColumn("Frecuencia");
+		
+		ArrayList<Object[]> table = sqlHistory.getTableMedicines(idPet, (String) dataConsult.getSelectedItem());
+		for (Object[] row : table) {
+			model.addRow(row);
+		}
+		
+		changeWidthColumn();
 	}
 	
 	private void setDataPet() {
@@ -556,6 +603,9 @@ public class JPanelSeeHistory extends JPanel{
 		setDataConsult();
 		setDataExamTPR();
 		setDataExamECOP();
+		setDataExamBody();
+		setDataDiagnostic();
+		loadTableMedicines();
 	}
 	
 	private void setDataConsult() {
@@ -584,10 +634,22 @@ public class JPanelSeeHistory extends JPanel{
 		lblRDiet.setText(examECOP.getDiet());
 		lblRNails.setText(examECOP.getNails());
 		lblRVomit.setText(examECOP.getVomit());
+		jtaObs.setText(examECOP.getObservations());
+	}
+	
+	private void setDataExamBody() {
+		this.jPanelResultExamBody.setDataExamBody(idPet, (String) dataConsult.getSelectedItem());
+	}
+	
+	private void setDataDiagnostic() {
+		jtaDiagnostic.setText(sqlHistory.getDiagnosticExam(idPet, (String) dataConsult.getSelectedItem()));
 	}
 
 	public JComboBox<String> getDataConsult() {
 		return dataConsult;
 	}
 	
+	public void showJDialogWeight() {
+		new JDialogWeight(idPet);
+	}
 }

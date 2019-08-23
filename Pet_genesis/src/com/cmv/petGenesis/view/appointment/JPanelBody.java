@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import com.cmv.petGenesis.connection.SQLExam;
+import com.cmv.petGenesis.connection.SQLHistory;
 import com.cmv.petGenesis.model.ExamBody;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -767,5 +768,4 @@ public class JPanelBody extends JPanel{
 	public int getIdExamBody() {
 		return idExamBody;
 	}
-	
 }

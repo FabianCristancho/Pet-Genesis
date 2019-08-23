@@ -18,6 +18,7 @@ import com.cmv.petGenesis.model.Pet;
 import com.cmv.petGenesis.model.Recet;
 import com.cmv.petGenesis.model.RegisterExam;
 import com.cmv.petGenesis.view.clientManagement.JDialogNewClient;
+import com.cmv.petGenesis.view.historyManagement.JDialogWeight;
 import com.cmv.petGenesis.view.historyManagement.JPanelComments;
 import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
@@ -48,6 +49,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelConsult jPanelConsult;
 	private JPanelFindHistory jPanelFindHistory;
 	private JPanelStateHistory jPanelStateHistory;
+	private JDialogWeight jDialogWeight;
 	private JDialogNewClient jDialogNewClient;
 
 	/**
@@ -93,8 +95,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			jPanelCreateHistory.saveConsult(new Consult());
 			jPanelCreateHistory.saveExamEcop();
 			jPanelCreateHistory.saveExamTPR();
-			jPanelCreateHistory.saveExamBody();
-			;
+			jPanelCreateHistory.saveExamBody();;
 			jPanelCreateHistory.saveRegisterExam(new RegisterExam());
 			jPanelCreateHistory.saveRecet(new Recet());
 			break;
@@ -121,6 +122,12 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			break;
 		case CMD_WD_INACTIV_CHANGE_TABLE:
 			jPanelStateHistory.changeStateButton();
+			break;
+		case CMD_WD_WEIGTH_CLOSE:
+			jDialogWeight.dispose();
+			break;
+		case CMD_WD_RHISTORY_WEIGHT:
+			jPanelSeeHistory.showJDialogWeight();
 			break;
 		default:
 			break;
@@ -230,6 +237,10 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 
 	public void setjPanelSeeHistory(JPanelSeeHistory jPanelSeeHistory) {
 		this.jPanelSeeHistory = jPanelSeeHistory;
+	}
+	
+	public void setjDialogWeight(JDialogWeight jDialogWeight) {
+		this.jDialogWeight = jDialogWeight;
 	}
 
 	@Override

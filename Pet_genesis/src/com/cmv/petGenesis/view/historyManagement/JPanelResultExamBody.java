@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import com.cmv.petGenesis.connection.SQLExam;
+import com.cmv.petGenesis.connection.SQLHistory;
+import com.cmv.petGenesis.model.ExamBody;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
 import com.cmv.petGenesis.utilities.UtilityClass;
@@ -46,6 +48,7 @@ public class JPanelResultExamBody extends JPanel{
 
 	
 	private JScrollPane jScrollPane;
+	private SQLHistory sqlHistory;
 	
 	protected int idExamBody;
 	
@@ -66,6 +69,7 @@ public class JPanelResultExamBody extends JPanel{
 		jScrollPane = new JScrollPane();
 		
 		SQLExam sqlExam = new SQLExam();
+		sqlHistory = new SQLHistory();
 		idExamBody = sqlExam.getLastBody()+1;
 		
 		init();
@@ -110,7 +114,7 @@ public class JPanelResultExamBody extends JPanel{
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPOralCavid.add(lblDientes, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -170,7 +174,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPNose.add(lblTrufa, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -219,7 +223,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPEyes.add(lblConjuntiva, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -279,7 +283,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPEars.add(lblOreja, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -321,7 +325,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPTorax.add(lblTraquea, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -369,7 +373,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPAbs.add(lblEstomago, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -432,7 +436,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPLinfatics.add(lblSubmaxilares, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -486,7 +490,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPGenitals.add(lblTesticulos, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -554,7 +558,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPTegument.add(lblTumoraciones, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -622,7 +626,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPExtrems.add(lblClaudicacion, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -672,7 +676,7 @@ public class JPanelResultExamBody extends JPanel{
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.anchor = GridBagConstraints.WEST;
 		
-		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 5, 5, 5));
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 20, 5, 20));
 		jPSNC.add(lblActitud, gbc);
 		
 		UtilityClass.organizeGridLayout(gbc, 1, 0);
@@ -705,7 +709,80 @@ public class JPanelResultExamBody extends JPanel{
 		jPAuxPanel.add(jPSNC);
 	}
 	
-	public void setDataExamBody() {
+	public void setDataExamBody(int idPet, String dateConsult) {
+		ExamBody examBody = sqlHistory.getDataBody(idPet, dateConsult);
+		lblRDientes.setText(examBody.getDientes());
+		lblRMucosa.setText(examBody.getMucosa());
+		lblRLengua.setText(examBody.getLengua());
+		lblRTonsilas.setText(examBody.getTonsillas());
+		lblRFAringe.setText(examBody.getFaringe());
+		lblRLaringe.setText(examBody.getLaringe());
+		rAddOral.setText(examBody.getOralAdd());
 		
+		lblRTrufa.setText(examBody.getTrufa());
+		lblRFlujoNasal.setText(examBody.getFlujoNasal());
+		lblRRespiracion.setText(examBody.getRespiracion());
+		rAddNose.setText(examBody.getNarizAdd());
+		
+		lblRConjuntiva.setText(examBody.getConjuntiva());
+		lblREsclerotica.setText(examBody.getEsclerotica());
+		lblRCornea.setText(examBody.getCornea());
+		lblRIris.setText(examBody.getIris());
+		lblRCristalino.setText(examBody.getCristalino());
+		lblRParpados.setText(examBody.getParpados());
+		rAddEyes.setText(examBody.getOjosAdd());
+		
+		lblROreja.setText(examBody.getOreja());
+		lblRCondAudExt.setText(examBody.getCondAudExt());
+		lblRTimpano.setText(examBody.getTimpano());
+		rAddEars.setText(examBody.getOidosAdd());
+		
+		lblRTraquea.setText(examBody.getTraquea());
+		lblRSonidosPulmonares.setText(examBody.getSonidosPulmonares());
+		lblRRuidosCardiacos.setText(examBody.getRuidosCardiacos());
+		rAddTorax.setText(examBody.getToraxAdd());
+		
+		lblREstomago.setText(examBody.getEstomago());
+		lblRIntestinos.setText(examBody.getIntestinos());
+		lblRHigado.setText(examBody.getHigado());
+		lblRBazo.setText(examBody.getBazo());
+		lblRRiniones.setText(examBody.getRiniones());
+		lblRVejiga.setText(examBody.getVejiga());
+		rAddAbs.setText(examBody.getAbdomenAdd());
+		
+		lblRSubmaxilares.setText(examBody.getSubmaxilares());
+		lblRPreescapulares.setText(examBody.getPreescapulares());
+		lblRPopliteos.setText(examBody.getPopliteos());
+		lblRMesentericos.setText(examBody.getMesentericos());
+		rAddLinfatics.setText(examBody.getGangliosAdd());
+		
+		lblRTesticulos.setText(examBody.getTesticulos());
+		lblRPrepucioPene.setText(examBody.getPrepuecio());
+		lblRProstata.setText(examBody.getProstata());
+		lblRVulva.setText(examBody.getVulva());
+		lblRVagina.setText(examBody.getVagina());
+		lblRUtero.setText(examBody.getUtero());
+		rAddGenitals.setText(examBody.getGenitalesAdd());
+		
+		lblRTumoraciones.setText(examBody.getTumoraciones());
+		lblRHeridas.setText(examBody.getHeridas());
+		lblRParasitosExternos.setText(examBody.getParasitos());
+		lblRPelaje.setText(examBody.getPelaje());
+		lblRGlandulasAnales.setText(examBody.getgAnales());
+		lblRGlandulasMamarias.setText(examBody.getgMamarias());
+		lblRDeshidratacion.setText(examBody.getDeshidratacion());
+		rAddTengument.setText(examBody.getTegumentoAdd());
+		
+		lblRClaudicacion.setText(examBody.getClaudicacion());
+		lblRArticulaciones.setText(examBody.getArticulaciones());
+		lblRHuesos.setText(examBody.getHuesos());
+		lblRTejidosBlandos.setText(examBody.getTejidosBlandos());
+		rAddExtrems.setText(examBody.getExtremidadesAdd());
+		
+		lblRActitud.setText(examBody.getActitud());
+		lblRReflejos.setText(examBody.getReflejos());
+		lblRCerebro.setText(examBody.getCerebro());
+		lblRMedulaEspinal.setText(examBody.getMedulaEspinal());
+		rAddSNC.setText(examBody.getSncAdd());
 	}
 }
