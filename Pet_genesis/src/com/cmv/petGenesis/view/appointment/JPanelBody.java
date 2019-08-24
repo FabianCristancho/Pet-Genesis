@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.appointment;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -9,11 +10,12 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 import com.cmv.petGenesis.connection.SQLExam;
-import com.cmv.petGenesis.connection.SQLHistory;
 import com.cmv.petGenesis.model.ExamBody;
 import com.cmv.petGenesis.utilities.ConstantView;
 import com.cmv.petGenesis.utilities.CustomLabel;
@@ -22,7 +24,8 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class JPanelBody extends JPanel{
 	
-	private JPanel jPAuxPanel, jPOralCavid, jPNose, jPEyes, jPEars, jPTorax, jPAbs, jPLinfatics, jPGenitals, jPTegument, jPExtrems, jPSNC;
+	private JPanel jPAuxPanel, jPOralCavid, jPNose, jPEyes, jPEars, jPTorax, jPAbs, jPLinfatics, jPGenitals, jPTegument, jPExtrems, jPSNC, jPCorporalCond;
+	private CustomLabel lblCorporalCond;
 	private CustomLabel lblDientes, lblMucosa, lblLengua, lblTonsilas, lblFAringe, lblLaringe, addOral;
 	private CustomLabel lblTrufa, lblFlujoNasal, lblRespiracion, addNose;
 	private CustomLabel lblConjuntiva, lblEsclerotica, lblCornea, lblIris, lblCristalino, lblParpados, addEyes;
@@ -47,12 +50,15 @@ public class JPanelBody extends JPanel{
 	private CustomTxtField jtfClaudicacion, jtfArticulaciones, jtfHuesos, jtfTejidosBlandos, jtfAddExtrems;
 	private CustomTxtField jtfActitud, jtfReflejos, jtfCerebro, jtfMedulaEspinal, jtfAddSNC;
 	
+	private JRadioButton jrbCaquetico, jrbFlaco, jrbOptimo, jrbSobrepeso, jrbObeso;
+	private ButtonGroup bgCorporalCond;
+	
 	private JScrollPane jScrollPane;
 	
 	protected int idExamBody;
 	
 	public JPanelBody() {
-		super();
+		super(new BorderLayout());
 		jPOralCavid = new JPanel(new GridBagLayout());
 		jPNose = new JPanel(new GridBagLayout());
 		jPEyes = new JPanel(new GridBagLayout());
@@ -74,6 +80,7 @@ public class JPanelBody extends JPanel{
 	}
 
 	private void init() {
+		initPanelCorporalCond();
 		initAreaOralCavid();
 		initAreaNose();
 		initAreaEyes();
@@ -88,9 +95,48 @@ public class JPanelBody extends JPanel{
 		
 		jScrollPane.setPreferredSize(new Dimension(850, 500));
 		jScrollPane.setViewportView(jPAuxPanel);
-		this.add(jPAuxPanel);
+		this.add(jPCorporalCond, BorderLayout.NORTH);
+		this.add(jPAuxPanel, BorderLayout.CENTER);
 	}
 	
+	private void initPanelCorporalCond() {
+		JPanel jpradio = new JPanel();
+		jPCorporalCond = new JPanel(new GridBagLayout());
+		bgCorporalCond = new ButtonGroup();
+		lblCorporalCond = new CustomLabel("CONDICIÓN CORPORAL", ConstantView.FONT_LABELS_BODY, Color.BLACK);
+		jrbCaquetico = new JRadioButton("Caquético (1/5)");
+		jrbFlaco = new JRadioButton("Flaco (2/5)");
+		jrbOptimo = new JRadioButton("Óptimo (3/5)");
+		jrbSobrepeso = new JRadioButton("Sobrepeso (4/5)");
+		jrbObeso = new JRadioButton("Obeso (5/5)");
+		
+		jrbOptimo.setSelected(true);
+		jrbCaquetico.setFocusable(false);
+		bgCorporalCond.add(jrbCaquetico);
+		jrbFlaco.setFocusable(false);
+		bgCorporalCond.add(jrbFlaco);
+		jrbOptimo.setFocusable(false);
+		bgCorporalCond.add(jrbOptimo);
+		jrbSobrepeso.setFocusable(false);
+		bgCorporalCond.add(jrbSobrepeso);
+		jrbObeso.setFocusable(false);
+		bgCorporalCond.add(jrbObeso);
+		
+		jpradio.add(jrbCaquetico);
+		jpradio.add(jrbFlaco);
+		jpradio.add(jrbOptimo);
+		jpradio.add(jrbSobrepeso);
+		jpradio.add(jrbObeso);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.anchor = GridBagConstraints.WEST;
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(5, 10, 25, 10));
+		jPCorporalCond.add(lblCorporalCond, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		jPCorporalCond.add(jpradio, gbc);
+		
+	}
 	
 	private void initAreaOralCavid() {
 		jPOralCavid.setBorder(BorderFactory.createTitledBorder("CAVIDAD ORAL"));
@@ -698,6 +744,7 @@ public class JPanelBody extends JPanel{
 		ExamBody examBody = new ExamBody();
 		
 		examBody.setIdExamBody(idExamBody);
+		examBody.setCondicionCorporal(UtilityClass.getSelection(bgCorporalCond).getText());
 		examBody.setDientes(jtfDientes.getText());
 		examBody.setMucosa(jtfMucosa.getText());
 		examBody.setLengua(jtfLengua.getText());

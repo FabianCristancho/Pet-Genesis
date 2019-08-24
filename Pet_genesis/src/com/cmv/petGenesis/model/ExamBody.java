@@ -3,6 +3,7 @@ package com.cmv.petGenesis.model;
 public class ExamBody {
 	
 	private int idExamBody;
+	private String condicionCorporal;
 	private String dientes;
 	private String mucosa;
 	private String lengua;
@@ -457,5 +458,13 @@ public class ExamBody {
 	}
 	public void setSncAdd(String sncAdd) {
 		this.sncAdd = sncAdd;
+	}
+
+	public String getCondicionCorporal() {
+		return condicionCorporal;
+	}
+
+	public void setCondicionCorporal(String condicionCorporal) {
+		this.condicionCorporal = condicionCorporal;
 	}
 }

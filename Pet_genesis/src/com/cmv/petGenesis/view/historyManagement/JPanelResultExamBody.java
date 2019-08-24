@@ -1,6 +1,7 @@
 package com.cmv.petGenesis.view.historyManagement;
 
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -21,8 +22,8 @@ import com.cmv.petGenesis.utilities.UtilityClass;
 
 public class JPanelResultExamBody extends JPanel{
 	
-	private JPanel jPAuxPanel, jPOralCavid, jPNose, jPEyes, jPEars, jPTorax, jPAbs, jPLinfatics, jPGenitals, jPTegument, jPExtrems, jPSNC;
-	private CustomLabel lblDientes, lblMucosa, lblLengua, lblTonsilas, lblFAringe, lblLaringe, addOral;
+	private JPanel jPAuxPanel, jPOralCavid, jPNose, jPEyes, jPEars, jPTorax, jPAbs, jPLinfatics, jPGenitals, jPTegument, jPExtrems, jPSNC, jPCondicionCorporal;
+	private CustomLabel lblDientes, lblMucosa, lblLengua, lblTonsilas, lblFAringe, lblLaringe, addOral, lblCondicionCorporal;
 	private CustomLabel lblTrufa, lblFlujoNasal, lblRespiracion, addNose;
 	private CustomLabel lblConjuntiva, lblEsclerotica, lblCornea, lblIris, lblCristalino, lblParpados, addEyes;
 	private CustomLabel lblOreja, lblCondAudExt, lblTimpano, addEars;
@@ -34,7 +35,7 @@ public class JPanelResultExamBody extends JPanel{
 	private CustomLabel lblClaudicacion, lblArticulaciones, lblHuesos, lblTejidosBlandos, addExtrems;
 	private CustomLabel lblActitud, lblReflejos, lblCerebro, lblMedulaEspinal, addSNC;
 	
-	private CustomLabel lblRDientes, lblRMucosa, lblRLengua, lblRTonsilas, lblRFAringe, lblRLaringe, rAddOral;
+	private CustomLabel lblRDientes, lblRMucosa, lblRLengua, lblRTonsilas, lblRFAringe, lblRLaringe, rAddOral, lblRCondicionCorporal;
 	private CustomLabel lblRTrufa, lblRFlujoNasal, lblRRespiracion, rAddNose;
 	private CustomLabel lblRConjuntiva, lblREsclerotica, lblRCornea, lblRIris, lblRCristalino, lblRParpados, rAddEyes;
 	private CustomLabel lblROreja, lblRCondAudExt, lblRTimpano, rAddEars;
@@ -53,7 +54,7 @@ public class JPanelResultExamBody extends JPanel{
 	protected int idExamBody;
 	
 	public JPanelResultExamBody() {
-		super();
+		super(new BorderLayout());
 		jPOralCavid = new JPanel(new GridBagLayout());
 		jPNose = new JPanel(new GridBagLayout());
 		jPEyes = new JPanel(new GridBagLayout());
@@ -76,6 +77,7 @@ public class JPanelResultExamBody extends JPanel{
 	}
 
 	private void init() {
+		initPanelCondCorp();
 		initAreaOralCavid();
 		initAreaNose();
 		initAreaEyes();
@@ -90,9 +92,22 @@ public class JPanelResultExamBody extends JPanel{
 		
 		jScrollPane.setPreferredSize(new Dimension(850, 500));
 		jScrollPane.setViewportView(jPAuxPanel);
-		this.add(jPAuxPanel);
+		this.add(jPCondicionCorporal, BorderLayout.NORTH);
+		this.add(jPAuxPanel, BorderLayout.CENTER);
 	}
 	
+	private void initPanelCondCorp() {
+		jPCondicionCorporal = new JPanel(new GridBagLayout());
+		lblCondicionCorporal = new CustomLabel("Condición Corporal", ConstantView.FONT_LABELS_BODY, Color.BLACK);
+		lblRCondicionCorporal = new CustomLabel("", ConstantView.FONT_LABELS_BODY_RESULT, Color.BLACK);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		UtilityClass.organizeGridLayout(gbc, 0, 0, new Insets(0, 20, 25, 20));
+		jPCondicionCorporal.add(lblCondicionCorporal, gbc);
+		
+		UtilityClass.organizeGridLayout(gbc, 1, 0);
+		jPCondicionCorporal.add(lblRCondicionCorporal, gbc);
+	}
 	
 	private void initAreaOralCavid() {
 		jPOralCavid.setBorder(BorderFactory.createTitledBorder("CAVIDAD ORAL"));
@@ -711,6 +726,7 @@ public class JPanelResultExamBody extends JPanel{
 	
 	public void setDataExamBody(int idPet, String dateConsult) {
 		ExamBody examBody = sqlHistory.getDataBody(idPet, dateConsult);
+		lblRCondicionCorporal.setText(examBody.getCondicionCorporal());
 		lblRDientes.setText(examBody.getDientes());
 		lblRMucosa.setText(examBody.getMucosa());
 		lblRLengua.setText(examBody.getLengua());

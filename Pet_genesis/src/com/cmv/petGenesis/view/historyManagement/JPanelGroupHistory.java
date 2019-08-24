@@ -22,6 +22,7 @@ public class JPanelGroupHistory extends JPanel{
 	private JPanelUpdateHistory jUpdateHistory;
 	private JPanelFindHistory jFindHistory;
 	private JPanelStateHistory jChangeStateHistory;
+	private JPanelNewConsult jPanelNewConsult;
 	
 	/**
 	 * Constructor del panel de grupos
@@ -34,6 +35,7 @@ public class JPanelGroupHistory extends JPanel{
 		jUpdateHistory = new JPanelUpdateHistory();
 		jFindHistory = new JPanelFindHistory();
 		jChangeStateHistory = new JPanelStateHistory();
+		jPanelNewConsult = new JPanelNewConsult(user);
 		ControlHistory.getInstance().setjPanelGroupHistory(this);
 		init();
 	}
@@ -47,6 +49,7 @@ public class JPanelGroupHistory extends JPanel{
 		this.add(ConstantView.CARD_UPDATE_HISTORY, jUpdateHistory);
 		this.add(ConstantView.CARD_STATE_HISTORY, jChangeStateHistory);
 		this.add(ConstantView.CARD_FIND_HISTORY, jFindHistory);
+		this.add(ConstantView.CARD_NEW_CONSULT, jPanelNewConsult);
 		cardLayout.show(this, ConstantView.CARD_CREATE_HISTORY);
 	}
 	
@@ -63,6 +66,11 @@ public class JPanelGroupHistory extends JPanel{
 	 */
 	public void showUpdate() {
 		this.cardLayout.show(this, ConstantView.CARD_UPDATE_HISTORY);
+		this.repaint();
+	}
+	
+	public void showNewConsult() {
+		this.cardLayout.show(this, ConstantView.CARD_NEW_CONSULT);
 		this.repaint();
 	}
 	

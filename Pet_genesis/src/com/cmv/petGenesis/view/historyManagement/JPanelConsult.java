@@ -2,6 +2,7 @@ package com.cmv.petGenesis.view.historyManagement;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -61,6 +62,7 @@ public class JPanelConsult extends JPanel{
 		this.btnClearFields.setFocusable(false);
 		this.jPanelBtn.add(btnClearFields);
 		this.jPanelRound.add(jPanelBtn, BorderLayout.SOUTH);
+		this.jScrollPane.setPreferredSize(new Dimension(1000, 100));
 		this.jScrollPane.setViewportView(jPanelRound);
 		this.add(jScrollPane, BorderLayout.CENTER);
 		UtilityClass.addCommandJButton(btnClearFields, HistoryCommands.CMD_WD_EXAM_CLEAR_FIELDS.toString(),ControlHistory.getInstance());

@@ -162,7 +162,7 @@ public class JPanelSeeHistory extends JPanel{
 		this.jPanelGeneralHistory.add(jPanelTitleMedicines, gbc);
 		
 		initPanelMedicines();
-		UtilityClass.organizeGridLayout(gbc, 0, 10);
+		UtilityClass.organizeGridLayout(gbc, 0, 10, new Insets(0, 0, 20, 0));
 		this.jPanelGeneralHistory.add(jPanelMedicines, gbc);
 		
 		jPanelRoundGeneral.setBorder(BorderFactory.createEmptyBorder(0, 30, 20, 10));
@@ -549,7 +549,7 @@ public class JPanelSeeHistory extends JPanel{
 		jTableMedicines.getTableHeader().setReorderingAllowed(false);
 		
 		jspMedicines.setViewportView(jTableMedicines);
-		jspMedicines.setPreferredSize(new Dimension(800, 200));
+		jspMedicines.setPreferredSize(new Dimension(800, 100));
 		jspMedicines.getViewport().setBackground(Color.decode("#c5dfed"));
 		
 		jPanelMedicines.add(jspMedicines);

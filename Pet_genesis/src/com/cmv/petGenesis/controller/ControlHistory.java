@@ -24,6 +24,7 @@ import com.cmv.petGenesis.view.historyManagement.JPanelConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelCreateHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelFindHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelGroupHistory;
+import com.cmv.petGenesis.view.historyManagement.JPanelNewConsult;
 import com.cmv.petGenesis.view.historyManagement.JPanelRecet;
 import com.cmv.petGenesis.view.historyManagement.JPanelSeeHistory;
 import com.cmv.petGenesis.view.historyManagement.JPanelStateHistory;
@@ -50,6 +51,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	private JPanelFindHistory jPanelFindHistory;
 	private JPanelStateHistory jPanelStateHistory;
 	private JDialogWeight jDialogWeight;
+	private JPanelNewConsult jPanelNewConsult;
 	private JDialogNewClient jDialogNewClient;
 
 	/**
@@ -84,6 +86,12 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 		case CMD_BTN_FIND_HISTORY:
 			jPanelGroupHistory.showFind();
 			break;
+		case CMD_BTN_NEW_CONSULT:
+			jPanelGroupHistory.showNewConsult();
+			break;
+		case CMD_WD_RCONSULT_SEARCH:
+			jPanelNewConsult.searchPet();
+			break;
 		case CMD_WD_COMMENTS_CLEAR_COM:
 			jPanelComments.clearComments();
 			break;
@@ -98,6 +106,9 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			jPanelCreateHistory.saveExamBody();;
 			jPanelCreateHistory.saveRegisterExam(new RegisterExam());
 			jPanelCreateHistory.saveRecet(new Recet());
+			break;
+		case CMD_WD_RCONSULT_SAVE_CONSULT:
+			jPanelNewConsult.saveAllConsultData();
 			break;
 		case CMD_BTN_NEW_CLIENT:
 			jDialogNewClient = new JDialogNewClient();
@@ -200,7 +211,7 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 	public void keyTyped(KeyEvent e) {
 		char c = e.getKeyChar();
 
-		if (e.getComponent().equals(jPanelCreateHistory.getJtfPropietary())) {
+		if (e.getComponent().equals(jPanelCreateHistory.getJtfPropietary()) || e.getComponent().equals(jPanelNewConsult.getJtfInputQuery())) {
 			if (c < '0' || c > '9')
 				e.consume();
 		} else if (e.getComponent().equals(jPanelCreateHistory.getJtfNamePet())
@@ -215,6 +226,11 @@ public class ControlHistory implements ActionListener, KeyListener, ItemListener
 			if ((c < '0' || c > '9') && (c < '.' || c > '.'))
 				e.consume();
 		}
+	}
+	
+
+	public void setjPanelNewConsult(JPanelNewConsult jPanelNewConsult) {
+		this.jPanelNewConsult = jPanelNewConsult;
 	}
 
 	/**

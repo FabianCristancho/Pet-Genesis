@@ -242,7 +242,7 @@ public class SQLHistory extends ConnectionMySQL {
 				+ "e.tumoraciones, e.heridas, e.parasitos, e.pelaje, e.glandulas_anales, e.glandulas_mamarias, "
 				+ "e.deshidratacion, e.tegumento_adicional, e.claudicacion, e.articulaciones, e.huesos, "
 				+ "e.tejidos_blandos, e.extremidades_adicional, e.actitud_snc, e.reflejos, e.cerebro, e.medula_espinal, "
-				+ "e.snc_adicional "
+				+ "e.snc_adicional, e.condicion_corporal "
 				+ "FROM examenes_cuerpo AS e INNER JOIN registros_examen AS r ON e.id_examen_cuerpo = r.id_examen_cuerpo "
 				+ "INNER JOIN consultas AS c ON r.id_consulta = c.id_consulta " + "WHERE c.id_mascota = " + idPet + " "
 				+ "AND c.fecha_consulta = '" + date + "'";
@@ -317,6 +317,7 @@ public class SQLHistory extends ConnectionMySQL {
 				examBody.setCerebro(rs.getString(61));
 				examBody.setMedulaEspinal(rs.getString(62));
 				examBody.setSncAdd(rs.getString(63));
+				examBody.setCondicionCorporal(rs.getString(64));
 
 			}
 		} catch (SQLException e) {

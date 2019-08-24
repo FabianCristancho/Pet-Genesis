@@ -104,6 +104,7 @@ public class ConstantView {
 	public final static String IMG_CHECK_SIGNIN = "data/images/icon_check.png";
 	public final static String IMG_EDIT_SIGNIN = "data/images/icon_edit.png";
 	public final static String IMG_GESTION_SIGNIN = "data/images/icon_search.png";
+	public final static String IMG_NEW_CONSULT = "data/images/icon_new_consult.png";
 	public final static String IMG_PET_SIGNIN = "data/images/icon_pet.png";
 	
 	//User Management
@@ -143,10 +144,12 @@ public class ConstantView {
 	public final static String CARD_UPDATE_HISTORY = "Actualizar historia";
 	public final static String CARD_STATE_HISTORY = "Cambiar estado historia";
 	public final static String CARD_FIND_HISTORY = "Consultar historia";
-	public static final String BUTTON_CREATE_HISTORY = "CREAR HISTORIA CLINICA";
-	public static final String BUTTON_UPDATE_HISTORY = "MODIFICAR HISTORIA CLINICA";
-	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLINICA";
-	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLINICA";
+	public final static String CARD_NEW_CONSULT = "Nueva consulta médica";
+	public static final String BUTTON_CREATE_HISTORY = "CREAR HISTORIA CLÍNICA";
+	public static final String BUTTON_UPDATE_HISTORY = "MODIFICAR HISTORIA CLÍNICA";
+	public static final String BUTTON_STATE_HISTORY = "ESTADO HISTORIA CLÍNICA";
+	public static final String BUTTON_FIND_HISTORY = "CONSULTAR HISTORIA CLÍNICA";
+	public static final String BUTTON_NEW_CONSULT = "REGISTRAR CONSULTA MÉDICA";
 	public final static String BUTTON_REGISTER_HISTORY = "REGISTRAR HISTORIA";
 	
 	public final static String TITLE_WD_CREATE_HISTORY = "CREAR HISTORIA CLÍNICA";
@@ -169,7 +172,7 @@ public class ConstantView {
 	public static final String BTN_FIND_PROPIETARY_PET = "Nuevo cliente";
 	public final static String[] COMBO_SPECIES = {"CANINO", "FELINO"};
 	public static final String TABBED_DATA_PET = "DATOS DE PACIENTE";
-	public static final String TABBED_APPOINT_PET = "CITAS DE PACIENTE";
+	public static final String TABBED_APPOINT_PET = "CONSULTA DE PACIENTE";
 	public static final String TABBED_MEDICINE_PET = "MEDICAMENTOS";
 	public static final String TABBED_COMMENTS_PET = "COMENTARIOS";
 	public static final String[] COMBO_SEARCH_CLIENT = {"Código de cliente generado", "Documento de Identidad"};
@@ -202,6 +205,7 @@ public class ConstantView {
 	public static final String BTN_SEARCH_UPDATE_HISTORY = "Buscar historia clínica";
 	
 	public final static String LABEL_PET_QUERY = "CONSULTA DE MASCOTAS";
+	public final static String LABEL_PET_NEW_CONSULT = "REGISTRO DE CONSULTA MÉDICA";
 	public final static String LABEL_SEARCH_PET_QUERY = "Consultar mascota por";
 	public final static String BTN_LOAD_ALL_DATA = "CARGAR TODOS LOS DATOS";
 	public final static String BTN_SEARCH_PET = "BUSCAR MASCOTA";
